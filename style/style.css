@@ -1,0 +1,67 @@
+body {
+    position: relative;
+    background-color: powderblue;
+    width: 100%;
+}
+
+nav {
+    position: absolute;
+    background-color: whitesmoke;
+    width: 100%;
+    padding: 10px;
+}
+
+h1 {
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    font-size: x-large;
+    color: black;
+}
+
+nav h1 {
+    position: relative;
+    top: .5rem;
+    width: 20%;
+}
+
+menu {
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+    width: 80%;
+}
+
+a {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+}
+
+section {
+    position: relative;
+    float: left;
+}
+
+.container {
+    position: relative;
+    padding: 20%;
+}
+
+.navMenuItem {
+    position: relative;
+    top: -1.5rem;
+    right: -20rem;
+    float: right;
+    font-weight: 500;
+    font-size: x-large;
+    margin-left: 15px;
+}
+
+#agent {
+    padding: 5px;
+    font-size: xx-large;
+}
+
+#warehouse {
+    color: firebrick;
+}
