@@ -6,11 +6,25 @@ body {
 }
 
 nav {
+    position: fixed;
     background-color: yellow;
     height: 70px;
 }
 
-.dropdown-menu {
+.jumbotron {
     background-color: yellow;
+    margin-top: 10%;
+    margin-left: 10%;
 }
 
+.btn {
+    background-color: black;
+    color: yellow;
+}
+
+.displayIcons {
+    height: 120px;
+    width: 120px;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+}
