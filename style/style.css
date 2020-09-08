@@ -1,10 +1,13 @@
 body {
     background-image: url("../assets/images/warehouse-splash-lower-res.jpg");
+    background-color: black;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 nav {
     background-color: yellow;
+    height: 70px;
 }
 
 .dropdown-menu {
