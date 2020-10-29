@@ -1,7 +1,10 @@
 body {
     background-color: whitesmoke;
+    /* *Font family is a placeholder. Style-guide prototype in Figma is using Tahoma*/
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 header {
     background-color: lightyellow;
+    text-align: center;
 }
