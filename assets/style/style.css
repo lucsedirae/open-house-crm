@@ -8,19 +8,20 @@ body {
 
 nav {
     position: fixed;
-    background-color: yellow;
+    background-color: lightyellow;
     height: 70px;
 }
 
 .jumbotron {
-    background-color: yellow;
-    margin-top: 10%;
-    margin-left: 10%;
+    background-color: lightgrey;
 }
 
 .btn {
-    background-color: black;
-    color: yellow;
+    background-color: lightyellow;
+    color: black;
+    border-color: black;
+    margin-left: 2rem;
+    margin-top: 2rem;
 }
 
 .displayIcons {
