@@ -57,6 +57,8 @@ OH CRM makes use of the VS Code extension "Better Comments". This extension allo
 https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
 ### HTML Framework
 OH CRM has been initially developed using Bootstrap. An issue is open for experimenting with different frameworks. Motivation for this exploration is to reduce the size of the framework for improved browser performance and to provide a more skeletal framework on which custom stylesheets can provide a leaner custom CSS scheme.
+### Wireframe/Prototyping
+OH CRM is utilizing Figma to prototype and wireframe. A  current copy of the .fig file can be found in the dir *develop*
 
 ## Questions
 Have questions on this application? Contact me via:<br>
