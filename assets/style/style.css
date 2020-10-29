@@ -1,5 +1,6 @@
 body {
-    background-image: url("../assets/images/warehouse-splash-lower-res.jpg");
+    /* background-image: url("../../assets/images/warehouse-splash-lower-res.jpg"); */
+    background-image: url("../images/warehouse-splash-lower-res.jpg");
     background-color: black;
     background-size: cover;
     background-repeat: no-repeat;

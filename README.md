@@ -47,6 +47,13 @@ Current collaborative workflow: create a new branch, commit and push to new bran
 ## Testing
 No testing protocol currently in place.
 
+## Additional Development Notes
+### IDE
+OH CRM makes use of the VS Code extension "Better Comments". This extension allows for the color coding of comments. Key to color coding and comment prefixes can be found in the README for the extension. See the VS Code marketplace for more information<br>
+https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
+### HTML Framework
+OH CRM has been initially developed using Bootstrap. An issue is open for experimenting with different frameworks. Motivation for this exploration is to reduce the size of the framework for improved browser performance and to provide a more skeletal framework on which custom stylesheets can provide a leaner custom CSS scheme.
+
 ## Questions
 Have questions on this application? Contact me via:<br>
 Email: jondeavers@gmail.com <br>
