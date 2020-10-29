@@ -11,6 +11,8 @@ Open House CRM is an open source, free customer relationship management applicat
 
 ## Table of Contents 
 
+* [Version](#version)
+
 * [Installation](#installation)
 
 * [Usage](#usage)
@@ -20,6 +22,8 @@ Open House CRM is an open source, free customer relationship management applicat
 * [Contributions](#contributions)
 
 * [Testing](#testing)
+
+* [Additional Development Notes](#additional-development-notes)
 
 * [Questions](#questions)
 
