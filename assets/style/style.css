@@ -4,6 +4,7 @@ body {
     background-color: black;
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 nav {
@@ -29,4 +30,12 @@ nav {
     width: 120px;
     margin: 10px 10px 10px 10px;
     padding: 10px 10px 10px 10px;
+}
+
+#header-logo {
+    height: 5rem;
+    width: 10rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }

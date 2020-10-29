@@ -5,6 +5,37 @@ body {
 }
 
 header {
-    background-color: lightyellow;
+    background-color: #6699FF;
     text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.element-header {
+    text-align: center;
+}
+
+#header-logo {
+    height: 5rem;
+    width: 10rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#logo-container {
+    background-color: #999999;
+    border-radius: .25rem;
+}
+
+#palette-conatainer {
+    background-color: #999999;
+    border-radius: .25rem;
+    height: 15rem;
 }
