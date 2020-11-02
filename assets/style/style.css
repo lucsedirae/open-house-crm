@@ -1,24 +1,36 @@
 body {
     /* background-image: url("../../assets/images/warehouse-splash-lower-res.jpg"); */
     background-image: url("../images/warehouse-splash-lower-res.jpg");
-    background-color: black;
+    background-color: #FFFFFF;
     background-size: cover;
     background-repeat: no-repeat;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+h4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+h5 {
+    text-align: center;
+}
 nav {
     position: fixed;
-    background-color: lightyellow;
+    background-color: #6699FF;
     height: 70px;
 }
 
 .jumbotron {
-    background-color: lightgrey;
+    background-color: #99CCFF;
+    box-shadow: .10rem .10rem 1rem  #FF9999;
+    border: 1rem 1rem 1rem  #FF9999;
+    margin-top: 5rem;
+    margin-left: 2rem;
 }
 
 .btn {
-    background-color: lightyellow;
+    background-color: #CCCCCC;
     color: black;
     border-color: black;
     margin-left: 2rem;
@@ -32,10 +44,28 @@ nav {
     padding: 10px 10px 10px 10px;
 }
 
+.gen-content {
+    background-color: #99CCFF;
+    box-shadow: .10rem .10rem 1rem  #FF9999;
+    border: 1rem 1rem 1rem  #FF9999;
+    margin-left: 2rem;
+    border-radius: .3rem;
+}
+
+.info-card {
+    background-color: #FFFFFF;
+    border-radius: .3rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: .10rem .10rem 1rem  #FF9999;
+    border: 1rem 1rem 1rem  #FF9999;
+}
+
 #header-logo {
-    height: 5rem;
-    width: 10rem;
+    height: 3.5rem;
+    width: 4.5rem;
     margin: 0;
     padding: 0;
     border: 0;
 }
+
