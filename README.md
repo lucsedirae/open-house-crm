@@ -30,7 +30,7 @@ Open House CRM is an open source, free customer relationship management applicat
 <hr>
 
 ## Version
-### 0.1.1
+### 0.1.2
 OH CRM is currently in the initial development phase. Jon Deavers is the initial contributor. While Jon is a new developer, he is an experienced real estate agent and is looking for experienced contributors to help get the project off the ground and available for beta-testing by real estate agents.<br>
 OH CRM follows a sequential versioning convention. The format for this convention is `<Major.Minor.Patch>` 
 
