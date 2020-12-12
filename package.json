@@ -1,23 +1,29 @@
 {
-  "name": "agentwarehouse",
-  "version": "1.0.0",
-  "description": "A tool to help real estate agents track and manage their sales tool inventory",
-  "main": "index.js",
+  "name": "openhousecrm",
+  "version": "0.1.0",
+  "description": "Open source platform for building custom CRM apps",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucsedirae/agentwarehouse.git"
+    "url": "git+https://github.com/lucsedirae/open-house-crm.git"
   },
+  "keywords": [
+    "opensource",
+    "CRM"
+  ],
   "author": "Jon Deavers",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/lucsedirae/agentwarehouse/issues"
+    "url": "https://github.com/lucsedirae/open-house-crm/issues"
   },
-  "homepage": "https://github.com/lucsedirae/agentwarehouse#readme",
+  "homepage": "https://github.com/lucsedirae/open-house-crm#readme",
   "dependencies": {
-    "inquirer": "^7.3.3",
-    "util": "^0.12.3"
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
   }
 }
