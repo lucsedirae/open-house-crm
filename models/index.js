@@ -1,5 +1,6 @@
 "use strict";
 
+// ! This index.js is currently configured for sequelize. Needs to be rewritten to provide structure for Mongo DB and Mongoose
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
