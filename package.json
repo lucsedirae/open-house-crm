@@ -22,8 +22,6 @@
   "homepage": "https://github.com/lucsedirae/open-house-crm#readme",
   "dependencies": {
     "ejs": "^3.1.5",
-    "express": "^4.17.1",
-    "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
+    "express": "^4.17.1"
   }
 }

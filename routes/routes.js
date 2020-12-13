@@ -30,4 +30,7 @@ module.exports = function(app) {
     app.get("/login", (req, res) => {
         res.render("pages/login")
     });
+    app.get("/docs", (req, res) => {
+        res.render("pages/docs")
+    });
 };
