@@ -1,27 +1,24 @@
 {
-  "name": "openhousecrm",
+  "name": "openhousev2",
   "version": "0.1.0",
-  "description": "Open source platform for building custom CRM apps",
+  "description": "Open Source Contact Management Platform\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lucsedirae/open-house-crm.git"
-  },
-  "keywords": [
-    "opensource",
-    "CRM"
-  ],
-  "author": "Jon Deavers",
-  "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/lucsedirae/open-house-crm/issues"
-  },
-  "homepage": "https://github.com/lucsedirae/open-house-crm#readme",
+  "author": "LucSedirae",
+  "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "ejs": "^3.1.5",
-    "express": "^4.17.1"
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.8.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
   }
 }
