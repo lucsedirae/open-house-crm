@@ -33,4 +33,10 @@ module.exports = function(app) {
     app.get("/docs", (req, res) => {
         res.render("pages/docs")
     });
+    app.get("/dashboard", (req, res) => {
+        res.render("pages/dashboard", { name: req.user.name })
+    });
+    app.get("/register", (req, res) => {
+        res.render("pages/register")
+    });
 };

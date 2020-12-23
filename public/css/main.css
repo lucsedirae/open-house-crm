@@ -2,6 +2,8 @@
     background-color: rgb(192, 192, 192, 0.7);
     padding-left: 4rem;
     padding-right: 4rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 .split-col {

@@ -10,15 +10,25 @@
       <!-- * Row 1 -->
       <div class="row">
         <div class="col text-center">
-          <h1>Login</h1>
-          <% if (messages.error) { %> <%= messages.error %> <% } %>
+          <h1>Register</h1>
         </div>
       </div>
       <!-- * Row 1 -->
       <div class="row">
         <div class="col text-center info-panel">
-          <h3>Please enter your login email and password</h3>
-          <form action="/login" method="POST">
+          <h3>Create an account</h3>
+          <form action="/register" method="POST">
+            <div class="mb-3">
+                <input
+                type="name"
+                class="form-control"
+                id="name"
+                name="name"
+                aria-describedby="nameHelp"
+                placeholder="Name"
+                required
+              />
+            </div>
             <div class="mb-3">
               <input
                 type="email"
@@ -34,7 +44,7 @@
               </div>
             </div>
             <div class="mb-3">
-              <input
+                <input
                 type="password"
                 class="form-control"
                 id="password"
@@ -46,7 +56,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-          <a href="/register">Register</a>
+          <a href="/login">Login</a>
         </div>
       </div>
     </main>
