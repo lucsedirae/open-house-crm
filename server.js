@@ -1,31 +1,24 @@
-//* Require dependencies
+//* Dependencies
 const express = require("express");
-const ejs = require("ejs");
+const connectDB = require("./config/db");
 const path = require("path");
 
-//*Define environment
+const app = express();
+
+//* Connect to database
+connectDB();
+
+//* Init Middleware
+app.use(express.json({ extended: false }));
+
+app.get("/", (req, res) => res.json({ msg: "Welcome to Open House CRM API" }));
+
+//*Define routes
+app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/contacts", require("./routes/contacts"));
+
 const PORT = process.env.PORT || 8080;
 
-//* Require database interaction models
-const db = require("./models");
-
-//* Create the app express instance and configure middleware for authentication
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static(path.join(__dirname,"public")));
-
-//* Initialize rendering engine ejs
-app.set("view engine", "ejs");
-
-//* Require routes
-require("./routes/routes.js")(app);
-
-//* Sync database and log listener message
-  app.listen(PORT, () => {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser. 🌎 <== ",
-      PORT,
-      PORT
-    );
-  });
+//*Initialize server
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
