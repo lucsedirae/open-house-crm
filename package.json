@@ -1,6 +1,6 @@
 {
-  "name": "openhousev2",
-  "version": "0.1.0",
+  "name": "OpenHouseCRM",
+  "version": "0.3.0",
   "description": "Open Source Contact Management Platform\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D",
   "main": "server.js",
   "scripts": {

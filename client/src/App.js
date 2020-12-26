@@ -13,10 +13,18 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <div className="container">
+          <div className="container my-3">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
+              <Route
+                path="/github"
+                component={() => {
+                  window.location.href =
+                    "https://github.com/lucsedirae/open-house-crm";
+                  return null;
+                }}
+              />{" "}
             </Switch>
           </div>
         </Fragment>
