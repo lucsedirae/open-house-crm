@@ -1,3 +1,11 @@
+.address-list {
+    list-style: none;
+}
+
+.btn {
+    margin: 1rem;
+}
+
 .navbar-brand {
     cursor: default;
 }

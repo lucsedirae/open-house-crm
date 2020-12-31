@@ -1,14 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
-import Contacts from "../contacts/Contacts";
 export const Home = () => {
   return (
     <div className="jumbotron jumbotron-fluid px-2">
       <h1>Open House CRM</h1>
-      <p>
+      <br />
+      <h5>
         An open source React library for building business dashboards and
         customer relationship management apps quickly and professionally
-      </p>
+      </h5>
+      <br />
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-secondary">
           Login

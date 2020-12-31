@@ -18,6 +18,12 @@ export const Navbar = ({ title, icon, brand, navbar }) => {
             About
           </Link>
         </li>
+        <li className="nav-item">
+          <Link className="text-light mx-1" to="/dashboard">
+            Login
+          </Link>
+        </li>
+
       </ul>
     </div>
   );
