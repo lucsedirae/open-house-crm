@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./components/layout/Navbar";
+import Appbar from "./components/layout/Appbar";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Dashboard from "./components/pages/Dashboard";
@@ -13,7 +13,7 @@ const App = () => {
     <ContactState>
       <Router>
         <Fragment>
-          <Navbar />
+          <Appbar />
           <div className="container-fluid my-3">
             <Switch>
               <Route exact path="/" component={Home} />
