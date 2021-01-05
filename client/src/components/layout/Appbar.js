@@ -21,12 +21,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  appBar: {
+    marginTop: "0"
+  }
 }));
 
 const Appbar = () => {
   const classes = useStyles();
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Toolbar>
         <IconButton
           edge="start"

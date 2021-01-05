@@ -1,6 +1,57 @@
+//* Dependencies
 import React from "react";
 
+//* Material UI components, hooks, and icons
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Chip from "@material-ui/core/Chip";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Typography from "@material-ui/core/Typography";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import FaceIcon from "@material-ui/icons/Face";
+import ContactMailIcon from "@material-ui/icons/ContactMail";
+import PhoneIcon from "@material-ui/icons/Phone";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+    marginBottom: "1rem",
+  },
+  title: {
+    textAlign: "center",
+  },
+  pos: {
+    marginBottom: "1rem",
+  },
+  buttonGroup: {
+    justifyContent: "center",
+  },
+  Box: {
+    marginTop: "1rem",
+  },
+});
+
+//* Checks the contact type and returns the appropriate badge background color
+const typeCheck = (type) => {
+  switch (type) {
+    case "vendor":
+      return "lightgreen";
+    case "client":
+      return "lightblue";
+    default:
+      return "yellow";
+  }
+};
 export const ContactItem = ({ contact }) => {
+  const classes = useStyles();
+
   const {
     id,
     name,
@@ -16,69 +67,65 @@ export const ContactItem = ({ contact }) => {
     type,
   } = contact;
 
-  //* Checks the contact type and returns the appropriate badge background color
-  const typeCheck = (type) => {
-    switch (type) {
-      case "vendor":
-        return "bg-primary";
-      case "client":
-        return "bg-success";
-      default:
-        return "bg-warning";
-    }
-  };
-
   return (
-    <div className="card bg-light">
-      <h5 className="mx-1 my-1">
-        {name}{" "}
-        <span
-          style={{ float: "right" }}
-          className={`mx-1 badge ${typeCheck(type)}`}
-        >
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </span>
-      </h5>
-      <ul className="list-group">
-        {address && (
-          <li className="list-group-item">
-            <ul className="address-list">
-              <li>
-                {address.street && (
-                  <li>
-                    {address.streetNumber} {address.street}
-                  </li>
-                )}
-              </li>
-              {address.address2 && <li>{address.address2}</li>}
-              <li>
-                {address.city && (
-                  <li>
-                    {address.city}, {address.state} {address.zipcode}
-                  </li>
-                )}
-              </li>
-            </ul>
-          </li>
-        )}
-        {email && (
-          <li className="list-group-item">
-            <i className="mx-1 fas fa-envelope-open text-primary"></i>
-            <span>{email}</span>
-          </li>
-        )}
-        {phone && (
-          <li className="list-group-item">
-            <i className="mx-1 fas fa-phone text-primary"></i>
-            <span>{phone}</span>
-          </li>
-        )}
-      </ul>
-      <p>
-        <button className="btn btn-primary btn-small">Edit</button>
-        <button className="btn btn-danger btn-small">Delete</button>
-      </p>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <Typography variant="h5" className={classes.title}>
+          {name}{" "}
+          <Chip
+            size="small"
+            label={type}
+            style={{ background: typeCheck(type) }}
+            icon={<FaceIcon size="small" />}
+          />
+        </Typography>
+        <Box textAlign="center" className={classes.Box}>
+          <ButtonGroup className={classes.buttonGroup}>
+            <Button
+              variant="contained"
+              startIcon={<ContactMailIcon />}
+              href={`mailto:${email}`}
+            >
+              {email}
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<PhoneIcon />}
+              href={`tel:${phone}`}
+              color="primary"
+            >
+              {phone}
+            </Button>
+          </ButtonGroup>
+        </Box>
+
+        <Box className={classes.Box}>
+          {address.street && (
+            <Typography variant="body1">
+              {address.streetNumber} {address.street}
+            </Typography>
+          )}
+          {address.address2 && (
+            <Typography variant="body1">{address.address2}</Typography>
+          )}
+          {address.city && (
+            <Typography variant="body1">
+              {address.city} {address.state} {address.zipcode}
+            </Typography>
+          )}
+        </Box>
+      </CardContent>
+      <CardActions>
+        <ButtonGroup variant="contained" size="small">
+          <Button startIcon={<EditIcon />} color="primary">
+            Edit
+          </Button>
+          <Button startIcon={<DeleteIcon />} color="secondary">
+            Delete
+          </Button>
+        </ButtonGroup>
+      </CardActions>
+    </Card>
   );
 };
 
