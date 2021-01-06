@@ -1,5 +1,6 @@
 //* Dependencies
 import React from "react";
+import PropTypes from "prop-types";
 
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
@@ -68,65 +69,69 @@ export const ContactItem = ({ contact }) => {
   } = contact;
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography variant="h5" className={classes.title}>
-          {name}{" "}
-          <Chip
-            size="small"
-            label={type}
-            style={{ background: typeCheck(type) }}
-            icon={<FaceIcon size="small" />}
-          />
-        </Typography>
-        <Box textAlign="center" className={classes.Box}>
-          <ButtonGroup className={classes.buttonGroup}>
-            <Button
-              variant="contained"
-              startIcon={<ContactMailIcon />}
-              href={`mailto:${email}`}
-            >
-              {email}
+      <Card className={classes.root}>
+        <CardContent>
+          <Typography variant="h5" className={classes.title}>
+            {name}{" "}
+            <Chip
+              size="small"
+              label={type}
+              style={{ background: typeCheck(type) }}
+              icon={<FaceIcon size="small" />}
+            />
+          </Typography>
+          <Box textAlign="center" className={classes.Box}>
+            <ButtonGroup className={classes.buttonGroup}>
+              <Button
+                variant="contained"
+                startIcon={<ContactMailIcon />}
+                href={`mailto:${email}`}
+              >
+                {email}
+              </Button>
+              <Button
+                variant="contained"
+                startIcon={<PhoneIcon />}
+                href={`tel:${phone}`}
+                color="primary"
+              >
+                {phone}
+              </Button>
+            </ButtonGroup>
+          </Box>
+
+          <Box className={classes.Box}>
+            {address.street && (
+              <Typography variant="body1">
+                {address.streetNumber} {address.street}
+              </Typography>
+            )}
+            {address.address2 && (
+              <Typography variant="body1">{address.address2}</Typography>
+            )}
+            {address.city && (
+              <Typography variant="body1">
+                {address.city} {address.state} {address.zipcode}
+              </Typography>
+            )}
+          </Box>
+        </CardContent>
+        <CardActions>
+          <ButtonGroup variant="contained" size="small">
+            <Button startIcon={<EditIcon />} color="primary">
+              Edit
             </Button>
-            <Button
-              variant="contained"
-              startIcon={<PhoneIcon />}
-              href={`tel:${phone}`}
-              color="primary"
-            >
-              {phone}
+            <Button startIcon={<DeleteIcon />} color="secondary">
+              Delete
             </Button>
           </ButtonGroup>
-        </Box>
-
-        <Box className={classes.Box}>
-          {address.street && (
-            <Typography variant="body1">
-              {address.streetNumber} {address.street}
-            </Typography>
-          )}
-          {address.address2 && (
-            <Typography variant="body1">{address.address2}</Typography>
-          )}
-          {address.city && (
-            <Typography variant="body1">
-              {address.city} {address.state} {address.zipcode}
-            </Typography>
-          )}
-        </Box>
-      </CardContent>
-      <CardActions>
-        <ButtonGroup variant="contained" size="small">
-          <Button startIcon={<EditIcon />} color="primary">
-            Edit
-          </Button>
-          <Button startIcon={<DeleteIcon />} color="secondary">
-            Delete
-          </Button>
-        </ButtonGroup>
-      </CardActions>
-    </Card>
+        </CardActions>
+      </Card>
   );
+};
+
+ContactItem.propTypes = {
+  contact: PropTypes.object.isRequired,
 };
 
 export default ContactItem;

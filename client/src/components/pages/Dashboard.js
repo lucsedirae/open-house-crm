@@ -10,6 +10,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
 import Contacts from "../contacts/Contacts";
+import ContactForm from "../contacts/ContactForm";
+import NoteCard from "../contacts/NoteCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +20,13 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary,
+    // color: theme.palette.text.secondary,
+    marginBottom: "1rem",
+  },
+  header: {
+    textAlign: "center",
+    marginTop: "1rem",
+    marginBottom: "1rem",
   },
 }));
 export const Dashboard = () => {
@@ -26,19 +34,20 @@ export const Dashboard = () => {
 
   return (
     <Container>
-      {/* New Appbar for Dashboard? */}
-      <Typography variant="h4">Dashboard</Typography>
-
+      <Typography variant="h4" className={classes.header}>
+        Contacts
+      </Typography>
       <Grid container spacing={3}>
         <Grid item xs={6}>
-          {/* <Paper className={classes.paper}> */}
-            <Contacts />
-          {/* </Paper> */}
+          <Contacts />
         </Grid>
 
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-            {/* Contacts form goes here */}
+            <ContactForm />
+          </Paper>
+          <Paper className={classes.paper}>
+            <NoteCard />
           </Paper>
         </Grid>
       </Grid>
