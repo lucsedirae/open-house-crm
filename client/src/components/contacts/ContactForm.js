@@ -1,5 +1,6 @@
 //* Dependencies
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import ContactContext from "../../context/contact/contactContext";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
@@ -32,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ContactForm = () => {
+  const contactContext = useContext(ContactContext);
+
   const classes = useStyles();
 
   const [contact, setContact] = useState({
@@ -49,13 +52,32 @@ const ContactForm = () => {
     type: "client",
   });
 
-  const { name, email, phone, address, type } = contact;
+  const { name, email, phone, address,  type } = contact;
 
   const onChange = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    contactContext.addContact(contact);
+    setContact({
+      name: "",
+      email: "",
+      phone: "",
+      address: {
+        streetNumber: "",
+        street: "",
+        address2: "",
+        city: "",
+        state: "",
+        zipcode: "",
+      },
+      type: "client",
+    });
+  };
+
   return (
-    <form className={classes.root} autoComplete="off">
+    <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
       <Typography variant="h5">Add Contact</Typography>
       <div>
         {/* These TextFields are repetitive and could be componentized then mapped across the contact object to reduce line count */}
@@ -171,7 +193,7 @@ const ContactForm = () => {
         </FormControl>
         <Typography variant="body1">* indicates a required field</Typography>
       </div>
-      <Button variant="contained" color="primary" style={{ marginTop: "1rem" }}>
+      <Button variant="contained" type="submit" color="primary" style={{ marginTop: "1rem" }}>
         Submit
       </Button>
     </form>
