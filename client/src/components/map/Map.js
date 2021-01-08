@@ -1,10 +1,10 @@
-import { useState } from "react";
+/* import { useState } from "react"; */
 import GoogleMapReact from "google-map-react";
-import LocationMarker from "./LocationMarker";
-import LocationInfoBox from "./LocationInfoBox";
+/* import LocationMarker from "./LocationMarker"; */
+/* import LocationInfoBox from "./LocationInfoBox"; */
 
 const Map = ({ eventData, center, zoom }) => {
-  const [locationInfo, setLocationInfo] = useState(null);
+  /* const [locationInfo, setLocationInfo] = useState(null);
   const markers = eventData.map((ev) => {
     if (ev.categories[0].id === 8) {
       return (
@@ -16,7 +16,7 @@ const Map = ({ eventData, center, zoom }) => {
       );
     }
     return null;
-  });
+  }); */
   return (
     <div className="map">
       <GoogleMapReact
@@ -25,9 +25,9 @@ const Map = ({ eventData, center, zoom }) => {
         defaultCenter={center}
         defaultZoom={zoom}
       >
-        {markers}
+        {/* {markers} */}
       </GoogleMapReact>
-      {locationInfo && <LocationInfoBox info={locationInfo} />}
+      {/* {locationInfo && <LocationInfoBox info={locationInfo} />} */}
     </div>
   );
 };
