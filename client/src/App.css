@@ -1,11 +1,16 @@
 .address-list {
-    list-style: none;
+  list-style: none;
 }
 
 .btn {
-    margin: 1rem;
+  margin: 1rem;
 }
 
 .navbar-brand {
-    cursor: default;
+  cursor: default;
+}
+
+.map {
+  height: 35vh;
+  width: 35vw;
 }
