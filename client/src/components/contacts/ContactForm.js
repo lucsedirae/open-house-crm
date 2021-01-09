@@ -53,6 +53,7 @@ const ContactForm = () => {
   });
 
   const { name, email, phone, address,  type } = contact;
+  // const { name, email, phone, address: {streetNumber, street, address2, city, state, zipcode},  type } = contact;
 
   const onChange = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });

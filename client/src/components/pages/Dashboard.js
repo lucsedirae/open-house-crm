@@ -49,6 +49,7 @@ export const Dashboard = () => {
             <NoteCard />
           </Paper>
         </Grid>
+
       </Grid>
     </Container>
   );
