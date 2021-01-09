@@ -52,8 +52,19 @@ const ContactForm = () => {
     type: "client",
   });
 
-  const { name, email, phone, address,  type } = contact;
-  // const { name, email, phone, address: {streetNumber, street, address2, city, state, zipcode},  type } = contact;
+  const {
+    name,
+    email,
+    phone,
+    address,
+    type,
+    streetNumber,
+    street,
+    address2,
+    city,
+    state,
+    zipcode,
+  } = contact;
 
   const onChange = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });
@@ -61,20 +72,22 @@ const ContactForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     contactContext.addContact(contact);
-    setContact({
-      name: "",
-      email: "",
-      phone: "",
-      address: {
-        streetNumber: "",
-        street: "",
-        address2: "",
-        city: "",
-        state: "",
-        zipcode: "",
+    setContact([
+      {
+        name: "",
+        email: "",
+        phone: "",
+        type: "client",
+        address: {
+          streetNumber: "",
+          street: "",
+          address2: "",
+          city: "",
+          state: "",
+          zipcode: "",
+        },
       },
-      type: "client",
-    });
+    ]);
   };
 
   return (
@@ -115,7 +128,7 @@ const ContactForm = () => {
           label="Street Number"
           size="small"
           name="streetNumber"
-          value={address.streetNumber}
+          value={streetNumber}
           onChange={onChange}
         />
         <TextField
@@ -123,7 +136,7 @@ const ContactForm = () => {
           label="Street"
           size="small"
           name="street"
-          value={address.street}
+          value={street}
           onChange={onChange}
         />
         <TextField
@@ -131,7 +144,7 @@ const ContactForm = () => {
           label="Additional Address"
           size="small"
           name="address2"
-          value={address.address2}
+          value={address2}
           onChange={onChange}
         />
         <TextField
@@ -139,7 +152,7 @@ const ContactForm = () => {
           label="City"
           size="small"
           name="city"
-          value={address.city}
+          value={city}
           onChange={onChange}
         />
         <FormControl
@@ -154,7 +167,7 @@ const ContactForm = () => {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             name="state"
-            value={address.state}
+            value={state}
             onChange={onChange}
           >
             <StatesUS />
@@ -166,7 +179,7 @@ const ContactForm = () => {
           label="Zip"
           size="small"
           name="zipcode"
-          value={address.zipcode}
+          value={zipcode}
           onChange={onChange}
         />
         <FormControl
@@ -194,7 +207,12 @@ const ContactForm = () => {
         </FormControl>
         <Typography variant="body1">* indicates a required field</Typography>
       </div>
-      <Button variant="contained" type="submit" color="primary" style={{ marginTop: "1rem" }}>
+      <Button
+        variant="contained"
+        type="submit"
+        color="primary"
+        style={{ marginTop: "1rem" }}
+      >
         Submit
       </Button>
     </form>
