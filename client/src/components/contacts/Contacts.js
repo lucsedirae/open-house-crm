@@ -1,5 +1,10 @@
+//* Dependencies
 import React, { Fragment, useContext } from "react";
+
+//* Custom components
 import ContactItem from "./ContactItem";
+
+//* State context
 import ContactContext from "../../context/contact/contactContext";
 
 const Contacts = () => {
@@ -10,8 +15,8 @@ const Contacts = () => {
   return (
     <Fragment>
       {contacts.map((contact) => (
-        <ContactItem key={contact.id} contact={contact}/>
-))}
+        <ContactItem key={contact.id} contact={contact} />
+      ))}
     </Fragment>
   );
 };

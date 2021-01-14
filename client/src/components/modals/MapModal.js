@@ -1,10 +1,8 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import PublicTwoToneIcon from '@material-ui/icons/PublicTwoTone';
@@ -66,7 +64,11 @@ export default function CustomizedDialogs() {
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={
+         open
+         }
+        // open={false}
+
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Contact Name?

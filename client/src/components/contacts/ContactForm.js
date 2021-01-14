@@ -4,17 +4,17 @@ import ContactContext from "../../context/contact/contactContext";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
 
-//*Custom components
-import StatesUS from "../contacts/StatesUS";
+//*Custom components & data imports
+import statesUS from "./stateField.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,22 +41,19 @@ const ContactForm = () => {
     name: "",
     email: "",
     phone: "",
-    address: {
-      streetNumber: null,
-      street: null,
-      address2: null,
-      city: null,
-      state: null,
-      zipcode: null,
-    },
-    type: "client",
+    streetNumber: "",
+    street: "",
+    address2: "",
+    city: "",
+    state: "",
+    zipcode: "",
+    type: "",
   });
 
   const {
     name,
     email,
     phone,
-    address,
     type,
     streetNumber,
     street,
@@ -66,8 +63,11 @@ const ContactForm = () => {
     zipcode,
   } = contact;
 
-  const onChange = (e) =>
+  const onChange = (e) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
+
+    console.log("You did it!" + contact);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -77,15 +77,13 @@ const ContactForm = () => {
         name: "",
         email: "",
         phone: "",
-        type: "client",
-        address: {
-          streetNumber: "",
-          street: "",
-          address2: "",
-          city: "",
-          state: "",
-          zipcode: "",
-        },
+        streetNumber: "",
+        street: "",
+        address2: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        type: "",
       },
     ]);
   };
@@ -160,6 +158,8 @@ const ContactForm = () => {
           size="small"
           className={classes.formControl}
           style={{ marginLeft: "85px" }}
+          value=""
+          open={false}
         >
           <InputLabel id="demo-simple-select-outlined-label">State</InputLabel>
           <Select
@@ -167,10 +167,14 @@ const ContactForm = () => {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             name="state"
+            defaultValue=""
             value={state}
             onChange={onChange}
           >
-            <StatesUS />
+            <ListSubheader open="true">US States </ListSubheader>
+            {statesUS.map((state) => (
+              <MenuItem value={state}>{state}</MenuItem>
+            ))}
           </Select>
         </FormControl>
 
@@ -187,22 +191,29 @@ const ContactForm = () => {
           size="small"
           className={classes.formControl}
           style={{ marginLeft: "85px" }}
+          open={false}
+          value=""
         >
-          <InputLabel id="demo-simple-select-outlined-label">
-            Contact Type
-          </InputLabel>
+          <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
           <Select
             required
             label="Select One"
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             name="type"
+            defaultValue="Client"
             value={type}
             onChange={onChange}
           >
-            <MenuItem value={"Client"}>Client</MenuItem>
-            <MenuItem value={"Vendor"}>Vendor</MenuItem>
-            <MenuItem value={"Prospect"}>Prospect</MenuItem>
+            <MenuItem key="client" value={"Client"}>
+              Client
+            </MenuItem>
+            <MenuItem key="vendor" value={"Vendor"}>
+              Vendor
+            </MenuItem>
+            <MenuItem key="prospect" value={"Prospect"}>
+              Prospect
+            </MenuItem>
           </Select>
         </FormControl>
         <Typography variant="body1">* indicates a required field</Typography>
