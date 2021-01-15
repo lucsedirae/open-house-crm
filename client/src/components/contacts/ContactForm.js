@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ContactContext from "../../context/contact/contactContext";
 
 //* Material UI components, hooks, and icons
@@ -31,8 +31,28 @@ const useStyles = makeStyles((theme) => ({
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
+  const { addContact, updateContact, clearCurrent, current } = contactContext;
 
   const classes = useStyles();
+
+  useEffect(() => {
+    if (current !== null) {
+      setContact(current);
+    } else {
+      setContact({
+        name: "",
+        email: "",
+        phone: "",
+        streetNumber: "",
+        street: "",
+        address2: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        type: "",
+      });
+    }
+  }, [contactContext, current]);
 
   const [contact, setContact] = useState({
     name: "",
@@ -66,7 +86,12 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    contactContext.addContact(contact);
+    if (current === null) {
+      addContact(contact);
+    } else {
+      updateContact(contact);
+    }
+
     setContact({
       name: "",
       email: "",
@@ -81,9 +106,15 @@ const ContactForm = () => {
     });
   };
 
+  const clearAll = () => {
+    clearCurrent();
+  };
+
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography variant="h5">Add Contact</Typography>
+      <Typography variant="h5">
+        {current ? "Edit Contact" : "Add Contact"}
+      </Typography>
       <Box>
         {/* These TextFields are repetitive and could be componentized then mapped across the contact object to reduce line count */}
         <TextField
@@ -93,10 +124,33 @@ const ContactForm = () => {
           id="standard-required"
           label="Name"
           size="small"
+          helperText="Required"
           name="name"
           value={name}
           onChange={onChange}
         />
+
+        <TextField
+          required
+          variant="outlined"
+          label="Contact Type"
+          size="small"
+          name="type"
+          select
+          helperText="Required"
+          value={type}
+          onChange={onChange}
+        >
+          <MenuItem key="client" value="client">
+            Client
+          </MenuItem>
+          <MenuItem key="prospect" value="prospect">
+            Prospect
+          </MenuItem>
+          <MenuItem key="vendor" value="vendor">
+            Vendor
+          </MenuItem>
+        </TextField>
 
         <TextField
           variant="outlined"
@@ -184,29 +238,6 @@ const ContactForm = () => {
           value={zipcode}
           onChange={onChange}
         />
-
-        <TextField
-          required
-          variant="outlined"
-          label="Contact Type"
-          size="small"
-          name="type"
-          select
-          value={type}
-          onChange={onChange}
-        >
-          <MenuItem key="client" value="client">
-            Client
-          </MenuItem>
-          <MenuItem key="prospect" value="prospect">
-            Prospect
-          </MenuItem>
-          <MenuItem key="vendor" value="vendor">
-            Vendor
-          </MenuItem>
-        </TextField>
-
-        <Typography variant="body1">* indicates a required field</Typography>
       </Box>
       <Button
         variant="contained"
@@ -216,6 +247,17 @@ const ContactForm = () => {
       >
         Submit
       </Button>
+      {current && (
+        <Button
+          variant="contained"
+          type="submit"
+          color="secondary"
+          style={{ marginTop: "1rem", marginLeft: "1rem" }}
+          onClick={clearAll}
+        >
+          Clear
+        </Button>
+      )}
     </form>
   );
 };

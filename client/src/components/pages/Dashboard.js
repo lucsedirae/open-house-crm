@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Contacts from "../contacts/Contacts";
 import ContactForm from "../contacts/ContactForm";
 import NoteCard from "../contacts/NoteCard";
+import ContactFilter from "../contacts/ContactFilter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,7 @@ export const Dashboard = () => {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={6}>
+          <ContactFilter />
           <Contacts />
         </Grid>
 
@@ -49,7 +51,6 @@ export const Dashboard = () => {
             <NoteCard />
           </Paper>
         </Grid>
-
       </Grid>
     </Container>
   );
