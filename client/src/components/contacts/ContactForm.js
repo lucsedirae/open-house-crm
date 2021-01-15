@@ -186,6 +186,7 @@ const ContactForm = () => {
         />
 
         <TextField
+          required
           variant="outlined"
           label="Contact Type"
           size="small"
