@@ -120,7 +120,7 @@ export const ContactItem = ({ contact }) => {
           <Button startIcon={<DeleteIcon />} color="secondary">
             Delete
           </Button>
-          {/* <CustomizedDialogs /> */}
+          <CustomizedDialogs />
         </ButtonGroup>
       </CardActions>
     </Card>

@@ -173,7 +173,7 @@ const ContactForm = () => {
           >
             <ListSubheader open="true">US States </ListSubheader>
             {statesUS.map((state) => (
-              <MenuItem value={state}>{state}</MenuItem>
+              <MenuItem key={state} value={state}>{state}</MenuItem>
             ))}
           </Select>
         </FormControl>
