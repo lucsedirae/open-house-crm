@@ -1,6 +1,5 @@
 //* Dependencies and hooks
 import React from "react";
-import { Link } from "react-router-dom";
 
 //* Material UI components, hooks, and icons
 

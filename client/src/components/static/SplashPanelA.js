@@ -19,7 +19,8 @@ const SplashPanelA = () => {
         <Button href="/about">About</Button>
         <Button href="/dashboard">Login</Button>
         <Button href="/dashboard">Register</Button>
-        <Button href="https://github.com/lucsedirae/open-house-crm">Develop</Button>
+        {/* <Button href="https://github.com/lucsedirae/open-house-crm">Develop</Button> */}
+        <Button href="/develop">Develop</Button>
       </ButtonGroup>
     </Paper>
   );
