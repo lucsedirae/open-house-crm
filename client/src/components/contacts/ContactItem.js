@@ -11,34 +11,31 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
 import CustomizedDialogs from "../modals/MapModal";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import FaceIcon from "@material-ui/icons/Face";
-import PublicIcon from "@material-ui/icons/Public";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import PhoneIcon from "@material-ui/icons/Phone";
-import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    marginBottom: "1rem"
+    marginBottom: "1rem",
   },
   title: {
-    textAlign: "center"
+    textAlign: "center",
   },
   pos: {
-    marginBottom: "1rem"
+    marginBottom: "1rem",
   },
   buttonGroup: {
-    justifyContent: "center"
+    justifyContent: "center",
   },
   Box: {
-    marginTop: "1rem"
-  }
+    marginTop: "1rem",
+  },
 });
 
 //* Checks the contact type and returns the appropriate badge background color
@@ -60,14 +57,13 @@ export const ContactItem = ({ contact }) => {
     name,
     email,
     phone,
-    address,
     streetNumber,
     street,
     address2,
     city,
     state,
     zipcode,
-    type
+    type,
   } = contact;
 
   return (
@@ -77,7 +73,7 @@ export const ContactItem = ({ contact }) => {
           {name}{" "}
           <Chip
             size="small"
-            label={type}
+            label={type.charAt(0).toUpperCase() + type.slice(1)}
             style={{ background: typeCheck(type) }}
             icon={<FaceIcon size="small" />}
           />
@@ -103,17 +99,15 @@ export const ContactItem = ({ contact }) => {
         </Box>
 
         <Box className={classes.Box}>
-          {address.street && (
+          {street && (
             <Typography variant="body1">
-              {address.streetNumber} {address.street}
+              {streetNumber} {street}
             </Typography>
           )}
-          {address.address2 && (
-            <Typography variant="body1">{address.address2}</Typography>
-          )}
-          {address.city && (
+          {address2 && <Typography variant="body1">{address2}</Typography>}
+          {city && (
             <Typography variant="body1">
-              {address.city} {address.state} {address.zipcode}
+              {city} {state} {zipcode}
             </Typography>
           )}
         </Box>
@@ -134,7 +128,7 @@ export const ContactItem = ({ contact }) => {
 };
 
 ContactItem.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
 };
 
 export default ContactItem;

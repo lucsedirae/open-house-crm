@@ -1,5 +1,5 @@
 //* Dependencies and hooks
-import React, { Fragment } from "react";
+import React from "react";
 
 //* Material UI components, hooks, and icons
 import Paper from "@material-ui/core/Paper";
