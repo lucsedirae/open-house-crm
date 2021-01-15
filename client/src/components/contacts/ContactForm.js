@@ -1,14 +1,11 @@
 //* Dependencies
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ContactContext from "../../context/contact/contactContext";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import ListSubheader from "@material-ui/core/ListSubheader";
+import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -34,8 +31,28 @@ const useStyles = makeStyles((theme) => ({
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
+  const { addContact, updateContact, clearCurrent, current } = contactContext;
 
   const classes = useStyles();
+
+  useEffect(() => {
+    if (current !== null) {
+      setContact(current);
+    } else {
+      setContact({
+        name: "",
+        email: "",
+        phone: "",
+        streetNumber: "",
+        street: "",
+        address2: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        type: "",
+      });
+    }
+  }, [contactContext, current]);
 
   const [contact, setContact] = useState({
     name: "",
@@ -65,44 +82,76 @@ const ContactForm = () => {
 
   const onChange = (e) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
-
-    console.log("You did it!" + contact);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    contactContext.addContact(contact);
-    setContact([
-      {
-        name: "",
-        email: "",
-        phone: "",
-        streetNumber: "",
-        street: "",
-        address2: "",
-        city: "",
-        state: "",
-        zipcode: "",
-        type: "",
-      },
-    ]);
+    if (current === null) {
+      addContact(contact);
+    } else {
+      updateContact(contact);
+    }
+
+    setContact({
+      name: "",
+      email: "",
+      phone: "",
+      streetNumber: "",
+      street: "",
+      address2: "",
+      city: "",
+      state: "",
+      zipcode: "",
+      type: "",
+    });
+  };
+
+  const clearAll = () => {
+    clearCurrent();
   };
 
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography variant="h5">Add Contact</Typography>
-      <div>
+      <Typography variant="h5">
+        {current ? "Edit Contact" : "Add Contact"}
+      </Typography>
+      <Box>
         {/* These TextFields are repetitive and could be componentized then mapped across the contact object to reduce line count */}
         <TextField
           variant="outlined"
           required
+          type="text"
           id="standard-required"
           label="Name"
           size="small"
+          helperText="Required"
           name="name"
           value={name}
           onChange={onChange}
         />
+
+        <TextField
+          required
+          variant="outlined"
+          label="Contact Type"
+          size="small"
+          name="type"
+          select
+          helperText="Required"
+          value={type}
+          onChange={onChange}
+        >
+          <MenuItem key="client" value="client">
+            Client
+          </MenuItem>
+          <MenuItem key="prospect" value="prospect">
+            Prospect
+          </MenuItem>
+          <MenuItem key="vendor" value="vendor">
+            Vendor
+          </MenuItem>
+        </TextField>
+
         <TextField
           variant="outlined"
           label="Email"
@@ -112,6 +161,7 @@ const ContactForm = () => {
           value={email}
           onChange={onChange}
         />
+
         <TextField
           variant="outlined"
           label="Phone"
@@ -121,103 +171,74 @@ const ContactForm = () => {
           value={phone}
           onChange={onChange}
         />
+
         <TextField
           variant="outlined"
           label="Street Number"
+          type="number"
           size="small"
           name="streetNumber"
           value={streetNumber}
           onChange={onChange}
         />
+
         <TextField
           variant="outlined"
           label="Street"
+          type="text"
           size="small"
           name="street"
           value={street}
           onChange={onChange}
         />
+
         <TextField
           variant="outlined"
           label="Additional Address"
+          type="text"
           size="small"
           name="address2"
           value={address2}
           onChange={onChange}
         />
+
         <TextField
           variant="outlined"
           label="City"
           size="small"
+          type="text"
           name="city"
           value={city}
           onChange={onChange}
         />
-        <FormControl
+
+        <TextField
           variant="outlined"
+          label="State"
+          type="text"
           size="small"
-          className={classes.formControl}
-          style={{ marginLeft: "85px" }}
-          value=""
-          open={false}
+          name="state"
+          select
+          value={state}
+          onChange={onChange}
         >
-          <InputLabel id="demo-simple-select-outlined-label">State</InputLabel>
-          <Select
-            label="State"
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            name="state"
-            defaultValue=""
-            value={state}
-            onChange={onChange}
-          >
-            <ListSubheader open="true">US States </ListSubheader>
-            {statesUS.map((state) => (
-              <MenuItem key={state} value={state}>{state}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          {statesUS.map((abbr) => (
+            <MenuItem key={abbr} value={abbr}>
+              {abbr}
+            </MenuItem>
+          ))}
+        </TextField>
 
         <TextField
           variant="outlined"
           label="Zip"
+          type="number"
           size="small"
           name="zipcode"
           value={zipcode}
           onChange={onChange}
         />
-        <FormControl
-          variant="outlined"
-          size="small"
-          className={classes.formControl}
-          style={{ marginLeft: "85px" }}
-          open={false}
-          value=""
-        >
-          <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
-          <Select
-            required
-            label="Select One"
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            name="type"
-            defaultValue="Client"
-            value={type}
-            onChange={onChange}
-          >
-            <MenuItem key="client" value={"Client"}>
-              Client
-            </MenuItem>
-            <MenuItem key="vendor" value={"Vendor"}>
-              Vendor
-            </MenuItem>
-            <MenuItem key="prospect" value={"Prospect"}>
-              Prospect
-            </MenuItem>
-          </Select>
-        </FormControl>
-        <Typography variant="body1">* indicates a required field</Typography>
-      </div>
+      </Box>
       <Button
         variant="contained"
         type="submit"
@@ -226,6 +247,17 @@ const ContactForm = () => {
       >
         Submit
       </Button>
+      {current && (
+        <Button
+          variant="contained"
+          type="submit"
+          color="secondary"
+          style={{ marginTop: "1rem", marginLeft: "1rem" }}
+          onClick={clearAll}
+        >
+          Clear
+        </Button>
+      )}
     </form>
   );
 };
