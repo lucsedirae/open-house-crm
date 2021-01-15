@@ -73,7 +73,8 @@ export const ContactItem = ({ contact }) => {
           {name}{" "}
           <Chip
             size="small"
-            label={type.charAt(0).toUpperCase() + type.slice(1)}
+            label={type}
+            // label={type.charAt(0).toUpperCase() + type.slice(1)}
             style={{ background: typeCheck(type) }}
             icon={<FaceIcon size="small" />}
           />
