@@ -1,6 +1,7 @@
 //* Dependencies
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import ContactContext from "../../context/contact/contactContext";
 
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
@@ -50,7 +51,9 @@ const typeCheck = (type) => {
   }
 };
 export const ContactItem = ({ contact }) => {
+  const contactContext = useContext(ContactContext);
   const classes = useStyles();
+  const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
   const {
     id,
@@ -66,6 +69,11 @@ export const ContactItem = ({ contact }) => {
     type,
   } = contact;
 
+  const onDelete = () => {
+    deleteContact(id);
+    clearCurrent();
+  };
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -73,7 +81,8 @@ export const ContactItem = ({ contact }) => {
           {name}{" "}
           <Chip
             size="small"
-            label={type.charAt(0).toUpperCase() + type.slice(1)}
+            label={type}
+            // label={type.charAt(0).toUpperCase() + type.slice(1)}
             style={{ background: typeCheck(type) }}
             icon={<FaceIcon size="small" />}
           />
@@ -114,10 +123,18 @@ export const ContactItem = ({ contact }) => {
       </CardContent>
       <CardActions>
         <ButtonGroup variant="contained" size="small">
-          <Button startIcon={<EditIcon />} color="primary">
+          <Button
+            startIcon={<EditIcon />}
+            color="primary"
+            onClick={() => setCurrent(contact)}
+          >
             Edit
           </Button>
-          <Button startIcon={<DeleteIcon />} color="secondary">
+          <Button
+            startIcon={<DeleteIcon />}
+            color="secondary"
+            onClick={onDelete}
+          >
             Delete
           </Button>
           <CustomizedDialogs />
