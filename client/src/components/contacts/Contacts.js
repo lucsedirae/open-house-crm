@@ -1,5 +1,6 @@
 //* Dependencies
 import React, { Fragment, useContext } from "react";
+import "../../App.css";
 
 //* Custom components
 import ContactItem from "./ContactItem";
