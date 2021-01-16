@@ -47,7 +47,10 @@ const Appbar = () => {
         <Button color="inherit" href="/about">
           About
         </Button>
-        <Button color="inherit" href="/dashboard">
+        <Button color="inherit" href="/develop">
+          Develop
+        </Button>
+        <Button color="inherit" href="/login">
           Login
         </Button>
       </Toolbar>
