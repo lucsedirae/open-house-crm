@@ -1,5 +1,5 @@
 //* Dependencies
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
@@ -13,6 +13,9 @@ import Contacts from "../contacts/Contacts";
 import ContactForm from "../contacts/ContactForm";
 import NoteCard from "../contacts/NoteCard";
 import ContactFilter from "../contacts/ContactFilter";
+
+//* State context
+import AuthContext from "../../context/auth/authContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +33,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export const Dashboard = () => {
+  //* Provides access to the styling config in useStyles
   const classes = useStyles();
+
+  //* Initializes state
+  const authContext = useContext(AuthContext);
+
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Container>
