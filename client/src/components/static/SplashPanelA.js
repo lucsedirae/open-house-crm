@@ -7,7 +7,9 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Typography from "@material-ui/core/Typography"
 
+//* Exported component
 const SplashPanelA = () => {
+    //* Returns JSX to DOM
   return (
     <Paper variant="outlined" style={{padding: "10px"}}>
       <Typography variant="h4">Open House CRM</Typography>
@@ -19,7 +21,6 @@ const SplashPanelA = () => {
         <Button href="/about">About</Button>
         <Button href="/login">Login</Button>
         <Button href="/register">Register</Button>
-        {/* <Button href="https://github.com/lucsedirae/open-house-crm">Develop</Button> */}
         <Button href="/develop">Develop</Button>
       </ButtonGroup>
     </Paper>

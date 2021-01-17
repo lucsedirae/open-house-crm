@@ -1,7 +1,6 @@
 //* Dependencies
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import ContactContext from "../../context/contact/contactContext";
 
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
@@ -20,6 +19,10 @@ import FaceIcon from "@material-ui/icons/Face";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import PhoneIcon from "@material-ui/icons/Phone";
 
+//* State context
+import ContactContext from "../../context/contact/contactContext";
+
+//* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -50,9 +53,13 @@ const typeCheck = (type) => {
       return "yellow";
   }
 };
+
+//* Exported component
 export const ContactItem = ({ contact }) => {
-  const contactContext = useContext(ContactContext);
+  //* Initializes styling classes
   const classes = useStyles();
+
+  const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
   const {
@@ -74,6 +81,7 @@ export const ContactItem = ({ contact }) => {
     clearCurrent();
   };
 
+    //* Returns JSX to DOM
   return (
     <Card className={classes.root}>
       <CardContent>

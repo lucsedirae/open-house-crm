@@ -5,7 +5,9 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
+//* Exported component
 const AboutPanelA = () => {
+    //* Returns JSX to DOM
   return (
     <Paper variant="outlined" style={{ padding: "10px" }}>
       <Typography variant="h4">Open for business</Typography>
