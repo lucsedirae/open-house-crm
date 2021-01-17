@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 //* Material-UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
@@ -8,7 +8,34 @@ import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
-const Register = () => {
+//* State context
+import AlertContext from "../../context/alert/alertContext";
+import AuthContext from "../../context/auth/authContext";
+
+//* Exported component
+const Register = (props) => {
+  //* Initializes state context
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+
+  //* Deconstructs state context
+  const { setAlert } = alertContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
+
+  //* Checks if user is authenticated using stored token
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push("/dashboard");
+    }
+
+    if (error === "User already exists ") {
+      setAlert(error, "danger");
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
+
+  //* Establishes local user state
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -16,20 +43,31 @@ const Register = () => {
     password2: "",
   });
 
+  //* Deconstructs user state 
   const { name, email, password, password2 } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
+  //* Handles form submit
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("Register submit");
+    if (name === "" || email === "" || password === "") {
+      setAlert("Please enter all fields", "danger");
+    } else if (password !== password2) {
+      setAlert("Passwords do not match", "danger");
+    } else {
+      register({
+        name,
+        email,
+        password,
+      });
+    }
   };
 
+  //* Returns JSX to DOM
   return (
     <Container maxWidth="xs">
-      <Typography variant="h4">
-        Account Register
-      </Typography>
+      <Typography variant="h4">Account Register</Typography>
       <Box>
         <form onSubmit={onSubmit}>
           <TextField
@@ -58,6 +96,9 @@ const Register = () => {
             label="password"
             type="password"
             name="password"
+            inputProps={{
+              minLength: "6",
+            }}
             value={password}
             onChange={onChange}
             style={{ marginTop: "3px" }}
@@ -68,6 +109,9 @@ const Register = () => {
             label="Confirm password"
             type="password2"
             name="password2"
+            inputProps={{
+              minLength: "6",
+            }}
             value={password2}
             onChange={onChange}
             style={{ marginTop: "3px" }}

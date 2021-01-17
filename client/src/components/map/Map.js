@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 /* import LocationMarker from "./LocationMarker"; */
 /* import LocationInfoBox from "./LocationInfoBox"; */
 
+//* Exported component
 const Map = ({ eventData, center, zoom }) => {
   /* const [locationInfo, setLocationInfo] = useState(null);
   const markers = eventData.map((ev) => {
@@ -17,6 +18,8 @@ const Map = ({ eventData, center, zoom }) => {
     }
     return null;
   }); */
+
+    //* Returns JSX to DOM
   return (
     <div className="map">
       <GoogleMapReact

@@ -46,6 +46,7 @@ const DialogContent = withStyles((theme) => ({
   }
 }))(MuiDialogContent);
 
+//* Exported component
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
 
@@ -56,6 +57,7 @@ export default function CustomizedDialogs() {
     setOpen(false);
   };
 
+    //* Returns JSX to DOM
   return (
     <div> 
       <IconButton variant="outlined" color="primary" onClick={handleClickOpen}>

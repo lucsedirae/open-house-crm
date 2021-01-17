@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CommentIcon from "@material-ui/icons/Comment";
 import GitHubIcon from "@material-ui/icons/GitHub";
 
+//* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -36,12 +37,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//* Exported component
 const Develop = () => {
+  //* Initializes styling classes
+    const classes = useStyles();
+
   const [issues, setIssues] = useState([]);
   const [issue, setIssue] = useState({});
-
-  const classes = useStyles();
-
+    
   useEffect(() => {
     loadIssues();
   }, []);
@@ -53,6 +56,7 @@ const Develop = () => {
     });
   }
 
+    //* Returns JSX to DOM
   return (
     <Fragment>
       <Typography variant="h4" align="center">

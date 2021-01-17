@@ -1,5 +1,5 @@
 //* Dependencies
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
@@ -14,6 +14,10 @@ import ContactForm from "../contacts/ContactForm";
 import NoteCard from "../contacts/NoteCard";
 import ContactFilter from "../contacts/ContactFilter";
 
+//* State context
+import AuthContext from "../../context/auth/authContext";
+
+//* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -29,9 +33,21 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1rem",
   },
 }));
+
+//* Exported component
 export const Dashboard = () => {
+  //* Initializes styling classes
   const classes = useStyles();
 
+  //* Initializes state
+  const authContext = useContext(AuthContext);
+
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
+
+    //* Returns JSX to DOM
   return (
     <Container>
       <Typography variant="h4" className={classes.header}>

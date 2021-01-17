@@ -7,7 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 
+//* Exported component
 const AboutPanelC = () => {
+    //* Returns JSX to DOM
   return (
     <Paper variant="outlined" style={{ padding: "10px" }}>
       <Typography variant="h4">Future Development</Typography>
@@ -16,6 +18,9 @@ const AboutPanelC = () => {
       </Typography>
 
       <List>
+      <ListItem>
+          Add user roles to dashboard to allow in-app administrative functionality
+        </ListItem>
         <ListItem>
           Ship a build to npm as an open source React library package
         </ListItem>
