@@ -8,7 +8,9 @@ import AboutPanelA from "../static/AboutPanelA";
 import AboutPanelB from "../static/AboutPanelB";
 import AboutPanelC from "../static/AboutPanelC";
 
+//* Exported component
 export const About = () => {
+    //* Returns JSX to DOM
   return (
     <div>
       <AboutPanelA />

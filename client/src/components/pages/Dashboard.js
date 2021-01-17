@@ -17,6 +17,7 @@ import ContactFilter from "../contacts/ContactFilter";
 //* State context
 import AuthContext from "../../context/auth/authContext";
 
+//* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -32,8 +33,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1rem",
   },
 }));
+
+//* Exported component
 export const Dashboard = () => {
-  //* Provides access to the styling config in useStyles
+  //* Initializes styling classes
   const classes = useStyles();
 
   //* Initializes state
@@ -44,6 +47,7 @@ export const Dashboard = () => {
     // eslint-disable-next-line
   }, []);
 
+    //* Returns JSX to DOM
   return (
     <Container>
       <Typography variant="h4" className={classes.header}>

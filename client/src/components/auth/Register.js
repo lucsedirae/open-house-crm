@@ -12,17 +12,20 @@ import Typography from "@material-ui/core/Typography";
 import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/auth/authContext";
 
+//* Exported component
 const Register = (props) => {
-  //* Initializes alert context
+  //* Initializes state context
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
 
+  //* Deconstructs state context
   const { setAlert } = alertContext;
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
+  //* Checks if user is authenticated using stored token
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/dashboard")
+      props.history.push("/dashboard");
     }
 
     if (error === "User already exists ") {
@@ -40,10 +43,12 @@ const Register = (props) => {
     password2: "",
   });
 
+  //* Deconstructs user state 
   const { name, email, password, password2 } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
+  //* Handles form submit
   const onSubmit = (e) => {
     e.preventDefault();
     if (name === "" || email === "" || password === "") {
@@ -59,7 +64,7 @@ const Register = (props) => {
     }
   };
 
-  //* Returns jsx
+  //* Returns JSX to DOM
   return (
     <Container maxWidth="xs">
       <Typography variant="h4">Account Register</Typography>

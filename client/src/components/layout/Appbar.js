@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core";
 import HouseIcon from "@material-ui/icons/House";
 
+//* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -26,8 +27,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//* Exported component
 const Appbar = () => {
+  //* Initializes styling classes
   const classes = useStyles();
+
+    //* Returns JSX to DOM
   return (
     <AppBar position="sticky">
       <Toolbar>

@@ -3,12 +3,11 @@ import React from "react";
 
 //*Custom components
 import SplashPanelA from "../static/SplashPanelA";
+
+//* Exported component
 export const Home = () => {
+    //* Returns JSX to DOM
   return <SplashPanelA />;
 };
-
-Home.propTypes = {};
-
-Home.defaultProps = {};
 
 export default Home;

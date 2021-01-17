@@ -9,11 +9,12 @@ import ErrorIcon from "@material-ui/icons/Error";
 //* State context
 import AlertContext from "../../context/alert/alertContext";
 
+//* Exported component
 const Alerts = () => {
   //* Initializes the alert state context
   const alertContext = useContext(AlertContext);
 
-  //*Returning jsx
+  //* Returns JSX to DOM
   return (
     alertContext.alerts.length > 0 &&
     alertContext.alerts.map((alert) => (

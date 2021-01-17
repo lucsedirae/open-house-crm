@@ -9,6 +9,7 @@ import ContactItem from "./ContactItem";
 import ContactContext from "../../context/contact/contactContext";
 import { Typography } from "@material-ui/core";
 
+//* Exported component
 const Contacts = () => {
   const contactContext = useContext(ContactContext);
 
@@ -22,6 +23,7 @@ const Contacts = () => {
     );
   }
 
+    //* Returns JSX to DOM
   return (
     <Fragment>
       {filtered !== null

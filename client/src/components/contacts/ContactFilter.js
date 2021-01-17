@@ -4,7 +4,8 @@ import ContactContext from "../../context/contact/contactContext";
 
 //* Material-UI components, hooks, and icons
 import TextField from "@material-ui/core/TextField";
-import Input from "@material-ui/core/Input";
+
+//* Exported component
 export const ContactFilter = () => {
   const contactContext = useContext(ContactContext);
   const { filterContacts, clearFilter, filtered } = contactContext;
@@ -25,6 +26,7 @@ export const ContactFilter = () => {
     }
   };
 
+    //* Returns JSX to DOM
   return (
     <form>
       <TextField

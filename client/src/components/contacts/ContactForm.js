@@ -1,6 +1,5 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
-import ContactContext from "../../context/contact/contactContext";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
@@ -13,6 +12,10 @@ import { makeStyles } from "@material-ui/core/styles";
 //*Custom components & data imports
 import statesUS from "./stateField.json";
 
+//* State context
+import ContactContext from "../../context/contact/contactContext";
+
+//* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
@@ -29,11 +32,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//* Exported component
 const ContactForm = () => {
+  //* Initializes styling classes
+  const classes = useStyles();
+
   const contactContext = useContext(ContactContext);
   const { addContact, updateContact, clearCurrent, current } = contactContext;
-
-  const classes = useStyles();
 
   useEffect(() => {
     if (current !== null) {
@@ -110,6 +115,7 @@ const ContactForm = () => {
     clearCurrent();
   };
 
+    //* Returns JSX to DOM
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
       <Typography variant="h5">

@@ -19,11 +19,14 @@ import AlertState from "./context/alert/AlertState";
 import AuthState from "./context/auth/AuthState";
 import ContactState from "./context/contact/ContactState";
 
+//* Sets token if user is authenticated
 if(localStorage.token) {
   setAuthToken(localStorage.token)
 }
 
+//* Exported component
 const App = () => {
+    //* Returns JSX to DOM
   return (
     <AuthState>
       <ContactState>
