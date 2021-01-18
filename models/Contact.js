@@ -1,5 +1,7 @@
+//* Dependencies
 const mongoose = require("mongoose");
 
+//* Mongo DB schema
 const ContactSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,

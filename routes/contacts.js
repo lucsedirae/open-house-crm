@@ -1,10 +1,12 @@
+//* Dependencies
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 
-const User = require("../models/User");
+//* Models
 const Contact = require("../models/Contact");
+const User = require("../models/User");
 
 //*     @route:     GET api/contacts
 //*     @desc:      Get all user's contacts
@@ -32,6 +34,8 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
+    //* Destructuring req.body
     const {
       name,
       email,
@@ -101,6 +105,7 @@ router.put("/:id", auth, async (req, res) => {
   if (type) contactFields.type = type;
 
   try {
+    //*Searches database for contact associated with requested id
     let contact = await Contact.findById(req.params.id);
 
     if (!contact) return res.status(404).json({ msg: "Contact not found " });
