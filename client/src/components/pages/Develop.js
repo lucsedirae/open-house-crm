@@ -33,18 +33,16 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     margin: "3px",
     background: "silver",
-    padding: "3px",
   },
 }));
 
 //* Exported component
 const Develop = () => {
   //* Initializes styling classes
-    const classes = useStyles();
+  const classes = useStyles();
 
   const [issues, setIssues] = useState([]);
-  const [issue, setIssue] = useState({});
-    
+
   useEffect(() => {
     loadIssues();
   }, []);
@@ -56,7 +54,7 @@ const Develop = () => {
     });
   }
 
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
   return (
     <Fragment>
       <Typography variant="h4" align="center">
@@ -72,7 +70,11 @@ const Develop = () => {
                 </Typography>
                 <Typography variant="body1">
                   <strong>Owner</strong>:{" "}
-                  <a href={"http://github.com/" + issue.ghUser} target="_blank">
+                  <a
+                    href={"http://github.com/" + issue.ghUser}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {issue.ghUser}
                   </a>
                 </Typography>
@@ -98,6 +100,7 @@ const Develop = () => {
                     issue.number
                   }
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <GitHubIcon color="secondary" className={classes.badge} />
                 </IconButton>
