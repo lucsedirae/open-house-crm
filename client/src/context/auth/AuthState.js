@@ -1,8 +1,10 @@
+//* Dependencies
 import React, { useReducer } from "react";
 import axios from "axios";
-import AuthContext from "./authContext";
 import authReducer from "./authReducer";
 import setAuthToken from "../../utils/setAuthToken";
+
+//* Action types
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -14,6 +16,9 @@ import {
   CLEAR_ERRORS,
 } from "../types";
 
+//* State context
+import AuthContext from "./authContext";
+
 //* Exported context component
 const AuthState = (props) => {
   const initialState = {
@@ -24,13 +29,12 @@ const AuthState = (props) => {
     error: null,
   };
 
+  //* Initializes state using reducer
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   //* Load user
-  const loadUser = () => async () => {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
+  const loadUser = async () => {
+    setAuthToken(localStorage.token);
 
     try {
       const res = await axios.get("/api/auth");
@@ -92,11 +96,12 @@ const AuthState = (props) => {
   };
 
   //* Logout
-  const logout = () => console.log("Logout user");
+  const logout = () => dispatch({ type: LOGOUT });
 
   //* Clear errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
+  //* Defines state data that is returned through the provider
   return (
     <AuthContext.Provider
       value={{

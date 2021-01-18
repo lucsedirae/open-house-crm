@@ -42,8 +42,7 @@ const Register = (props) => {
     password: "",
     password2: "",
   });
-
-  //* Deconstructs user state 
+  //* Destructures user state 
   const { name, email, password, password2 } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
@@ -107,7 +106,7 @@ const Register = (props) => {
             size="small"
             variant="outlined"
             label="Confirm password"
-            type="password2"
+            type="password"
             name="password2"
             inputProps={{
               minLength: "6",

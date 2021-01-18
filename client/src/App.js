@@ -1,7 +1,7 @@
 //* Dependencies
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import setAuthToken from "./utils/setAuthToken"
+import setAuthToken from "./utils/setAuthToken";
 import "./App.css";
 
 //* Custom components
@@ -12,6 +12,7 @@ import Dashboard from "./components/pages/Dashboard";
 import Develop from "./components/pages/Develop";
 import Home from "./components/pages/Home";
 import Login from "./components/auth/Login";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import Register from "./components/auth/Register";
 
 //* State context
@@ -20,13 +21,13 @@ import AuthState from "./context/auth/AuthState";
 import ContactState from "./context/contact/ContactState";
 
 //* Sets token if user is authenticated
-if(localStorage.token) {
-  setAuthToken(localStorage.token)
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
 }
 
 //* Exported component
 const App = () => {
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
   return (
     <AuthState>
       <ContactState>
@@ -34,11 +35,12 @@ const App = () => {
           <Router>
             <Fragment>
               <Appbar />
+              <Alerts />
               <div className="container-fluid my-3">
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <Route exact path="/about" component={About} />
-                  <Route exact path="/dashboard" component={Dashboard} />
+                  <PrivateRoute exact path="/dashboard" component={Dashboard} />
                   <Route exact path="/develop" component={Develop} />
                   <Route exact path="/Register" component={Register} />
                   <Route exact path="/Login" component={Login} />
@@ -52,7 +54,6 @@ const App = () => {
                   />{" "}
                 </Switch>
               </div>
-              <Alerts />
             </Fragment>
           </Router>
         </AlertState>

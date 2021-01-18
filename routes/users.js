@@ -37,7 +37,7 @@ router.post(
       user = new User({
         name,
         email,
-        password,
+        password
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -56,8 +56,7 @@ router.post(
         payload,
         config.get("jwtSecret"),
         {
-          //! Change expires in time to 3600 before production so that users session expires after 1 hour
-          expiresIn: 360000,
+          expiresIn: 3600,
         },
         (err, token) => {
           if (err) throw err;
