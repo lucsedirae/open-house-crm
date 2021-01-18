@@ -17,6 +17,7 @@ app.get("/", (req, res) => res.json({ msg: "Welcome to Open House CRM API" }));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/contacts", require("./routes/contacts"));
+app.use("/api/transactions", require("./routes/transactions"));
 
 const PORT = process.env.PORT || 8080;
 

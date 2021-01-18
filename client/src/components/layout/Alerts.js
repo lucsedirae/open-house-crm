@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 
 //* Material-UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
