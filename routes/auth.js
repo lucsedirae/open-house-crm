@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const auth = require("../middleware/auth");
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 
 const User = require("../models/User");
 
@@ -27,7 +27,7 @@ router.get("/", auth, async (req, res) => {
 router.post(
   "/",
   [
-    check("email", "Please include a valid email").isEmail(),
+    check("email", "Please include a valid email address").isEmail(),
     check("password", "Password is required").exists(),
   ],
   async (req, res) => {
@@ -61,8 +61,7 @@ router.post(
         payload,
         config.get("jwtSecret"),
         {
-          //! Change expires in time to 3600 before production so that users session expires after 1 hour
-          expiresIn: 360000,
+          expiresIn: 3600,
         },
         (err, token) => {
           if (err) throw err;

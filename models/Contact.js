@@ -16,9 +16,28 @@ const ContactSchema = mongoose.Schema({
   phone: {
     type: String,
   },
+  streetNumber: {
+    type: String,
+  },
+  street: {
+    type: String,
+  },
+  address2: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  zipcode: {
+    type: String,
+  },
   type: {
     type: String,
     default: "personal",
+    required: true,
   },
   date: {
     type: Date,
