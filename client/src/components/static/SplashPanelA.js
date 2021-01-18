@@ -14,7 +14,7 @@ const SplashPanelA = () => {
     <Paper variant="outlined" style={{padding: "10px"}}>
       <Typography variant="h4">Open House CRM</Typography>
       <Typography variant="body1">
-        An open source React library for building business dashboards and
+        An open source platform for building business dashboards and
         customer relationship management apps quickly and professionally
       </Typography>
       <ButtonGroup size="large" variant="contained" color="primary">
