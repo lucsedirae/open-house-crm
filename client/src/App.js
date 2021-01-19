@@ -11,9 +11,11 @@ import Appbar from "./components/layout/Appbar";
 import Dashboard from "./components/pages/Dashboard";
 import Develop from "./components/pages/Develop";
 import Home from "./components/pages/Home";
+import Inventory from "./components/pages/Inventory";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Register from "./components/auth/Register";
+import Transactions from "./components/pages/Transactions";
 
 //* State context
 import AlertState from "./context/alert/AlertState";
@@ -41,6 +43,16 @@ const App = () => {
                   <Route exact path="/" component={Home} />
                   <Route exact path="/about" component={About} />
                   <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                  <PrivateRoute
+                    exact
+                    path="/dashboard/transactions"
+                    component={Transactions}
+                  />
+                  <PrivateRoute
+                    exact
+                    path="/dashboard/inventory"
+                    component={Inventory}
+                  />
                   <Route exact path="/develop" component={Develop} />
                   <Route exact path="/Register" component={Register} />
                   <Route exact path="/Login" component={Login} />

@@ -1,7 +1,7 @@
 //* Dependencies
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 
-//* Material UI components, hooks, and icons
+//* Material-UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -9,11 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
-import Contacts from "../contacts/Contacts";
-import ContactFilter from "../contacts/ContactFilter";
-import ContactForm from "../contacts/ContactForm";
 import NavPanel from "../layout/NavPanel";
-import NoteCard from "../contacts/NoteCard";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
@@ -36,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //* Exported component
-export const Dashboard = () => {
+const Inventory = () => {
   //* Initializes styling classes
   const classes = useStyles();
 
@@ -52,27 +48,21 @@ export const Dashboard = () => {
   //* Returns JSX to DOM
   return (
     <Container>
-      <Typography variant="h4" className={classes.header}>
-        Contacts
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={6}>
-          <NavPanel />
-          <Paper className={classes.paper}>
-            <ContactForm />
-          </Paper>
-          <Paper className={classes.paper}>
-            <NoteCard />
-          </Paper>
-        </Grid>
-
-        <Grid item xs={12} sm={12} md={6}>
-          <ContactFilter />
-          <Contacts />
-        </Grid>
+    <Typography variant="h4" className={classes.header}>
+      Inventory
+    </Typography>
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={12} md={6}>
+        <NavPanel />
+        {/* Transaction form goes here - see ContactForm.js for reference */}
       </Grid>
-    </Container>
+
+      <Grid item xs={12} sm={12} md={6}>
+        {/* Transaction list goes here - see ContactItem.js for reference */}
+      </Grid>
+    </Grid>
+  </Container>
   );
 };
 
-export default Dashboard;
+export default Inventory;
