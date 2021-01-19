@@ -3,7 +3,6 @@ import axios from "axios";
 export default {
   getIssues: function () {
     return new Promise((resolve, reject) => {
-      const headers = {"header1": "Access-Control-Allow-Headers"}
       axios
         .get("https://api.github.com/repos/lucsedirae/open-house-crm/issues")
         .then((res) => {
