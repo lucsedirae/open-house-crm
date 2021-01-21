@@ -1,4 +1,3 @@
-import contactReducer from "../contact/contactReducer";
 import {
   ADD_TRANSACTION,
   CLEAR_TRANSACTIONS,
@@ -14,33 +13,16 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
-    case GET_TRANSACTIONS:
-      return {
-        ...state,
-        transactions: action.payload,
-        loading: false,
-      };
     case ADD_TRANSACTION:
       return {
         ...state,
         transactions: [action.payload, ...state.transactions],
         loading: false,
       };
-    case UPDATE_TRANSACTION:
+    case CLEAR_CURRENT_TRX:
       return {
         ...state,
-        transactions: state.transactions.map((transaction) =>
-          transaction._id === action.payload._id ? action.payload : transaction
-        ),
-        loading: false,
-      };
-    case DELETE_TRANSACTION:
-      return {
-        ...state,
-        transactions: state.transactions.filter(
-          (transaction) => transaction._id !== action.payload
-        ),
-        loading: false,
+        current: null,
       };
     case CLEAR_TRANSACTIONS:
       return {
@@ -50,15 +32,18 @@ export default (state, action) => {
         error: null,
         current: null,
       };
-    case SET_CURRENT_TRX:
+    case CLEAR_TRX_FILTER:
       return {
         ...state,
-        current: action.payload,
+        filtered: null,
       };
-    case CLEAR_CURRENT_TRX:
+    case DELETE_TRANSACTION:
       return {
         ...state,
-        current: null,
+        transactions: state.transactions.filter(
+          (transaction) => transaction._id !== action.payload
+        ),
+        loading: false,
       };
     case FILTER_TRANSACTIONS:
       return {
@@ -68,15 +53,29 @@ export default (state, action) => {
           return transaction.name.match(regex);
         }),
       };
-    case CLEAR_TRX_FILTER:
+    case GET_TRANSACTIONS:
       return {
         ...state,
-        filtered: null,
+        transactions: action.payload,
+        loading: false,
+      };
+    case SET_CURRENT_TRX:
+      return {
+        ...state,
+        current: action.payload,
       };
     case TRANSACTION_ERROR:
       return {
         ...state,
         error: action.payload,
+      };
+    case UPDATE_TRANSACTION:
+      return {
+        ...state,
+        transactions: state.transactions.map((transaction) =>
+          transaction._id === action.payload._id ? action.payload : transaction
+        ),
+        loading: false,
       };
     default:
       return state;
