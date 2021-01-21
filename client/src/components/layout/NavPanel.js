@@ -6,6 +6,7 @@ import Card from "@material-ui/core/Card";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import CategoryIcon from '@material-ui/icons/Category';
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import ReceiptIcon from "@material-ui/icons/Receipt";
@@ -35,6 +36,12 @@ const NavPanel = () => {
       <Tooltip title="Sales Tool Inventory">
         <IconButton aria-label="tool-inventory" href="/dashboard/inventory">
           <CategoryIcon style={{color: "silver"}}/>
+        </IconButton>
+      </Tooltip>
+
+      <Tooltip title="My Account">
+        <IconButton aria-label="my-account" href="/account">
+          <AccountBoxIcon style={{color: "goldenrod"}}/>
         </IconButton>
       </Tooltip>
     </Card>

@@ -91,7 +91,7 @@ router.put("/:id", auth, async (req, res) => {
     type,
   } = req.body;
 
-  //* Build contact object
+  //* Checks DOM for user input and changes the corresponding value as needed
   const contactFields = {};
   if (name) contactFields.name = name;
   if (email) contactFields.email = email;
