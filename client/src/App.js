@@ -13,6 +13,7 @@ import Develop from "./components/pages/Develop";
 import Home from "./components/pages/Home";
 import Inventory from "./components/pages/Inventory";
 import Login from "./components/auth/Login";
+import MyAccount from "./components/pages/MyAccount";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Register from "./components/auth/Register";
 import Transactions from "./components/pages/Transactions";
@@ -43,6 +44,7 @@ const App = () => {
                   <Route exact path="/" component={Home} />
                   <Route exact path="/about" component={About} />
                   <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                  <PrivateRoute exact path="/account" component={MyAccount} />
                   <PrivateRoute
                     exact
                     path="/dashboard/transactions"
