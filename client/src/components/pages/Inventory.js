@@ -9,6 +9,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
+import InventoryForm from "../inventory/InventoryForm";
+import InventoryGrid from "../inventory/InventoryGrid"
+import InventoryItem from "../inventory/InventoryItem";
 import NavPanel from "../layout/NavPanel";
 
 //* State context
@@ -48,20 +51,23 @@ const Inventory = () => {
   //* Returns JSX to DOM
   return (
     <Container>
-    <Typography variant="h4" className={classes.header}>
-      Inventory
-    </Typography>
-    <Grid container spacing={3}>
-      <Grid item xs={12} sm={12} md={6}>
-        <NavPanel />
-        {/* Transaction form goes here - see ContactForm.js for reference */}
-      </Grid>
+      <Typography variant="h4" className={classes.header}>
+        Inventory
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={6}>
+          <NavPanel />
+          <InventoryForm />
+        </Grid>
 
-      <Grid item xs={12} sm={12} md={6}>
-        {/* Transaction list goes here - see ContactItem.js for reference */}
+        <Grid item xs={12} sm={12} md={6}>
+    <InventoryItem />
+        </Grid>
       </Grid>
-    </Grid>
-  </Container>
+      <Grid item xs={12}>
+    <InventoryGrid />
+      </Grid>
+    </Container>
   );
 };
 
