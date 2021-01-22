@@ -29,6 +29,9 @@ const AuthState = (props) => {
     error: null,
   };
 
+//* Get user
+
+
   //* Initializes state using reducer
   const [state, dispatch] = useReducer(authReducer, initialState);
 

@@ -59,6 +59,7 @@ export const ContactItem = ({ contact }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
+  //* Initiallizes state
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
