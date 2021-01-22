@@ -5,7 +5,7 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import PublicTwoToneIcon from '@material-ui/icons/PublicTwoTone';
+import PublicTwoToneIcon from "@material-ui/icons/PublicTwoTone";
 import Typography from "@material-ui/core/Typography";
 import Map from "../map/Map";
 
@@ -47,7 +47,7 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 //* Exported component
-export default function CustomizedDialogs() {
+export default function CustomizedDialogs({ contact }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -57,26 +57,27 @@ export default function CustomizedDialogs() {
     setOpen(false);
   };
 
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
   return (
-    <div> 
+    <div>
       <IconButton variant="outlined" color="primary" onClick={handleClickOpen}>
-        <PublicTwoToneIcon style={{color: "green"}} />
+        <PublicTwoToneIcon style={{ color: "green" }} />
       </IconButton>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-        open={
-         open
-         }
+        open={open}
         // open={false}
-
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Contact Name?
+          {contact.name}
+          <Typography variant="body1">
+            {contact.streetNumber} {contact.street}, {contact.city},
+            {contact.state}
+          </Typography>
         </DialogTitle>
         <DialogContent dividers>
-          <Map />
+          <Map contact={contact} />
         </DialogContent>
       </Dialog>
     </div>

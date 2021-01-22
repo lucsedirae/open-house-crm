@@ -26,20 +26,20 @@ import ContactContext from "../../context/contact/contactContext";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    marginBottom: "1rem",
+    marginBottom: "1rem"
   },
   title: {
-    textAlign: "center",
+    textAlign: "center"
   },
   pos: {
-    marginBottom: "1rem",
+    marginBottom: "1rem"
   },
   buttonGroup: {
-    justifyContent: "center",
+    justifyContent: "center"
   },
   Box: {
-    marginTop: "1rem",
-  },
+    marginTop: "1rem"
+  }
 });
 
 //* Checks the contact type and returns the appropriate badge background color
@@ -74,7 +74,7 @@ export const ContactItem = ({ contact }) => {
     city,
     state,
     zipcode,
-    type,
+    type
   } = contact;
 
   const onDelete = () => {
@@ -82,7 +82,7 @@ export const ContactItem = ({ contact }) => {
     clearCurrent();
   };
 
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -146,7 +146,7 @@ export const ContactItem = ({ contact }) => {
           >
             Delete
           </Button>
-          <CustomizedDialogs />
+          <CustomizedDialogs contact={contact} />
         </ButtonGroup>
       </CardActions>
     </Card>
@@ -154,7 +154,7 @@ export const ContactItem = ({ contact }) => {
 };
 
 ContactItem.propTypes = {
-  contact: PropTypes.object.isRequired,
+  contact: PropTypes.object.isRequired
 };
 
 export default ContactItem;

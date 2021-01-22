@@ -61,5 +61,15 @@
 
 .map {
   height: 35vh;
-  width: 35vw;
+  width: 30vw;
+}
+
+.map-text {
+  text-align: center;
+  font-size: 10px !important;
+}
+
+.location-icon {
+  font-size: 2rem;
+  color: red;
 }
