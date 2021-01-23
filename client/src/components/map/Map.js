@@ -2,16 +2,20 @@ import Geocode from "react-geocode";
 import { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import LocationMarker from "./LocationMarker";
+require("dotenv").config();
 
 //* Exported component
-const Map = ({ contact, center, zoom }) => {
+const Map = ({ contact }) => {
   const [location, setLocation] = useState({});
+
+  console.log(process.env.REACT_APP_MAP_API_KEY);
+  console.log(process.env.REACT_APP_GEO_API_KEY);
 
   const { streetNumber, street, city, state } = contact;
 
   const address = `${streetNumber} ${street}, ${city}, ${state}`;
 
-  Geocode.setApiKey("AIzaSyDNSb3m2PtzVFM4_HhqYud3otaqxRC8UHQ");
+  Geocode.setApiKey(process.env.REACT_APP_GEO_API_KEY);
   Geocode.fromAddress(address).then((res) => {
     const { lat, lng } = res.results[0].geometry.location;
     console.log(lat, lng);
@@ -22,23 +26,14 @@ const Map = ({ contact, center, zoom }) => {
   return (
     <div className="map">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCcCmZ4SUwUZgEu_yMZ3v7irFvmHzn-ym4" }} // Will set up a .ENV file to secure the api key
-        defaultCenter={center}
-        defaultZoom={zoom}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_MAP_API_KEY }}
+        center={{ lat: location.lat, lng: location.lng }}
+        defaultZoom={10}
       >
         <LocationMarker lat={location.lat} lng={location.lng} />
       </GoogleMapReact>
     </div>
   );
-};
-
-Map.defaultProps = {
-  //default lat and lng set to Richmond, Virginia.  Zoom is set on 10 so it will show the city.  Can be adjusted to show other states or the entire USA.
-  center: {
-    lat: 37.54129,
-    lng: -77.434769
-  },
-  zoom: 10
 };
 
 export default Map;
