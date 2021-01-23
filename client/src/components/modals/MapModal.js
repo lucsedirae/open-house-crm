@@ -5,6 +5,8 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 import PublicTwoToneIcon from "@material-ui/icons/PublicTwoTone";
 import Typography from "@material-ui/core/Typography";
 import Map from "../map/Map";
@@ -60,9 +62,14 @@ export default function CustomizedDialogs({ contact }) {
   //* Returns JSX to DOM
   return (
     <div>
-      <IconButton variant="outlined" color="primary" onClick={handleClickOpen}>
-        <PublicTwoToneIcon style={{ color: "green" }} />
-      </IconButton>
+      <Button
+        startIcon={<PublicTwoToneIcon />}
+        style={{ color: "white", backgroundColor: "green" }}
+        onClick={handleClickOpen}
+      >
+        Map
+      </Button>
+
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
