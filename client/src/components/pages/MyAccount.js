@@ -1,19 +1,23 @@
 //* Dependencies
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import EditIcon from "@material-ui/icons/Edit";
 
 //* Custom components
 import NavPanel from "../layout/NavPanel";
+import UserForm from "../myAccount/UserForm";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
-
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -36,20 +40,16 @@ const useStyles = makeStyles((theme) => ({
 const MyAccount = () => {
   //* Initializes styling classes
   const classes = useStyles();
-  
-  //* Initializes state
+
+  //* Initializes context state
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, logout, user } = authContext;
+  const { user } = authContext;
 
   //* Authenticates user token
   useEffect(() => {
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);
-  
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
 
   //* Returns JSX to DOM
   return (
@@ -63,14 +63,27 @@ const MyAccount = () => {
           <NavPanel />
         </Grid>
       </Grid>
-      <Paper>
+      <Paper className={classes.paper}>
         <Typography variant="h5">Account Details</Typography>
-        <Typography><strong>Name: </strong>{user && user.name}</Typography>
-        <form
-          className={classes.root}
-          autoComplete="off"
-          onSubmit={onSubmit}
-        ></form>
+        <form className={classes.root} autoComplete="off">
+          <Typography>
+            <strong>Name: </strong>
+            {user && user.name}
+          </Typography>
+
+          <Typography>
+            <strong>Email: </strong>
+            {user && user.email}
+          </Typography>
+
+          <Typography>
+            <strong>Date joined: </strong>
+            {user && user.date.slice(0, 10)}
+          </Typography>
+        </form>
+      </Paper>
+      <Paper className={classes.paper}>
+        <UserForm />
       </Paper>
     </Container>
   );
