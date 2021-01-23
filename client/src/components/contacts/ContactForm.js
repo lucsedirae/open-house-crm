@@ -20,16 +20,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "25ch",
-    },
+      width: "25ch"
+    }
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 120
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    marginTop: theme.spacing(2)
+  }
 }));
 
 //* Exported component
@@ -54,7 +54,7 @@ const ContactForm = () => {
         city: "",
         state: "",
         zipcode: "",
-        type: "",
+        type: ""
       });
     }
   }, [contactContext, current]);
@@ -69,7 +69,7 @@ const ContactForm = () => {
     city: "",
     state: "",
     zipcode: "",
-    type: "",
+    type: ""
   });
 
   const {
@@ -82,7 +82,7 @@ const ContactForm = () => {
     address2,
     city,
     state,
-    zipcode,
+    zipcode
   } = contact;
 
   const onChange = (e) => {
@@ -107,7 +107,7 @@ const ContactForm = () => {
       city: "",
       state: "",
       zipcode: "",
-      type: "",
+      type: ""
     });
   };
 
@@ -115,7 +115,7 @@ const ContactForm = () => {
     clearCurrent();
   };
 
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
       <Typography variant="h5">
