@@ -47,7 +47,47 @@ const InventoryForm = () => {
 
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography variant="h4">Inventory item form</Typography>
+      <Box>
+        <TextField
+          variant="outlined"
+          required
+          type="text"
+          id="standard-required"
+          label="Inventory Item"
+          size="small"
+          helperText="Required"
+          name="inventoryItem"
+        />
+        {/* <TextField
+          variant="outlined"
+          required
+          type="text"
+          id="standard-required"
+          label="Inventory Type"
+          size="small"
+          helperText="Required"
+          name="type"
+        />
+        <TextField
+          variant="outlined"
+          required
+          type="text"
+          id="standard-required"
+          label="Cost"
+          size="small"
+          name="cost"
+        />
+        <TextField
+          variant="outlined"
+          required
+          type="text"
+          id="standard-required"
+          label="Quantity"
+          size="small"
+          name="quantity"
+        /> */}
+      </Box>
+
     </form>
   );
 };
