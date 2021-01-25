@@ -4,6 +4,8 @@ import ContactContext from "../../context/contact/contactContext";
 
 //* Material-UI components, hooks, and icons
 import TextField from "@material-ui/core/TextField";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 //* Exported component
 export const ContactFilter = () => {
@@ -26,19 +28,27 @@ export const ContactFilter = () => {
     }
   };
 
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
   return (
     <form>
       <TextField
-        variant="outlined"
-        label="Search Contacts"
+        variant="standard"
+        fullWidth={true}
+        color="primary"
         type="text"
         size="small"
         name="text"
         helperText="Search by name or email"
         inputRef={text}
         onChange={onChange}
-        style={{ marginBottom: "1rem" }}
+        style={{ marginBottom: "2rem", marginTop: "2rem" }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <AccountCircle />
+            </InputAdornment>
+          )
+        }}
       />
     </form>
   );

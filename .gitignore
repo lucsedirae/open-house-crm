@@ -4,6 +4,8 @@ node_modules/
 
 /client/build
 
+/client/.eslintcache
+
 .DS_Store
 /client/.env
 /client/.env.local
