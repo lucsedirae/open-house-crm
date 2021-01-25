@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //* Exported component
-const ContactForm = () => {
+const ContactForm = ({ handleClose }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
@@ -118,14 +118,14 @@ const ContactForm = () => {
   //* Returns JSX to DOM
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography variant="h5">
+      <Typography variant="h5" style={{ textAlign: "center" }}>
         {current ? "Edit Contact" : "Add Contact"}
       </Typography>
-      <Box>
+      <Box style={{ textAlign: "center" }}>
         {/* These TextFields are repetitive and could be componentized then mapped across the contact object to reduce line count */}
         <TextField
-          variant="outlined"
-          required
+          variant="standard"
+          required={true}
           type="text"
           id="standard-required"
           label="Name"
@@ -137,8 +137,8 @@ const ContactForm = () => {
         />
 
         <TextField
-          required
-          variant="outlined"
+          required={true}
+          variant="standard"
           label="Contact Type"
           size="small"
           name="type"
@@ -159,7 +159,7 @@ const ContactForm = () => {
         </TextField>
 
         <TextField
-          variant="outlined"
+          variant="standard"
           label="Email"
           type="email"
           size="small"
@@ -169,7 +169,7 @@ const ContactForm = () => {
         />
 
         <TextField
-          variant="outlined"
+          variant="standard"
           label="Phone"
           type="phone"
           size="small"
@@ -179,7 +179,7 @@ const ContactForm = () => {
         />
 
         <TextField
-          variant="outlined"
+          variant="standard"
           label="Street Number"
           type="number"
           size="small"
@@ -189,7 +189,7 @@ const ContactForm = () => {
         />
 
         <TextField
-          variant="outlined"
+          variant="standard"
           label="Street"
           type="text"
           size="small"
@@ -199,7 +199,7 @@ const ContactForm = () => {
         />
 
         <TextField
-          variant="outlined"
+          variant="standard"
           label="Additional Address"
           type="text"
           size="small"
@@ -209,7 +209,7 @@ const ContactForm = () => {
         />
 
         <TextField
-          variant="outlined"
+          variant="standard"
           label="City"
           size="small"
           type="text"
@@ -219,7 +219,7 @@ const ContactForm = () => {
         />
 
         <TextField
-          variant="outlined"
+          variant="standard"
           label="State"
           type="text"
           size="small"
@@ -236,7 +236,7 @@ const ContactForm = () => {
         </TextField>
 
         <TextField
-          variant="outlined"
+          variant="standard"
           label="Zip"
           type="number"
           size="small"
@@ -246,19 +246,22 @@ const ContactForm = () => {
         />
       </Box>
       <Button
-        variant="contained"
+        variant="outlined"
         type="submit"
         color="primary"
-        style={{ marginTop: "1rem" }}
+        fullWidth={true}
+        style={{ marginTop: "1rem", marginBottom: "1rem" }}
+        onClick={handleClose}
       >
         Submit
       </Button>
       {current && (
         <Button
-          variant="contained"
+          variant="outlined"
+          fullWidth={true}
           type="submit"
           color="secondary"
-          style={{ marginTop: "1rem", marginLeft: "1rem" }}
+          style={{ marginBottom: "1rem" }}
           onClick={clearAll}
         >
           Clear
