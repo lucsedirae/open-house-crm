@@ -11,11 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // npm i @date-io/date-fns@1.x date-fns
 //npm i @material-ui/pickers
 import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 //* State context
 import InventoryContext from "../../context/inventory/inventoryContext";

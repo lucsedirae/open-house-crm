@@ -17,7 +17,7 @@ import {
     UPDATE_ITEM,
   } from "../types";
   
-const InventoryState = () => {
+const InventoryState = (props) => {
     const initialState = {
         inventory: null,
         current: null,
