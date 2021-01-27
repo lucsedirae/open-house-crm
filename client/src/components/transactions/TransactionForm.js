@@ -189,7 +189,7 @@ const TransactionForm = ({ handleClose }) => {
             />
           </FormControl>
 
-          <KeyboardDatePicker
+          {/* <KeyboardDatePicker
             margin="normal"
             id="date-picker-dialog"
             label="Date"
@@ -198,10 +198,9 @@ const TransactionForm = ({ handleClose }) => {
             name="dateOpened"
             //! Needs on change handler
             KeyboardButtonProps={{
-              'aria-label': 'change date',
+              "aria-label": "change date",
             }}
-          />
-
+          /> */}
         </Box>
         <Button
           variant="outlined"
