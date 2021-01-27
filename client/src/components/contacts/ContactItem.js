@@ -21,12 +21,18 @@ import PhoneIcon from "@material-ui/icons/Phone";
 
 //* State context
 import ContactContext from "../../context/contact/contactContext";
+import ModalContext from "../../context/modal/modalContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    marginBottom: "1rem"
+    marginBottom: "1rem",
+    backgroundColor: "lightgrey",
+    border: "1px solid grey",
+    boxShadow: "0 8px 5px -3px grey",
+    fontFamily: "Oswald",
+    fontWeight: "200"
   },
   title: {
     textAlign: "center"
@@ -59,6 +65,7 @@ export const ContactItem = ({ contact }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
+  //* Initiallizes state
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
@@ -76,14 +83,22 @@ export const ContactItem = ({ contact }) => {
     type
   } = contact;
 
+  const modalContext = useContext(ModalContext);
+  const { handleOpen } = modalContext;
+
   const onDelete = () => {
     deleteContact(_id);
     clearCurrent();
   };
 
+  const onClick = () => {
+    handleOpen();
+    setCurrent(contact);
+  };
+
   //* Returns JSX to DOM
   return (
-    <Card className={classes.root}>
+    <Card id="contact-card" className={classes.root}>
       <CardContent>
         <Typography variant="h5" className={classes.title}>
           {name}{" "}
@@ -115,9 +130,9 @@ export const ContactItem = ({ contact }) => {
           </ButtonGroup>
         </Box>
 
-        <Box className={classes.Box}>
+        <Box className={classes.Box} style={{ textAlign: "center" }}>
           {street && (
-            <Typography variant="body1">
+            <Typography variant="body1" className={classes.title}>
               {streetNumber} {street}
             </Typography>
           )}
@@ -129,24 +144,24 @@ export const ContactItem = ({ contact }) => {
           )}
         </Box>
       </CardContent>
-      <CardActions>
-        <ButtonGroup variant="contained" size="small">
-          <Button
-            startIcon={<EditIcon />}
-            color="primary"
-            onClick={() => setCurrent(contact)}
-          >
-            Edit
-          </Button>
-          <Button
-            startIcon={<DeleteIcon />}
-            color="secondary"
-            onClick={onDelete}
-          >
-            Delete
-          </Button>
-          <CustomizedDialogs contact={contact} />
-        </ButtonGroup>
+      <CardActions style={{ justifyContent: "center" }}>
+        <Button
+          startIcon={<EditIcon />}
+          color="primary"
+          onClick={onClick}
+          variant="outlined"
+        >
+          Edit
+        </Button>
+        <Button
+          startIcon={<DeleteIcon />}
+          color="secondary"
+          onClick={onDelete}
+          variant="outlined"
+        >
+          Delete
+        </Button>
+        <CustomizedDialogs contact={contact} />
       </CardActions>
     </Card>
   );

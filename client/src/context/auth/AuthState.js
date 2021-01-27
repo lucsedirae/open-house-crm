@@ -14,6 +14,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_ERRORS,
+  UPDATE_USER
 } from "../types";
 
 //* State context
@@ -28,6 +29,9 @@ const AuthState = (props) => {
     user: null,
     error: null,
   };
+
+//* Get user
+
 
   //* Initializes state using reducer
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -101,6 +105,33 @@ const AuthState = (props) => {
   //* Clear errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
+  //* Update user
+  const updateUser = async (user) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.put(
+        `/api/auth/${user._id}`,
+        user,
+        config
+      );
+
+      dispatch({
+        type: UPDATE_USER,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: AUTH_ERROR,
+        payload: err.response.msg
+      });
+    }
+  }
+
   //* Defines state data that is returned through the provider
   return (
     <AuthContext.Provider
@@ -115,6 +146,7 @@ const AuthState = (props) => {
         login,
         logout,
         clearErrors,
+        updateUser
       }}
     >
       {props.children}
