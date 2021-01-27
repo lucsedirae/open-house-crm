@@ -37,6 +37,7 @@ const ContactForm = ({ handleClose }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
+  //* Initializes context state
   const contactContext = useContext(ContactContext);
   const { addContact, updateContact, clearCurrent, current } = contactContext;
 

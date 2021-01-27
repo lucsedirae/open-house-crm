@@ -1,24 +1,24 @@
+//* Dependencies
 import React, { useContext } from "react";
 import Dialog from "@material-ui/core/Dialog";
-import ModalContext from "../../context/modal/modalContext";
+
+//* Material UI components, hooks, and icons
 import DialogContent from "@material-ui/core/DialogContent";
-import FloatingAction from "../layout/FloatingAction";
+
+//* Custom components
 import ContactForm from "./ContactForm";
+import FloatingAction from "../layout/FloatingAction";
 
+//* State context
+import ModalContext from "../../context/modal/modalContext";
+
+//* Exported component
 export default function ContactFormModal() {
-  /* const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  }; */
-
+  //* Initiallizes state
   const modalContext = useContext(ModalContext);
   const { open, handleOpen, handleClose } = modalContext;
 
+  //* Returns JSX to DOM
   return (
     <div>
       <FloatingAction handleClickOpen={handleOpen} />

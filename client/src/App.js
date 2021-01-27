@@ -27,62 +27,66 @@ import ModalState from "./context/modal/ModalState";
 
 //* Sets token if user is authenticated
 if (localStorage.token) {
-	setAuthToken(localStorage.token);
+  setAuthToken(localStorage.token);
 }
 
 //* Exported component
 const App = () => {
-  
-	//* Returns JSX to DOM
-	return (
-		<AuthState>
-			<ContactState>
-				<AlertState>
-					<Router>
-						<Fragment>
-							<Appbar />
-							<Alerts />
-							<div className="container-fluid my-3">
-								<Switch>
-									<Route exact path="/" component={Home} />
-									<Route exact path="/about" component={About} />
-									<PrivateRoute exact path="/dashboard" component={Dashboard} />
-									<PrivateRoute exact path="/account" component={MyAccount} />
-									<PrivateRoute
-										exact
-										path="/dashboard/transactions"
-										component={Transactions}
-									/>
-									<PrivateRoute
-										exact
-										path="/dashboard/charts"
-										component={ChartsPage}
-									/>
-									<PrivateRoute
-										exact
-										path="/dashboard/inventory"
-										component={Inventory}
-									/>
-									<Route exact path="/develop" component={Develop} />
-									<Route exact path="/Register" component={Register} />
-									<Route exact path="/Login" component={Login} />
-									<Route
-										path="/github"
-										component={() => {
-											window.location.href =
-												"https://github.com/lucsedirae/open-house-crm";
-											return null;
-										}}
-									/>{" "}
-								</Switch>
-							</div>
-						</Fragment>
-					</Router>
-				</AlertState>
-			</ContactState>
-		</AuthState>
-	);
-
+  //* Returns JSX to DOM
+  return (
+    <AuthState>
+      <ContactState>
+        <AlertState>
+          <ModalState>
+            <Router>
+              <Fragment>
+                <Appbar />
+                <Alerts />
+                <div className="container-fluid my-3">
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/about" component={About} />
+                    <PrivateRoute
+                      exact
+                      path="/dashboard"
+                      component={Dashboard}
+                    />
+                    <PrivateRoute exact path="/account" component={MyAccount} />
+                    <PrivateRoute
+                      exact
+                      path="/dashboard/transactions"
+                      component={Transactions}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/dashboard/charts"
+                      component={ChartsPage}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/dashboard/inventory"
+                      component={Inventory}
+                    />
+                    <Route exact path="/develop" component={Develop} />
+                    <Route exact path="/Register" component={Register} />
+                    <Route exact path="/Login" component={Login} />
+                    <Route
+                      path="/github"
+                      component={() => {
+                        window.location.href =
+                          "https://github.com/lucsedirae/open-house-crm";
+                        return null;
+                      }}
+                    />{" "}
+                  </Switch>
+                </div>
+              </Fragment>
+            </Router>
+          </ModalState>
+        </AlertState>
+      </ContactState>
+    </AuthState>
+  );
 };
 
 export default App;
