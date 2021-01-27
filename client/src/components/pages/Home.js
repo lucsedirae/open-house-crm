@@ -6,7 +6,8 @@ import SplashPanelA from "../static/SplashPanelA";
 
 //* Exported component
 export const Home = () => {
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
+
   return <SplashPanelA />;
 };
 
