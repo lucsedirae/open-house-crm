@@ -21,12 +21,8 @@
     "bcryptjs": "^2.4.3",
     "chart.js": "^2.9.4",
     "config": "^3.3.3",
-<<<<<<< HEAD
-    "date-fns": "^2.16.1",
-=======
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
->>>>>>> 2e2dc7ae92a2b82e5aed4c94bce4e71ed17d20c4
     "express": "^4.17.1",
     "express-validator": "^6.8.1",
     "jsonwebtoken": "^8.5.1",

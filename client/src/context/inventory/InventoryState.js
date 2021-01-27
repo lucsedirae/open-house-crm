@@ -17,6 +17,9 @@ import {
     UPDATE_ITEM,
   } from "../types";
   
+//* State context
+import InventoryContext from "./inventoryContext";
+
 const InventoryState = (props) => {
     const initialState = {
         inventory: null,
