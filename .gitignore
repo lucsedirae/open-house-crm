@@ -18,3 +18,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /package-lock.json
+
+client/.eslintcache
+        client/package-lock.json
+        package.json

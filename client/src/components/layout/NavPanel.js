@@ -13,39 +13,39 @@ import ReceiptIcon from "@material-ui/icons/Receipt";
 
 //* Exported component
 const NavPanel = () => {
-  return (
-    <Card style={{ padding: "5px", marginBottom: "1rem", textAlign: "center" }}>
-      <Tooltip title="Contacts">
-        <IconButton aria-label="contacts" href="/dashboard">
-          <ContactsIcon color="primary" />
-        </IconButton>
-      </Tooltip>
+	return (
+		<Card style={{ padding: "5px", marginBottom: "1rem" }}>
+			<Tooltip title="Contacts">
+				<IconButton aria-label="contacts" href="/dashboard">
+					<ContactsIcon color="primary" />
+				</IconButton>
+			</Tooltip>
 
-      <Tooltip title="Transactions">
-        <IconButton aria-label="transactions" href="/dashboard/transactions">
-          <ReceiptIcon color="secondary" />
-        </IconButton>
-      </Tooltip>
+			<Tooltip title="Transactions">
+				<IconButton aria-label="transactions" href="/dashboard/transactions">
+					<ReceiptIcon color="secondary" />
+				</IconButton>
+			</Tooltip>
 
-      <Tooltip title="Business Overview">
-        <IconButton aria-label="business-overview">
-          <MonetizationOnIcon style={{ color: "green" }} />
-        </IconButton>
-      </Tooltip>
+			<Tooltip title="Business Overview">
+				<IconButton aria-label="business-overview" href="/dashboard/charts">
+					<MonetizationOnIcon style={{ color: "green" }} />
+				</IconButton>
+			</Tooltip>
 
-      <Tooltip title="Sales Tool Inventory">
-        <IconButton aria-label="tool-inventory" href="/dashboard/inventory">
-          <CategoryIcon style={{ color: "silver" }} />
-        </IconButton>
-      </Tooltip>
+			<Tooltip title="Sales Tool Inventory">
+				<IconButton aria-label="tool-inventory" href="/dashboard/inventory">
+					<CategoryIcon style={{ color: "silver" }} />
+				</IconButton>
+			</Tooltip>
 
-      <Tooltip title="My Account">
-        <IconButton aria-label="my-account" href="/account">
-          <AccountBoxIcon style={{ color: "goldenrod" }} />
-        </IconButton>
-      </Tooltip>
-    </Card>
-  );
+			<Tooltip title="My Account">
+				<IconButton aria-label="my-account" href="/account">
+					<AccountBoxIcon style={{ color: "goldenrod" }} />
+				</IconButton>
+			</Tooltip>
+		</Card>
+	);
 };
 
 export default NavPanel;
