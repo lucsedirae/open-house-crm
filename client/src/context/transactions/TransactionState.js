@@ -14,7 +14,7 @@ import {
   FILTER_TRANSACTIONS,
   GET_TRANSACTIONS,
   SET_CURRENT_TRX,
-  UPDATE_TRANSACTION,
+  UPDATE_TRANSACTION
 } from "../types";
 
 //* State context
@@ -26,7 +26,7 @@ const TransactionState = (props) => {
     transactions: null,
     current: null,
     filtered: null,
-    error: null,
+    error: null
   };
 
   const [state, dispatch] = useReducer(transactionReducer, initialState);
@@ -46,8 +46,8 @@ const TransactionState = (props) => {
   const addTransaction = async (transaction) => {
     const config = {
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     };
 
     try {
@@ -66,89 +66,89 @@ const TransactionState = (props) => {
 
       dispatch({
         type: DELETE_TRANSACTION,
-        payload: id,
+        payload: id
       });
     } catch (err) {
       dispatch({
         type: TRANSACTION_ERROR,
-        payload: err.response.msg,
+        payload: err.response.msg
       });
     }
   };
 
   //* Clear transactions
   const clearTransactions = () => {
-      dispatch({ type: CLEAR_TRANSACTIONS})
-  }
+    dispatch({ type: CLEAR_TRANSACTIONS });
+  };
 
   //* Set current transaction
   const setCurrentTrx = (transaction) => {
-      dispatch({type: SET_CURRENT_TRX, payload: transaction})
-  }
+    dispatch({ type: SET_CURRENT_TRX, payload: transaction });
+  };
 
   //* Clear current transaction
   const clearCurrentTrx = () => {
-      dispatch({type: CLEAR_CURRENT_TRX})
-  }
+    dispatch({ type: CLEAR_CURRENT_TRX });
+  };
 
   //* Update Transaction
   const updateTransaction = async (transaction) => {
-      const config = {
-          headers: {
-              "Content-Type": "application/json"
-          },
-      };
-
-      try {
-          const res = await.axios.put(
-              `/api/contacts/${transaction._id}`,
-              transaction,
-              config
-          )
-
-          dispatch({
-              type: UPDATE_TRANSACTION,
-              payload: res.data,
-          });
-      } catch (err) {
-          dispatch ({
-              type: TRANSACTION_ERROR,
-              payload: err.response.msg
-          })
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
       }
-  }
+    };
+
+    try {
+      const res = await axios.put(
+        `/api/contacts/${transaction._id}`,
+        transaction,
+        config
+      );
+
+      dispatch({
+        type: UPDATE_TRANSACTION,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: TRANSACTION_ERROR,
+        payload: err.response.msg
+      });
+    }
+  };
 
   //* Filter Transactions
   const filterTransactions = (text) => {
-      dispatch({type: FILTER_TRANSACTIONS, payload: text})
-  }
+    dispatch({ type: FILTER_TRANSACTIONS, payload: text });
+  };
 
   //* Clear Filter
   const clearFilter = () => {
-      dispatch({type: CLEAR_TRX_FILTER})
-  }
+    dispatch({ type: CLEAR_TRX_FILTER });
+  };
 
-  return(
-      <TransactionContext.Provider
+  return (
+    <TransactionContext.Provider
       value={{
-          transactions: state.transactions,
-          current: state.current,
-          error: state.error,
-          filtered: state.filtered,
-          addTransaction,
-          clearTransactions,
-          clearCurrentTrx,
-          clearFilter,
-          deleteTransaction,
-          filterTransactions,
-          getTransactions,
-          setCurrentTrx,
-          updateTransaction,
+        transactions: state.transactions,
+        current: state.current,
+        error: state.error,
+        filtered: state.filtered,
+        addTransaction,
+        clearTransactions,
+        clearCurrentTrx,
+        clearFilter,
+        deleteTransaction,
+        filterTransactions,
+        getTransactions,
+        setCurrentTrx,
+        updateTransaction
       }}
-      >
-          {props.children}
-      </TransactionContext.Provider>
-  )
+    >
+      {props.children}
+    </TransactionContext.Provider>
+  );
 };
 
-export default TransactionState
+export default TransactionState;

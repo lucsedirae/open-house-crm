@@ -23,6 +23,7 @@ import ChartsPage from "./components/pages/ChartsPage";
 import AlertState from "./context/alert/AlertState";
 import AuthState from "./context/auth/AuthState";
 import ContactState from "./context/contact/ContactState";
+import ModalState from "./context/modal/ModalState";
 
 //* Sets token if user is authenticated
 if (localStorage.token) {
@@ -31,6 +32,7 @@ if (localStorage.token) {
 
 //* Exported component
 const App = () => {
+  
 	//* Returns JSX to DOM
 	return (
 		<AuthState>
@@ -80,6 +82,7 @@ const App = () => {
 			</ContactState>
 		</AuthState>
 	);
+
 };
 
 export default App;
