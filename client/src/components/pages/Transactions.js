@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
 import NavPanel from "../layout/NavPanel";
+import TransactionForm from "../transactions/TransactionForm"
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
@@ -53,7 +54,7 @@ const Transactions = () => {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12} md={6}>
           <NavPanel />
-          {/* Transaction form goes here - see ContactForm.js for reference */}
+          <TransactionForm />
         </Grid>
 
         <Grid item xs={12} sm={12} md={6}>

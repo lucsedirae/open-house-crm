@@ -5,34 +5,35 @@ const mongoose = require("mongoose");
 const TransactionSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users"
+    ref: "users",
   },
   type: {
     type: String,
-    required: true
+    required: true,
   },
   trxName: {
     type: String,
-    required: true
+    required: true,
   },
   cost: {
-    type: Number
+    type: Number,
   },
   revenue: {
-    type: Number
+    type: Number,
   },
   dateOpened: {
     type: Date,
     default: Date.now,
-    required: true
+    required: true,
   },
   dateClosed: {
-    type: Date
+    type: Date,
+    default: null,
   },
   expectedCloseDate: {
     type: Date,
-    required: true
-  }
+    required: true,
+  },
 });
 
 //* Exports schema

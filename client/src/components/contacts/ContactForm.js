@@ -122,6 +122,7 @@ const ContactForm = ({ handleClose }) => {
       <Typography variant="h5" style={{ textAlign: "center" }}>
         {current ? "Edit Contact" : "Add Contact"}
       </Typography>
+      
       <Box style={{ textAlign: "center" }}>
         {/* These TextFields are repetitive and could be componentized then mapped across the contact object to reduce line count */}
         <TextField
