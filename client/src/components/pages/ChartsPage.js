@@ -15,6 +15,7 @@ import NavPanel from "../layout/NavPanel";
 import BarChart from "../charts/BarChart";
 import HorizontalBarChart from "../charts/HorizontalBarChart";
 import PieChart from "../charts/PieChart";
+import LineChart from "../charts/LineChart";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -49,16 +50,26 @@ const ChartsPage = () => {
 			<Typography variant="h4" className={classes.header}>
 				Business Overview
 			</Typography>
-			<Grid container spacing={3}>
-				<Grid item xs={12} sm={12} md={6}>
+			<Grid container spacing={3} alignItems="center" justify="center">
+				<Grid itemRef xs={12} sm={12} md={8}>
 					<NavPanel />
-					<BarChart />
+					<Grid
+						container
+						xs={12}
+						sm={12}
+						md={12}
+						alignItems="center"
+						justify="center">
+						<BarChart />
+						<HorizontalBarChart />
+					</Grid>
+					<LineChart />
 					<PieChart />
 				</Grid>
 
-				<Grid item xs={12} sm={12} md={6}>
+				{/* <Grid item xs={12} sm={12} md={6}>
 					<HorizontalBarChart />
-				</Grid>
+				</Grid> */}
 			</Grid>
 		</Container>
 	);

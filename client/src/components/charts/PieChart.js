@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Line, Pie } from "react-chartjs-2";
 
 const data = {
-	labels: ["Red", "Blue", "Yellow"],
+	labels: ["Travel", "Materials", "Other"],
 	datasets: [
 		{
 			data: [300, 50, 100],
@@ -40,8 +40,8 @@ const PieChart = () => {
 	//* Returns JSX to DOM
 	return (
 		<div>
-			<h2>Pie Example</h2>
-			<Pie data={data} width={400} height={400} />
+			<h2>Expenses Distribution</h2>
+			<Pie data={data} width={200} height={200} />
 		</div>
 	);
 };
