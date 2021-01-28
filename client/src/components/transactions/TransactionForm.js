@@ -13,10 +13,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 
 //* State context
 import TransactionContext from "../../context/transactions/transactionContext";
@@ -189,17 +186,16 @@ const TransactionForm = ({ handleClose }) => {
             />
           </FormControl>
 
-          {/* <KeyboardDatePicker
+          {/* <DatePicker
             margin="normal"
             id="date-picker-dialog"
-            label="Date"
+            label="Date Opened"
             format="MM/dd/yyyy"
             value={dateOpened}
             name="dateOpened"
-            //! Needs on change handler
-            KeyboardButtonProps={{
-              "aria-label": "change date",
-            }}
+            // KeyboardButtonProps={{
+            //   "aria-label": "change date",
+            // }}
           /> */}
         </Box>
         <Button
