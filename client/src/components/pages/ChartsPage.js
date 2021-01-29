@@ -12,8 +12,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import AuthContext from "../../context/auth/authContext";
 
 import NavPanel from "../layout/NavPanel";
-import BarChart from "../charts/BarChart";
-import HorizontalBarChart from "../charts/HorizontalBarChart";
+import Revenue from "../charts/Revenue";
+import Expenses from "../charts/Expenses";
 import PieChart from "../charts/PieChart";
 import LineChart from "../charts/LineChart";
 
@@ -60,16 +60,12 @@ const ChartsPage = () => {
 						md={12}
 						alignItems="center"
 						justify="center">
-						<BarChart />
-						<HorizontalBarChart />
+						<Revenue />
+						<Expenses />
 					</Grid>
 					<LineChart />
 					<PieChart />
 				</Grid>
-
-				{/* <Grid item xs={12} sm={12} md={6}>
-					<HorizontalBarChart />
-				</Grid> */}
 			</Grid>
 		</Container>
 	);

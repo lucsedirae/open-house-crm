@@ -34,14 +34,14 @@ const data = {
 		"June",
 		"July",
 		"August",
-		"september",
+		"September",
 		"October",
 		"November",
 		"December",
 	],
 	datasets: [
 		{
-			label: "Expenses",
+			label: "Expenses in Thousands",
 			backgroundColor: "rgb(255,0,0)",
 			borderColor: "rgb(11,227,210)",
 			borderWidth: 1,
