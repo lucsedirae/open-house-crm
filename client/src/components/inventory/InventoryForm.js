@@ -8,10 +8,15 @@ import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
 // npm i @date-io/date-fns@1.x date-fns
 //npm i @material-ui/pickers
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+
 
 //* State context
 import InventoryContext from "../../context/inventory/inventoryContext";
@@ -103,7 +108,7 @@ const InventoryForm = () => {
   };
 
    // The first commit of Material-UI
-   const [selectedDate, setSelectedDate] = React.useState(new Date(Date.now));
+   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
    const handleDateChange = (date) => {
      setSelectedDate(date);
@@ -137,7 +142,7 @@ const InventoryForm = () => {
             id="date-picker-dialog"
             label="Date"
             format="MM/dd/yyyy"
-            value={purchased}
+            value={selectedDate}
             name="purchased"
             onChange={handleDateChange}
             KeyboardButtonProps={{
@@ -152,14 +157,22 @@ const InventoryForm = () => {
             id="standard-required"
             label="Inventory Location"
             size="small"
-            helperText="Required"
+            // helperText="Required"
             name="location"
             value={location}
             onChange={onChange}
           />
 
           {/* Cost, number */}
-
+          <FormControl fullWidth className={classes.margin}>
+            <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+            <Input
+              id="standard-adornment-amount"
+              value={values.amount}
+              onChange={handleChange('amount')}
+              startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          />
+          </FormControl>
 
           {/*  Value, number*/}
 
@@ -170,9 +183,9 @@ const InventoryForm = () => {
             required
             type="text"
             id="standard-required"
-            label="status"
+            label="Status"
             size="small"
-            helperText="Required"
+            // helperText="Required"
             name="status"
             value={status}
             onChange={onChange}
