@@ -28,8 +28,8 @@ const data = {
 	labels: ["January", "February", "March", "April", "May", "June"],
 	datasets: [
 		{
-			label: "Dataset",
-			backgroundColor: "rgba(255,99,132,0.2)",
+			label: "Expenses",
+			backgroundColor: "rgb(255,0,0)",
 			borderColor: "rgb(11,227,210)",
 			borderWidth: 1,
 			hoverBackgroundColor: "rgba(255,0,54,0.4)",
@@ -67,7 +67,7 @@ const HorizontalBarChart = () => {
 	//* Returns JSX to DOM
 	return (
 		<div>
-			<h2>Horizontal Bar Example</h2>
+			<h2>Expenses</h2>
 			<HorizontalBar data={data} width={400} height={400} />
 		</div>
 	);
