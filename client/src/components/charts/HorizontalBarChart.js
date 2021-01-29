@@ -21,11 +21,24 @@ import Paper from "@material-ui/core/Paper";
 
 //* State context
 
-import { HorizontalBar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 //* Dummy Data
 const data = {
-	labels: ["January", "February", "March", "April", "May", "June"],
+	labels: [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"september",
+		"October",
+		"November",
+		"December",
+	],
 	datasets: [
 		{
 			label: "Expenses",
@@ -34,7 +47,7 @@ const data = {
 			borderWidth: 1,
 			hoverBackgroundColor: "rgba(255,0,54,0.4)",
 			hoverBorderColor: "rgb(0,88,101)",
-			data: [65, 59, 80, 81, 56, 55, 40],
+			data: [12, 19, 3, 5, 3, 3, 15, 4, 6, 5, 11, 3],
 		},
 	],
 };
@@ -68,7 +81,14 @@ const HorizontalBarChart = () => {
 	return (
 		<div>
 			<h2>Expenses</h2>
-			<HorizontalBar data={data} width={400} height={400} />
+			<Bar
+				data={data}
+				width={400}
+				height={400}
+				options={{
+					maintainAspectRatio: false,
+				}}
+			/>{" "}
 		</div>
 	);
 };
