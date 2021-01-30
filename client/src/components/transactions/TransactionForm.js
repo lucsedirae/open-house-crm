@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { useEffect, useContext, useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+
 //* State context
 import TransactionContext from "../../context/transactions/transactionContext";
 
@@ -17,16 +18,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "25ch",
-    },
+      width: "25ch"
+    }
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 120
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    marginTop: theme.spacing(2)
+  }
 }));
 
 //* Exported component
@@ -36,47 +37,51 @@ const TransactionForm = ({ handleClose }) => {
 
   //* Initializes context state
   const transactionContext = useContext(TransactionContext);
-  const {
-    addTransaction,
-    updateTransaction,
-    clearCurrentTrx,
-    current,
-  } = transactionContext;
+  const { addTransaction, updateTransaction, clearCurrent, current } = transactionContext;
 
   useEffect(() => {
     if (current !== null) {
       setTransaction(current);
     } else {
       setTransaction({
-        trxName: "",
-        cost: null,
-        revenue: null,
-        dateOpened: Date.now,
-        dateClosed: null,
-        expectedCloseDate: Date.now,
-        type: "",
+        name: "",
+        email: "",
+        phone: "",
+        streetNumber: "",
+        street: "",
+        address2: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        type: ""
       });
     }
   }, [transactionContext, current]);
 
   const [transaction, setTransaction] = useState({
-    trxName: "",
-    cost: null,
-    revenue: null,
-    dateOpened: Date.now,
-    dateClosed: null,
-    expectedCloseDate: Date.now,
-    type: "",
+    name: "",
+    email: "",
+    phone: "",
+    streetNumber: "",
+    street: "",
+    address2: "",
+    city: "",
+    state: "",
+    zipcode: "",
+    type: ""
   });
 
   const {
-    trxName,
-    cost,
-    revenue,
-    dateOpened,
-    dateClosed,
-    expectedCloseDate,
+    name,
+    email,
+    phone,
     type,
+    streetNumber,
+    street,
+    address2,
+    city,
+    state,
+    zipcode
   } = transaction;
 
   const onChange = (e) => {
@@ -92,17 +97,21 @@ const TransactionForm = ({ handleClose }) => {
     }
 
     setTransaction({
-      trxName: "",
-      cost: null,
-      revenue: null,
-      dateOpened: Date.now,
-      dateClosed: null,
-      expectedCloseDate: Date.now,
-      type: "",
+      name: "",
+      email: "",
+      phone: "",
+      streetNumber: "",
+      street: "",
+      address2: "",
+      city: "",
+      state: "",
+      zipcode: "",
+      type: ""
     });
   };
+
   const clearAll = () => {
-    clearCurrentTrx();
+    clearCurrent();
   };
 
   //* Returns JSX to DOM
@@ -111,8 +120,114 @@ const TransactionForm = ({ handleClose }) => {
       <Typography variant="h5" style={{ textAlign: "center" }}>
         {current ? "Edit Transaction" : "Add Transaction"}
       </Typography>
+      
+      <Box style={{ textAlign: "center" }}>
+        {/* These TextFields are repetitive and could be componentized then mapped across the transaction object to reduce line count */}
+        <TextField
+          variant="standard"
+          required={true}
+          type="text"
+          id="standard-required"
+          label="Name"
+          size="small"
+          helperText="Required"
+          name="name"
+          value={name}
+          onChange={onChange}
+        />
 
-      <Box style={{ textAlign: "center" }}></Box>
+        <TextField
+          required={true}
+          variant="standard"
+          label="Transaction Type"
+          size="small"
+          name="type"
+          select
+          helperText="Required"
+          value={type}
+          onChange={onChange}
+        >
+          <MenuItem key="client" value="client">
+            Client
+          </MenuItem>
+          <MenuItem key="prospect" value="prospect">
+            Prospect
+          </MenuItem>
+          <MenuItem key="vendor" value="vendor">
+            Vendor
+          </MenuItem>
+        </TextField>
+
+        <TextField
+          variant="standard"
+          label="Email"
+          type="email"
+          size="small"
+          name="email"
+          value={email}
+          onChange={onChange}
+        />
+
+        <TextField
+          variant="standard"
+          label="Phone"
+          type="phone"
+          size="small"
+          name="phone"
+          value={phone}
+          onChange={onChange}
+        />
+
+        <TextField
+          variant="standard"
+          label="Street Number"
+          type="number"
+          size="small"
+          name="streetNumber"
+          value={streetNumber}
+          onChange={onChange}
+        />
+
+        <TextField
+          variant="standard"
+          label="Street"
+          type="text"
+          size="small"
+          name="street"
+          value={street}
+          onChange={onChange}
+        />
+
+        <TextField
+          variant="standard"
+          label="Additional Address"
+          type="text"
+          size="small"
+          name="address2"
+          value={address2}
+          onChange={onChange}
+        />
+
+        <TextField
+          variant="standard"
+          label="City"
+          size="small"
+          type="text"
+          name="city"
+          value={city}
+          onChange={onChange}
+        />
+
+        <TextField
+          variant="standard"
+          label="Zip"
+          type="number"
+          size="small"
+          name="zipcode"
+          value={zipcode}
+          onChange={onChange}
+        />
+      </Box>
       <Button
         variant="outlined"
         type="submit"
@@ -138,4 +253,5 @@ const TransactionForm = ({ handleClose }) => {
     </form>
   );
 };
+
 export default TransactionForm;

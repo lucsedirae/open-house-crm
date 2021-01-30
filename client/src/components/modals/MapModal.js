@@ -13,14 +13,14 @@ import Map from "../map/Map";
 const styles = (theme) => ({
   root: {
     margin: 0,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   closeButton: {
     position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  }
+    color: theme.palette.grey[500],
+  },
 });
 
 const DialogTitle = withStyles(styles)((props) => {
@@ -43,8 +43,8 @@ const DialogTitle = withStyles(styles)((props) => {
 
 const DialogContent = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }))(MuiDialogContent);
 
 //* Exported component
@@ -74,7 +74,6 @@ export default function CustomizedDialogs({ contact }) {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
-        // open={false}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {contact.name}
