@@ -9,7 +9,7 @@ const Transaction = require("../models/Transaction");
 const User = require("../models/User");
 
 //* @route: GET api/transactions
-//* @desc: Get user's transactions
+//* @desc: Get all user's transactions
 //* @access: Private
 router.get("/", auth, async (req, res) => {
   try {
@@ -28,7 +28,13 @@ router.get("/", auth, async (req, res) => {
 //* @access: Private
 router.post(
   "/",
-  [auth, [check("trxName", "Transaction name is required").not().isEmpty()]],
+  [
+    auth,
+    [
+      check("trxName", "Transaction name is required").not().isEmpty(),
+      check("type", "Please select a transaction type").not().isEmpty(),
+    ],
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
