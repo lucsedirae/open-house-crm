@@ -5,8 +5,8 @@ const auth = require("../middleware/auth");
 const { check, validationResult } = require("express-validator");
 
 //* Models
-const User = require("../models/User");
 const Transaction = require("../models/Transaction");
+const User = require("../models/User");
 
 //* @route: GET api/transactions
 //* @desc: Get all user's transactions

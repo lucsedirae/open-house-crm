@@ -10,17 +10,18 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
+import CustomizedDialogs from "../modals/MapModal";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import ReceiptIcon from "@material-ui/icons/Receipt";
 import FaceIcon from "@material-ui/icons/Face";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import PhoneIcon from "@material-ui/icons/Phone";
 
 //* State context
 import TransactionContext from "../../context/transactions/transactionContext";
-import ModalContext from "../../context/modal/modalContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
@@ -31,63 +32,61 @@ const useStyles = makeStyles({
     border: "1px solid grey",
     boxShadow: "0 8px 5px -3px grey",
     fontFamily: "Oswald",
-    fontWeight: "200"
+    fontWeight: "200",
   },
   title: {
-    textAlign: "center"
+    textAlign: "center",
   },
   pos: {
-    marginBottom: "1rem"
+    marginBottom: "1rem",
   },
   buttonGroup: {
-    justifyContent: "center"
+    justifyContent: "center",
   },
   Box: {
-    marginTop: "1rem"
-  }
+    marginTop: "1rem",
+  },
 });
 
 //* Checks the transaction type and returns the appropriate badge background color
 const typeCheck = (type) => {
   switch (type) {
-    case "vendor":
+    case "listing":
       return "lightgreen";
-    case "client":
+    case "sale":
       return "lightblue";
     default:
       return "yellow";
   }
 };
 
-//* Exported component
-export const TransactionItem = ({ transaction }) => {
+//* Exported react component
+const TransactionItem = ({ transaction }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //* Initiallizes state
   const transactionContext = useContext(TransactionContext);
-  const { deleteTransaction, setCurrent, clearCurrent } = transactionContext;
+  const {
+    deleteTransaction,
+    setCurrentTrx,
+    clearCurrentTrx,
+  } = transactionContext;
 
   const {
     _id,
     trxName,
-    streetNumber,
+    type,
     cost,
     revenue,
-    street,
-    address2,
-    city,
-    state,
-    zipcode,
-    type
+    dateOpened,
+    dateClosed,
+    expectedCloseDate,
   } = transaction;
-
-  const modalContext = useContext(ModalContext);
-  const { handleOpen } = modalContext;
 
   const onDelete = () => {
     deleteTransaction(_id);
-    clearCurrent();
+    clearCurrentTrx();
   };
 
   const onClick = () => {
@@ -106,37 +105,12 @@ export const TransactionItem = ({ transaction }) => {
             label={type}
             // label={type.charAt(0).toUpperCase() + type.slice(1)}
             style={{ background: typeCheck(type) }}
-            icon={<FaceIcon size="small" />}
+            icon={<ReceiptIcon size="small" />}
           />
         </Typography>
-        <Typography>Cost: {cost}</Typography>
-        <Typography>Revenue: {revenue}</Typography>
-  
       </CardContent>
-      <CardActions style={{ justifyContent: "center" }}>
-        <Button
-          startIcon={<EditIcon />}
-          color="primary"
-          onClick={onClick}
-          variant="outlined"
-        >
-          Edit
-        </Button>
-        <Button
-          startIcon={<DeleteIcon />}
-          color="secondary"
-          onClick={onDelete}
-          variant="outlined"
-        >
-          Delete
-        </Button>
-      </CardActions>
     </Card>
   );
-};
-
-TransactionItem.propTypes = {
-  transaction: PropTypes.object.isRequired
 };
 
 export default TransactionItem;
