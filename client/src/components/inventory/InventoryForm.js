@@ -5,17 +5,20 @@ import React, { useState, useContext, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-// npm i @date-io/date-fns@1.x date-fns
-//npm i @material-ui/pickers
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+
+
+// Material UI Date Picker
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 //* State context
 import InventoryContext from "../../context/inventory/inventoryContext";
-
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -103,7 +106,7 @@ const InventoryForm = () => {
   };
 
    // The first commit of Material-UI
-   const [selectedDate, setSelectedDate] = React.useState(new Date(Date.now));
+   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
    const handleDateChange = (date) => {
      setSelectedDate(date);
@@ -113,9 +116,11 @@ const InventoryForm = () => {
 
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography variant="h5">
-        {current ? "Edit Contact" : "Add Contact"}
+      <Typography variant="h5" style={{ textAlign: "center" }}>
+        {current ? "Edit Inventory" : "Add Inventory"}
       </Typography>
+
+      <Box style={{ textAlign: "center" }}></Box>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Box>
           {/* Name Field */}
@@ -135,9 +140,9 @@ const InventoryForm = () => {
           <KeyboardDatePicker
             margin="normal"
             id="date-picker-dialog"
-            label="Date"
+            label="Purchased Date"
             format="MM/dd/yyyy"
-            value={purchased}
+            value={selectedDate}
             name="purchased"
             onChange={handleDateChange}
             KeyboardButtonProps={{
@@ -149,30 +154,59 @@ const InventoryForm = () => {
             variant="outlined"
             required
             type="text"
-            id="standard-required"
+            id="standard"
             label="Inventory Location"
             size="small"
-            helperText="Required"
+            // helperText="Required"
             name="location"
             value={location}
             onChange={onChange}
           />
 
           {/* Cost, number */}
-
+          <FormControl className={classes.margin}>
+            <InputLabel htmlFor="standard-adornment-amount">
+              Costs
+            </InputLabel>
+            <Input
+              id="standard-adornment-amount"
+              name="cost"
+              type="number"
+              value={cost}
+              onChange={onChange}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
+            />
+          </FormControl>
 
           {/*  Value, number*/}
 
+          <FormControl className={classes.margin}>
+            <InputLabel htmlFor="standard-adornment-amount">
+              Value
+            </InputLabel>
+            <Input
+              id="standard-adornment-amount"
+              name="value"
+              type="number"
+              value={value}
+              onChange={onChange}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
+            />
+          </FormControl>
 
           {/*  Status, string*/}
           <TextField
             variant="outlined"
             required
             type="text"
-            id="standard-required"
-            label="status"
+            id="standard"
+            label="Status"
             size="small"
-            helperText="Required"
+            // helperText="Required"
             name="status"
             value={status}
             onChange={onChange}
@@ -180,6 +214,28 @@ const InventoryForm = () => {
 
         </Box>
       </MuiPickersUtilsProvider>
+      <Button
+        variant="outlined"
+        type="submit"
+        color="primary"
+        fullWidth={true}
+        style={{ marginTop: "1rem", marginBottom: "1rem" }}
+        // onClick={handleClose}
+      >
+        Submit
+      </Button>
+      {current && (
+        <Button
+          variant="outlined"
+          fullWidth={true}
+          type="submit"
+          color="secondary"
+          style={{ marginBottom: "1rem" }}
+          onClick={clearAll}
+        >
+          Clear
+        </Button>
+      )}
     </form>
   );
 };

@@ -13,6 +13,6 @@ export const Home = () => {
       <SplashPanelA />;
     </div>
   );
-};
+
 
 export default Home;

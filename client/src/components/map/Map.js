@@ -8,8 +8,6 @@ require("dotenv").config();
 const Map = ({ contact }) => {
   const [location, setLocation] = useState({});
 
-  console.log(process.env.REACT_APP_MAP_API_KEY);
-  console.log(process.env.REACT_APP_GEO_API_KEY);
 
   const { streetNumber, street, city, state } = contact;
 
@@ -24,6 +22,7 @@ const Map = ({ contact }) => {
     });
     //eslint-disable-next-line
   }, []);
+
 
   //* Returns JSX to DOM
   return (

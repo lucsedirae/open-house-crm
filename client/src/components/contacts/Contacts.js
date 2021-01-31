@@ -18,11 +18,13 @@ const Contacts = () => {
 
   const { contacts, filtered, getContacts, loading } = contactContext;
 
+  //* Gets contacts from MongoDB
   useEffect(() => {
     getContacts();
     // eslint-disable-next-line
   }, []);
 
+  //* Returns JSX to DOM if contacts is empty
   if (contacts !== null && contacts.length === 0 && !loading) {
     return (
       <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
@@ -31,7 +33,7 @@ const Contacts = () => {
     );
   }
 
-  //* Returns JSX to DOM
+  //* Returns JSX to DOM if contacts is not empty
   return (
     <Fragment>
       {contacts !== null && !loading ? (
