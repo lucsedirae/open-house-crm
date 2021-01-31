@@ -5,7 +5,7 @@ import React from "react";
 import SplashPanelA from "../static/SplashPanelA";
 
 //* Exported component
-export const Home = () => {
+const Home = () => {
   //* Returns JSX to DOM
 
   return (
@@ -13,6 +13,6 @@ export const Home = () => {
       <SplashPanelA />;
     </div>
   );
+  }
 
-
-export default Home;
+export default Home
