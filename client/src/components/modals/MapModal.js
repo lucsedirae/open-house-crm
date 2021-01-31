@@ -63,9 +63,16 @@ export default function CustomizedDialogs({ contact }) {
     <div>
       <Button
         startIcon={<PublicTwoToneIcon />}
-        style={{ color: "green", borderColor: "green" }}
-        variant="outlined"
+        variant="contained"
+        size="small"
         onClick={handleClickOpen}
+        style={{
+          backgroundColor: "#008B8B",
+          color: "white",
+          fontSize: "15px",
+          fontFamily: "Big Shoulders Display",
+          fontWeight: "600"
+        }}
       >
         Map
       </Button>
