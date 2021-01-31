@@ -1,22 +1,21 @@
 //* Dependencies
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 
-//* Material UI components, hooks, and icons
+//* Material-UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
-import TransactionsGrid from "../transactions/TransactionsGrid";
-import FloatingAction from "../layout/FloatingAction";
-import TransacationFormModal from "../transactions/TransactionFormModal";
-import TransacationForm from "../transactions/TransactionForm";
 import NavPanel from "../layout/NavPanel";
+import TransactionForm from "../transactions/TransactionForm";
+import TransactionGrid from "../transactions/TransactionGrid";
+import TransactionItem from "../transactions/TransactionItem";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
+import TransactionContext from "../../context/transactions/transactionContext"
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -32,17 +31,18 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginTop: "1rem",
     marginBottom: "1rem",
-    fontFamily: "Oswald",
-    fontWeight: "500",
   },
 }));
 
+//* Exported component
 const Transactions = () => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //* Initializes state
   const authContext = useContext(AuthContext);
+  const transactionContext = useContext(TransactionContext);
+
 
   //* Authenticates user token
   useEffect(() => {
@@ -50,18 +50,30 @@ const Transactions = () => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    transactionContext.getTransactions();
+    // eslint-disable-next-line
+  }, []);
+
+  const {transactions, loading} = transactionContext
+
+  //* Returns JSX to DOM
   return (
     <Container>
       <Typography variant="h4" className={classes.header}>
-        Transacations
+        Transactions
       </Typography>
-      <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item xs={12} sm={12} md={8}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={6}>
           <NavPanel />
-          <TransactionsGrid />
+          <TransactionForm />
         </Grid>
+
+        <Grid item xs={12} sm={12} md={6}>
+          {/* <TransactionItem /> */}
+        </Grid>
+        {transactions !==null && !loading ? <TransactionGrid transactions={transactions} />: "loading"}
       </Grid>
-      <TransacationFormModal />
     </Container>
   );
 };
