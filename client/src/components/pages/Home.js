@@ -8,7 +8,11 @@ import SplashPanelA from "../static/SplashPanelA";
 export const Home = () => {
   //* Returns JSX to DOM
 
-  return <SplashPanelA />;
+  return (
+    <div className="landing">
+      <SplashPanelA />;
+    </div>
+  );
 };
 
 export default Home;

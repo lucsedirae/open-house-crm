@@ -1,6 +1,7 @@
 //* Dependencies
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { useToasts } from "react-toast-notifications";
 
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
@@ -15,9 +16,14 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import FaceIcon from "@material-ui/icons/Face";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import PhoneIcon from "@material-ui/icons/Phone";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* State context
 import ContactContext from "../../context/contact/contactContext";
@@ -28,15 +34,27 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
     marginBottom: "1rem",
-    backgroundColor: "lightgrey",
     border: "1px solid grey",
     boxShadow: "0 8px 5px -3px grey",
     fontFamily: "Oswald",
-    fontWeight: "200"
+    background: `url(${background})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    fontWeight: "200",
+    margin: "0 auto"
   },
   title: {
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: "Big Shoulders Display",
+    margin: "0 auto"
   },
+  address: {
+    textAlign: "center",
+    fontSize: "18px",
+    fontFamily: "Big Shoulders Display",
+    margin: "0 auto"
+  },
+
   pos: {
     marginBottom: "1rem"
   },
@@ -52,16 +70,18 @@ const useStyles = makeStyles({
 const typeCheck = (type) => {
   switch (type) {
     case "vendor":
-      return "lightgreen";
+      return "purple";
     case "client":
-      return "lightblue";
+      return "#008B8B";
     default:
-      return "yellow";
+      return "orange";
   }
 };
 
 //* Exported component
 export const ContactItem = ({ contact }) => {
+  //* react-toast-notifications custom hook
+  const { addToast } = useToasts();
   //* Initializes styling classes
   const classes = useStyles();
 
@@ -89,6 +109,10 @@ export const ContactItem = ({ contact }) => {
   const onDelete = () => {
     deleteContact(_id);
     clearCurrent();
+    addToast("Contact deleted!", {
+      appearance: "success",
+      autoDismiss: true
+    });
   };
 
   const onClick = () => {
@@ -98,72 +122,104 @@ export const ContactItem = ({ contact }) => {
 
   //* Returns JSX to DOM
   return (
-    <Card id="contact-card" className={classes.root}>
-      <CardContent>
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+        align="center"
+      >
         <Typography variant="h5" className={classes.title}>
           {name}{" "}
           <Chip
             size="small"
             label={type}
             // label={type.charAt(0).toUpperCase() + type.slice(1)}
-            style={{ background: typeCheck(type) }}
-            icon={<FaceIcon size="small" />}
+            style={{
+              background: typeCheck(type),
+              color: "white",
+              fontFamily: "Big Shoulders Display",
+              fontWeight: "800"
+            }}
+            icon={<PersonOutlineIcon size="small" style={{ color: "white" }} />}
           />
         </Typography>
-        <Box textAlign="center" className={classes.Box}>
-          <ButtonGroup className={classes.buttonGroup}>
-            <Button
-              variant="contained"
-              startIcon={<ContactMailIcon />}
-              href={`mailto:${email}`}
-            >
-              {email}
-            </Button>
-            <Button
-              variant="contained"
-              startIcon={<PhoneIcon />}
-              href={`tel:${phone}`}
-              color="primary"
-            >
-              {phone}
-            </Button>
-          </ButtonGroup>
-        </Box>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Card id="contact-card" className={classes.root} align="center">
+          <CardContent>
+            <Box textAlign="center" className={classes.Box}>
+              <ButtonGroup className={classes.buttonGroup}>
+                <Button
+                  variant="contained"
+                  startIcon={<ContactMailIcon />}
+                  href={`mailto:${email}`}
+                >
+                  {email}
+                </Button>
+                <Button
+                  variant="contained"
+                  startIcon={<PhoneIcon />}
+                  href={`tel:${phone}`}
+                  style={{ backgroundColor: "#008B8B", color: "white" }}
+                >
+                  {phone}
+                </Button>
+              </ButtonGroup>
+            </Box>
 
-        <Box className={classes.Box} style={{ textAlign: "center" }}>
-          {street && (
-            <Typography variant="body1" className={classes.title}>
-              {streetNumber} {street}
-            </Typography>
-          )}
-          {address2 && <Typography variant="body1">{address2}</Typography>}
-          {city && (
-            <Typography variant="body1">
-              {city} {state} {zipcode}
-            </Typography>
-          )}
-        </Box>
-      </CardContent>
-      <CardActions style={{ justifyContent: "center" }}>
-        <Button
-          startIcon={<EditIcon />}
-          color="primary"
-          onClick={onClick}
-          variant="outlined"
-        >
-          Edit
-        </Button>
-        <Button
-          startIcon={<DeleteIcon />}
-          color="secondary"
-          onClick={onDelete}
-          variant="outlined"
-        >
-          Delete
-        </Button>
-        <CustomizedDialogs contact={contact} />
-      </CardActions>
-    </Card>
+            <Box className={classes.Box} style={{ textAlign: "center" }}>
+              {street && (
+                <Typography variant="body1" className={classes.address}>
+                  {streetNumber} {street}
+                </Typography>
+              )}
+              {address2 && <Typography variant="body1">{address2}</Typography>}
+              {city && (
+                <Typography variant="body1" className={classes.address}>
+                  {city} {state} {zipcode}
+                </Typography>
+              )}
+            </Box>
+          </CardContent>
+          <CardActions style={{ justifyContent: "center" }}>
+            <Button
+              startIcon={<EditIcon />}
+              onClick={onClick}
+              variant="contained"
+              size="small"
+              style={{
+                backgroundColor: "#008B8B",
+                color: "white",
+                fontSize: "15px",
+                fontFamily: "Big Shoulders Display",
+                fontWeight: "600"
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              startIcon={<DeleteIcon />}
+              color="secondary"
+              onClick={onDelete}
+              variant="contained"
+              size="small"
+              style={{
+                backgroundColor: "#008B8B",
+                color: "white",
+                fontSize: "15px",
+                fontFamily: "Big Shoulders Display",
+                fontWeight: "600"
+              }}
+            >
+              Delete
+            </Button>
+
+            <CustomizedDialogs contact={contact} />
+          </CardActions>
+        </Card>
+      </AccordionDetails>
+    </Accordion>
   );
 };
 

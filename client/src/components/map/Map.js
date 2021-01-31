@@ -1,5 +1,5 @@
 import Geocode from "react-geocode";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import LocationMarker from "./LocationMarker";
 require("dotenv").config();
@@ -15,12 +15,15 @@ const Map = ({ contact }) => {
 
   const address = `${streetNumber} ${street}, ${city}, ${state}`;
 
-  Geocode.setApiKey(process.env.REACT_APP_GEO_API_KEY);
-  Geocode.fromAddress(address).then((res) => {
-    const { lat, lng } = res.results[0].geometry.location;
-    console.log(lat, lng);
-    setLocation({ lat, lng });
-  });
+  useEffect(() => {
+    Geocode.setApiKey(process.env.REACT_APP_GEO_API_KEY);
+    Geocode.fromAddress(address).then((res) => {
+      const { lat, lng } = res.results[0].geometry.location;
+      console.log(lat, lng);
+      setLocation({ lat, lng });
+    });
+    //eslint-disable-next-line
+  }, []);
 
   //* Returns JSX to DOM
   return (
