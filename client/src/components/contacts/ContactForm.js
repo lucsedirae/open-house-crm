@@ -1,5 +1,6 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
+import { useToasts } from "react-toast-notifications";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
@@ -34,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 
 //* Exported component
 const ContactForm = ({ handleClose }) => {
+  //* react-toast-notifications custom hook
+  const { addToast } = useToasts();
   //* Initializes styling classes
   const classes = useStyles();
 
@@ -94,8 +97,16 @@ const ContactForm = ({ handleClose }) => {
     e.preventDefault();
     if (current === null) {
       addContact(contact);
+      addToast("Contact saved!", {
+        appearance: "success",
+        autoDismiss: true
+      });
     } else {
       updateContact(contact);
+      addToast("Contact updated!", {
+        appearance: "success",
+        autoDismiss: true
+      });
     }
 
     setContact({
@@ -119,10 +130,18 @@ const ContactForm = ({ handleClose }) => {
   //* Returns JSX to DOM
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography variant="h5" style={{ textAlign: "center" }}>
+      <Typography
+        variant="h5"
+        style={{
+          textAlign: "center",
+          fontFamily: "Big Shoulders Display",
+          fontSize: "25px",
+          fontWeight: "600"
+        }}
+      >
         {current ? "Edit Contact" : "Add Contact"}
       </Typography>
-      
+
       <Box style={{ textAlign: "center" }}>
         {/* These TextFields are repetitive and could be componentized then mapped across the contact object to reduce line count */}
         <TextField
@@ -248,22 +267,34 @@ const ContactForm = ({ handleClose }) => {
         />
       </Box>
       <Button
-        variant="outlined"
+        variant="contained"
         type="submit"
-        color="primary"
         fullWidth={true}
-        style={{ marginTop: "1rem", marginBottom: "1rem" }}
+        style={{
+          marginTop: "1rem",
+          marginBottom: "1rem",
+          backgroundColor: "#008B8B",
+          color: "white",
+          fontFamily: "Big Shoulders Display",
+          fontSize: "18px",
+          fontWeight: "600"
+        }}
         onClick={handleClose}
       >
         Submit
       </Button>
       {current && (
         <Button
-          variant="outlined"
+          variant="contained"
           fullWidth={true}
           type="submit"
           color="secondary"
-          style={{ marginBottom: "1rem" }}
+          style={{
+            marginBottom: "1rem",
+            fontFamily: "Big Shoulders Display",
+            fontSize: "18px",
+            fontWeight: "600"
+          }}
           onClick={clearAll}
         >
           Clear

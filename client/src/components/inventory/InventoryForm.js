@@ -38,10 +38,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // Exported Component
-const InventoryForm = () => {
+const InventoryForm = ({ handleClose }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
+  //*Initializes context state
   const inventoryContext = useContext(InventoryContext);
   const { addInventory, updateInventory, clearCurrent, current } = inventoryContext;
 
@@ -60,7 +61,7 @@ const InventoryForm = () => {
     }
   }, [inventoryContext, current]);
 
-  const [inventoryItem, setInventory] = useState({
+  const [inventory, setInventory] = useState({
     name: "",
     purchased: "",
     location: "",
@@ -76,18 +77,18 @@ const InventoryForm = () => {
     cost,
     value,
     status
-  } = inventoryItem;
+  } = inventory;
 
   const onChange = (e) => {
-    setInventory({ ...inventoryItem, [e.target.name]: e.target.value});
+    setInventory({ ...inventory, [e.target.name]: e.target.value});
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
-      addInventory(inventoryItem);
+      addInventory(inventory);
     } else {
-      updateInventory(inventoryItem);
+      updateInventory(inventory);
     }
 
     setInventory({
@@ -142,7 +143,7 @@ const InventoryForm = () => {
             id="date-picker-dialog"
             label="Purchased Date"
             format="MM/dd/yyyy"
-            value={selectedDate}
+            value={purchased}
             name="purchased"
             onChange={handleDateChange}
             KeyboardButtonProps={{
@@ -220,7 +221,7 @@ const InventoryForm = () => {
         color="primary"
         fullWidth={true}
         style={{ marginTop: "1rem", marginBottom: "1rem" }}
-        // onClick={handleClose}
+        onClick={handleClose}
       >
         Submit
       </Button>

@@ -22,19 +22,47 @@ import Paper from "@material-ui/core/Paper";
 //* State context
 
 import { Line } from "react-chartjs-2";
+const dataset = [50, -10, 35, -15, 10, 20, 25];
 
 //* Dummy Data
 const data = {
-	labels: ["January", "February", "March", "April", "May", "June"],
+	labels: [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	],
 	datasets: [
 		{
-			label: "Dataset",
-			backgroundColor: "rgb(21, 138, 12)",
+			label: "Rate of Profit",
 			borderColor: "rgb(11,227,210)",
-			borderWidth: 1,
-			hoverBackgroundColor: "rgba(255,0,54,0.4)",
-			hoverBorderColor: "rgb(0,88,101)",
-			data: [50, -10, 35, 15, 10, 20, 25],
+			// hoverBackgroundColor: "rgba(255,0,54,0.4)",
+			// hoverBorderColor: "rgb(0,88,101)",
+			data: dataset,
+			backgroundColor: dataset.map((value) =>
+				value < 0 ? "rgb(255,0,0)" : "rgb(21, 138, 12)"
+			),
+			fillColor: "green",
+			fill: false,
+			pointStyle: "rect",
+			pointRadius: 5,
+			fill: false,
+		},
+		{
+			label: "Profit",
+			backgroundColor: "rgb(21, 138, 12)",
+		},
+		{
+			label: "Loss",
+			backgroundColor: "rgb(255,0,0)",
 		},
 	],
 };

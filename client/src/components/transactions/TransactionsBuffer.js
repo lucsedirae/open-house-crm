@@ -16,7 +16,12 @@ import TransactionsContext from "../../context/transactions/transactionContext";
 const Transactions = () => {
   const transactionContext = useContext(TransactionsContext);
 
-  const { transactions, filtered, getTransactions, loading } = transactionContext;
+  const {
+    transactions,
+    filtered,
+    getTransactions,
+    loading,
+  } = transactionContext;
 
   //* Gets transactions from MongoDB
   useEffect(() => {
@@ -38,13 +43,22 @@ const Transactions = () => {
     <Fragment>
       {transactions !== null && !loading ? (
         <Fragment>
-          {filtered !== null
-            ? filtered.map((transaction) => (
-                <TransactionItem key={transaction._id} transaction={transaction} />
-              ))
-            : transactions.map((transaction) => (
-                <TransactionItem key={transaction._id} transaction={transaction} />
-              ))}
+
+          
+
+
+          {transactions.map((transaction) => (
+            <Fragment>
+              <Typography>{transaction.trxName}</Typography>
+              <TransactionItem
+                key={transaction._id}
+                transaction={transaction}
+              />
+            </Fragment>
+          ))}
+
+
+
         </Fragment>
       ) : (
         <Spinner />
@@ -54,3 +68,21 @@ const Transactions = () => {
 };
 
 export default Transactions;
+
+{
+  /* <Fragment>
+{transactions !== null && !loading ? (
+  <Fragment>
+    {filtered !== null
+      ? filtered.map((transaction) => (
+          <TransactionItem key={transaction._id} transaction={transaction} />
+        ))
+      : transactions.map((transaction) => (
+          <TransactionItem key={transaction._id} transaction={transaction} />
+        ))}
+  </Fragment>
+) : (
+  <Spinner />
+)}
+</Fragment> */
+}

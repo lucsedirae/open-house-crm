@@ -70,7 +70,7 @@ export const Dashboard = () => {
           </Paper>
         </Grid> */}
 
-        <Grid item xs={12} sm={12} md={8}>
+        <Grid item xs={12} sm={12} md={8} align="center">
           <NavPanel />
           <ContactFilter />
           <Contacts />
