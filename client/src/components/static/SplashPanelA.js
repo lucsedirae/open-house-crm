@@ -20,16 +20,16 @@ const SplashPanelA = () => {
     <Container>
       <Grid container spacing={3} alignItems="center" justify="center">
         <Grid item sm={12} md={7} style={{ textAlign: "center" }}>
-          <div
+          <Paper
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.8)",
               borderRadius: "1rem",
               padding: "30px",
-              marginTop: "15rem",
+              marginTop: "10rem",
               border: "1px solid #008B8B",
               background: `url(${background})`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "cover"
+              backgroundSize: "cover",
             }}
           >
             <Typography
@@ -40,7 +40,7 @@ const SplashPanelA = () => {
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "900",
                 textShadow:
-                  "-1px 0 #FCE181, 0 2px #FCE181, 2px 0 #FCE181, 0 -1px #FCE181"
+                  "-1px 0 #FCE181, 0 2px #FCE181, 2px 0 #FCE181, 0 -1px #FCE181",
               }}
             >
               open
@@ -55,11 +55,10 @@ const SplashPanelA = () => {
                 color: "rgb(1, 58, 58)",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "800",
-                fontSize: "17px"
+                fontSize: "17px",
               }}
             >
-              An open source platform for building business dashboards and
-              customer relationship management apps
+              An open source CRM designed for real estate professionals
             </Typography>
 
             <Button
@@ -74,7 +73,7 @@ const SplashPanelA = () => {
                 fontWeight: "600",
                 width: "50%",
                 display: "block",
-                margin: "10px auto"
+                margin: "10px auto",
               }}
             >
               Already a member? Login
@@ -88,12 +87,12 @@ const SplashPanelA = () => {
                 fontSize: "18px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                width: "50%"
+                width: "50%",
               }}
             >
               Register
             </Button>
-          </div>
+          </Paper>
         </Grid>
       </Grid>
     </Container>
