@@ -18,18 +18,18 @@ import ContactContext from "../../context/contact/contactContext";
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   title: {
     flexGrow: 1,
-    cursor: "default",
+    cursor: "default"
   },
   appBar: {
-    marginTop: "0",
-  },
+    marginTop: "0"
+  }
 }));
 
 //* Exported component
@@ -76,7 +76,11 @@ const Appbar = () => {
 
   //* Returns JSX to DOM
   return (
-    <AppBar position="sticky">
+    <AppBar
+      style={{
+        backgroundColor: "#008B8B"
+      }}
+    >
       <Toolbar>
         <IconButton
           edge="start"
@@ -84,16 +88,20 @@ const Appbar = () => {
           color="inherit"
           aria-label="menu"
         />
-        <HouseIcon fontSize="large" style={{ marginRight: "10px" }} />
-        <Typography variant="h5" className={classes.title}>
-          Open House CRM
+        {/* <HouseIcon fontSize="large" style={{ marginRight: "10px" }} /> */}
+        <Typography
+          variant="h5"
+          className={classes.title}
+          style={{
+            fontFamily: "Big Shoulders Display",
+            fontWeight: "800"
+          }}
+        >
+          open house
         </Typography>
         {isAuthenticated ? authLinks : guestLinks}
         <Button color="inherit" href="/">
           Home
-        </Button>
-        <Button color="inherit" href="/about">
-          About
         </Button>
         <Button color="inherit" href="/develop">
           Develop
