@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     textAlign: "center",
-    marginTop: "1rem",
+    marginTop: "4rem",
     marginBottom: "1rem",
     fontFamily: "Oswald",
     fontWeight: "500",
@@ -55,6 +55,13 @@ const Transactions = () => {
       <Typography variant="h4" className={classes.header}>
         Transacations
       </Typography>
+      
+      <Grid container spacing={3} alignItems="center" justify="center">
+        <Grid item xs={12} sm={12} md={8}>
+          <h3>Info panel</h3>
+        </Grid>
+      </Grid>
+
       <Grid container spacing={3} alignItems="center" justify="center">
         <Grid item xs={12} sm={12} md={8}>
           <NavPanel />

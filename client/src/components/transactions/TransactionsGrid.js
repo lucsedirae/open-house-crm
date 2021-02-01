@@ -1,24 +1,18 @@
 //* Dependencies
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import "../../App.css";
 
 //* Material-UI components, hooks, and icons
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { DataGrid } from "@material-ui/data-grid";
-import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
 import Spinner from "../layout/Spinner";
+import TransactionItem from "../transactions/TransactionItem"
 
 //* State context
 import TransactionsContext from "../../context/transactions/transactionContext";
-
-const useStyles = makeStyles(() => ({
-  root: {
-    textOverflow: "none",
-  },
-}));
 
 const columns = [
   { field: "trxName", headerName: "Transaction Name", width: 260 },
@@ -29,16 +23,20 @@ const columns = [
 
 //* Exported component
 const TransactionsGrid = () => {
-  const classes = useStyles();
   const transactionContext = useContext(TransactionsContext);
+  const [selectedTrx, setSelectedTrx] = useState();
 
-  const { transactions, getTransactions, loading } = transactionContext;
+  const {
+    transactions,
+    getTransactions,
+    loading,
+    setCurrentTrx,
+  } = transactionContext;
 
   //* Gets transactions from MongoDB
   useEffect(() => {
     getTransactions();
     // eslint-disable-next-line
-    console.log(transactions);
   }, []);
 
   //* Returns JSX to DOM if transactions is empty
@@ -53,6 +51,15 @@ const TransactionsGrid = () => {
   //* Returns JSX to DOM if transactions is not empty
   return (
     <Fragment>
+      {selectedTrx !== null ? (
+        <Fragment>
+        <h1>{selectedTrx}</h1>
+        <TransactionItem selectedTrx={selectedTrx} />
+        </Fragment>
+      ) : (
+        <h1>Select a transaction</h1>
+      )}
+
       {transactions !== null && !loading ? (
         <Box style={{ height: 400, width: "100%" }}>
           <DataGrid
@@ -65,7 +72,10 @@ const TransactionsGrid = () => {
             }))}
             columns={columns}
             pageSize={10}
-            className={classes.root}
+            density="compact"
+            onSelectionChange={(newSelection) => {
+              setSelectedTrx(newSelection.rowIds);
+            }}
           />
         </Box>
       ) : (
