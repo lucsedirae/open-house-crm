@@ -3,10 +3,16 @@ import React, { useState, useContext, useEffect } from "react";
 
 //* Material-UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import LockIcon from "@material-ui/icons/Lock";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
+import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* State context
 import AlertContext from "../../context/alert/alertContext";
@@ -38,7 +44,7 @@ const Login = (props) => {
   //* Declares state var and method and initializes default state of user
   const [user, setUser] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   //* Deconstructs user state
@@ -55,61 +61,93 @@ const Login = (props) => {
     } else {
       login({
         email,
-        password,
+        password
       });
     }
   };
 
   //* Returns JSX to DOM
   return (
-    <Container maxWidth="xs">
-      <Typography variant="h4">Account Login</Typography>
-      <Box>
-        <form onSubmit={onSubmit}>
-          <TextField
-            required
-            size="small"
-            variant="outlined"
-            label="email"
-            type="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-            style={{ marginTop: "3px" }}
-          />
-          <TextField
-            required
-            size="small"
-            variant="outlined"
-            label="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={onChange}
-            style={{ marginTop: "3px" }}
-          />
-          <Box>
+    <div class="landing">
+      <Container maxWidth="xs">
+        <div
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            borderRadius: "1rem",
+            border: "1px solid #008B8B ",
+            padding: "4rem",
+            marginTop: "15rem",
+            textAlign: "center",
+            background: `url(${background})`
+          }}
+        >
+          <Typography
+            variant="h4"
+            style={{
+              textAlign: "center",
+              fontFamily: "Big Shoulders Display",
+              color: "#008B8B",
+              fontWeight: "800"
+            }}
+          >
+            Account Login
+          </Typography>
+          <form onSubmit={onSubmit}>
+            <Input
+              required
+              size="small"
+              variant="standard"
+              placeholder="email"
+              type="email"
+              name="email"
+              fullWidth={true}
+              value={email}
+              onChange={onChange}
+              style={{ marginTop: "8px" }}
+              startAdornment={
+                <InputAdornment position="start" style={{ color: "#008B8B" }}>
+                  <AccountCircle />
+                </InputAdornment>
+              }
+            />
+            <Input
+              required
+              size="small"
+              variant="standard"
+              placeholder="password"
+              type="password"
+              name="password"
+              fullWidth={true}
+              value={password}
+              onChange={onChange}
+              style={{ marginTop: "8px" }}
+              startAdornment={
+                <InputAdornment position="start" style={{ color: "#008B8B" }}>
+                  <LockIcon />
+                </InputAdornment>
+              }
+            />
+
             <Button
               variant="contained"
+              fullWidth={true}
               color="primary"
               type="submit"
               value="Register"
-              style={{ marginTop: "1rem", marginLeft: "1rem" }}
+              style={{
+                marginTop: "1rem",
+                backgroundColor: "#008B8B",
+                fontSize: "18px",
+                fontFamily: "Big Shoulders Display",
+                fontWeight: "600"
+              }}
             >
-              Submit
+              Log In
             </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              href="/register"
-              style={{ marginTop: "1rem", marginLeft: "1rem" }}
-            >
-              Register
-            </Button>
-          </Box>
-        </form>
-      </Box>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 };
 

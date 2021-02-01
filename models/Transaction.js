@@ -7,11 +7,12 @@ const TransactionSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
   },
-  type: {
+  // TODO Add a ref to contacts so that transactions can be associated with a specific contact. Should follow similar syntax to the user property above
+  trxName: {
     type: String,
     required: true,
   },
-  trxName: {
+  type: {
     type: String,
     required: true,
   },
@@ -24,7 +25,8 @@ const TransactionSchema = mongoose.Schema({
   dateOpened: {
     type: Date,
     default: Date.now,
-    required: true,
+    //! Once date handling is finished, uncomment
+    // required: true,
   },
   dateClosed: {
     type: Date,
@@ -32,7 +34,8 @@ const TransactionSchema = mongoose.Schema({
   },
   expectedCloseDate: {
     type: Date,
-    required: true,
+    //! Once date handling is finished, uncomment
+    // required: true,
   },
 });
 

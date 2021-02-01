@@ -19,7 +19,6 @@ import {
 
 //* State context
 import TransactionContext from "./transactionContext";
-import { StarOutlined } from "@material-ui/icons";
 
 const TransactionState = (props) => {
   const initialState = {
@@ -101,7 +100,7 @@ const TransactionState = (props) => {
 
     try {
       const res = await axios.put(
-        `/api/contacts/${transaction._id}`,
+        `/api/transactions/${transaction._id}`,
         transaction,
         config
       );
