@@ -1,18 +1,19 @@
 //* Dependencies
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import "../../App.css";
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import '../../App.css';
 
 //* Material-UI components, hooks, and icons
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import { DataGrid } from "@material-ui/data-grid";
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { DataGrid } from '@material-ui/data-grid';
 
 //* Custom components
+
 import Spinner from "../layout/Spinner";
 import TransactionItem from "../transactions/TransactionItem";
 
 //* State context
-import TransactionsContext from "../../context/transactions/transactionContext";
+import TransactionsContext from '../../context/transactions/transactionContext';
 
 const columns = [
 	{ field: "trxName", headerName: "Transaction Name", width: 260 },
