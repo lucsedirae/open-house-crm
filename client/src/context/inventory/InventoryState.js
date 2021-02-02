@@ -41,7 +41,7 @@ const InventoryState = (props) => {
   };
 
   //* Add Inventory
-  const addInventory = async (inventoryItem) => {
+  const addInventory = async (inventory) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const InventoryState = (props) => {
     };
 
     try {
-      const res = await axios.post('/api/inventory', inventoryItem, config);
+      const res = await axios.post('/api/inventory', inventory, config);
 
       dispatch({ type: ADD_ITEM, payload: res.data });
     } catch (err) {
@@ -80,8 +80,8 @@ const InventoryState = (props) => {
   };
 
   //* Set current inventory
-  const setCurrent = (inventoryItem) => {
-    dispatch({ type: SET_CURRENT_ITEM, payload: inventoryItem });
+  const setCurrent = (inventory) => {
+    dispatch({ type: SET_CURRENT_ITEM, payload: inventory });
   };
 
   //* Clear current inventory
@@ -90,7 +90,7 @@ const InventoryState = (props) => {
   };
 
   //* Update Inventory
-  const updateInventory = async (inventoryItem) => {
+  const updateInventory = async (inventory) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const InventoryState = (props) => {
     try {
       const res = await axios.put(
         `/api/inventory/${inventory._id}`,
-        inventoryItem,
+        inventory,
         config
       );
 

@@ -9,14 +9,14 @@ import {
   GET_INVENTORY,
   SET_CURRENT_ITEM,
   UPDATE_ITEM,
-} from "../types";
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
     case ADD_ITEM:
       return {
         ...state,
-        inventory: action.payload,
+        inventory: [action.payload, ...state.inventory],
         loading: false,
       };
     case CLEAR_CURRENT_ITEM:
@@ -54,7 +54,7 @@ export default (state, action) => {
       return {
         ...state,
         filtered: state.inventory.filter((item) => {
-          const regex = new RegExp(`${action.payload}`, "gi");
+          const regex = new RegExp(`${action.payload}`, 'gi');
           return item.name.match(regex);
         }),
       };
