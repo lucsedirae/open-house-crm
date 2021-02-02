@@ -3,9 +3,10 @@ import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import setAuthToken from "./utils/setAuthToken";
 import "./App.css";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ToastProvider } from "react-toast-notifications";
 
 //* Custom components
-import About from "./components/pages/About";
 import Alerts from "./components/layout/Alerts";
 import Appbar from "./components/layout/Appbar";
 import Dashboard from "./components/pages/Dashboard";
@@ -42,14 +43,15 @@ const App = () => {
           <TransactionState>
             <AlertState>
               <ModalState>
-                <Router>
-                  <Fragment>
-                    <Appbar />
-                    <Alerts />
-                    <div className="container-fluid my-3">
+                <ToastProvider placement="bottom-left">
+                  <Router>
+                    <Fragment>
+                      <CssBaseline />
+                      <Appbar />
+                      <Alerts />
+
                       <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/about" component={About} />
                         <PrivateRoute
                           exact
                           path="/dashboard"
@@ -87,9 +89,9 @@ const App = () => {
                           }}
                         />{" "}
                       </Switch>
-                    </div>
-                  </Fragment>
-                </Router>
+                    </Fragment>
+                  </Router>
+                </ToastProvider>
               </ModalState>
             </AlertState>
           </TransactionState>

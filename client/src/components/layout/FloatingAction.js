@@ -18,7 +18,12 @@ const style = {
   right: 60,
   bottom: 20,
   left: "auto",
-  position: "fixed"
+  position: "fixed",
+  backgroundColor: "#008B8B",
+  color: "white",
+  border: "3px solid grey",
+  width: "4rem",
+  height: "4rem"
 };
 
 export default function FloatingAction({ handleClickOpen }) {
@@ -27,12 +32,7 @@ export default function FloatingAction({ handleClickOpen }) {
   return (
     <div className={classes.root}>
       <Tooltip title="Add Contact" placement="left">
-        <Fab
-          color="primary"
-          aria-label="add"
-          style={style}
-          onClick={handleClickOpen}
-        >
+        <Fab aria-label="add" style={style} onClick={handleClickOpen}>
           <AddIcon />
         </Fab>
       </Tooltip>

@@ -17,7 +17,7 @@ import NavPanel from "../layout/NavPanel";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
-import { InventoryContext } from "../../context/inventory/inventoryContext";
+import InventoryContext from "../../context/inventory/inventoryContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({

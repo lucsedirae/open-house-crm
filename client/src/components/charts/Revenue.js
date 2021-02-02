@@ -16,25 +16,60 @@ import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import FaceIcon from "@material-ui/icons/Face";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 
 //* State context
 
-import { HorizontalBar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 //* Dummy Data
 const data = {
-	labels: ["January", "February", "March", "April", "May", "June"],
+	labels: [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	],
 	datasets: [
 		{
-			label: "Expenses",
-			backgroundColor: "rgb(255,0,0)",
-			borderColor: "rgb(11,227,210)",
+			label: "Revenue in thousands",
+			data: [12, 19, 3, 5, 3, 3, 15, 4, 6, 5, 11, 3],
+			backgroundColor: [
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+				"rgb(21, 138, 12)",
+			],
+			borderColor: [
+				"rgba(255, 99, 132, 1)",
+				"rgba(54, 162, 235, 1)",
+				"rgba(255, 206, 86, 1)",
+				"rgba(75, 192, 192, 1)",
+				"rgba(153, 102, 255, 1)",
+				"rgba(255, 159, 64, 1)",
+				"rgba(255, 99, 132, 1)",
+				"rgba(54, 162, 235, 1)",
+				"rgba(255, 206, 86, 1)",
+				"rgba(75, 192, 192, 1)",
+				"rgba(153, 102, 255, 1)",
+				"rgba(255, 159, 64, 1)",
+			],
 			borderWidth: 1,
-			hoverBackgroundColor: "rgba(255,0,54,0.4)",
-			hoverBorderColor: "rgb(0,88,101)",
-			data: [65, 59, 80, 81, 56, 55, 40],
 		},
 	],
 };
@@ -60,17 +95,24 @@ const useStyles = makeStyles({
 });
 
 //* Exported component
-const HorizontalBarChart = () => {
+const BarChart = () => {
 	//* Initializes styling classes
 	const classes = useStyles();
 
 	//* Returns JSX to DOM
 	return (
 		<div>
-			<h2>Expenses</h2>
-			<HorizontalBar data={data} width={400} height={400} />
+			<h2>Revenue</h2>
+			<Bar
+				data={data}
+				width={400}
+				height={400}
+				options={{
+					maintainAspectRatio: false,
+				}}
+			/>
 		</div>
 	);
 };
 
-export default HorizontalBarChart;
+export default BarChart;

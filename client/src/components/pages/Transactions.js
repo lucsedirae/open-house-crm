@@ -9,8 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
-import TransacationsBuffer from "../transactions/TransactionsBuffer";
-import TransacationFilter from "../transactions/TransactionFilter";
+import TransactionsGrid from "../transactions/TransactionsGrid";
 import FloatingAction from "../layout/FloatingAction";
 import TransacationFormModal from "../transactions/TransactionFormModal";
 import TransacationForm from "../transactions/TransactionForm";
@@ -22,53 +21,56 @@ import AuthContext from "../../context/auth/authContext";
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    marginBottom: "1rem"
+    marginBottom: "1rem",
   },
   header: {
     textAlign: "center",
-    marginTop: "1rem",
+    marginTop: "4rem",
     marginBottom: "1rem",
     fontFamily: "Oswald",
-    fontWeight: "500"
-  }
+    fontWeight: "500",
+  },
 }));
 
 const Transactions = () => {
   //* Initializes styling classes
   const classes = useStyles();
 
-    //* Initializes state
-    const authContext = useContext(AuthContext);
+  //* Initializes state
+  const authContext = useContext(AuthContext);
 
-      //* Authenticates user token
+  //* Authenticates user token
   useEffect(() => {
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);
 
-
-    return (
-        <Container>
-        <Typography variant="h4" className={classes.header}>
-          Transacations
-        </Typography>
-        <Grid container spacing={3} alignItems="center" justify="center">
-
-  
-          <Grid item xs={12} sm={12} md={8}>
-            <NavPanel />
-            <TransacationFilter />
-            <TransacationsBuffer />
-          </Grid>
+  return (
+    <Container>
+      <Typography variant="h4" className={classes.header}>
+        Transacations
+      </Typography>
+      
+      <Grid container spacing={3} alignItems="center" justify="center">
+        <Grid item xs={12} sm={12} md={8}>
+          <h3>Info panel</h3>
         </Grid>
-        <TransacationFormModal />
-      </Container>
-      )
-}
+      </Grid>
 
-export default Transactions
+      <Grid container spacing={3} alignItems="center" justify="center">
+        <Grid item xs={12} sm={12} md={8}>
+          <NavPanel />
+          <TransactionsGrid />
+        </Grid>
+      </Grid>
+      <TransacationFormModal />
+    </Container>
+  );
+};
+
+export default Transactions;
