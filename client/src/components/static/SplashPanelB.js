@@ -19,83 +19,115 @@ import FeaturesD from "./FeaturesD";
 import FeaturesE from "./FeaturesE";
 import FeaturesF from "./FeaturesF";
 
-
 //* Exported component
 const SplashPanelB = () => {
   //* Returns JSX to DOM
   return (
     <Container disableGutters>
-      <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item sm={12} md={7} style={{ textAlign: "center" }}>
-          <Paper
+      <Typography
+        align="center"
+        variant="h4"
+        style={{
+          color: "#008B8B",
+          color: "white",
+          fontFamily: "Big Shoulders Display",
+          fontWeight: "800",
+          paddingTop: "2rem",
+          marginBottom: "1rem"
+        }}
+      >
+        What is{" "}
+        <span
+          style={{
+            fontSize: "43px",
+            fontWeight: "900",
+            textShadow:
+              "-0.5px 0 #eebc0a, 0 1px #eebc0a, 1px 0 black, 0 -0.5px black"
+          }}
+        >
+          open
+          <LocationOnIcon fontSize="small" />
+          house
+        </span>{" "}
+        ?
+      </Typography>
+      <Grid container spacing={0}>
+        <Grid item lg={2}>
+          <img src="/img/for-sale.svg" style={{ width: "15rem" }} />
+        </Grid>
+        <Grid item lg={10}>
+          <Typography
+            align="center"
+            variant="body1"
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.9)",
-              borderRadius: "1rem",
-              padding: "30px",
-              border: "1px solid #008B8B",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
+              color: "white",
+              fontFamily: "Big Shoulders Display",
+              fontWeight: "800",
+              fontSize: "17px",
+              marginTop: "3rem"
             }}
           >
-            <Typography
-              align="center"
-              variant="body1"
-              style={{
-                color: "#008B8B",
-                color: "rgb(1, 58, 58)",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "800",
-                fontSize: "17px",
-                marginBottom: "1rem",
-              }}
-            >
-              Open House is a tool for real estate professionals to help manage
-              their customers, transactions, sales tools and track key business
-              indicators.
-            </Typography>
-            <img src="/img/for-sale.svg" style={{ width: "15rem" }} />
-            <Typography
-              align="center"
-              variant="h4"
-              style={{
-                color: "#008B8B",
-                color: "rgb(1, 58, 58)",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "800",
-                marginTop: "1rem",
-                marginBottom: "1rem",
-              }}
-            >
-              Features
-            </Typography>
-            <Grid container spacing={3}>
-              <Grid item sm={12} md={6} lg={4}>
-                <FeaturesA />
-              </Grid>
+            Open House is a tool for real estate professionals to help manage
+            their customers, transactions, sales tools and track key business
+            indicators.
+          </Typography>
+        </Grid>
+      </Grid>
 
-              <Grid item sm={12} md={6} lg={4}>
-                <FeaturesB />
-              </Grid>
+      <Typography
+        align="center"
+        variant="h4"
+        style={{
+          color: "#008B8B",
+          color: "white",
+          fontFamily: "Big Shoulders Display",
+          fontWeight: "800",
+          paddingTop: "2rem",
+          marginBottom: "1rem"
+        }}
+      >
+        What can{" "}
+        <span
+          style={{
+            fontSize: "43px",
+            fontWeight: "900",
+            textShadow:
+              "-0.5px 0 #eebc0a, 0 1px #eebc0a, 1px 0 black, 0 -0.5px black"
+          }}
+        >
+          open
+          <LocationOnIcon fontSize="small" />
+          house
+        </span>{" "}
+        do for{" "}
+        <span style={{ fontStyle: "italic", textDecoration: "underline" }}>
+          you
+        </span>{" "}
+        ?
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item sm={6} md={4} lg={2} style={{ paddingBottom: "4rem" }}>
+          <FeaturesA />
+        </Grid>
 
-              <Grid item sm={12} md={6} lg={4}>
-                <FeaturesC />
-              </Grid>
-            </Grid>
+        <Grid item sm={6} md={4} lg={2} style={{ paddingBottom: "4rem" }}>
+          <FeaturesB />
+        </Grid>
 
-            <Grid container spacing={3} style={{ marginTop: "1rem" }}>
-              <Grid item sm={12} md={6} lg={4}>
-                <FeaturesD />
-              </Grid>
+        <Grid item sm={6} md={4} lg={2} style={{ paddingBottom: "4rem" }}>
+          <FeaturesC />
+        </Grid>
 
-              <Grid item sm={12} md={6} lg={4}>
-                <FeaturesE />
-              </Grid>
+        <Grid item sm={6} md={4} lg={2} style={{ paddingBottom: "4rem" }}>
+          <FeaturesD />
+        </Grid>
 
-              <Grid item sm={12} md={6} lg={4}>
-                <FeaturesF />
-              </Grid>
-            </Grid>
-          </Paper>
+        <Grid item sm={6} md={4} lg={2} style={{ paddingBottom: "4rem" }}>
+          <FeaturesE />
+        </Grid>
+
+        <Grid item sm={6} md={4} lg={2} style={{ paddingBottom: "4rem" }}>
+          <FeaturesF />
         </Grid>
       </Grid>
     </Container>
