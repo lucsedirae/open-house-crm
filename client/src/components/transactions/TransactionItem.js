@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useContext } from "react";
 
-const TransactionItem = ({selectedTrx}) => {
-    return (
-        <div>
-            <h1>{selectedTrx.rowIds}</h1>
-            <h2>test</h2>
-        </div>
-    )
-}
+export const TransactionItem = ({ selectedTrx }) => {
+	return (
+		<div>
+			<h1>{selectedTrx.rowIds}</h1>
+			<h2>test</h2>
+		</div>
+	);
+};
 
-export default TransactionItem
+export default TransactionItem;
