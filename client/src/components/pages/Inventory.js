@@ -16,12 +16,14 @@ import InventoryItem from '../inventory/InventoryItem';
 import InventoryFormModal from '../inventory/InventoryFormModal';
 import NavPanel from '../layout/NavPanel';
 
+
 //* State context
 import AuthContext from '../../context/auth/authContext';
 // import InventoryContext from '../../context/inventory/inventoryContext';
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
+
   root: {
     flexGrow: 1,
   },
@@ -41,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
 
 //* Exported component
 const Inventory = () => {
-  //* Initializes styling classes
-  const classes = useStyles();
+	//* Initializes styling classes
+	const classes = useStyles();
 
   //* Initializes state
   const authContext = useContext(AuthContext);
@@ -77,6 +79,7 @@ const Inventory = () => {
       <InventoryFormModal />
     </Container>
   );
+
 };
 
 export default Inventory;
