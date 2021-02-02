@@ -54,7 +54,7 @@ const InventoryForm = ({ handleClose }) => {
     } else {
       setItem({
         name: '',
-        purchased: '',
+        purchased: new Date(),
         location: '',
         cost: '',
         value: '',
@@ -101,8 +101,10 @@ const InventoryForm = ({ handleClose }) => {
   };
 
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
+  //const [purchased, setSelectedDate] = useState(new Date());
+
+  //does this change need to change to some other state hook to set the selected date
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
