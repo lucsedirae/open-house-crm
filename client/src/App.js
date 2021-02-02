@@ -7,7 +7,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { ToastProvider } from "react-toast-notifications";
 
 //* Custom components
-import About from "./components/pages/About";
 import Alerts from "./components/layout/Alerts";
 import Appbar from "./components/layout/Appbar";
 import Dashboard from "./components/pages/Dashboard";
@@ -53,7 +52,6 @@ const App = () => {
 
                       <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/about" component={About} />
                         <PrivateRoute
                           exact
                           path="/dashboard"
