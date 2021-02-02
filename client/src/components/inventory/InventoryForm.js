@@ -46,13 +46,18 @@ const InventoryForm = ({ handleClose }) => {
 
   //*Initializes context state
   const inventoryContext = useContext(InventoryContext);
-  const { addItem, updateItem, clearCurrent, current } = inventoryContext;
+  const {
+    addInventory,
+    updateInventory,
+    clearCurrent,
+    current,
+  } = inventoryContext;
 
   useEffect(() => {
     if (current !== null) {
-      setItem(current);
+      setInventory(current);
     } else {
-      setItem({
+      setInventory({
         name: '',
         purchased: new Date(),
         location: '',
@@ -63,7 +68,7 @@ const InventoryForm = ({ handleClose }) => {
     }
   }, [inventoryContext, current]);
 
-  const [inventory, setItem] = useState({
+  const [inventory, setInventory] = useState({
     name: '',
     purchased: '',
     location: '',
@@ -75,18 +80,18 @@ const InventoryForm = ({ handleClose }) => {
   const { name, purchased, location, cost, value, status } = inventory;
 
   const onChange = (e) => {
-    setItem({ ...inventory, [e.target.name]: e.target.value });
+    setInventory({ ...inventory, [e.target.name]: e.target.value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
-      addItem(inventory);
+      addInventory(inventory);
     } else {
-      updateItem(inventory);
+      updateInventory(inventory);
     }
 
-    setItem({
+    setInventory({
       name: '',
       purchased: '',
       location: '',
@@ -101,8 +106,7 @@ const InventoryForm = ({ handleClose }) => {
   };
 
   // The first commit of Material-UI
-
-  //const [purchased, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   //does this change need to change to some other state hook to set the selected date
   const handleDateChange = (date) => {
@@ -124,7 +128,7 @@ const InventoryForm = ({ handleClose }) => {
             required
             type='text'
             id='standard-required'
-            label='Inventory Item'
+            label='Inventory'
             size='small'
             helperText='Required'
             name='name'
