@@ -54,7 +54,7 @@ const InventoryGrid = () => {
   //* Returns JSX to DOM if inventory is not empty
   return (
     <Fragment>
-      {selectedTrx !== null ? (
+      {selectedInv !== null ? (
         <Fragment>
           <h1>{selectedInv}</h1>
           <TransactionItem selectedInv={selectedInv} />
@@ -66,15 +66,15 @@ const InventoryGrid = () => {
       {inventory !== null && !loading ? (
         <Box style={{ height: 400, width: '100%' }}>
           <DataGrid
-            rows={inventory.map((inventory) => ({
-              id: inventory._id,
-              incName: inventory.invName,
-              purchased: inventory.purchased,
-              cost: inventory.cost,
-              location: inventory.location,
-              cost: inventory.cost,
-              value: inventory.value,
-              status: inventory.status,
+            rows={inventory.map((inventoryItem) => ({
+              id: inventoryItem._id,
+              incName: inventoryItem.invName,
+              purchased: inventoryItem.purchased,
+              cost: inventoryItem.cost,
+              location: inventoryItem.location,
+              cost: inventoryItem.cost,
+              value: inventoryItem.value,
+              status: inventoryItem.status,
             }))}
             columns={columns}
             pageSize={10}

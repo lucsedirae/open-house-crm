@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import InventoryForm from '../inventory/InventoryForm';
 import InventoryGrid from '../inventory/InventoryGrid';
 import InventoryItem from '../inventory/InventoryItem';
+import InventoryFormModal from '../inventory/InventoryFormModal';
 import NavPanel from '../layout/NavPanel';
 
 //* State context

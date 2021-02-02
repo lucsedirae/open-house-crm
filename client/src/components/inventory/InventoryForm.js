@@ -21,6 +21,7 @@ import {
 
 //* State context
 import InventoryContext from '../../context/inventory/inventoryContext';
+import InventoryItem from './InventoryItem';
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +69,7 @@ const InventoryForm = ({ handleClose }) => {
     }
   }, [inventoryContext, current]);
 
-  const [inventory, setInventory] = useState({
+  const [inventoryItem, setInventory] = useState({
     name: '',
     purchased: '',
     location: '',
@@ -77,18 +78,18 @@ const InventoryForm = ({ handleClose }) => {
     status: '',
   });
 
-  const { name, purchased, location, cost, value, status } = inventory;
+  const { name, purchased, location, cost, value, status } = inventoryItem;
 
   const onChange = (e) => {
-    setInventory({ ...inventory, [e.target.name]: e.target.value });
+    setInventory({ ...InventoryItem, [e.target.name]: e.target.value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
-      addInventory(inventory);
+      addInventory(inventoryItem);
     } else {
-      updateInventory(inventory);
+      updateInventory(inventoryItem);
     }
 
     setInventory({
