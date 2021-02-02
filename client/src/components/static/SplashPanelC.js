@@ -22,73 +22,50 @@ const SplashPanelC = () => {
   //* Returns JSX to DOM
   return (
     <Container disableGutters>
-      <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item sm={12} md={7} style={{ textAlign: "center" }}>
-          <Paper
+      <Paper
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          padding: "30px",
+          marginTop: "5rem"
+        }}
+      >
+        <Typography
+          align="center"
+          variant="h4"
+          style={{
+            color: "#008B8B",
+
+            fontFamily: "Big Shoulders Display",
+            fontWeight: "800",
+            paddingTop: "2rem",
+            marginBottom: "1rem"
+          }}
+        >
+          Want to contribute?{" "}
+          <span
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.9)",
-              borderRadius: "1rem",
-              padding: "30px",
-              border: "1px solid #008B8B",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
+              fontSize: "43px",
+              fontWeight: "900",
+              textShadow:
+                "-0.5px 0 #eebc0a, 0 1px #eebc0a, 1px 0 black, 0 -0.5px black"
             }}
           >
-            <Typography
-              align="center"
-              variant="body1"
-              style={{
-                color: "#008B8B",
-                color: "rgb(1, 58, 58)",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "800",
-                fontSize: "17px",
-                marginBottom: "1rem",
-              }}
-            >
-              Open House is open source software. See what the future holds for
-              OHCRM and learn how you can contribute.
-            </Typography>
-            <img src="/img/develop.svg" style={{ width: "15rem" }} />
-            <Typography
-              align="center"
-              variant="h4"
-              style={{
-                color: "#008B8B",
-                color: "rgb(1, 58, 58)",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "800",
-                marginTop: "1rem",
-                marginBottom: "1rem",
-              }}
-            >
-              Development
-            </Typography>
-            <Grid container spacing={3}></Grid>
-
-            <Button
-              href="https://github.com/lucsedirae/open-house-crm"
-              variant="contained"
-              startIcon={<GitHubIcon />}
-              style={{
-                backgroundColor: "#008B8B",
-                color: "white",
-                marginTop: "10px",
-                fontSize: "18px",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "600",
-                width: "50%",
-                display: "block",
-                margin: "10px auto",
-              }}
-            >
-              Visit us on GitHub
-            </Button>
-
+            open
+            <LocationOnIcon fontSize="small" />
+            house
+          </span>{" "}
+          is <span style={{ fontStyle: "italic" }}>open source.</span>
+        </Typography>
+        <img src="/img/develop.svg" style={{ width: "15rem" }} />
+        <Grid container spacing={3}>
+          <Grid item sm={12} md={5} lg={6} style={{ textAlign: "center" }}>
             <Typography
               variant="h5"
-              align="center"
-              style={{ marginTop: "1rem" }}
+              style={{
+                marginTop: "1rem",
+                fontFamily: "Big Shoulders Display",
+                color: "white"
+              }}
             >
               Change Log
             </Typography>
@@ -104,11 +81,17 @@ const SplashPanelC = () => {
                 </ListItem>
               </List>
             </Typography>
+          </Grid>
 
+          <Grid item sm={12} md={5} lg={6} style={{ textAlign: "center" }}>
             <Typography
               variant="h5"
               align="center"
-              style={{ marginTop: "1rem" }}
+              style={{
+                marginTop: "1rem",
+                fontFamily: "Big Shoulders Display",
+                color: "white"
+              }}
             >
               Future Development
             </Typography>
@@ -119,19 +102,22 @@ const SplashPanelC = () => {
                   functionality and the ability to support teams
                 </ListItem>
                 <ListItem>
-                  Convert application to a package and distribute through NPM to allow developers access to design custom platforms based on OHCRM
+                  Convert application to a package and distribute through NPM to
+                  allow developers access to design custom platforms based on
+                  OHCRM
                 </ListItem>
                 <ListItem>
-                  Add offline access by converting to a progressive web app and caching locally
+                  Add offline access by converting to a progressive web app and
+                  caching locally
                 </ListItem>
                 <ListItem>
                   Expand transaction module to include more accounting functions
                 </ListItem>
               </List>
             </Typography>
-          </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      </Paper>
     </Container>
   );
 };
