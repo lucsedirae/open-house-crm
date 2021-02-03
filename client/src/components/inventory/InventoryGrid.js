@@ -35,6 +35,7 @@ const InventoryGrid = () => {
   const [selectedInv, setSelectedInv] = useState(null);
 
   const { inventory, getInventory, loading, setCurrent } = inventoryContext;
+  //console.log(inventory);
 
   //* Gets inventory from MongoDB
   useEffect(() => {
@@ -57,7 +58,7 @@ const InventoryGrid = () => {
       {selectedInv !== null ? (
         <Fragment>
           <h1>{selectedInv}</h1>
-          <TransactionItem selectedInv={selectedInv} />
+          <InventoryItem selectedInv={selectedInv} />
         </Fragment>
       ) : (
         <h1>Select inventory</h1>

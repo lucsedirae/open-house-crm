@@ -50,7 +50,7 @@ export const InventoryItem = ({ inventory }) => {
   const inventoryContext = useContext(InventoryContext);
   const { deleteInventory, setCurrent, clearCurrent } = inventoryContext;
 
-  const { _id, name, purchased, location, cost, value, status } = inventoryItem;
+  const { name, purchased, location, cost, value, status } = inventory;
 
   const onDelete = () => {
     deleteInventory(_id);
@@ -59,7 +59,7 @@ export const InventoryItem = ({ inventory }) => {
 
   const onClick = () => {
     handleOpen();
-    setCurrent(inventoryItem);
+    setCurrent(inventory);
   };
 
   return (
@@ -94,7 +94,7 @@ export const InventoryItem = ({ inventory }) => {
         >
           Delete
         </Button>
-        <CustomizedDialogs inventoryItem={inventoryItem} />
+        <CustomizedDialogs inventory={inventory} />
       </CardActions>
     </Card>
   );

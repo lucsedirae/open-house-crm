@@ -14,6 +14,7 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case ADD_ITEM:
+      console.log(state);
       return {
         ...state,
         inventory: [action.payload, ...state.inventory],
@@ -61,7 +62,7 @@ export default (state, action) => {
     case GET_INVENTORY:
       return {
         ...state,
-        transactions: action.payload,
+        inventory: action.payload,
         loading: false,
       };
     case SET_CURRENT_ITEM:
