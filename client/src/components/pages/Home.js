@@ -11,11 +11,17 @@ const Home = () => {
   //* Returns JSX to DOM
 
   return (
-    <div className="landing">
-      <SplashPanelA />
-      <SplashPanelB />
-      <SplashPanelC />
-    </div>
+    <>
+      <div className="landing">
+        <SplashPanelA />
+      </div>
+      <div id="features">
+        <SplashPanelB />
+      </div>
+      <div id="development">
+        <SplashPanelC />
+      </div>
+    </>
   );
 };
 
