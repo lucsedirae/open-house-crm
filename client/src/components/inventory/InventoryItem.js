@@ -50,6 +50,7 @@ export const InventoryItem = ({ inventory }) => {
   const inventoryContext = useContext(InventoryContext);
   const { deleteInventory, setCurrent, clearCurrent } = inventoryContext;
 
+  //do i need to useState like line71 in inventoryform
   const { name, purchased, location, cost, value, status } = inventory;
 
   const onDelete = () => {

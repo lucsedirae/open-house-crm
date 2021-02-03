@@ -53,8 +53,7 @@ const InventoryState = (props) => {
 
       dispatch({ type: ADD_ITEM, payload: res.data });
     } catch (err) {
-      dispatch({ type: INVENTORY_ERROR, payload: err });
-      console.log(err);
+      dispatch({ type: INVENTORY_ERROR, payload: err.response.msg });
     }
   };
 

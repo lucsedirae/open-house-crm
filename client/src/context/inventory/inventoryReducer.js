@@ -14,7 +14,6 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case ADD_ITEM:
-      console.log(state);
       return {
         ...state,
         inventory: [action.payload, ...state.inventory],
