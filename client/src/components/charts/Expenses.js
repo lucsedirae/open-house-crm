@@ -1,9 +1,17 @@
 //* Dependencies
-import React, { useContext, useEffect, Fragment, useState } from "react";
+import React, {
+	useContext,
+	useEffect,
+	Fragment,
+	useState,
+	useReducer,
+} from "react";
 import PropTypes from "prop-types";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid, setPageStateUpdate } from "@material-ui/data-grid";
 import Spinner from "../layout/Spinner";
-
+import axios from "axios";
+import TransactionReducer from "../../context/transactions/transactionReducer";
+import { GET_TRANSACTIONS } from "../../context/types";
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -69,30 +77,41 @@ const Expenses = () => {
 		dateOpened: "",
 		dateClosed: "",
 		expectedCloseDate: "",
+		expense: "",
 	});
-
-	const {
-		trxName,
-		type,
-		cost,
-		revenue,
-		dateOpened,
-		dateClosed,
-		expectedCloseDate,
-	} = transaction;
 
 	useEffect(() => {
 		getTransactions();
 		// eslint-disable-next-line
 	}, []);
 
-	const expense =
-		transactions !== null && !loading
-			? transactions.map((transaction) => ({
-					cost: transaction.cost,
-			  }))
-			: console.log("error");
+	const [state, dispatch] = useReducer(TransactionReducer);
 
+	const getTransactionCost = async () => {
+		const res = await axios.get("http://localhost:3000/api/transactions");
+
+		dispatch({ type: GET_TRANSACTIONS, payload: res.data });
+		// console.log(res.data);
+		setTransaction({ expense: res.data });
+	};
+
+	getTransactionCost();
+
+	// const expense =
+	// 	transactions !== null && !loading
+	// 		? transactions.map((transaction) => ({
+	// 				cost: transaction.cost,
+	// 		  }))
+	// 		: console.log("error");
+
+	// console.log(transaction.expense);
+	const chartData = [];
+
+	for (let i = 0; i <= transaction.expense.length; i++) {
+		chartData.push(transaction.expense.cost);
+	}
+
+	console.log(chartData);
 	const data = {
 		labels: [
 			"January",
@@ -116,7 +135,7 @@ const Expenses = () => {
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: expense,
+				data: chartData,
 			},
 		],
 	};

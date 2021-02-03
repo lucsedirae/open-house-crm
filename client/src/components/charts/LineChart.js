@@ -137,7 +137,7 @@ const LineChart = () => {
 		<div>
 			<h2>Profit Margin</h2>
 			<Line data={data} width={200} height={200} />
-			{console.log(profit)}
+			{/* {console.log(profit)} */}
 		</div>
 	);
 };
