@@ -35,6 +35,7 @@ const SplashPanelA = () => {
             <Typography
               align="center"
               variant="h1"
+              className="main-logo"
               style={{
                 color: "#008B8B",
                 fontFamily: "Big Shoulders Display",

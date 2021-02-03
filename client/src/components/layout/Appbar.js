@@ -52,10 +52,28 @@ const Appbar = () => {
   //* Populates logged in user AppBar links
   const authLinks = (
     <Fragment>
-      <Typography variant="body2" style={{ marginRight: "5px" }}>
-        Hello {user && user.name}!
+      <Typography
+        style={{
+          marginLeft: "auto",
+          fontFamily: "Big Shoulders Display",
+          fontSize: "20px",
+          fontWeight: "600"
+        }}
+      >
+        Hello, {user && user.name}!
       </Typography>
-      <Button color="inherit" href="#!" onClick={onLogout}>
+      <Button
+        color="inherit"
+        href="#!"
+        style={{
+          marginLeft: "auto",
+          fontFamily: "Big Shoulders Display",
+          fontSize: "20px",
+          textTransform: "lowercase",
+          fontWeight: "600"
+        }}
+        onClick={onLogout}
+      >
         Logout
       </Button>
       <ExitToAppIcon />
@@ -65,28 +83,32 @@ const Appbar = () => {
   //* Populates unauthenticated(logged out) user AppBar links
   const guestLinks = (
     <Fragment>
-      <Button
-        color="inherit"
-        href="/login"
-        style={{
-          fontFamily: "Big Shoulders Display",
-          fontSize: "20px",
-          textTransform: "lowercase"
-        }}
-      >
-        Login
-      </Button>
-      <Button
-        color="inherit"
-        href="/register"
-        style={{
-          fontFamily: "Big Shoulders Display",
-          fontSize: "20px",
-          textTransform: "lowercase"
-        }}
-      >
-        Register
-      </Button>
+      <div style={{ marginLeft: "auto" }}>
+        <Button
+          color="inherit"
+          href="/login"
+          style={{
+            fontFamily: "Big Shoulders Display",
+            fontSize: "20px",
+            textTransform: "lowercase",
+            fontWeight: "600"
+          }}
+        >
+          Login
+        </Button>
+        <Button
+          color="inherit"
+          href="/register"
+          style={{
+            fontFamily: "Big Shoulders Display",
+            fontSize: "20px",
+            textTransform: "lowercase",
+            fontWeight: "600"
+          }}
+        >
+          Register
+        </Button>
+      </div>
     </Fragment>
   );
 
@@ -104,20 +126,18 @@ const Appbar = () => {
           color="inherit"
           aria-label="menu"
         />
-        <a
+        <Button
           href="/"
-          className={classes.title}
           style={{
             fontFamily: "Big Shoulders Display",
             fontWeight: "800",
             fontSize: "25px",
             color: "white",
-            textDecoration: "none",
-            cursor: "pointer"
+            textTransform: "lowercase"
           }}
         >
           open house
-        </a>
+        </Button>
         {isAuthenticated ? authLinks : guestLinks}
       </Toolbar>
     </AppBar>
