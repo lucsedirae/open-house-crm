@@ -88,9 +88,13 @@ const Expenses = () => {
 	const [state, dispatch] = useReducer(TransactionReducer);
 
 	const getTransactionCost = async () => {
+		let chartData = [];
 		const res = await axios.get("http://localhost:3000/api/transactions");
+		for (let i = 0; i <= res.data.length; i++) {
+			chartData.push(res.data[i].cost);
+		}
 
-		dispatch({ type: GET_TRANSACTIONS, payload: res.data });
+		console.log(chartData);
 		// console.log(res.data);
 		setTransaction({ expense: res.data });
 	};
@@ -105,13 +109,7 @@ const Expenses = () => {
 	// 		: console.log("error");
 
 	// console.log(transaction.expense);
-	const chartData = [];
 
-	for (let i = 0; i <= transaction.expense.length; i++) {
-		chartData.push(transaction.expense.cost);
-	}
-
-	console.log(chartData);
 	const data = {
 		labels: [
 			"January",
@@ -135,7 +133,7 @@ const Expenses = () => {
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: chartData,
+				data: [],
 			},
 		],
 	};
