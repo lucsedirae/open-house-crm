@@ -2,6 +2,7 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import "../../App.css";
 
+
 //* Material-UI components, hooks, and icons
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -9,7 +10,7 @@ import { DataGrid } from "@material-ui/data-grid";
 
 //* Custom components
 import Spinner from "../layout/Spinner";
-import TransactionItem from "../transactions/TransactionItem"
+import TransactionItem from "../transactions/TransactionItem";
 
 //* State context
 import TransactionsContext from "../../context/transactions/transactionContext";
@@ -24,7 +25,7 @@ const columns = [
 //* Exported component
 const TransactionsGrid = () => {
   const transactionContext = useContext(TransactionsContext);
-  const [selectedTrx, setSelectedTrx] = useState();
+  const [selectedTrx, setSelectedTrx] = useState(null);
 
   const {
     transactions,
@@ -38,6 +39,7 @@ const TransactionsGrid = () => {
     getTransactions();
     // eslint-disable-next-line
   }, []);
+
 
   //* Returns JSX to DOM if transactions is empty
   if (transactions !== null && transactions.length === 0 && !loading) {
@@ -53,8 +55,8 @@ const TransactionsGrid = () => {
     <Fragment>
       {selectedTrx !== null ? (
         <Fragment>
-        <h1>{selectedTrx}</h1>
-        <TransactionItem selectedTrx={selectedTrx} />
+          <h1>{selectedTrx}</h1>
+          <TransactionItem selectedTrx={selectedTrx} />
         </Fragment>
       ) : (
         <h1>Select a transaction</h1>

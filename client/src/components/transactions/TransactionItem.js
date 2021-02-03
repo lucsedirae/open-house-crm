@@ -1,12 +1,22 @@
-import React from 'react'
+//* Dependencies
+import React, { useState, Fragment, useEffect } from "react";
+import axios from "axios";
 
-const TransactionItem = ({selectedTrx}) => {
-    return (
-        <div>
-            <h1>{selectedTrx.rowIds}</h1>
-            <h2>test</h2>
-        </div>
-    )
-}
+//* Exported component
+const TransactionItem = ({ selectedTrx }) => {
+  const [currentTrx, setCurrentTrx] = useState();
 
-export default TransactionItem
+  useEffect(() => {
+    const res = await axios.get("/api/transactions");
+
+  })
+
+  return (
+    <Fragment>
+      <h1>{selectedTrx.rowIds}</h1>
+      <h2>test</h2>
+    </Fragment>
+  );
+};
+
+export default TransactionItem;
