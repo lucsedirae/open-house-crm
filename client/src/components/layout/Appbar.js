@@ -65,10 +65,26 @@ const Appbar = () => {
   //* Populates unauthenticated(logged out) user AppBar links
   const guestLinks = (
     <Fragment>
-      <Button color="inherit" href="/login">
+      <Button
+        color="inherit"
+        href="/login"
+        style={{
+          fontFamily: "Big Shoulders Display",
+          fontSize: "20px",
+          textTransform: "lowercase"
+        }}
+      >
         Login
       </Button>
-      <Button color="inherit" href="/register">
+      <Button
+        color="inherit"
+        href="/register"
+        style={{
+          fontFamily: "Big Shoulders Display",
+          fontSize: "20px",
+          textTransform: "lowercase"
+        }}
+      >
         Register
       </Button>
     </Fragment>

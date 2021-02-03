@@ -79,6 +79,7 @@ const Register = (props) => {
             borderRadius: "1rem",
             border: "1px solid #008B8B ",
             padding: "3rem",
+            paddingBottom: "2.2rem",
             marginTop: "15rem",
             textAlign: "center",
             background: `url(${background})`
@@ -173,7 +174,7 @@ const Register = (props) => {
               type="submit"
               value="Register"
               style={{
-                marginTop: "1rem",
+                marginTop: "1.5rem",
                 backgroundColor: "#008B8B",
                 fontSize: "18px",
                 fontFamily: "Big Shoulders Display",
