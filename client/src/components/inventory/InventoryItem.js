@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { useContext } from 'react';
+import React, { useState, Fragment, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 //* Material UI components, hooks, and icons
@@ -16,6 +16,9 @@ import EditIcon from '@material-ui/icons/Edit';
 
 //* State context
 import InventoryContext from '../../context/inventory/inventoryContext';
+
+//* Axios
+import axios from 'axios';
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
@@ -42,30 +45,37 @@ const useStyles = makeStyles({
   },
 });
 
-export const InventoryItem = ({ inventory }) => {
+export const InventoryItem = ({ selectedInv }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
-  const { deleteInventory, setCurrent, clearCurrent } = inventoryContext;
+  //const { deleteInventory, setCurrent, clearCurrent } = inventoryContext;
 
-  //do i need to useState like line71 in inventoryform
-  const { name, purchased, location, cost, value, status } = inventory;
+  //* Exported component
+  const [current, setCurrent] = useState();
+  let inventoryArray = [];
+  let inventory = {};
 
-  const onDelete = () => {
-    deleteInventory(_id);
-    clearCurrent();
-  };
+  useEffect(() => {
+    const findCurrentInv = async () => {
+      const res = await axios.get('/api/inventory');
+      inventoryArray = res.data;
 
-  const onClick = () => {
-    handleOpen();
-    setCurrent(inventory);
-  };
+      for (let i = 0; i < inventoryArray.length; i++) {
+        if (inventoryArray[i]._id === selectedInv[0]) {
+          inventory = inventoryArray[i];
+        }
+      }
+    };
+    findCurrentInv();
+    console.log(inventory);
+  });
 
   return (
     <Card id='contact-card' className={classes.root}>
-      <CardContent>
+      {/* <CardContent>
         <Typography variant='h5' className={classes.title}>
           {name}{' '}
         </Typography>
@@ -96,7 +106,7 @@ export const InventoryItem = ({ inventory }) => {
           Delete
         </Button>
         <CustomizedDialogs inventory={inventory} />
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 };
