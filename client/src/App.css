@@ -91,16 +91,14 @@ html {
 }
 
 #features {
-  background: linear-gradient(#008b8b, rgb(152, 243, 238));
+  background-color: #008b8b;
   height: 100%;
 }
 
 #development {
-  background: url("./open-source.png") no-repeat center center fixed;
+  background: url("./team.png") no-repeat center center fixed;
   background-size: cover;
   background-blend-mode: screen;
   background-color: #031818;
-  height: 90vh;
-
-  overflow: auto;
+  height: 100vh;
 }

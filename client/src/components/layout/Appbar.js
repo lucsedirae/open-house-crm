@@ -88,24 +88,21 @@ const Appbar = () => {
           color="inherit"
           aria-label="menu"
         />
-        {/* <HouseIcon fontSize="large" style={{ marginRight: "10px" }} /> */}
-        <Typography
-          variant="h5"
+        <a
+          href="/"
           className={classes.title}
           style={{
             fontFamily: "Big Shoulders Display",
-            fontWeight: "800"
+            fontWeight: "800",
+            fontSize: "25px",
+            color: "white",
+            textDecoration: "none",
+            cursor: "pointer"
           }}
         >
           open house
-        </Typography>
+        </a>
         {isAuthenticated ? authLinks : guestLinks}
-        <Button color="inherit" href="/">
-          Home
-        </Button>
-        <Button color="inherit" href="/develop">
-          Develop
-        </Button>
       </Toolbar>
     </AppBar>
   );
