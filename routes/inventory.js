@@ -1,25 +1,25 @@
 //* Dependencies
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const auth = require("../middleware/auth");
-const { check, validationResult } = require("express-validator");
+const auth = require('../middleware/auth');
+const { check, validationResult } = require('express-validator');
 
 //* Models
-const Inventory = require("../models/Inventory");
-const User = require("../models/User");
+const Inventory = require('../models/Inventory');
+const User = require('../models/User');
 
 //*     @route:     GET api/inventory
 //*     @desc:      Get all user's inventory
 //*     @access:    Private
-router.get("/", auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const inventories = await Inventory.find({ user: req.user.id }).sort({
+    const items = await Inventory.find({ user: req.user.id }).sort({
       date: -1,
     });
-    res.json(inventories);
+    res.json(items);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).send('Server Error');
   }
 });
 
@@ -27,8 +27,8 @@ router.get("/", auth, async (req, res) => {
 //*     @desc:      Add new inventory
 //*     @access:    Private
 router.post(
-  "/",
-  [auth, [check("name", "Name is required").not().isEmpty()]],
+  '/',
+  [auth, [check('name', 'Name is required').not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -36,7 +36,7 @@ router.post(
     }
 
     //* Destructuring req.body
-    const { name, purchased, location, cost, value, status, type } = req.body;
+    const { name, purchased, location, cost, value, status } = req.body;
 
     try {
       const newInventory = new Inventory({
@@ -46,7 +46,6 @@ router.post(
         cost,
         value,
         status,
-        type,
         user: req.user.id,
       });
 
@@ -55,7 +54,7 @@ router.post(
       res.json(inventory);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server Error");
+      res.status(500).send('Server Error');
     }
   }
 );
@@ -63,8 +62,8 @@ router.post(
 //*     @route:     PUT api/inventory/:id
 //*     @desc:      Update inventory
 //*     @access:    Private
-router.put("/:id", auth, async (req, res) => {
-  const { name, purchased, location, cost, value, status, type } = req.body;
+router.put('/:id', auth, async (req, res) => {
+  const { name, purchased, location, cost, value, status } = req.body;
 
   //* Checks DOM for user input and changes the corresponding value as needed
   const inventoryFields = {};
@@ -74,18 +73,17 @@ router.put("/:id", auth, async (req, res) => {
   if (cost) inventoryFields.cost = cost;
   if (value) inventoryFields.value = value;
   if (status) inventoryFields.status = status;
-  if (type) inventoryFields.type = type;
 
   try {
     //*Searches database for inventory associated with requested id
     let inventory = await Inventory.findById(req.params.id);
 
     if (!inventory)
-      return res.status(404).json({ msg: "Inventory not found " });
+      return res.status(404).json({ msg: 'Inventory not found ' });
 
     //* Ensure user owns inventory
     if (inventory.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "Not authorized" });
+      return res.status(401).json({ msg: 'Not authorized' });
     }
 
     inventory = await Inventory.findByIdAndUpdate(
@@ -97,31 +95,31 @@ router.put("/:id", auth, async (req, res) => {
     res.json(inventory);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).send('Server Error');
   }
 });
 
 //*     @route:     DELETE api/inventory/:id
 //*     @desc:      Delete inventory
 //*     @access:    Private
-router.delete("/:id", auth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     let inventory = await Inventory.findById(req.params.id);
 
     if (!inventory)
-      return res.status(404).json({ msg: "Inventory not found " });
+      return res.status(404).json({ msg: 'Inventory not found ' });
 
     //* Ensure user owns inventory
     if (inventory.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "Not authorized" });
+      return res.status(401).json({ msg: 'Not authorized' });
     }
 
     await Inventory.findByIdAndRemove(req.params.id);
 
-    res.json({ msg: "Inventory removed" });
+    res.json({ msg: 'Inventory removed' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).send('Server Error');
   }
 });
 

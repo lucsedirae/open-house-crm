@@ -1,39 +1,38 @@
 //* Dependencies
-import React, { useReducer } from "react";
-import axios from "axios";
-import inventoryReducer from "./inventoryReducer";
+import React, { useReducer } from 'react';
+import axios from 'axios';
+import inventoryReducer from './inventoryReducer';
+//* State context
+import InventoryContext from './inventoryContext';
 
 //* Action types
 import {
-    ADD_ITEM,
-    CLEAR_INVENTORY,
-    CLEAR_CURRENT_ITEM,
-    CLEAR_INV_FILTER,
-    INVENTORY_ERROR,
-    DELETE_ITEM,
-    FILTER_INVENTORY,
-    GET_INVENTORY,
-    SET_CURRENT_ITEM,
-    UPDATE_ITEM,
-  } from "../types";
-  
-//* State context
-import InventoryContext from "./inventoryContext";
+  ADD_ITEM,
+  CLEAR_INVENTORY,
+  CLEAR_CURRENT_ITEM,
+  CLEAR_INV_FILTER,
+  INVENTORY_ERROR,
+  DELETE_ITEM,
+  FILTER_INVENTORY,
+  GET_INVENTORY,
+  SET_CURRENT_ITEM,
+  UPDATE_ITEM,
+} from '../types';
 
 const InventoryState = (props) => {
-    const initialState = {
-        inventory: null,
-        current: null,
-        filtered: null,
-        error: null,
-    };
+  const initialState = {
+    inventory: null,
+    current: null,
+    filtered: null,
+    error: null,
+  };
 
-    const [state, dispatch] = useReducer(inventoryReducer, initialState);
+  const [state, dispatch] = useReducer(inventoryReducer, initialState);
 
-    //* Get Inventory
+  //* Get Inventory
   const getInventory = async () => {
     try {
-      const res = await axios.get("/api/inventory");
+      const res = await axios.get('/api/inventory');
 
       dispatch({ type: GET_INVENTORY, payload: res.data });
     } catch (err) {
@@ -42,15 +41,15 @@ const InventoryState = (props) => {
   };
 
   //* Add Inventory
-  const addInventory = async (inventoryItem) => {
+  const addInventory = async (inventory) => {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
 
     try {
-      const res = await axios.post("/api/inventory", inventoryItem, config);
+      const res = await axios.post('/api/inventory', inventory, config);
 
       dispatch({ type: ADD_ITEM, payload: res.data });
     } catch (err) {
@@ -81,8 +80,8 @@ const InventoryState = (props) => {
   };
 
   //* Set current inventory
-  const setCurrent = (inventoryItem) => {
-    dispatch({ type: SET_CURRENT_ITEM, payload: inventoryItem });
+  const setCurrent = (inventory) => {
+    dispatch({ type: SET_CURRENT_ITEM, payload: inventory });
   };
 
   //* Clear current inventory
@@ -91,17 +90,17 @@ const InventoryState = (props) => {
   };
 
   //* Update Inventory
-  const updateInventory = async (inventoryItem) => {
+  const updateInventory = async (inventory) => {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
 
     try {
       const res = await axios.put(
         `/api/inventory/${inventory._id}`,
-        inventoryItem,
+        inventory,
         config
       );
 
@@ -127,8 +126,8 @@ const InventoryState = (props) => {
     dispatch({ type: CLEAR_INV_FILTER });
   };
 
-    return (
-        <InventoryContext.Provider
+  return (
+    <InventoryContext.Provider
       value={{
         inventory: state.inventory,
         current: state.current,
@@ -147,7 +146,7 @@ const InventoryState = (props) => {
     >
       {props.children}
     </InventoryContext.Provider>
-    )
-}
+  );
+};
 
-export default InventoryState
+export default InventoryState;

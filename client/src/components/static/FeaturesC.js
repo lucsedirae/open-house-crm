@@ -6,19 +6,44 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* Exported component
 const FeaturesB = () => {
   //* Returns JSX to DOM
   return (
-    <Card style={{ background: "#dbdbdb", padding: "1rem", height: "100%" }}>
-      <CardHeader title="Business Analytics" />
+    <Card
+      style={{
+        border: "1px solid #008B8B",
+        background: `url(${background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        padding: "1rem",
+        height: "100%",
+        padding: "1rem",
+        height: "100%"
+      }}
+    >
+      <CardHeader
+        title={
+          <Typography
+            style={{
+              fontFamily: "Big Shoulders Display",
+              fontWeight: "700",
+              fontSize: "30px",
+              textAlign: "center"
+            }}
+          >
+            Business Analytics
+          </Typography>
+        }
+      />
       <CardMedia
         image="/img/charts.svg"
         component="img"
         style={{
           padding: "1rem",
-          borderRadius: "1rem",
+          borderRadius: "1rem"
         }}
       />
 
