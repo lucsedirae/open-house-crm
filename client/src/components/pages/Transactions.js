@@ -55,19 +55,19 @@ const Transactions = () => {
       <Typography variant="h4" className={classes.header}>
         Transacations
       </Typography>
-      
-      <Grid container spacing={3} alignItems="center" justify="center">
+
+      {/* <Grid container spacing={3} alignItems="center" justify="center">
         <Grid item xs={12} sm={12} md={8}>
-          <h3>Info panel</h3>
         </Grid>
-      </Grid>
+      </Grid> */}
 
       <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item xs={12} sm={12} md={8}>
+        <Grid item xs={12} sm={12} md={8} align="center">
           <NavPanel />
-          <TransactionsGrid />
         </Grid>
       </Grid>
+          <TransactionsGrid />
+
       <TransacationFormModal />
     </Container>
   );

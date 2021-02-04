@@ -15,6 +15,7 @@ import EditIcon from "@material-ui/icons/Edit";
 //* Custom components
 import NavPanel from "../layout/NavPanel";
 import UserForm from "../myAccount/UserForm";
+import ForumPosts from "../forum/ForumPosts"
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -46,17 +47,16 @@ const Forum = () => {
         style={{ marginTop: "7rem" }}
         className={classes.header}
       >
-        Open House Forum
+       Agent Forum
       </Typography>
 
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={6}>
+      <Grid container spacing={3} alignItems='center' justify='center'>
+        <Grid item xs={12} sm={12} md={8} align="center">
           <NavPanel />
         </Grid>
       </Grid>
-      <Paper className={classes.paper}></Paper>
       <Paper className={classes.paper}>
-        <UserForm />
+        <ForumPosts />
       </Paper>
     </Container>
   );

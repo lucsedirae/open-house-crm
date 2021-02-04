@@ -2,13 +2,13 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import '../../App.css';
 
+
 //* Material-UI components, hooks, and icons
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { DataGrid } from '@material-ui/data-grid';
 
 //* Custom components
-
 import Spinner from "../layout/Spinner";
 import TransactionItem from "../transactions/TransactionItem";
 
@@ -24,8 +24,8 @@ const columns = [
 
 //* Exported component
 const TransactionsGrid = () => {
-	const transactionContext = useContext(TransactionsContext);
-	const [selectedTrx, setSelectedTrx] = useState(null);
+  const transactionContext = useContext(TransactionsContext);
+  const [selectedTrx, setSelectedTrx] = useState(null);
 
 	const {
 		transactions,
@@ -40,26 +40,27 @@ const TransactionsGrid = () => {
 		// eslint-disable-next-line
 	}, []);
 
-	//* Returns JSX to DOM if transactions is empty
-	if (transactions !== null && transactions.length === 0 && !loading) {
-		return (
-			<Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
-				Transaction List is Empty!
-			</Typography>
-		);
-	}
 
-	//* Returns JSX to DOM if transactions is not empty
-	return (
-		<Fragment>
-			{selectedTrx !== null ? (
-				<Fragment>
-					<h1>{selectedTrx}</h1>
-					<TransactionItem selectedTrx={selectedTrx} />
-				</Fragment>
-			) : (
-				<h1>Select a transaction</h1>
-			)}
+  //* Returns JSX to DOM if transactions is empty
+  if (transactions !== null && transactions.length === 0 && !loading) {
+    return (
+      <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
+        Transaction List is Empty!
+      </Typography>
+    );
+  }
+
+  //* Returns JSX to DOM if transactions is not empty
+  return (
+    <Fragment>
+      {selectedTrx !== null ? (
+        <Fragment>
+          <h1>{selectedTrx}</h1>
+          <TransactionItem selectedTrx={selectedTrx} />
+        </Fragment>
+      ) : (
+        <h1>Select a transaction</h1>
+      )}
 
 			{transactions !== null && !loading ? (
 				<Box style={{ height: 400, width: "100%" }}>
