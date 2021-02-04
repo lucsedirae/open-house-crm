@@ -51,6 +51,7 @@ const InventoryGrid = () => {
 
   //* Returns JSX to DOM if inventory is empty
   if (inventory !== null && inventory.length === 0 && !loading) {
+    console.log('this one' + inventory);
     return (
       <Typography variant='h4' align='center' style={{ marginTop: '3rem' }}>
         Inventory List is Empty!
@@ -63,6 +64,7 @@ const InventoryGrid = () => {
     <Fragment>
       {selectedInv !== null ? (
         <Fragment>
+          {/* need logic to get item with specific id out of an array */}
           <h1>{selectedInv}</h1>
           <InventoryItem selectedInv={selectedInv} />
         </Fragment>

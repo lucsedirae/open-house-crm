@@ -68,19 +68,18 @@ export const InventoryItem = ({ selectedInv }) => {
           inventory = inventoryArray[i];
         }
       }
-      console.log(inventory);
+      console.log(inventory.name);
     };
     findCurrentInv();
   });
 
   const onDelete = () => {
-    deleteInventory(_id);
+    deleteInventory(inventory._id);
     clearCurrent();
   };
 
   const onClick = () => {
     setCurrent(inventory);
-    //console.log('this broke');
   };
 
   return (
