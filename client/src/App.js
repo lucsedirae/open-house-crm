@@ -19,6 +19,7 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import Register from "./components/auth/Register";
 import Transactions from "./components/pages/Transactions";
 import ChartsPage from "./components/pages/ChartsPage";
+import Forum from "./components/pages/Forum";
 
 //* State context
 import AlertState from "./context/alert/AlertState";
@@ -77,6 +78,7 @@ const App = () => {
                           path="/dashboard/inventory"
                           component={Inventory}
                         />
+                        <Route exact path="/forum" component={Forum} />
                         <Route exact path="/develop" component={Develop} />
                         <Route exact path="/Register" component={Register} />
                         <Route exact path="/Login" component={Login} />
