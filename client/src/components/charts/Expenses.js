@@ -37,8 +37,6 @@ import TransactionContext from "../../context/transactions/transactionContext";
 //Import Chart Component
 import { Bar } from "react-chartjs-2";
 
-//* Dummy Data
-
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
 	root: {
@@ -69,37 +67,25 @@ const Expenses = () => {
 		setCurrentTrx,
 	} = transactionContext;
 
-	const [transaction, setTransaction] = useState({
-		trxName: "",
-		type: "",
-		cost: "",
-		revenue: "",
-		dateOpened: "",
-		dateClosed: "",
-		expectedCloseDate: "",
-		expense: "",
-	});
+	const [transaction, setTransaction] = useState([]);
 
 	useEffect(() => {
-		getTransactions();
-		// eslint-disable-next-line
+		getTransactionCost();
 	}, []);
-
-	const [state, dispatch] = useReducer(TransactionReducer);
-
 	const getTransactionCost = async () => {
 		let chartData = [];
 		const res = await axios.get("http://localhost:3000/api/transactions");
-		for (let i = 0; i <= res.data.length; i++) {
+		for (let i = 0; i <= res.data.length - 1; i++) {
 			chartData.push(res.data[i].cost);
 		}
 
+		// console.log(chartData);
+		console.log(res.data);
+		setTransaction(chartData);
 		console.log(chartData);
-		// console.log(res.data);
-		setTransaction({ expense: res.data });
 	};
 
-	getTransactionCost();
+	const [state, dispatch] = useReducer(TransactionReducer);
 
 	// const expense =
 	// 	transactions !== null && !loading
@@ -133,7 +119,7 @@ const Expenses = () => {
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: [],
+				data: transaction,
 			},
 		],
 	};

@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
+import TransactionContext from "../../context/transactions/transactionContext";
 
 import NavPanel from "../layout/NavPanel";
 import Revenue from "../charts/Revenue";
