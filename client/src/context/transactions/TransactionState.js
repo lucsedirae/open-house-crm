@@ -36,6 +36,7 @@ const TransactionState = (props) => {
 			const res = await axios.get("/api/transactions");
 
 			dispatch({ type: GET_TRANSACTIONS, payload: res.data });
+			// console.log(res.data);
 		} catch (err) {
 			dispatch({ type: TRANSACTION_ERROR, payload: err.response.msg });
 		}
