@@ -1,9 +1,17 @@
 //* Dependencies
-import React, { useContext, useEffect, Fragment, useState } from "react";
+import React, {
+	useContext,
+	useEffect,
+	Fragment,
+	useState,
+	useReducer,
+} from "react";
 import PropTypes from "prop-types";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid, setPageStateUpdate } from "@material-ui/data-grid";
 import Spinner from "../layout/Spinner";
-
+import axios from "axios";
+import TransactionReducer from "../../context/transactions/transactionReducer";
+import { GET_TRANSACTIONS } from "../../context/types";
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -28,8 +36,6 @@ import TransactionContext from "../../context/transactions/transactionContext";
 
 //Import Chart Component
 import { Bar } from "react-chartjs-2";
-
-//* Dummy Data
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
@@ -61,37 +67,46 @@ const Expenses = () => {
 		setCurrentTrx,
 	} = transactionContext;
 
-	const [transaction, setTransaction] = useState({
-		trxName: "",
-		type: "",
-		cost: "",
-		revenue: "",
-		dateOpened: "",
-		dateClosed: "",
-		expectedCloseDate: "",
-	});
-
-	const {
-		trxName,
-		type,
-		cost,
-		revenue,
-		dateOpened,
-		dateClosed,
-		expectedCloseDate,
-	} = transaction;
+	const [transaction, setTransaction] = useState([]);
 
 	useEffect(() => {
-		getTransactions();
-		// eslint-disable-next-line
+		getTransactionCost();
 	}, []);
+	const getTransactionCost = async () => {
+		let chartData = [];
+		let chartDate = [];
+		const res = await axios.get("http://localhost:3000/api/transactions");
+		// for (let i = 0; i <= res.data.length - 1; i++) {
+		// 	chartData.push(res.data[i].cost);
+		// }
 
-	const expense =
-		transactions !== null && !loading
-			? transactions.map((transaction) => ({
-					cost: transaction.cost,
-			  }))
-			: console.log("error");
+		// for (let i = 0; i <= res.data.length - 1; i++) {
+		// 	chartDate.push(res.data[i].dateOpened);
+		// }
+
+		const transactionData = res.data.map((transaction) => {
+			return {
+				x: new Date(transaction.dateOpened),
+				y: transaction.cost,
+			};
+		});
+
+		// console.log(chartData);
+		console.log(res.data);
+		setTransaction(transactionData);
+		console.log(transaction);
+	};
+
+	const [state, dispatch] = useReducer(TransactionReducer);
+
+	// const expense =
+	// 	transactions !== null && !loading
+	// 		? transactions.map((transaction) => ({
+	// 				cost: transaction.cost,
+	// 		  }))
+	// 		: console.log("error");
+
+	// console.log(transaction.expense);
 
 	const data = {
 		labels: [
@@ -116,7 +131,7 @@ const Expenses = () => {
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: expense,
+				data: transaction,
 			},
 		],
 	};
