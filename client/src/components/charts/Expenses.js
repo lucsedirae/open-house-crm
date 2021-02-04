@@ -102,13 +102,12 @@ const Expenses = () => {
 	//* Returns JSX to DOM
 	return (
 		<div>
-			<h2>Expenses</h2>
 			<Bar
 				data={data}
 				width={400}
 				height={400}
 				options={{
-					maintainAspectRatio: false,
+					maintainAspectRatio: true,
 				}}
 			/>{" "}
 		</div>

@@ -1,6 +1,12 @@
 //* Dependencies
 import React, { useContext, useEffect } from "react";
 
+//Accordion junk
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -51,9 +57,19 @@ const ChartsPage = () => {
 			<Typography variant="h4" className={classes.header}>
 				Business Overview
 			</Typography>
-			<Grid container spacing={3} alignItems="center" justify="center">
-				<Grid itemRef xs={12} sm={12} md={8} align="center">
-					<NavPanel />
+			<NavPanel />
+			<Accordion>
+				<AccordionSummary
+					expandIcon={<ExpandMoreIcon />}
+					aria-controls="panel1a-content"
+					id="panel1a-header"
+					align="center">
+					{" "}
+					<Typography variant="h5" className={classes.title}>
+						Revenue and Costs
+					</Typography>
+				</AccordionSummary>
+				<AccordionDetails>
 					<Grid
 						container
 						xs={12}
@@ -64,10 +80,34 @@ const ChartsPage = () => {
 						<Revenue />
 						<Expenses />
 					</Grid>
-					<LineChart />
-					<PieChart />
-				</Grid>
-			</Grid>
+				</AccordionDetails>
+			</Accordion>
+			<Accordion>
+				<AccordionSummary
+					expandIcon={<ExpandMoreIcon />}
+					aria-controls="panel1a-content"
+					id="panel1a-header"
+					align="center">
+					{" "}
+					<Typography variant="h5" className={classes.title}>
+						Profit
+					</Typography>
+				</AccordionSummary>
+				<LineChart />
+			</Accordion>
+			<Accordion>
+				<AccordionSummary
+					expandIcon={<ExpandMoreIcon />}
+					aria-controls="panel1a-content"
+					id="panel1a-header"
+					align="center">
+					{" "}
+					<Typography variant="h5" className={classes.title}>
+						Cost Distribution
+					</Typography>
+				</AccordionSummary>
+				<PieChart />
+			</Accordion>
 		</Container>
 	);
 };
