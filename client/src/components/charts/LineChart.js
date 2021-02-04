@@ -34,14 +34,6 @@ const useStyles = makeStyles({
 
 //* Exported component
 const LineChart = () => {
-	const transactionContext = useContext(TransactionContext);
-	const {
-		transactions,
-		getTransactions,
-		loading,
-		setCurrentTrx,
-	} = transactionContext;
-
 	const [transaction, setTransaction] = useState([]);
 
 	const {

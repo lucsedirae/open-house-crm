@@ -52,13 +52,22 @@ const ChartsPage = () => {
 		authContext.loadUser();
 		// eslint-disable-next-line
 	}, []);
+
+	const [expanded, setExpanded] = React.useState("panel1");
+
+	const handleChange = (panel) => (event, newExpanded) => {
+		setExpanded(newExpanded ? panel : false);
+	};
+
 	return (
 		<Container>
 			<Typography variant="h4" className={classes.header}>
 				Business Overview
 			</Typography>
 			<NavPanel />
-			<Accordion expanded={screen.width < 800 ? false : true}>
+			<Accordion
+				expanded={expanded === "panel1"}
+				onChange={handleChange("panel1")}>
 				<AccordionSummary
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel1a-content"
@@ -82,7 +91,9 @@ const ChartsPage = () => {
 					</Grid>
 				</AccordionDetails>
 			</Accordion>
-			<Accordion expanded={screen.width < 800 ? false : true}>
+			<Accordion
+				expanded={expanded === "panel2"}
+				onChange={handleChange("panel2")}>
 				<AccordionSummary
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel1a-content"
@@ -103,7 +114,9 @@ const ChartsPage = () => {
 					<LineChart />
 				</Grid>
 			</Accordion>
-			<Accordion expanded={screen.width < 800 ? false : true}>
+			<Accordion
+				expanded={expanded === "panel3"}
+				onChange={handleChange("panel3")}>
 				<AccordionSummary
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel1a-content"
