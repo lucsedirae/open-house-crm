@@ -52,10 +52,28 @@ const Appbar = () => {
   //* Populates logged in user AppBar links
   const authLinks = (
     <Fragment>
-      <Typography variant="body2" style={{ marginRight: "5px" }}>
-        Hello {user && user.name}!
+      <Typography
+        style={{
+          marginLeft: "auto",
+          fontFamily: "Big Shoulders Display",
+          fontSize: "20px",
+          fontWeight: "600"
+        }}
+      >
+        Hello, {user && user.name}!
       </Typography>
-      <Button color="inherit" href="#!" onClick={onLogout}>
+      <Button
+        color="inherit"
+        href="#!"
+        style={{
+          marginLeft: "auto",
+          fontFamily: "Big Shoulders Display",
+          fontSize: "20px",
+          textTransform: "lowercase",
+          fontWeight: "600"
+        }}
+        onClick={onLogout}
+      >
         Logout
       </Button>
       <ExitToAppIcon />
@@ -65,12 +83,32 @@ const Appbar = () => {
   //* Populates unauthenticated(logged out) user AppBar links
   const guestLinks = (
     <Fragment>
-      <Button color="inherit" href="/login">
-        Login
-      </Button>
-      <Button color="inherit" href="/register">
-        Register
-      </Button>
+      <div style={{ marginLeft: "auto" }}>
+        <Button
+          color="inherit"
+          href="/login"
+          style={{
+            fontFamily: "Big Shoulders Display",
+            fontSize: "20px",
+            textTransform: "lowercase",
+            fontWeight: "600"
+          }}
+        >
+          Login
+        </Button>
+        <Button
+          color="inherit"
+          href="/register"
+          style={{
+            fontFamily: "Big Shoulders Display",
+            fontSize: "20px",
+            textTransform: "lowercase",
+            fontWeight: "600"
+          }}
+        >
+          Register
+        </Button>
+      </div>
     </Fragment>
   );
 
@@ -88,24 +126,19 @@ const Appbar = () => {
           color="inherit"
           aria-label="menu"
         />
-        {/* <HouseIcon fontSize="large" style={{ marginRight: "10px" }} /> */}
-        <Typography
-          variant="h5"
-          className={classes.title}
+        <Button
+          href="/"
           style={{
             fontFamily: "Big Shoulders Display",
-            fontWeight: "800"
+            fontWeight: "800",
+            fontSize: "25px",
+            color: "white",
+            textTransform: "lowercase"
           }}
         >
           open house
-        </Typography>
+        </Button>
         {isAuthenticated ? authLinks : guestLinks}
-        <Button color="inherit" href="/">
-          Home
-        </Button>
-        <Button color="inherit" href="/develop">
-          Develop
-        </Button>
       </Toolbar>
     </AppBar>
   );

@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import CategoryIcon from "@material-ui/icons/Category";
+import ForumIcon from '@material-ui/icons/Forum';
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import ReceiptIcon from "@material-ui/icons/Receipt";
 
@@ -17,31 +18,37 @@ const NavPanel = () => {
 		<Card style={{ padding: "5px", marginBottom: "1rem" }}>
 			<Tooltip title="Contacts">
 				<IconButton aria-label="contacts" href="/dashboard">
-					<ContactsIcon color="primary" />
+					<ContactsIcon style={{color: "orange"}} />
 				</IconButton>
 			</Tooltip>
 
 			<Tooltip title="Transactions">
 				<IconButton aria-label="transactions" href="/dashboard/transactions">
-					<ReceiptIcon color="secondary" />
+					<ReceiptIcon style={{color: "purple"}} />
 				</IconButton>
 			</Tooltip>
 
 			<Tooltip title="Business Overview">
 				<IconButton aria-label="business-overview" href="/dashboard/charts">
-					<MonetizationOnIcon style={{ color: "green" }} />
+					<MonetizationOnIcon style={{ color: "#008B8B" }} />
 				</IconButton>
 			</Tooltip>
 
 			<Tooltip title="Sales Tool Inventory">
 				<IconButton aria-label="tool-inventory" href="/dashboard/inventory">
-					<CategoryIcon style={{ color: "silver" }} />
+					<CategoryIcon style={{ color: "orange" }} />
+				</IconButton>
+			</Tooltip>
+
+			<Tooltip title="Agent Forum">
+				<IconButton aria-label="my-account" href="/forum">
+					<ForumIcon style={{ color: "purple" }} />
 				</IconButton>
 			</Tooltip>
 
 			<Tooltip title="My Account">
 				<IconButton aria-label="my-account" href="/account">
-					<AccountBoxIcon style={{ color: "goldenrod" }} />
+					<AccountBoxIcon style={{ color: "#008B8B" }} />
 				</IconButton>
 			</Tooltip>
 		</Card>
