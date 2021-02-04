@@ -15,12 +15,17 @@ import InventoryItem from '../inventory/InventoryItem';
 import InventoryContext from '../../context/inventory/inventoryContext';
 
 const columns = [
-  { field: 'invName', headerName: 'Name', width: 170 },
-  { field: 'purchased', headerName: 'Purchased', width: 130 },
-  { field: 'location', headerName: 'Location', width: 130 },
-  { field: 'cost', headerName: 'Cost', width: 130 },
-  { field: 'value', headerName: 'Value', width: 130 },
-  { field: 'status', headerName: 'Status', width: 170 },
+  { field: 'name', headerName: 'Name', width: 170 },
+  {
+    field: 'purchased',
+    type: 'date',
+    headerName: 'Purchased',
+    width: 130,
+  },
+  { field: 'location', headerName: 'Location', width: 150 },
+  { field: 'cost', headerName: 'Cost', width: 100 },
+  { field: 'value', headerName: 'Value', width: 100 },
+  { field: 'status', headerName: 'Status', width: 100 },
 ];
 
 // const rows = [
@@ -33,6 +38,7 @@ const columns = [
 const InventoryGrid = () => {
   const inventoryContext = useContext(InventoryContext);
   const [selectedInv, setSelectedInv] = useState(null);
+  //console.log(selectedInv);
 
   const { inventory, getInventory, loading, setCurrent } = inventoryContext;
   //console.log(inventory);
@@ -69,12 +75,11 @@ const InventoryGrid = () => {
           <DataGrid
             rows={inventory.map((inventoryItem) => ({
               id: inventoryItem._id,
-              incName: inventoryItem.invName,
+              name: inventoryItem.name,
               purchased: inventoryItem.purchased,
-              cost: inventoryItem.cost,
+              cost: '$' + inventoryItem.cost,
               location: inventoryItem.location,
-              cost: inventoryItem.cost,
-              value: inventoryItem.value,
+              value: '$' + inventoryItem.value,
               status: inventoryItem.status,
             }))}
             columns={columns}

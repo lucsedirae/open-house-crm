@@ -51,7 +51,7 @@ export const InventoryItem = ({ selectedInv }) => {
 
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
-  //const { deleteInventory, setCurrent, clearCurrent } = inventoryContext;
+  const { deleteInventory, clearCurrent } = inventoryContext;
 
   //* Exported component
   const [current, setCurrent] = useState();
@@ -61,6 +61,7 @@ export const InventoryItem = ({ selectedInv }) => {
   useEffect(() => {
     const findCurrentInv = async () => {
       const res = await axios.get('/api/inventory');
+
       inventoryArray = res.data;
 
       for (let i = 0; i < inventoryArray.length; i++) {
@@ -70,20 +71,29 @@ export const InventoryItem = ({ selectedInv }) => {
       }
     };
     findCurrentInv();
-    console.log(inventory);
   });
+
+  const onDelete = () => {
+    deleteInventory(_id);
+    clearCurrent();
+  };
+
+  const onClick = () => {
+    handleOpen();
+    setCurrent(inventory);
+  };
 
   return (
     <Card id='contact-card' className={classes.root}>
-      {/* <CardContent>
+      <CardContent>
         <Typography variant='h5' className={classes.title}>
-          {name}{' '}
+          {inventory.name}{' '}
         </Typography>
 
         <Box className={classes.Box} style={{ textAlign: 'center' }}>
-          {purchased && (
+          {inventory.purchased && (
             <Typography variant='body1' className={classes.title}>
-              {purchased}
+              {inventory.purchased}
             </Typography>
           )}
         </Box>
@@ -106,7 +116,7 @@ export const InventoryItem = ({ selectedInv }) => {
           Delete
         </Button>
         <CustomizedDialogs inventory={inventory} />
-      </CardActions> */}
+      </CardActions>
     </Card>
   );
 };
