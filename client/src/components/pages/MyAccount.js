@@ -59,7 +59,7 @@ const MyAccount = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid item xs={12} sm={12} md={8} align="center">
           <NavPanel />
         </Grid>
       </Grid>
