@@ -96,8 +96,8 @@ const Expenses = () => {
 		<div>
 			<Bar
 				data={data}
-				width={"500em"}
-				height={"500em"}
+				width={"380em"}
+				height={"380em"}
 				options={{
 					maintainAspectRatio: true,
 				}}
