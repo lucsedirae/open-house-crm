@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TransactionContext from "../../context/transactions/transactionContext";
 
+import axios from "axios";
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -23,6 +24,7 @@ import Paper from "@material-ui/core/Paper";
 //* State context
 
 import { Line } from "react-chartjs-2";
+import { LocalFlorist } from "@material-ui/icons";
 
 //* Dummy Data
 
@@ -56,15 +58,7 @@ const LineChart = () => {
 		setCurrentTrx,
 	} = transactionContext;
 
-	const [transaction, setTransaction] = useState({
-		trxName: "",
-		type: "",
-		cost: "",
-		revenue: "",
-		dateOpened: "",
-		dateClosed: "",
-		expectedCloseDate: "",
-	});
+	const [transaction, setTransaction] = useState([]);
 
 	const {
 		trxName,
@@ -77,16 +71,20 @@ const LineChart = () => {
 	} = transaction;
 
 	useEffect(() => {
-		getTransactions();
-		// eslint-disable-next-line
+		getTransactionCost();
 	}, []);
+	const getTransactionCost = async () => {
+		const res = await axios.get("http://localhost:3000/api/transactions");
 
-	const profit =
-		transactions !== null && !loading
-			? transactions.map((transaction) => ({
-					profit: transaction.profit - transaction.cost,
-			  }))
-			: console.log("error");
+		const transactionData = res.data.map((transaction) => {
+			return transaction.revenue - transaction.cost;
+		});
+
+		// console.log(chartData);
+		console.log(res.data);
+		setTransaction(transactionData);
+		console.log(transactionData);
+	};
 
 	const data = {
 		labels: [
@@ -107,24 +105,15 @@ const LineChart = () => {
 			{
 				label: "Rate of Profit",
 				borderColor: "rgb(11,227,210)",
-				// hoverBackgroundColor: "rgba(255,0,54,0.4)",
-				// hoverBorderColor: "rgb(0,88,101)",
-				data: profit,
-				backgroundColor: (value) =>
-					value < 0 ? "rgb(255,0,0)" : "rgb(21, 138, 12)",
-				fillColor: "green",
-				fill: false,
+				hoverBackgroundColor: "rgba(255,0,54,0.4)",
+				hoverBorderColor: "rgb(0,88,101)",
+				data: transaction,
+				backgroundColor: (transactions) =>
+					transactions <= 0 ? "red" : "green",
 				pointStyle: "rect",
 				pointRadius: 5,
 				fill: false,
-			},
-			{
-				label: "Profit",
-				backgroundColor: "rgb(21, 138, 12)",
-			},
-			{
-				label: "Loss",
-				backgroundColor: "rgb(255,0,0)",
+				base: 0,
 			},
 		],
 	};
@@ -136,7 +125,7 @@ const LineChart = () => {
 	return (
 		<div>
 			<h2>Profit Margin</h2>
-			<Line data={data} width={200} height={200} />
+			<Line data={data} width={200} height={200} base={0} />
 			{/* {console.log(profit)} */}
 		</div>
 	);

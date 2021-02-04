@@ -1,7 +1,17 @@
 //* Dependencies
-import React, { useContext, useState, useEffect } from "react";
+import React, {
+	useContext,
+	useEffect,
+	Fragment,
+	useState,
+	useReducer,
+} from "react";
 import PropTypes from "prop-types";
-
+import { DataGrid, setPageStateUpdate } from "@material-ui/data-grid";
+import Spinner from "../layout/Spinner";
+import axios from "axios";
+import TransactionReducer from "../../context/transactions/transactionReducer";
+import { GET_TRANSACTIONS } from "../../context/types";
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -16,10 +26,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import FaceIcon from "@material-ui/icons/Face";
-import TransactionContext from "../../context/transactions/transactionContext";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 
 //* State context
 
+//Import transactions data
+import TransactionContext from "../../context/transactions/transactionContext";
+
+//Import Chart Component
 import { Bar } from "react-chartjs-2";
 
 //* Defines styles to be served via makeStyles MUI hook
@@ -43,7 +58,7 @@ const useStyles = makeStyles({
 });
 
 //* Exported component
-const BarChart = () => {
+const Expenses = () => {
 	const transactionContext = useContext(TransactionContext);
 	const {
 		transactions,
@@ -52,37 +67,28 @@ const BarChart = () => {
 		setCurrentTrx,
 	} = transactionContext;
 
-	const [transaction, setTransaction] = useState({
-		trxName: "",
-		type: "",
-		cost: "",
-		revenue: "",
-		dateOpened: "",
-		dateClosed: "",
-		expectedCloseDate: "",
-	});
-
-	const {
-		trxName,
-		type,
-		cost,
-		revenue,
-		dateOpened,
-		dateClosed,
-		expectedCloseDate,
-	} = transaction;
+	const [transaction, setTransaction] = useState([]);
 
 	useEffect(() => {
-		getTransactions();
-		// eslint-disable-next-line
+		getTransactionCost();
 	}, []);
+	const getTransactionCost = async () => {
+		const res = await axios.get("http://localhost:3000/api/transactions");
 
-	const revenueData =
-		transactions !== null && !loading
-			? transactions.map((transaction) => ({
-					cost: transaction.revenue,
-			  }))
-			: console.log("error");
+		const transactionData = res.data.map((transaction) => {
+			return {
+				x: new Date(transaction.dateOpened),
+				y: transaction.revenue,
+			};
+		});
+
+		// console.log(chartData);
+		console.log(res.data);
+		setTransaction(transactionData);
+		console.log(transaction);
+	};
+
+	const [state, dispatch] = useReducer(TransactionReducer);
 
 	const data = {
 		labels: [
@@ -101,48 +107,23 @@ const BarChart = () => {
 		],
 		datasets: [
 			{
-				label: "Revenue in thousands",
-				data: revenueData,
-				backgroundColor: [
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-					"rgb(21, 138, 12)",
-				],
-				borderColor: [
-					"rgba(255, 99, 132, 1)",
-					"rgba(54, 162, 235, 1)",
-					"rgba(255, 206, 86, 1)",
-					"rgba(75, 192, 192, 1)",
-					"rgba(153, 102, 255, 1)",
-					"rgba(255, 159, 64, 1)",
-					"rgba(255, 99, 132, 1)",
-					"rgba(54, 162, 235, 1)",
-					"rgba(255, 206, 86, 1)",
-					"rgba(75, 192, 192, 1)",
-					"rgba(153, 102, 255, 1)",
-					"rgba(255, 159, 64, 1)",
-				],
+				label: "Expenses in Thousands",
+				backgroundColor: "rgb(21, 138, 12)",
+				borderColor: "rgb(11,227,210)",
 				borderWidth: 1,
+				hoverBackgroundColor: "rgba(255,0,54,0.4)",
+				hoverBorderColor: "rgb(0,88,101)",
+				data: transaction,
 			},
 		],
 	};
-
 	//* Initializes styling classes
 	const classes = useStyles();
 
 	//* Returns JSX to DOM
 	return (
 		<div>
-			<h2>Revenue</h2>
+			<h2>Expenses</h2>
 			<Bar
 				data={data}
 				width={400}
@@ -150,9 +131,9 @@ const BarChart = () => {
 				options={{
 					maintainAspectRatio: false,
 				}}
-			/>
+			/>{" "}
 		</div>
 	);
 };
 
-export default BarChart;
+export default Expenses;

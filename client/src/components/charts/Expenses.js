@@ -73,16 +73,7 @@ const Expenses = () => {
 		getTransactionCost();
 	}, []);
 	const getTransactionCost = async () => {
-		let chartData = [];
-		let chartDate = [];
 		const res = await axios.get("http://localhost:3000/api/transactions");
-		// for (let i = 0; i <= res.data.length - 1; i++) {
-		// 	chartData.push(res.data[i].cost);
-		// }
-
-		// for (let i = 0; i <= res.data.length - 1; i++) {
-		// 	chartDate.push(res.data[i].dateOpened);
-		// }
 
 		const transactionData = res.data.map((transaction) => {
 			return {
@@ -90,23 +81,12 @@ const Expenses = () => {
 				y: transaction.cost,
 			};
 		});
-
-		// console.log(chartData);
 		console.log(res.data);
 		setTransaction(transactionData);
 		console.log(transaction);
 	};
 
 	const [state, dispatch] = useReducer(TransactionReducer);
-
-	// const expense =
-	// 	transactions !== null && !loading
-	// 		? transactions.map((transaction) => ({
-	// 				cost: transaction.cost,
-	// 		  }))
-	// 		: console.log("error");
-
-	// console.log(transaction.expense);
 
 	const data = {
 		labels: [
