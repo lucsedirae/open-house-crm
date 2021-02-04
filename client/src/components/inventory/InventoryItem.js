@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CustomizedDialogs from '../modals/MapModal';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -69,6 +68,7 @@ export const InventoryItem = ({ selectedInv }) => {
           inventory = inventoryArray[i];
         }
       }
+      console.log(inventory);
     };
     findCurrentInv();
   });
@@ -79,8 +79,8 @@ export const InventoryItem = ({ selectedInv }) => {
   };
 
   const onClick = () => {
-    handleOpen();
     setCurrent(inventory);
+    //console.log('this broke');
   };
 
   return (
@@ -115,7 +115,6 @@ export const InventoryItem = ({ selectedInv }) => {
         >
           Delete
         </Button>
-        <CustomizedDialogs inventory={inventory} />
       </CardActions>
     </Card>
   );
