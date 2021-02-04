@@ -1,33 +1,8 @@
 //* Dependencies
-import React, {
-	useContext,
-	useEffect,
-	Fragment,
-	useState,
-	useReducer,
-} from "react";
-import PropTypes from "prop-types";
-import { DataGrid, setPageStateUpdate } from "@material-ui/data-grid";
-import Spinner from "../layout/Spinner";
+import React, { useContext, useEffect, useState, useReducer } from "react";
 import axios from "axios";
 import TransactionReducer from "../../context/transactions/transactionReducer";
-import { GET_TRANSACTIONS } from "../../context/types";
-//* Material UI components, hooks, and icons
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Chip from "@material-ui/core/Chip";
-import CustomizedDialogs from "../modals/MapModal";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import FaceIcon from "@material-ui/icons/Face";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 
 //* State context
 
@@ -111,7 +86,7 @@ const Expenses = () => {
 				backgroundColor: "rgb(21, 138, 12)",
 				borderColor: "rgb(11,227,210)",
 				borderWidth: 1,
-				hoverBackgroundColor: "rgba(255,0,54,0.4)",
+				hoverBackgroundColor: "rgba(21,138,12,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
 				data: transaction,
 			},
