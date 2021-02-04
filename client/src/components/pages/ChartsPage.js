@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
+import TransactionContext from "../../context/transactions/transactionContext";
 
 import NavPanel from "../layout/NavPanel";
 import Revenue from "../charts/Revenue";
@@ -51,7 +52,7 @@ const ChartsPage = () => {
 				Business Overview
 			</Typography>
 			<Grid container spacing={3} alignItems="center" justify="center">
-				<Grid itemRef xs={12} sm={12} md={8}>
+				<Grid itemRef xs={12} sm={12} md={8} align="center">
 					<NavPanel />
 					<Grid
 						container
