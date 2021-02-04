@@ -7,9 +7,25 @@ const TransactionItem = ({ selectedTrx }) => {
   const [currentTrx, setCurrentTrx] = useState();
 
   useEffect(() => {
-    const res = await axios.get("/api/transactions");
+    const findCurrentTrx = async () => {
+      const res = await axios.get("/api/transactions");
 
-  })
+      console.log("selectedTrx: " + selectedTrx);
+      console.log("Data: " + res.data);
+
+      for (let i = 0; i <= res.data.length; i++) {
+        if (selectedTrx === res.data[i]._id) {
+        }
+        console.log("currentTrx: " + currentTrx);
+      }
+    };
+
+    findCurrentTrx();
+  });
+  
+  const handleTrx = (transaction) => {
+    setCurrentTrx(transaction);
+  };
 
   return (
     <Fragment>

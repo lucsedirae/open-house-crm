@@ -9,7 +9,6 @@ import Box from '@material-ui/core/Box';
 import { DataGrid } from '@material-ui/data-grid';
 
 //* Custom components
-
 import Spinner from "../layout/Spinner";
 import TransactionItem from "../transactions/TransactionItem";
 

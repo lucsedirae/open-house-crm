@@ -98,6 +98,9 @@ const SplashPanelC = () => {
             <Typography>
               <List>
                 <ListItem>
+                  Implement a calendar module that syncs with popular cloud calendars
+                </ListItem>
+                <ListItem>
                   Add user roles to dashboard to allow in-app administrative
                   functionality and the ability to support teams
                 </ListItem>
