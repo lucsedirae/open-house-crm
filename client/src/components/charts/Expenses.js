@@ -74,15 +74,27 @@ const Expenses = () => {
 	}, []);
 	const getTransactionCost = async () => {
 		let chartData = [];
+		let chartDate = [];
 		const res = await axios.get("http://localhost:3000/api/transactions");
-		for (let i = 0; i <= res.data.length - 1; i++) {
-			chartData.push(res.data[i].cost);
-		}
+		// for (let i = 0; i <= res.data.length - 1; i++) {
+		// 	chartData.push(res.data[i].cost);
+		// }
+
+		// for (let i = 0; i <= res.data.length - 1; i++) {
+		// 	chartDate.push(res.data[i].dateOpened);
+		// }
+
+		const transactionData = res.data.map((transaction) => {
+			return {
+				x: new Date(transaction.dateOpened),
+				y: transaction.cost,
+			};
+		});
 
 		// console.log(chartData);
 		console.log(res.data);
-		setTransaction(chartData);
-		console.log(chartData);
+		setTransaction(transactionData);
+		console.log(transaction);
 	};
 
 	const [state, dispatch] = useReducer(TransactionReducer);
