@@ -58,7 +58,7 @@ const ChartsPage = () => {
 				Business Overview
 			</Typography>
 			<NavPanel />
-			<Accordion>
+			<Accordion expanded={screen.width < 800 ? false : true}>
 				<AccordionSummary
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel1a-content"
@@ -82,7 +82,7 @@ const ChartsPage = () => {
 					</Grid>
 				</AccordionDetails>
 			</Accordion>
-			<Accordion>
+			<Accordion expanded={screen.width < 800 ? false : true}>
 				<AccordionSummary
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel1a-content"
@@ -93,19 +93,30 @@ const ChartsPage = () => {
 						Profit
 					</Typography>
 				</AccordionSummary>
-				<LineChart />
+				<Grid
+					container
+					xs={100}
+					sm={100}
+					md={100}
+					alignItems="center"
+					justify="center">
+					<LineChart />
+				</Grid>
 			</Accordion>
-			<Accordion>
+			<Accordion expanded={screen.width < 800 ? false : true}>
 				<AccordionSummary
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel1a-content"
 					id="panel1a-header"
-					align="center">
+					align="center"
+					width="500"
+					height="500">
 					{" "}
 					<Typography variant="h5" className={classes.title}>
 						Cost Distribution
 					</Typography>
 				</AccordionSummary>
+
 				<PieChart />
 			</Accordion>
 		</Container>

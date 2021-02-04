@@ -108,7 +108,7 @@ const LineChart = () => {
 	//* Returns JSX to DOM
 	return (
 		<div>
-			<Line data={data} width={200} height={200} base={0} />
+			<Line data={data} width={"700em"} height={"500em"} />
 		</div>
 	);
 };
