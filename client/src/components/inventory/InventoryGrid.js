@@ -41,7 +41,6 @@ const InventoryGrid = () => {
   //console.log(selectedInv);
 
   const { inventory, getInventory, loading, setCurrent } = inventoryContext;
-  //console.log(inventory);
 
   //* Gets inventory from MongoDB
   useEffect(() => {
@@ -51,7 +50,6 @@ const InventoryGrid = () => {
 
   //* Returns JSX to DOM if inventory is empty
   if (inventory !== null && inventory.length === 0 && !loading) {
-    console.log('this one' + inventory);
     return (
       <Typography variant='h4' align='center' style={{ marginTop: '3rem' }}>
         Inventory List is Empty!
@@ -59,13 +57,20 @@ const InventoryGrid = () => {
     );
   }
 
+  // let selectedInvName = '';
+  // for (let i = 0; i < inventory.length; i++) {
+  //   if (inventory[i]._id === selectedInv) {
+  //     selectedInvName = inventory[i].headerName;
+  //   }
+  // }
+
   //* Returns JSX to DOM if inventory is not empty
   return (
     <Fragment>
       {selectedInv !== null ? (
         <Fragment>
           {/* need logic to get item with specific id out of an array */}
-          <h1>{selectedInv}</h1>
+          {/* <h1>{selectedInv}</h1> */}
           <InventoryItem selectedInv={selectedInv} />
         </Fragment>
       ) : (

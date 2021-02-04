@@ -50,13 +50,12 @@ export const InventoryItem = ({ selectedInv }) => {
 
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
-  const { deleteInventory, clearCurrent } = inventoryContext;
+  const { deleteInventory, clearCurrent, setCurrent } = inventoryContext;
 
   //* Exported component
-  const [current, setCurrent] = useState();
+  // const [current, setCurrent] = useState();
   let inventoryArray = [];
   let inventory = {};
-
   useEffect(() => {
     const findCurrentInv = async () => {
       const res = await axios.get('/api/inventory');
@@ -68,7 +67,6 @@ export const InventoryItem = ({ selectedInv }) => {
           inventory = inventoryArray[i];
         }
       }
-      console.log(inventory.name);
     };
     findCurrentInv();
   });
