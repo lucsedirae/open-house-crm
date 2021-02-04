@@ -12,9 +12,11 @@ const Reply = require("../models/Reply");
 //*     @access:    Public
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find({}).sort({
-      date: -1
-    });
+    const posts = await Post.find({})
+      .sort({
+        date: -1,
+      })
+      .populate("replies");
     res.json(posts);
   } catch (err) {
     console.error(err.message);
@@ -41,7 +43,7 @@ router.post(
       const newPost = new Post({
         name,
         title,
-        body
+        body,
       });
 
       const post = await newPost.save();
