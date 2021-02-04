@@ -105,7 +105,7 @@ const Expenses = () => {
 		],
 		datasets: [
 			{
-				label: "Expenses in Thousands",
+				label: "Expenses",
 				backgroundColor: "rgb(255,0,0)",
 				borderColor: "rgb(11,227,210)",
 				borderWidth: 1,

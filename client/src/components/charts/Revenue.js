@@ -107,7 +107,7 @@ const Expenses = () => {
 		],
 		datasets: [
 			{
-				label: "Expenses in Thousands",
+				label: "Revenue",
 				backgroundColor: "rgb(21, 138, 12)",
 				borderColor: "rgb(11,227,210)",
 				borderWidth: 1,
@@ -123,7 +123,7 @@ const Expenses = () => {
 	//* Returns JSX to DOM
 	return (
 		<div>
-			<h2>Expenses</h2>
+			<h2>Revenue</h2>
 			<Bar
 				data={data}
 				width={400}
