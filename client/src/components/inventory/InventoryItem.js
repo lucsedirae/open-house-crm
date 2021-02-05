@@ -45,29 +45,16 @@ const useStyles = makeStyles({
   },
 });
 
-export const InventoryItem = ({ selectedInv, inventoryArray }) => {
+export const InventoryItem = ({ inventory }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
   const { deleteInventory, clearCurrent, setCurrent } = inventoryContext;
-  const [inventory, setInventoryItem] = useState({});
 
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
-
-  // let inventory = {};
-  useEffect(() => {
-    const findCurrentInv = () => {
-      for (let i = 0; i < inventoryArray.length; i++) {
-        if (inventoryArray[i]._id === selectedInv[0]) {
-          setInventoryItem(inventoryArray[i]);
-        }
-      }
-    };
-    findCurrentInv();
-  });
 
   const onDelete = () => {
     deleteInventory(inventory._id);

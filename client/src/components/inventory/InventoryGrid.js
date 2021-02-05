@@ -41,6 +41,14 @@ const InventoryGrid = () => {
     // eslint-disable-next-line
   }, []);
 
+  const findCurrentInv = () => {
+    for (let i = 0; i < inventory.length; i++) {
+      if (inventory[i]._id === selectedInv) {
+        setInventoryItem(inventory[i]);
+      }
+    }
+  };
+
   //* Returns JSX to DOM if inventory is empty
   if (inventory !== null && inventory.length === 0 && !loading) {
     return (
@@ -55,7 +63,7 @@ const InventoryGrid = () => {
     <Fragment>
       {selectedInv !== null ? (
         <Fragment>
-          <InventoryItem selectedInv={selectedInv} inventoryArray={inventory} />
+          <InventoryItem inventory={inventory} />
         </Fragment>
       ) : (
         <h1>Select inventory</h1>
@@ -78,6 +86,7 @@ const InventoryGrid = () => {
             density='compact'
             onSelectionChange={(newSelection) => {
               setSelectedInv(newSelection.rowIds);
+              findCurrentInv();
             }}
           />
         </Box>
