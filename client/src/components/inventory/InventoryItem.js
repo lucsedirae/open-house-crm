@@ -45,7 +45,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const InventoryItem = ({ selectedInv }) => {
+export const InventoryItem = ({ selectedInv, inventoryArray }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
@@ -57,13 +57,9 @@ export const InventoryItem = ({ selectedInv }) => {
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
 
-  let inventoryArray = [];
   // let inventory = {};
   useEffect(() => {
-    const findCurrentInv = async () => {
-      const res = await axios.get('/api/inventory');
-      inventoryArray = res.data;
-
+    const findCurrentInv = () => {
       for (let i = 0; i < inventoryArray.length; i++) {
         if (inventoryArray[i]._id === selectedInv[0]) {
           setInventoryItem(inventoryArray[i]);

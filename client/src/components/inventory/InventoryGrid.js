@@ -55,7 +55,7 @@ const InventoryGrid = () => {
     <Fragment>
       {selectedInv !== null ? (
         <Fragment>
-          <InventoryItem selectedInv={selectedInv} />
+          <InventoryItem selectedInv={selectedInv} inventoryArray={inventory} />
         </Fragment>
       ) : (
         <h1>Select inventory</h1>
