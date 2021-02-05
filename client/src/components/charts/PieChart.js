@@ -40,8 +40,7 @@ const PieChart = () => {
 	//* Returns JSX to DOM
 	return (
 		<div>
-			<h2>Expenses Distribution</h2>
-			<Pie data={data} width={200} height={200} />
+			<Pie data={data} />
 		</div>
 	);
 };
