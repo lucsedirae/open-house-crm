@@ -21,16 +21,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "25ch"
-    }
+      width: "25ch",
+    },
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    minWidth: 120,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 //* Exported component
@@ -58,7 +58,8 @@ const ContactForm = ({ handleClose }) => {
         city: "",
         state: "",
         zipcode: "",
-        type: ""
+        type: "",
+        note: "",
       });
     }
   }, [contactContext, current]);
@@ -73,7 +74,8 @@ const ContactForm = ({ handleClose }) => {
     city: "",
     state: "",
     zipcode: "",
-    type: ""
+    type: "",
+    note: "",
   });
 
   const {
@@ -86,7 +88,8 @@ const ContactForm = ({ handleClose }) => {
     address2,
     city,
     state,
-    zipcode
+    zipcode,
+    note,
   } = contact;
 
   const onChange = (e) => {
@@ -99,13 +102,13 @@ const ContactForm = ({ handleClose }) => {
       addContact(contact);
       addToast("Contact saved!", {
         appearance: "success",
-        autoDismiss: true
+        autoDismiss: true,
       });
     } else {
       updateContact(contact);
       addToast("Contact updated!", {
         appearance: "success",
-        autoDismiss: true
+        autoDismiss: true,
       });
     }
 
@@ -119,7 +122,8 @@ const ContactForm = ({ handleClose }) => {
       city: "",
       state: "",
       zipcode: "",
-      type: ""
+      type: "",
+      note: "",
     });
   };
 
@@ -136,7 +140,7 @@ const ContactForm = ({ handleClose }) => {
           textAlign: "center",
           fontFamily: "Big Shoulders Display",
           fontSize: "25px",
-          fontWeight: "600"
+          fontWeight: "600",
         }}
       >
         {current ? "Edit Contact" : "Add Contact"}
@@ -266,6 +270,19 @@ const ContactForm = ({ handleClose }) => {
           onChange={onChange}
         />
       </Box>
+      <TextField
+        variant="standard"
+        label="Notes"
+        id="standard-textarea"
+        type="text"
+        name="note"
+        style={{width: "100%"}}
+        rows={4}
+        multiline
+        value={note}
+        onChange={onChange}
+      />
+
       <Button
         variant="contained"
         type="submit"
@@ -277,7 +294,7 @@ const ContactForm = ({ handleClose }) => {
           color: "white",
           fontFamily: "Big Shoulders Display",
           fontSize: "18px",
-          fontWeight: "600"
+          fontWeight: "600",
         }}
         onClick={handleClose}
       >
@@ -293,7 +310,7 @@ const ContactForm = ({ handleClose }) => {
             marginBottom: "1rem",
             fontFamily: "Big Shoulders Display",
             fontSize: "18px",
-            fontWeight: "600"
+            fontWeight: "600",
           }}
           onClick={clearAll}
         >
