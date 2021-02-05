@@ -61,7 +61,7 @@ export default (state, action) => {
     case GET_INVENTORY:
       return {
         ...state,
-        transactions: action.payload,
+        inventory: action.payload,
         loading: false,
       };
     case SET_CURRENT_ITEM:

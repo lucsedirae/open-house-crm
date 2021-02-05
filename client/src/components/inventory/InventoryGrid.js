@@ -1,6 +1,7 @@
 //* Dependencies
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import '../../App.css';
+import Moment from 'moment';
 
 //* Material-UI components, hooks, and icons
 import Typography from '@material-ui/core/Typography';
@@ -15,26 +16,24 @@ import InventoryItem from '../inventory/InventoryItem';
 import InventoryContext from '../../context/inventory/inventoryContext';
 
 const columns = [
-  { field: 'invName', headerName: 'Name', width: 170 },
-  { field: 'purchased', headerName: 'Purchased', width: 130 },
-  { field: 'location', headerName: 'Location', width: 130 },
-  { field: 'cost', headerName: 'Cost', width: 130 },
-  { field: 'value', headerName: 'Value', width: 130 },
-  { field: 'status', headerName: 'Status', width: 170 },
+  { field: 'name', headerName: 'Name', width: 130 },
+  {
+    field: 'purchased',
+    type: 'date',
+    headerName: 'Purchased',
+    flex: 0.2,
+  },
+  { field: 'location', headerName: 'Location', flex: 0.2 },
+  { field: 'cost', headerName: 'Cost', flex: 0.2 },
+  { field: 'value', headerName: 'Value', flex: 0.2 },
+  { field: 'status', headerName: 'Status', flex: 0.2 },
 ];
-
-// const rows = [
-//   { id: 1, name: "Inventory 1", purchased: '1/28/2020', location: 'The House', cost: 350, value: 450, status: "status" },
-//   { id: 1, name: "Inventory 1", purchased: '1/28/2020', location: 'The House', cost: 350, value: 450, status: "status" },
-//   { id: 1, name: "Inventory 1", purchased: '1/28/2020', location: 'The House', cost: 350, value: 450, status: "status" },
-//   { id: 1, name: "Inventory 1", purchased: '1/28/2020', location: 'The House', cost: 350, value: 450, status: "status" }
-// ];
 
 const InventoryGrid = () => {
   const inventoryContext = useContext(InventoryContext);
   const [selectedInv, setSelectedInv] = useState(null);
 
-  const { inventory, getInventory, loading, setCurrent } = inventoryContext;
+  const { inventory, getInventory, loading } = inventoryContext;
 
   //* Gets inventory from MongoDB
   useEffect(() => {
@@ -56,8 +55,7 @@ const InventoryGrid = () => {
     <Fragment>
       {selectedInv !== null ? (
         <Fragment>
-          <h1>{selectedInv}</h1>
-          <TransactionItem selectedInv={selectedInv} />
+          <InventoryItem selectedInv={selectedInv} />
         </Fragment>
       ) : (
         <h1>Select inventory</h1>
@@ -68,12 +66,11 @@ const InventoryGrid = () => {
           <DataGrid
             rows={inventory.map((inventoryItem) => ({
               id: inventoryItem._id,
-              incName: inventoryItem.invName,
-              purchased: inventoryItem.purchased,
-              cost: inventoryItem.cost,
+              name: inventoryItem.name,
+              purchased: Moment(inventoryItem.purchased).format('MM/DD/YYYY'),
+              cost: '$' + inventoryItem.cost,
               location: inventoryItem.location,
-              cost: inventoryItem.cost,
-              value: inventoryItem.value,
+              value: '$' + inventoryItem.value,
               status: inventoryItem.status,
             }))}
             columns={columns}
