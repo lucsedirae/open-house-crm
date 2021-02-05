@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //* State context
 import TransactionContext from "../../context/transactions/transactionContext";
+import { Divider } from "@material-ui/core";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -57,6 +58,7 @@ const TransactionForm = ({ handleClose }) => {
         dateOpened: "",
         dateClosed: "",
         expectedCloseDate: "",
+        note: "",
       });
     }
   }, [transactionContext, current]);
@@ -69,6 +71,7 @@ const TransactionForm = ({ handleClose }) => {
     dateOpened: "",
     dateClosed: "",
     expectedCloseDate: "",
+    note: "",
   });
 
   const {
@@ -79,6 +82,7 @@ const TransactionForm = ({ handleClose }) => {
     dateOpened,
     dateClosed,
     expectedCloseDate,
+    note,
   } = transaction;
 
   const onChange = (e) => {
@@ -101,6 +105,7 @@ const TransactionForm = ({ handleClose }) => {
       dateOpened: "",
       dateClosed: "",
       expectedCloseDate: "",
+      note: ""
     });
   };
 
@@ -199,6 +204,19 @@ const TransactionForm = ({ handleClose }) => {
           size="small"
           name="dateClosed"
           value={dateClosed}
+          onChange={onChange}
+        />
+
+        <Divider />
+        <TextField
+          variant="standard"
+          label="Notes"
+          id="standard-textarea"
+          type="text"
+          name="note"
+          rows={4}
+          multiline
+          value={note}
           onChange={onChange}
         />
       </Box>
