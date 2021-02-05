@@ -46,6 +46,7 @@ const Expenses = () => {
 		const res = await axios.get("http://localhost:3000/api/transactions");
 
 		const transactionData = res.data;
+		console.log(transactionData);
 
 		// .map((transaction) => {
 		// 	return {
@@ -72,7 +73,7 @@ const Expenses = () => {
 		];
 
 		for (let i = 0; i < transactionData.length; i++) {
-			let month = moment.utc(transactionData[i].dateOpened).month();
+			let month = moment.utc(transactionData[i].dateOpened).format("MMMM");
 			let cost = transactionData[i].cost;
 			months[month] += cost;
 			console.log(months);
