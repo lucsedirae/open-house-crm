@@ -17,9 +17,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import InventoryContext from '../../context/inventory/inventoryContext';
 import ModalContext from '../../context/modal/modalContext';
 
-//* Axios
-import axios from 'axios';
-
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
   root: {
