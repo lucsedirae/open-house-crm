@@ -56,17 +56,12 @@ const Transactions = () => {
         Transacations
       </Typography>
 
-      {/* <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item xs={12} sm={12} md={8}>
-        </Grid>
-      </Grid> */}
-
       <Grid container spacing={3} alignItems="center" justify="center">
         <Grid item xs={12} sm={12} md={8} align="center">
           <NavPanel />
         </Grid>
       </Grid>
-          <TransactionsGrid />
+      <TransactionsGrid />
 
       <TransacationFormModal />
     </Container>
