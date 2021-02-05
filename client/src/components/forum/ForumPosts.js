@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
 //* Material UI components, hooks, and icons
 import Badge from "@material-ui/core/Badge";
@@ -14,14 +14,19 @@ import CommentIcon from "@material-ui/icons/Comment";
 
 //* Exported component
 const ForumPosts = () => {
+  const [likes, setLikes] = useState(0);
+
+  const updateBadge = () => {
+    setLikes(likes + 1);
+  };
   return (
     <Container align="center">
       <Paper style={{ padding: ".5rem", width: "50%" }}>
         <Typography variant="h6" align="center" style={{ padding: "1rem" }}>
           Message from --DynamicUserName--
         </Typography>
-        <Typography variant="body2" style={{color: "silver"}}>
-            11/20/2020
+        <Typography variant="body2" style={{ color: "silver" }}>
+          11/20/2020
         </Typography>
         <Divider />
         <Typography variant="body1">
@@ -75,7 +80,7 @@ const ForumPosts = () => {
           style={{ marginTop: ".5rem" }}
         >
           <Grid item xs={12} sm={6} md={6} align="center">
-            <Badge badgeContent="5" color="primary">
+            <Badge badgeContent={likes} onClick={updateBadge} color="primary">
               <FavoriteIcon style={{ color: "purple" }} />
             </Badge>
           </Grid>
