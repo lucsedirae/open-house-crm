@@ -73,7 +73,7 @@ const Forum = () => {
     const res = await axios.post("/api/forum", post);
     console.log(res.data);
 
-    setPosts([...posts, res.data]);
+    setPosts([res.data, ...posts]);
     setPost({
       name: "",
       title: "",
