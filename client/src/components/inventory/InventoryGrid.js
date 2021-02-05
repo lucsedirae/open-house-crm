@@ -28,17 +28,9 @@ const columns = [
   { field: 'status', headerName: 'Status', width: 100 },
 ];
 
-// const rows = [
-//   { id: 1, name: "Inventory 1", purchased: '1/28/2020', location: 'The House', cost: 350, value: 450, status: "status" },
-//   { id: 1, name: "Inventory 1", purchased: '1/28/2020', location: 'The House', cost: 350, value: 450, status: "status" },
-//   { id: 1, name: "Inventory 1", purchased: '1/28/2020', location: 'The House', cost: 350, value: 450, status: "status" },
-//   { id: 1, name: "Inventory 1", purchased: '1/28/2020', location: 'The House', cost: 350, value: 450, status: "status" }
-// ];
-
 const InventoryGrid = () => {
   const inventoryContext = useContext(InventoryContext);
   const [selectedInv, setSelectedInv] = useState(null);
-  //console.log(selectedInv);
 
   const { inventory, getInventory, loading, setCurrent } = inventoryContext;
 
@@ -57,20 +49,11 @@ const InventoryGrid = () => {
     );
   }
 
-  // let selectedInvName = '';
-  // for (let i = 0; i < inventory.length; i++) {
-  //   if (inventory[i]._id === selectedInv) {
-  //     selectedInvName = inventory[i].headerName;
-  //   }
-  // }
-
   //* Returns JSX to DOM if inventory is not empty
   return (
     <Fragment>
       {selectedInv !== null ? (
         <Fragment>
-          {/* need logic to get item with specific id out of an array */}
-          {/* <h1>{selectedInv}</h1> */}
           <InventoryItem selectedInv={selectedInv} />
         </Fragment>
       ) : (

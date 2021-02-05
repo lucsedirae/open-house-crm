@@ -1,6 +1,5 @@
 //* Dependencies
 import React, { useState, Fragment, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 
 //* Material UI components, hooks, and icons
 import Box from '@material-ui/core/Box';
@@ -62,13 +61,11 @@ export const InventoryItem = ({ selectedInv }) => {
   useEffect(() => {
     const findCurrentInv = async () => {
       const res = await axios.get('/api/inventory');
-
       inventoryArray = res.data;
 
       for (let i = 0; i < inventoryArray.length; i++) {
         if (inventoryArray[i]._id === selectedInv[0]) {
           setInventoryItem(inventoryArray[i]);
-          // inventory = inventoryArray[i];
         }
       }
     };
