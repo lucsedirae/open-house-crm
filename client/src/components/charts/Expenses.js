@@ -38,41 +38,53 @@ const useStyles = makeStyles({
 //* Exported component
 const Expenses = () => {
 	const [transaction, setTransaction] = useState([]);
-	const [expenseData, setExpenseData] = useState([]);
 
 	useEffect(() => {
 		getTransactionCost();
-		expenseDataPusher();
 	}, []);
 	const getTransactionCost = async () => {
 		const res = await axios.get("http://localhost:3000/api/transactions");
 
-		const transactionData = res.data.map((transaction) => {
-			return {
-				x: moment.utc(transaction.dateOpened).format("MMMM"),
-				y: transaction.cost,
-			};
-		});
-		console.log(res.data);
-		setTransaction(transactionData);
-		console.log(transaction);
-	};
+		const transactionData = res.data;
 
-	const expenseDataPusher = () => {
-		const newExpenseData = transaction.map((transactions) => {
-			return {
-				x: transactions.x,
-				y: transactions.y,
-			};
-		});
-		setExpenseData(newExpenseData);
-		console.log(expenseData);
+		// .map((transaction) => {
+		// 	return {
+		// 		x: moment.utc(transaction.dateOpened).format("MMMM"),
+		// 		y: transaction.cost,
+		// 	};
+		// });
+
+		const months = [
+			{
+				January: 0,
+				February: 0,
+				March: 0,
+				April: 0,
+				May: 0,
+				June: 0,
+				July: 0,
+				August: 0,
+				September: 0,
+				October: 0,
+				November: 0,
+				December: 0,
+			},
+		];
+
+		for (let i = 0; i < transactionData.length; i++) {
+			let month = moment.utc(transactionData[i].dateOpened).month();
+			let cost = transactionData[i].cost;
+			months[month] += cost;
+			console.log(months);
+		}
+
+		// console.log(res.data);
+		setTransaction(months);
+		// console.log(transaction);
 	};
 
 	const data = {
-		labels: transaction.map((transactions) => {
-			return transactions.x;
-		}),
+		labels: transaction,
 		datasets: [
 			{
 				label: "Expenses",

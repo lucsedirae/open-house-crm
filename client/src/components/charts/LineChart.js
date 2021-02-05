@@ -60,9 +60,9 @@ const LineChart = () => {
 		});
 
 		// console.log(chartData);
-		console.log(res.data);
+		// console.log(res.data);
 		setTransaction(transactionData);
-		console.log(transactionData);
+		// console.log(transactionData);
 	};
 
 	const data = {

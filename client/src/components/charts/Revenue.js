@@ -52,9 +52,9 @@ const Expenses = () => {
 		});
 
 		// console.log(chartData);
-		console.log(res.data);
+		// console.log(res.data);
 		setTransaction(transactionData);
-		console.log(transaction);
+		// console.log(transaction);
 	};
 
 	const [state, dispatch] = useReducer(TransactionReducer);
