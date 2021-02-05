@@ -1,5 +1,6 @@
 //* Dependencies
 import React, { useState, Fragment, useEffect, useContext } from 'react';
+import Moment from 'moment';
 
 //* Material UI components, hooks, and icons
 import Box from '@material-ui/core/Box';
@@ -94,7 +95,7 @@ export const InventoryItem = ({ selectedInv }) => {
         <Box className={classes.Box} style={{ textAlign: 'center' }}>
           {inventory.purchased && (
             <Typography variant='body1' className={classes.address}>
-              Purchased: {inventory.purchased}
+              Purchased: {Moment(inventory.purchased).format('MM/DD/YYYY')}
             </Typography>
           )}
           {inventory.location && (
