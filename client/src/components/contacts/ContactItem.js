@@ -66,7 +66,7 @@ const useStyles = makeStyles({
   }
 });
 
-//* Checks the contact type and returns the appropriate badge background color
+//* Checks the contact type and returns the appropriate chip background color
 const typeCheck = (type) => {
   switch (type) {
     case "vendor":
