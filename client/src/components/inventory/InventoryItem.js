@@ -15,6 +15,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 //* State context
 import InventoryContext from '../../context/inventory/inventoryContext';
+import ModalContext from '../../context/modal/modalContext';
 
 //* Axios
 import axios from 'axios';
@@ -51,11 +52,13 @@ export const InventoryItem = ({ selectedInv }) => {
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
   const { deleteInventory, clearCurrent, setCurrent } = inventoryContext;
+  const [inventory, setInventoryItem] = useState({});
 
-  //* Exported component
-  // const [current, setCurrent] = useState();
+  const modalContext = useContext(ModalContext);
+  const { handleOpen } = modalContext;
+
   let inventoryArray = [];
-  let inventory = {};
+  // let inventory = {};
   useEffect(() => {
     const findCurrentInv = async () => {
       const res = await axios.get('/api/inventory');
@@ -64,7 +67,8 @@ export const InventoryItem = ({ selectedInv }) => {
 
       for (let i = 0; i < inventoryArray.length; i++) {
         if (inventoryArray[i]._id === selectedInv[0]) {
-          inventory = inventoryArray[i];
+          setInventoryItem(inventoryArray[i]);
+          // inventory = inventoryArray[i];
         }
       }
     };
@@ -77,20 +81,43 @@ export const InventoryItem = ({ selectedInv }) => {
   };
 
   const onClick = () => {
+    handleOpen();
     setCurrent(inventory);
   };
 
   return (
-    <Card id='contact-card' className={classes.root}>
+    <Card id='contact-card' className={classes.root} align='center'>
       <CardContent>
-        <Typography variant='h5' className={classes.title}>
-          {inventory.name}{' '}
-        </Typography>
+        <Box textAlign='center' className={classes.Box}>
+          <Typography variant='h5' className={classes.title}>
+            {inventory.name}{' '}
+          </Typography>
+        </Box>
 
         <Box className={classes.Box} style={{ textAlign: 'center' }}>
           {inventory.purchased && (
-            <Typography variant='body1' className={classes.title}>
-              {inventory.purchased}
+            <Typography variant='body1' className={classes.address}>
+              Purchased: {inventory.purchased}
+            </Typography>
+          )}
+          {inventory.location && (
+            <Typography variant='body1' className={classes.address}>
+              Location: {inventory.location}
+            </Typography>
+          )}
+          {inventory.cost && (
+            <Typography variant='body1' className={classes.address}>
+              Cost: ${inventory.cost}
+            </Typography>
+          )}
+          {inventory.value && (
+            <Typography variant='body1' className={classes.address}>
+              Value: ${inventory.value}
+            </Typography>
+          )}
+          {inventory.status && (
+            <Typography variant='body1' className={classes.address}>
+              Status: {inventory.status}
             </Typography>
           )}
         </Box>
@@ -98,9 +125,16 @@ export const InventoryItem = ({ selectedInv }) => {
       <CardActions style={{ justifyContent: 'center' }}>
         <Button
           startIcon={<EditIcon />}
-          color='primary'
           onClick={onClick}
-          variant='outlined'
+          variant='contained'
+          size='small'
+          style={{
+            backgroundColor: '#008B8B',
+            color: 'white',
+            fontSize: '15px',
+            fontFamily: 'Big Shoulders Display',
+            fontWeight: '600',
+          }}
         >
           Edit
         </Button>
@@ -108,7 +142,15 @@ export const InventoryItem = ({ selectedInv }) => {
           startIcon={<DeleteIcon />}
           color='secondary'
           onClick={onDelete}
-          variant='outlined'
+          variant='contained'
+          size='small'
+          style={{
+            backgroundColor: '#008B8B',
+            color: 'white',
+            fontSize: '15px',
+            fontFamily: 'Big Shoulders Display',
+            fontWeight: '600',
+          }}
         >
           Delete
         </Button>
