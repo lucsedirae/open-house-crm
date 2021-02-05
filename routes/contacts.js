@@ -47,6 +47,7 @@ router.post(
       state,
       zipcode,
       type,
+      note
     } = req.body;
 
     try {
@@ -61,6 +62,7 @@ router.post(
         state,
         zipcode,
         type,
+        note,
         user: req.user.id,
       });
 
@@ -89,6 +91,7 @@ router.put("/:id", auth, async (req, res) => {
     state,
     zipcode,
     type,
+    note
   } = req.body;
 
   //* Checks DOM for user input and changes the corresponding value as needed
@@ -103,6 +106,7 @@ router.put("/:id", auth, async (req, res) => {
   if (state) contactFields.state = state;
   if (zipcode) contactFields.zipcode = zipcode;
   if (type) contactFields.type = type;
+  if (note) contactFields.note = note;
 
   try {
     //*Searches database for contact associated with requested id

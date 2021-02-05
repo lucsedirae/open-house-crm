@@ -50,6 +50,7 @@ router.post(
       dateOpened,
       dateClosed,
       expectedCloseDate,
+      note,
     } = req.body;
 
     try {
@@ -61,6 +62,7 @@ router.post(
         dateOpened,
         dateClosed,
         expectedCloseDate,
+        note,
         user: req.user.id,
       });
 
@@ -86,6 +88,7 @@ router.put("/:id", auth, async (req, res) => {
     dateOpened,
     dateClosed,
     expectedCloseDate,
+    note,
   } = req.body;
 
   //* Build transaction object
@@ -96,6 +99,7 @@ router.put("/:id", auth, async (req, res) => {
   if (revenue) transactionFields.revenue = revenue;
   if (dateOpened) transactionFields.dateOpened = dateOpened;
   if (dateClosed) transactionFields.dateClosed = dateClosed;
+  if (note) transactionFields.note = note;
   if (expectedCloseDate)
     transactionFields.expectedCloseDate = expectedCloseDate;
 
