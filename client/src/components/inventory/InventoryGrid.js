@@ -1,7 +1,7 @@
 //* Dependencies
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import '../../App.css';
 import Moment from 'moment';
+import axios from 'axios';
 
 //* Material-UI components, hooks, and icons
 import Typography from '@material-ui/core/Typography';
@@ -31,26 +31,34 @@ const columns = [
 
 const InventoryGrid = () => {
   const inventoryContext = useContext(InventoryContext);
-  const [selectedInv, setSelectedInv] = useState(null);
+  const [selectedInvId, setSelectedInvId] = useState(null);
+  const [inventoryLst, setInventory] = useState([]);
+  const [currentInv, setCurrentInv] = useState(null);
 
-  const { inventory, getInventory, loading } = inventoryContext;
+  //const { inventory, getInventory, loading } = inventoryContext;
+  //*
+  const findCurrentInv = (id) => {
+    inventoryLst.map((inventoryItem) => {
+      if (inventoryItem._id == id) {
+        setCurrentInv(inventoryItem);
+      }
+    });
+  };
+
+  //* Retrieves inventory from MongoDB
+  const getInventory = async () => {
+    const res = await axios.get('/api/inventory');
+    const data = res.data;
+    setInventory(data);
+  };
 
   //* Gets inventory from MongoDB
   useEffect(() => {
     getInventory();
-    // eslint-disable-next-line
   }, []);
 
-  const findCurrentInv = () => {
-    for (let i = 0; i < inventory.length; i++) {
-      if (inventory[i]._id === selectedInv) {
-        setInventoryItem(inventory[i]);
-      }
-    }
-  };
-
   //* Returns JSX to DOM if inventory is empty
-  if (inventory !== null && inventory.length === 0 && !loading) {
+  if (inventoryLst !== null && inventoryLst.length === 0) {
     return (
       <Typography variant='h4' align='center' style={{ marginTop: '3rem' }}>
         Inventory List is Empty!
@@ -61,18 +69,23 @@ const InventoryGrid = () => {
   //* Returns JSX to DOM if inventory is not empty
   return (
     <Fragment>
-      {selectedInv !== null ? (
+      {currentInv !== null ? (
         <Fragment>
-          <InventoryItem inventory={inventory} />
+          <InventoryItem
+            selectedInvId={selectedInvId}
+            inventoryItem={currentInv}
+          />
         </Fragment>
       ) : (
-        <h1>Select inventory</h1>
+        <Typography align='center' variant='h5'>
+          Please Select inventory
+        </Typography>
       )}
 
-      {inventory !== null && !loading ? (
+      {inventoryLst !== null ? (
         <Box style={{ height: 400, width: '100%' }}>
           <DataGrid
-            rows={inventory.map((inventoryItem) => ({
+            rows={inventoryLst.map((inventoryItem) => ({
               id: inventoryItem._id,
               name: inventoryItem.name,
               purchased: Moment(inventoryItem.purchased).format('MM/DD/YYYY'),
@@ -85,8 +98,8 @@ const InventoryGrid = () => {
             pageSize={10}
             density='compact'
             onSelectionChange={(newSelection) => {
-              setSelectedInv(newSelection.rowIds);
-              findCurrentInv();
+              //setSelectedInv(newSelection.rowIds);
+              findCurrentInv(newSelection.rowIds);
             }}
           />
         </Box>
