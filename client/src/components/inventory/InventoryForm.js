@@ -119,13 +119,12 @@ const InventoryForm = ({ handleClose }) => {
         {current ? 'Edit Inventory' : 'Add Inventory'}
       </Typography>
 
-      <Box style={{ textAlign: 'center' }}></Box>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Box>
+        <Box style={{ textAlign: 'center' }}>
           {/* Name Field */}
           <TextField
-            variant='outlined'
-            required
+            variant='standard'
+            required={true}
             type='text'
             id='standard-required'
             label='Inventory'
@@ -150,25 +149,23 @@ const InventoryForm = ({ handleClose }) => {
           />
           {/* Location, string */}
           <TextField
-            variant='outlined'
+            variant='standard'
             required
             type='text'
             id='standard'
-            label='Inventory Location'
+            label='Location'
             size='small'
-            // helperText="Required"
             name='location'
             value={location}
             onChange={onChange}
           />
-
           {/* Cost, number */}
-          <FormControl className={classes.margin}>
-            <InputLabel htmlFor='standard-adornment-amount'>Costs</InputLabel>
+          <FormControl>
             <Input
               id='standard-adornment-amount'
               name='cost'
               type='number'
+              label='Cost'
               value={cost}
               onChange={onChange}
               startAdornment={
@@ -179,12 +176,12 @@ const InventoryForm = ({ handleClose }) => {
 
           {/*  Value, number*/}
 
-          <FormControl className={classes.margin}>
-            <InputLabel htmlFor='standard-adornment-amount'>Value</InputLabel>
+          <FormControl>
             <Input
               id='standard-adornment-amount'
               name='value'
               type='number'
+              label='Value'
               value={value}
               onChange={onChange}
               startAdornment={
@@ -195,7 +192,7 @@ const InventoryForm = ({ handleClose }) => {
 
           {/*  Status, string*/}
           <TextField
-            variant='outlined'
+            variant='standard'
             required
             type='text'
             id='standard'

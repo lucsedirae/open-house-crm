@@ -1,6 +1,12 @@
 //* Dependencies
 import React, { useContext, useEffect } from "react";
 
+//Accordion junk
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -46,26 +52,89 @@ const ChartsPage = () => {
 		authContext.loadUser();
 		// eslint-disable-next-line
 	}, []);
+
+	const [expanded, setExpanded] = React.useState("panel1");
+
+	const handleChange = (panel) => (event, newExpanded) => {
+		setExpanded(newExpanded ? panel : false);
+	};
+
 	return (
 		<Container>
 			<Typography variant="h4" className={classes.header}>
 				Business Overview
 			</Typography>
 			<Grid container spacing={3} alignItems="center" justify="center">
-				<Grid itemRef xs={12} sm={12} md={8} align="center">
+				<Grid item xs={12} sm={12} md={8} align="center">
 					<NavPanel />
-					<Grid
-						container
-						xs={12}
-						sm={12}
-						md={12}
-						alignItems="center"
-						justify="center">
-						<Revenue />
-						<Expenses />
-					</Grid>
-					<LineChart />
-					<PieChart />
+
+					<Accordion
+						expanded={expanded === "panel1"}
+						onChange={handleChange("panel1")}>
+						<AccordionSummary
+							expandIcon={<ExpandMoreIcon />}
+							aria-controls="panel1a-content"
+							id="panel1a-header"
+							align="center">
+							{" "}
+							<Typography variant="h5" className={classes.title}>
+								Revenue and Costs
+							</Typography>
+						</AccordionSummary>
+						<AccordionDetails>
+							<Grid
+								container
+								xs={12}
+								sm={12}
+								md={12}
+								alignItems="center"
+								justify="center">
+								<Revenue />
+								<Expenses />
+							</Grid>
+						</AccordionDetails>
+					</Accordion>
+					<Accordion
+						expanded={expanded === "panel2"}
+						onChange={handleChange("panel2")}>
+						<AccordionSummary
+							expandIcon={<ExpandMoreIcon />}
+							aria-controls="panel1a-content"
+							id="panel1a-header"
+							align="center">
+							{" "}
+							<Typography variant="h5" className={classes.title}>
+								Profit
+							</Typography>
+						</AccordionSummary>
+						<Grid
+							container
+							xs={100}
+							sm={100}
+							md={100}
+							alignItems="center"
+							justify="center">
+							<LineChart />
+						</Grid>
+					</Accordion>
+					<Accordion
+						expanded={expanded === "panel3"}
+						onChange={handleChange("panel3")}>
+						<AccordionSummary
+							expandIcon={<ExpandMoreIcon />}
+							aria-controls="panel1a-content"
+							id="panel1a-header"
+							align="center"
+							width="500"
+							height="500">
+							{" "}
+							<Typography variant="h5" className={classes.title}>
+								Cost Distribution
+							</Typography>
+						</AccordionSummary>
+
+						<PieChart />
+					</Accordion>
 				</Grid>
 			</Grid>
 		</Container>
