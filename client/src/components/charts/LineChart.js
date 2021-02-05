@@ -6,7 +6,7 @@ import axios from "axios";
 //* Material UI components, hooks, and icons
 import { makeStyles } from "@material-ui/core/styles";
 
-//* State context
+import moment from "moment";
 
 import { Line } from "react-chartjs-2";
 
@@ -53,7 +53,10 @@ const LineChart = () => {
 		const res = await axios.get("http://localhost:3000/api/transactions");
 
 		const transactionData = res.data.map((transaction) => {
-			return transaction.revenue - transaction.cost;
+			return {
+				x: moment.utc(transaction.dateOpened).format("MMMM"),
+				y: transaction.revenue - transaction.cost,
+			};
 		});
 
 		// console.log(chartData);
@@ -63,27 +66,18 @@ const LineChart = () => {
 	};
 
 	const data = {
-		labels: [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-		],
+		labels: transaction.map((transactions) => {
+			return transactions.x;
+		}),
 		datasets: [
 			{
 				label: "Rate of Profit",
 				borderColor: "rgb(11,227,210)",
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: transaction,
+				data: transaction.map((transactions) => {
+					return transactions.y;
+				}),
 				backgroundColor: (transactions) =>
 					transactions <= 0 ? "red" : "green",
 				pointStyle: "rect",

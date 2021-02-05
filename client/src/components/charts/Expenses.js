@@ -10,10 +10,7 @@ import axios from "axios";
 import TransactionReducer from "../../context/transactions/transactionReducer";
 import { makeStyles } from "@material-ui/core/styles";
 
-//* State context
-
-//Import transactions data
-import TransactionContext from "../../context/transactions/transactionContext";
+import moment from "moment";
 
 //Import Chart Component
 import { Bar } from "react-chartjs-2";
@@ -41,16 +38,18 @@ const useStyles = makeStyles({
 //* Exported component
 const Expenses = () => {
 	const [transaction, setTransaction] = useState([]);
+	const [expenseData, setExpenseData] = useState([]);
 
 	useEffect(() => {
 		getTransactionCost();
+		expenseDataPusher();
 	}, []);
 	const getTransactionCost = async () => {
 		const res = await axios.get("http://localhost:3000/api/transactions");
 
 		const transactionData = res.data.map((transaction) => {
 			return {
-				x: new Date(transaction.dateOpened),
+				x: moment.utc(transaction.dateOpened).format("MMMM"),
 				y: transaction.cost,
 			};
 		});
@@ -59,23 +58,21 @@ const Expenses = () => {
 		console.log(transaction);
 	};
 
-	const [state, dispatch] = useReducer(TransactionReducer);
+	const expenseDataPusher = () => {
+		const newExpenseData = transaction.map((transactions) => {
+			return {
+				x: transactions.x,
+				y: transactions.y,
+			};
+		});
+		setExpenseData(newExpenseData);
+		console.log(expenseData);
+	};
 
 	const data = {
-		labels: [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-		],
+		labels: transaction.map((transactions) => {
+			return transactions.x;
+		}),
 		datasets: [
 			{
 				label: "Expenses",
@@ -84,9 +81,22 @@ const Expenses = () => {
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: transaction,
+				data: transaction.map((transactions) => {
+					return transactions.y;
+				}),
 			},
 		],
+		options: {
+			scales: {
+				xAxes: [
+					{
+						type: "time",
+						time: { parser: "MMMM" },
+						display: true,
+					},
+				],
+			},
+		},
 	};
 	//* Initializes styling classes
 	const classes = useStyles();

@@ -9,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 //Import transactions data
 import TransactionContext from "../../context/transactions/transactionContext";
 
+import moment from "moment";
+
 //Import Chart Component
 import { Bar } from "react-chartjs-2";
 
@@ -44,7 +46,7 @@ const Expenses = () => {
 
 		const transactionData = res.data.map((transaction) => {
 			return {
-				x: new Date(transaction.dateOpened),
+				x: moment.utc(transaction.dateOpened).format("MMMM"),
 				y: transaction.revenue,
 			};
 		});
@@ -58,20 +60,9 @@ const Expenses = () => {
 	const [state, dispatch] = useReducer(TransactionReducer);
 
 	const data = {
-		labels: [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-		],
+		labels: transaction.map((transactions) => {
+			return transactions.x;
+		}),
 		datasets: [
 			{
 				label: "Revenue",
@@ -80,7 +71,9 @@ const Expenses = () => {
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(21,138,12,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: transaction,
+				data: transaction.map((transactions) => {
+					return transactions.y;
+				}),
 			},
 		],
 	};
