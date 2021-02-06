@@ -74,24 +74,24 @@ const TransactionsGrid = () => {
       )}
 
       {transactions !== null ? (
-            <Box style={{ height: 400, width: "100%" }}>
-              <DataGrid
-                rows={transactions.map((transaction) => ({
-                  id: transaction._id,
-                  trxName: transaction.trxName,
-                  revenue: `$${transaction.revenue}`,
-                  cost: `$${transaction.cost}`,
-                  profit: `$${transaction.revenue - transaction.cost}`,
-                  type: transaction.type,
-                }))}
-                columns={columns}
-                pageSize={10}
-                density="compact"
-                onSelectionChange={(newSelection) => {
-                  findCurrentTrx(newSelection.rowIds);
-                }}
-              />
-            </Box>
+        <Box style={{ height: 400, width: "64%", margin: "0 auto" }}>
+          <DataGrid
+            rows={transactions.map((transaction) => ({
+              id: transaction._id,
+              trxName: transaction.trxName,
+              revenue: `$${transaction.revenue}`,
+              cost: `$${transaction.cost}`,
+              profit: `$${transaction.revenue - transaction.cost}`,
+              type: transaction.type,
+            }))}
+            columns={columns}
+            pageSize={10}
+            density="compact"
+            onSelectionChange={(newSelection) => {
+              findCurrentTrx(newSelection.rowIds);
+            }}
+          />
+        </Box>
       ) : (
         <Spinner />
       )}
