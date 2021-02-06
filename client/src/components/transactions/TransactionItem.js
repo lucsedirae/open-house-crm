@@ -1,5 +1,6 @@
 //* Dependencies
 import React, { useContext } from "react";
+import Moment from "moment";
 
 //* Material-UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
@@ -39,9 +40,10 @@ const TransactionItem = ({ selectedTrxId, transaction }) => {
     dateOpened,
     dateClosed,
     expectedCloseDate,
+    note,
   } = transaction;
 
-   //* Returns JSX to DOM 
+  //* Returns JSX to DOM
   return (
     <Container style={{ padding: "3rem" }}>
       <Paper>
@@ -54,17 +56,28 @@ const TransactionItem = ({ selectedTrxId, transaction }) => {
               background: typeCheck(type),
               color: "white",
               fontFamily: "Big Shoulders Display",
-              fontWeight: "800"
+              fontWeight: "800",
             }}
           />
         </Typography>
         <Divider />
         <Typography align="center" variant="body1">
-          Revenue: {revenue} - Expenses: {cost} - Profit {revenue - cost}
+          Revenue: ${revenue} - Expenses: ${cost} - Profit ${revenue - cost}
+        </Typography>
+        <br />
+        <Typography align="center" variant="body1">
+          Date Opened: {Moment(dateOpened).format("MM/DD/YYYY")} - Expected
+          Close Date: {Moment(expectedCloseDate).format("MM/DD/YYYY")}
+        </Typography>
+        <Typography align="center" variant="body1">
+          Date Closed:{" "}
+          {dateClosed
+            ? Moment(dateClosed).format("MM/DD/YYYY")
+            : "Open Transaction"}
         </Typography>
         <Divider />
         <Typography align="center" variant="body1">
-          Date Opened: {dateOpened} - Expected Close Date: {expectedCloseDate}
+          Notes: {note}
         </Typography>
       </Paper>
     </Container>

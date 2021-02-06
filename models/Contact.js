@@ -45,6 +45,9 @@ const ContactSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  note: {
+    type: String
+  }
 });
 
 module.exports = mongoose.model("contact", ContactSchema);
