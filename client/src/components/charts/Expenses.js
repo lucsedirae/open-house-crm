@@ -39,133 +39,85 @@ const useStyles = makeStyles({
 const Expenses = () => {
 	const [transaction, setTransaction] = useState([]);
 	const [transactionData, setTransactionData] = useState([]);
-	const [annualTrxData, setAnnualTrxData] = useState(null);
+	const [annualTrxData, setAnnualTrxData] = useState([]);
 
 	useEffect(() => {
-		// getTransactionCost();
 		getTransactionData();
 	}, []);
 
 	// const getTransactionCost = async () => {
 	// 	const res = await axios.get("/api/transactions");
 	// 	setTransactionData(
-	// 		res.data.map((transaction) => {
+	// 		console.log(res.data),
+	// 		res.data.map((transactions) => {
+	// 			console.log(transactions);
 	// 			return {
-	// 				date: moment.utc(transaction.dateOpened).format("MMM"),
-	// 				cost: transaction.cost,
+	// 				date: moment.utc(transactions.dateOpened).format("MMM"),
+	// 				cost: transactions.cost,
 	// 			};
 	// 		})
 	// 	);
 	// };
+	// console.log(transactionData);
+	console.log(transactionData);
 
 	const getTransactionData = async () => {
 		const res = await axios.get("/api/transactions");
-		setTransactionData(
-			res.data.map((transaction) => {
-				return {
-					date: moment.utc(transaction.dateOpened).format("MMM"),
-					cost: transaction.cost,
-				};
-			})
-		);
-		transactionData != null && transactionData.length != 0
-			? transactionData.map((transaction) => {
-					switch (transaction.date) {
-						case "Jan":
-							setAnnualTrxData({
-								date: transaction.date,
-								cost: +transactionData.cost,
-								...annualTrxData,
-							});
-						case "Feb":
-							setAnnualTrxData({
-								date: transaction.date,
-								feb: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Mar":
-							setAnnualTrxData({
-								date: transaction.date,
-								mar: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Apr":
-							setAnnualTrxData({
-								date: transaction.date,
-								apr: +transaction.cost,
-								...annualTrxData,
-							});
-						case "May":
-							setAnnualTrxData({
-								date: transaction.date,
-								may: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Jun":
-							setAnnualTrxData({
-								date: transaction.date,
-								jun: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Jul":
-							setAnnualTrxData({
-								date: transaction.date,
-								jul: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Aug":
-							setAnnualTrxData({
-								date: transaction.date,
-								aug: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Sep":
-							setAnnualTrxData({
-								date: transaction.date,
-								sep: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Oct":
-							setAnnualTrxData({
-								date: transaction.date,
-								oct: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Nov":
-							setAnnualTrxData({
-								date: transaction.date,
-								nov: +transaction.cost,
-								...annualTrxData,
-							});
-						case "Dec":
-							setAnnualTrxData({
-								date: transaction.date,
-								dec: +transaction.cost,
-								...annualTrxData,
-							});
-						default:
-							// console.log(
-							// 	transactionData.map((transaction) => {
-							// 		console.log(transaction.date, transaction.cost);
-							// 	}),
-							transactionData.map(
-								(transaction) => {
-									console.log(transaction.date, transaction.cost);
-								},
-								// console.log(transaction),
-								console.log(annualTrxData)
-							);
-					}
-			  })
-			: console.log("Your code sucks");
+		console.log(res.data);
+		const theTransactions = [];
+		res.data.map((transactions) => {
+			let month = moment.utc(transactions.dateOpened).format("MMMM");
+			console.log(month);
+			let cost = transactions.cost;
+			console.log(transactions.cost);
+			let charted = [
+				{
+					January: 0,
+					February: 0,
+					March: 0,
+					April: 0,
+					May: 0,
+					June: 0,
+					July: 0,
+					August: 0,
+					September: 0,
+					October: 0,
+					November: 0,
+					December: 0,
+				},
+			];
+
+			switch (month) {
+				case "January":
+					charted.month += cost;
+				case "February":
+					charted.month += cost;
+				case "March":
+					charted.month += cost;
+				case "April":
+					charted.month += cost;
+				case "May":
+					charted.month += cost;
+				case "June":
+					charted.month += cost;
+				case "July":
+					charted.month += cost;
+				case "August":
+					charted.month += cost;
+				case "September":
+					charted.month += cost;
+				case "October":
+					charted.month += cost;
+				case "November":
+					charted.month += cost;
+				case "December":
+					charted.month += cost;
+			}
+		});
 	};
 
-	console.log(annualTrxData);
-
 	const data = {
-		labels: transactionData.map((transactions) => {
-			return transactions.date;
-		}),
+		labels: "",
 		datasets: [
 			{
 				label: "Expenses",
@@ -174,7 +126,7 @@ const Expenses = () => {
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: annualTrxData,
+				data: "",
 			},
 		],
 		options: {
