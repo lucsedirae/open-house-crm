@@ -51,6 +51,7 @@ export const InventoryItem = ({
 
   const onDelete = () => {
     deleteInventory(inventoryItem);
+    //! clear current isnt running/working
     clearCurrent();
   };
 
