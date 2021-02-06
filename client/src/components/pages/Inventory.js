@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const Inventory = () => {
   //* Initializes styling classes
   const classes = useStyles();
+  let currentInv = null;
 
   //* Initializes state
   const authContext = useContext(AuthContext);
@@ -59,6 +60,11 @@ const Inventory = () => {
     setInventory(data);
   };
 
+  const addInventory = async (inventory) => {
+    const res = await axios.post('/api/inventory', inventory);
+    getInventory();
+  };
+
   const updateInventory = async (inventory) => {
     const res = await axios.put(`/api/inventory/${inventory._id}`, inventory);
     const data = res.data;
@@ -68,7 +74,13 @@ const Inventory = () => {
   const deleteInventory = async (inventoryItem) => {
     //console.log(inventoryItem);
     const res = await axios.delete(`/api/inventory/${inventoryItem._id}`);
+    clearCurrent();
     getInventory();
+  };
+
+  const clearCurrent = () => {
+    currentInv = null;
+    return currentInv;
   };
 
   //* Authenticates user token and retrieves inventory list
@@ -93,7 +105,11 @@ const Inventory = () => {
         inventoryLst={inventoryLst}
         deleteInventory={deleteInventory}
       />
-      <InventoryFormModal updateInventory={updateInventory} />
+      <InventoryFormModal
+        updateInventory={updateInventory}
+        clearCurrent={clearCurrent}
+        addInventory={addInventory}
+      />
     </Container>
   );
 };

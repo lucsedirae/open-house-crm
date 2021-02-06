@@ -13,7 +13,7 @@ import Spinner from '../layout/Spinner';
 import InventoryItem from '../inventory/InventoryItem';
 
 //* State context
-import InventoryContext from '../../context/inventory/inventoryContext';
+// import InventoryContext from '../../context/inventory/inventoryContext';
 
 const columns = [
   { field: 'name', headerName: 'Name', width: 130 },
@@ -30,7 +30,7 @@ const columns = [
 ];
 
 const InventoryGrid = ({ inventoryLst, deleteInventory }) => {
-  const inventoryContext = useContext(InventoryContext);
+  // const inventoryContext = useContext(InventoryContext);
   const [selectedInvId, setSelectedInvId] = useState(null);
   // const [inventoryLst, setInventory] = useState([]);
   const [currentInv, setCurrentInv] = useState(null);
@@ -44,18 +44,6 @@ const InventoryGrid = ({ inventoryLst, deleteInventory }) => {
       }
     });
   };
-
-  //* Retrieves inventory from MongoDB
-  // const getInventory = async () => {
-  //   const res = await axios.get('/api/inventory');
-  //   const data = res.data;
-  //   setInventory(data);
-  // };
-
-  //* Gets inventory from MongoDB
-  // useEffect(() => {
-  //   getInventory();
-  // }, []);
 
   //* Returns JSX to DOM if inventory is empty
   if (inventoryLst !== null && inventoryLst.length === 0) {

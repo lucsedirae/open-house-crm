@@ -44,15 +44,13 @@ export const InventoryItem = ({
 
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
-  const { clearCurrent, setCurrent } = inventoryContext;
+  const { setCurrent } = inventoryContext;
 
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
 
   const onDelete = () => {
     deleteInventory(inventoryItem);
-    //! clear current isnt running/working
-    clearCurrent();
   };
 
   const onClick = () => {
