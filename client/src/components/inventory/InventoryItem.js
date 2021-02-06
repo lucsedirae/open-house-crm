@@ -34,19 +34,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const InventoryItem = ({ selectedInvId, inventoryItem }) => {
+export const InventoryItem = ({
+  selectedInvId,
+  inventoryItem,
+  deleteInventory,
+}) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
-  const { deleteInventory, clearCurrent, setCurrent } = inventoryContext;
+  const { clearCurrent, setCurrent } = inventoryContext;
 
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
 
   const onDelete = () => {
-    deleteInventory(selectedInvId);
+    deleteInventory(inventoryItem);
     clearCurrent();
   };
 

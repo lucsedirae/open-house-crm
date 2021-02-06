@@ -29,7 +29,7 @@ const columns = [
   { field: 'status', headerName: 'Status', flex: 0.2 },
 ];
 
-const InventoryGrid = ({ inventoryLst }) => {
+const InventoryGrid = ({ inventoryLst, deleteInventory }) => {
   const inventoryContext = useContext(InventoryContext);
   const [selectedInvId, setSelectedInvId] = useState(null);
   // const [inventoryLst, setInventory] = useState([]);
@@ -74,6 +74,7 @@ const InventoryGrid = ({ inventoryLst }) => {
           <InventoryItem
             selectedInvId={selectedInvId}
             inventoryItem={currentInv}
+            deleteInventory={deleteInventory}
           />
         </Fragment>
       ) : (

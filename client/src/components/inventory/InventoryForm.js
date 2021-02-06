@@ -81,13 +81,9 @@ const InventoryForm = ({ handleClose, updateInventory }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
-      //!this works
       addInventory(inventory);
     } else {
-      //! this doesnt work
-      let inventoryId = inventory._id;
-      updateInventory(inventoryId);
-      //console.log(inventory);
+      updateInventory(inventory);
     }
 
     setInventory({

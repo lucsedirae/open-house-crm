@@ -19,6 +19,7 @@ import NavPanel from '../layout/NavPanel';
 
 //* State context
 import AuthContext from '../../context/auth/authContext';
+import { CLEAR_CURRENT } from '../../context/types';
 // import InventoryContext from '../../context/inventory/inventoryContext';
 
 //* Defines styles to be served via makeStyles MUI hook
@@ -58,10 +59,16 @@ const Inventory = () => {
     setInventory(data);
   };
 
-  const updateInventory = async (inventoryId) => {
-    const res = await axios.put('/api/inventory/' + inventoryId);
+  const updateInventory = async (inventory) => {
+    const res = await axios.put(`/api/inventory/${inventory._id}`, inventory);
     const data = res.data;
-    console.log(data);
+    getInventory();
+  };
+
+  const deleteInventory = async (inventoryItem) => {
+    //console.log(inventoryItem);
+    const res = await axios.delete(`/api/inventory/${inventoryItem._id}`);
+    getInventory();
   };
 
   //* Authenticates user token and retrieves inventory list
@@ -82,7 +89,10 @@ const Inventory = () => {
           <NavPanel />
         </Grid>
       </Grid>
-      <InventoryGrid inventoryLst={inventoryLst} />
+      <InventoryGrid
+        inventoryLst={inventoryLst}
+        deleteInventory={deleteInventory}
+      />
       <InventoryFormModal updateInventory={updateInventory} />
     </Container>
   );
