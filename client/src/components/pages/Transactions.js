@@ -1,5 +1,6 @@
 //* Dependencies
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
@@ -14,6 +15,7 @@ import FloatingAction from "../layout/FloatingAction";
 import TransacationFormModal from "../transactions/TransactionFormModal";
 import TransacationForm from "../transactions/TransactionForm";
 import NavPanel from "../layout/NavPanel";
+import Spinner from "../layout/Spinner";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
@@ -37,9 +39,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//* Exported component
 const Transactions = () => {
   //* Initializes styling classes
   const classes = useStyles();
+  //! State and functions below this line are experimental
+  const [transactions, setTransactions] = useState([]);
+  const [currentTransaction, setCurrentTrx] = useState(null);
+  const [selectedTrxId, setSelectedTrxId] = useState(null);
+
+  //* Retrieves transactions from MongoDB
+  const getTransactions = async () => {
+    const res = await axios.get("/api/transactions");
+    const data = res.data;
+    setTransactions(data);
+  };
+  console.log(transactions);
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
+  //* Compares the selected transaction id to objects in transactions to pull the full object
+  //* out that matches the selected id.
+  const findCurrentTrx = (id) => {
+    transactions.map((transaction) => {
+      if (transaction._id == id) {
+        setCurrentTrx(transaction);
+      }
+    });
+  };
 
   //* Initializes state
   const authContext = useContext(AuthContext);
@@ -61,7 +90,17 @@ const Transactions = () => {
           <NavPanel />
         </Grid>
       </Grid>
-      <TransactionsGrid />
+      {transactions !== null ? (
+        <TransactionsGrid
+          transactions={transactions}
+          currentTransaction={currentTransaction}
+          selectedTrxId={selectedTrxId}
+          setSelectedTrxId={setSelectedTrxId}
+          findCurrentTrx={findCurrentTrx}
+        />
+      ) : (
+        <Spinner />
+      )}
 
       <TransacationFormModal />
     </Container>

@@ -13,7 +13,7 @@ import FloatingAction from "../layout/FloatingAction";
 import ModalContext from "../../context/modal/modalContext";
 
 //* Exported component
-export default function TransactionFormModal() {
+export default function TransactionFormModal({ currentTransaction }) {
   //* Initiallizes state
   const modalContext = useContext(ModalContext);
   const { open, handleOpen, handleClose } = modalContext;
@@ -29,7 +29,10 @@ export default function TransactionFormModal() {
         aria-labelledby="form-dialog-title"
       >
         <DialogContent>
-          <TransactionForm handleClose={handleClose} />
+          <TransactionForm
+            handleClose={handleClose}
+            currentTransaction={currentTransaction}
+          />
         </DialogContent>
       </Dialog>
     </div>

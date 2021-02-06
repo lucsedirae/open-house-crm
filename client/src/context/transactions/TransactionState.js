@@ -55,7 +55,8 @@ const TransactionState = (props) => {
 
       dispatch({ type: ADD_TRANSACTION, payload: res.data });
     } catch (err) {
-      dispatch({ type: TRANSACTION_ERROR, payload: err.response.msg });
+      // dispatch({ type: TRANSACTION_ERROR, payload: err.response.msg });
+      console.log("Error")
     }
   };
 
