@@ -157,7 +157,7 @@ const Expenses = () => {
 							);
 					}
 			  })
-			: "loading...";
+			: console.log("Your code sucks");
 	};
 
 	console.log(annualTrxData);
