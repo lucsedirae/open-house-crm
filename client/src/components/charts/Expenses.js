@@ -59,7 +59,6 @@ const Expenses = () => {
 	// 	);
 	// };
 	// console.log(transactionData);
-	console.log(transactionData);
 
 	const getTransactionData = async () => {
 		const res = await axios.get("/api/transactions");
@@ -113,6 +112,7 @@ const Expenses = () => {
 				case "December":
 					charted.month += cost;
 			}
+			console.log(charted);
 		});
 	};
 
