@@ -40,18 +40,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // Exported Component
-const InventoryForm = ({ handleClose }) => {
+const InventoryForm = ({ handleClose, updateInventory }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //*Initializes context state
   const inventoryContext = useContext(InventoryContext);
-  const {
-    addInventory,
-    updateInventory,
-    clearCurrent,
-    current,
-  } = inventoryContext;
+  const { addInventory, clearCurrent, current } = inventoryContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -90,8 +85,9 @@ const InventoryForm = ({ handleClose }) => {
       addInventory(inventory);
     } else {
       //! this doesnt work
-      updateInventory(inventory);
-      //!replace with axios call?
+      let inventoryId = inventory._id;
+      updateInventory(inventoryId);
+      //console.log(inventory);
     }
 
     setInventory({
@@ -117,7 +113,6 @@ const InventoryForm = ({ handleClose }) => {
   };
 
   return (
-    //! Breaks on submit through updateinventory in inventory state
     <form className={classes.root} autoComplete='off' onSubmit={onSubmit}>
       <Typography variant='h5' style={{ textAlign: 'center' }}>
         {current ? 'Edit Inventory' : 'Add Inventory'}

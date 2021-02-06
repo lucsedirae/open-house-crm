@@ -58,6 +58,12 @@ const Inventory = () => {
     setInventory(data);
   };
 
+  const updateInventory = async (inventoryId) => {
+    const res = await axios.put('/api/inventory/' + inventoryId);
+    const data = res.data;
+    console.log(data);
+  };
+
   //* Authenticates user token and retrieves inventory list
   useEffect(() => {
     authContext.loadUser();
@@ -77,7 +83,7 @@ const Inventory = () => {
         </Grid>
       </Grid>
       <InventoryGrid inventoryLst={inventoryLst} />
-      <InventoryFormModal />
+      <InventoryFormModal updateInventory={updateInventory} />
     </Container>
   );
 };
