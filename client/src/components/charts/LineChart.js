@@ -32,19 +32,24 @@ const useStyles = makeStyles({
 	},
 });
 
+let charted = {
+	January: 0,
+	February: 0,
+	March: 0,
+	April: 0,
+	May: 0,
+	June: 0,
+	July: 0,
+	August: 0,
+	September: 0,
+	October: 0,
+	November: 0,
+	December: 0,
+};
+
 //* Exported component
 const LineChart = () => {
-	const [transaction, setTransaction] = useState([]);
-
-	const {
-		trxName,
-		type,
-		cost,
-		revenue,
-		dateOpened,
-		dateClosed,
-		expectedCloseDate,
-	} = transaction;
+	const [transactionData, setTransactionData] = useState([]);
 
 	useEffect(() => {
 		getTransactionCost();
@@ -52,34 +57,71 @@ const LineChart = () => {
 	const getTransactionCost = async () => {
 		const res = await axios.get("http://localhost:3000/api/transactions");
 
-		const transactionData = res.data.map((transaction) => {
-			return {
-				x: moment.utc(transaction.dateOpened).format("MMMM"),
-				y: transaction.revenue - transaction.cost,
-			};
+		res.data.map((transactions) => {
+			console.log(transactions.cost);
 		});
+		res.data.map((transactions) => {
+			let month = moment.utc(transactions.dateOpened).format("MMMM");
+			let profit = transactions.revenue - transactions.cost;
+			console.log(transactions);
 
-		// console.log(chartData);
-		// console.log(res.data);
-		setTransaction(transactionData);
-		// console.log(transactionData);
+			switch (month) {
+				case "January":
+					return (charted.January += profit);
+				case "February":
+					return (charted.February += profit);
+				case "March":
+					return (charted.March += profit);
+				case "April":
+					return (charted.April += profit);
+				case "May":
+					return (charted.May += profit);
+				case "June":
+					return (charted.June += profit);
+				case "July":
+					return (charted.July += profit);
+				case "August":
+					return (charted.August += profit);
+				case "September":
+					return (charted.September += profit);
+				case "October":
+					return (charted.October += profit);
+				case "November":
+					return (charted.November += profit);
+				case "December":
+					return (charted.December += profit);
+			}
+		});
+		console.log(Object.values(charted));
+		Object.values(charted);
+		setTransactionData(charted);
 	};
+	console.log(transactionData);
 
 	const data = {
-		labels: transaction.map((transactions) => {
-			return transactions.x;
-		}),
+		labels: [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+		],
 		datasets: [
 			{
 				label: "Rate of Profit",
 				borderColor: "rgb(11,227,210)",
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: transaction.map((transactions) => {
-					return transactions.y;
-				}),
-				backgroundColor: (transactions) =>
-					transactions <= 0 ? "red" : "green",
+				data: Object.values(transactionData),
+				backgroundColor: (transactionsData) =>
+					transactionsData <= 0 ? "red" : "green",
 				pointStyle: "rect",
 				pointRadius: 5,
 				fill: false,
