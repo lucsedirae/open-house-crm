@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     textAlign: "center",
-    marginTop: "1rem",
+    marginTop: "5rem",
     marginBottom: "1rem",
     fontFamily: "Oswald",
     fontWeight: "500"

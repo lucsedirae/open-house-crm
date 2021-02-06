@@ -21,7 +21,7 @@ const style = {
   position: "fixed",
   backgroundColor: "#008B8B",
   color: "white",
-  border: "3px solid grey",
+  border: "3px solid darkslategrey ",
   width: "4rem",
   height: "4rem"
 };
