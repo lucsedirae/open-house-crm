@@ -54,6 +54,11 @@ const InventoryGrid = ({ inventoryLst, deleteInventory }) => {
     );
   }
 
+  //TODO I want when this renders after deleting or updating an item to check currentInv status
+  // useEffect(() => {
+  //!doesnt allow useeffect; error "Rendered more hooks than during the previous render”
+  // }, []);
+
   //* Returns JSX to DOM if inventory is not empty
   return (
     <Fragment>

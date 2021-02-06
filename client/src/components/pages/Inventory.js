@@ -52,7 +52,7 @@ const Inventory = () => {
   const [inventoryLst, setInventory] = useState([]);
   // const inventoryContext = useContext(InventoryContext);
 
-  //*TODO funcionize Axios calls to do crud operations on inventory and then prop drill down
+  //* Funcionized Axios calls to do crud operations on inventory and then prop drill down
   //* Retrieves inventory from MongoDB
   const getInventory = async () => {
     const res = await axios.get('/api/inventory');
@@ -65,6 +65,7 @@ const Inventory = () => {
     getInventory();
   };
 
+  //TODO inventoryItem doesnt update
   const updateInventory = async (inventory) => {
     const res = await axios.put(`/api/inventory/${inventory._id}`, inventory);
     const data = res.data;
@@ -75,12 +76,19 @@ const Inventory = () => {
     //console.log(inventoryItem);
     const res = await axios.delete(`/api/inventory/${inventoryItem._id}`);
     clearCurrent();
+    inventoryItem = {
+      name: '',
+      purchased: '',
+      location: '',
+      cost: '',
+      value: '',
+      status: '',
+    };
     getInventory();
   };
 
   const clearCurrent = () => {
     currentInv = null;
-    return currentInv;
   };
 
   //* Authenticates user token and retrieves inventory list
@@ -104,6 +112,7 @@ const Inventory = () => {
       <InventoryGrid
         inventoryLst={inventoryLst}
         deleteInventory={deleteInventory}
+        currentInv={currentInv}
       />
       <InventoryFormModal
         updateInventory={updateInventory}
