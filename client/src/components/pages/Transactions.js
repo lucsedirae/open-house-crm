@@ -21,20 +21,20 @@ import AuthContext from "../../context/auth/authContext";
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    marginBottom: "1rem",
+    marginBottom: "1rem"
   },
   header: {
     textAlign: "center",
-    marginTop: "4rem",
+    marginTop: "5rem",
     marginBottom: "1rem",
-    fontFamily: "Oswald",
-    fontWeight: "500",
-  },
+    fontFamily: "Big Shoulders Display",
+    fontWeight: "700"
+  }
 }));
 
 const Transactions = () => {
@@ -53,7 +53,7 @@ const Transactions = () => {
   return (
     <Container>
       <Typography variant="h4" className={classes.header}>
-        Transacations
+        Transactions
       </Typography>
 
       <Grid container spacing={3} alignItems="center" justify="center">

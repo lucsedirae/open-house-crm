@@ -33,8 +33,10 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     textAlign: "center",
-    marginTop: "1rem",
-    marginBottom: "1rem"
+    marginTop: "5rem",
+    marginBottom: "1rem",
+    fontFamily: "Big Shoulders Display",
+    fontWeight: "700"
   }
 }));
 
@@ -84,11 +86,7 @@ const Forum = () => {
   //* Returns JSX to DOM
   return (
     <Container>
-      <Typography
-        variant="h4"
-        style={{ marginTop: "7rem" }}
-        className={classes.header}
-      >
+      <Typography variant="h4" className={classes.header}>
         Agent Forum
       </Typography>
 
