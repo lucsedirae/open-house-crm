@@ -1,10 +1,10 @@
 //* Dependencies
 import React, {
-	useContext,
-	useEffect,
-	Fragment,
-	useState,
-	useReducer,
+  useContext,
+  useEffect,
+  Fragment,
+  useState,
+  useReducer,
 } from "react";
 import axios from "axios";
 import TransactionReducer from "../../context/transactions/transactionReducer";
@@ -17,22 +17,22 @@ import { Bar } from "react-chartjs-2";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
-	root: {
-		minWidth: 275,
-		marginBottom: "1rem",
-	},
-	title: {
-		textAlign: "center",
-	},
-	pos: {
-		marginBottom: "1rem",
-	},
-	buttonGroup: {
-		justifyContent: "center",
-	},
-	Box: {
-		marginTop: "1rem",
-	},
+  root: {
+    minWidth: 275,
+    marginBottom: "1rem",
+  },
+  title: {
+    textAlign: "center",
+  },
+  pos: {
+    marginBottom: "1rem",
+  },
+  buttonGroup: {
+    justifyContent: "center",
+  },
+  Box: {
+    marginTop: "1rem",
+  },
 });
 
 //* Exported component
@@ -150,19 +150,19 @@ const Expenses = () => {
 	//* Initializes styling classes
 	const classes = useStyles();
 
-	//* Returns JSX to DOM
-	return (
-		<div>
-			<Bar
-				data={data}
-				width={"380em"}
-				height={"380em"}
-				options={{
-					maintainAspectRatio: true,
-				}}
-			/>{" "}
-		</div>
-	);
+  //* Returns JSX to DOM
+  return (
+    <div>
+      <Bar
+        data={data}
+        width={"380em"}
+        height={"380em"}
+        options={{
+          maintainAspectRatio: true,
+        }}
+      />{" "}
+    </div>
+  );
 };
 
 export default Expenses;

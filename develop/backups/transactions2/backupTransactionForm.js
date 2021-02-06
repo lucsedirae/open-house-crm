@@ -1,6 +1,5 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
@@ -11,6 +10,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+
+//* State context
+import TransactionContext from "../../context/transactions/transactionContext";
 import { Divider } from "@material-ui/core";
 
 //* Defines styles to be served via makeStyles MUI hook
@@ -35,6 +37,32 @@ const TransactionForm = ({ handleClose }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
+  //* Initializes context state
+  const transactionContext = useContext(TransactionContext);
+  const {
+    addTransaction,
+    updateTransaction,
+    clearCurrent,
+    current,
+  } = transactionContext;
+
+  useEffect(() => {
+    if (current !== null) {
+      setTransaction(current);
+    } else {
+      setTransaction({
+        trxName: "",
+        type: "",
+        cost: "",
+        revenue: "",
+        dateOpened: "",
+        dateClosed: "",
+        expectedCloseDate: "",
+        note: "",
+      });
+    }
+  }, [transactionContext, current]);
+
   const [transaction, setTransaction] = useState({
     trxName: "",
     type: "",
@@ -44,7 +72,6 @@ const TransactionForm = ({ handleClose }) => {
     dateClosed: "",
     expectedCloseDate: "",
     note: "",
-    current: false,
   });
 
   const {
@@ -56,35 +83,35 @@ const TransactionForm = ({ handleClose }) => {
     dateClosed,
     expectedCloseDate,
     note,
-    current,
   } = transaction;
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (current === false) {
-      return addTransaction(transaction);
-    } else {
-      updateTransaction(transaction);
-    }
-  };
 
   const onChange = (e) => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });
   };
 
-  const addTransaction = async (transaction) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const res = await axios.post("/api/transactions", transaction, config);
-    
-    // return res;
-    //   console.log(res.data);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (current === null) {
+      addTransaction(transaction);
+    } else {
+      updateTransaction(transaction);
+    }
+
+    setTransaction({
+      trxName: "",
+      type: "",
+      cost: "",
+      revenue: "",
+      dateOpened: "",
+      dateClosed: "",
+      expectedCloseDate: "",
+      note: "",
+    });
   };
 
-  //! updateTransaction
+  const clearAll = () => {
+    clearCurrent();
+  };
 
   //* Returns JSX to DOM
   return (

@@ -1,6 +1,6 @@
 {
   "name": "OpenHouseCRM",
-  "version": "0.3.0",
+  "version": "0.8.3",
   "description": "Open Source Contact Management Platform\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D",
   "main": "server.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "prod": "concurrently \"npm run start\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "LucSedirae",
@@ -38,3 +39,4 @@
     "nodemon": "^2.0.6"
   }
 }
+ 
