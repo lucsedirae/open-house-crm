@@ -86,9 +86,12 @@ const InventoryForm = ({ handleClose }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
+      //!this works
       addInventory(inventory);
     } else {
+      //! this doesnt work
       updateInventory(inventory);
+      //!replace with axios call?
     }
 
     setInventory({
@@ -114,6 +117,7 @@ const InventoryForm = ({ handleClose }) => {
   };
 
   return (
+    //! Breaks on submit through updateinventory in inventory state
     <form className={classes.root} autoComplete='off' onSubmit={onSubmit}>
       <Typography variant='h5' style={{ textAlign: 'center' }}>
         {current ? 'Edit Inventory' : 'Add Inventory'}

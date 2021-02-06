@@ -1,7 +1,7 @@
 //* Dependencies
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Moment from 'moment';
-import axios from 'axios';
+//import axios from 'axios';
 
 //* Material-UI components, hooks, and icons
 import Typography from '@material-ui/core/Typography';
@@ -29,10 +29,10 @@ const columns = [
   { field: 'status', headerName: 'Status', flex: 0.2 },
 ];
 
-const InventoryGrid = () => {
+const InventoryGrid = ({ inventoryLst }) => {
   const inventoryContext = useContext(InventoryContext);
   const [selectedInvId, setSelectedInvId] = useState(null);
-  const [inventoryLst, setInventory] = useState([]);
+  // const [inventoryLst, setInventory] = useState([]);
   const [currentInv, setCurrentInv] = useState(null);
 
   //const { inventory, getInventory, loading } = inventoryContext;
@@ -46,16 +46,16 @@ const InventoryGrid = () => {
   };
 
   //* Retrieves inventory from MongoDB
-  const getInventory = async () => {
-    const res = await axios.get('/api/inventory');
-    const data = res.data;
-    setInventory(data);
-  };
+  // const getInventory = async () => {
+  //   const res = await axios.get('/api/inventory');
+  //   const data = res.data;
+  //   setInventory(data);
+  // };
 
   //* Gets inventory from MongoDB
-  useEffect(() => {
-    getInventory();
-  }, []);
+  // useEffect(() => {
+  //   getInventory();
+  // }, []);
 
   //* Returns JSX to DOM if inventory is empty
   if (inventoryLst !== null && inventoryLst.length === 0) {

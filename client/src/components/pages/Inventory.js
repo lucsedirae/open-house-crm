@@ -1,18 +1,19 @@
 //* Dependencies
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import '../../App.css';
+import axios from 'axios';
 
 //* Material-UI components, hooks, and icons
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 //* Custom components
-import InventoryForm from '../inventory/InventoryForm';
+// import InventoryForm from '../inventory/InventoryForm';
 import InventoryGrid from '../inventory/InventoryGrid';
-import InventoryItem from '../inventory/InventoryItem';
+// import InventoryItem from '../inventory/InventoryItem';
 import InventoryFormModal from '../inventory/InventoryFormModal';
 import NavPanel from '../layout/NavPanel';
 
@@ -46,13 +47,22 @@ const Inventory = () => {
 
   //* Initializes state
   const authContext = useContext(AuthContext);
+  const [inventoryLst, setInventory] = useState([]);
   // const inventoryContext = useContext(InventoryContext);
 
-  //* Authenticates user token
+  //*TODO funcionize Axios calls to do crud operations on inventory and then prop drill down
+  //* Retrieves inventory from MongoDB
+  const getInventory = async () => {
+    const res = await axios.get('/api/inventory');
+    const data = res.data;
+    setInventory(data);
+  };
+
+  //* Authenticates user token and retrieves inventory list
   useEffect(() => {
     authContext.loadUser();
     // eslint-disable-next-line
-    //getInventory();
+    getInventory();
   }, []);
 
   //*Returns JSX to DOM if inventory is not empty
@@ -66,7 +76,7 @@ const Inventory = () => {
           <NavPanel />
         </Grid>
       </Grid>
-      <InventoryGrid />
+      <InventoryGrid inventoryLst={inventoryLst} />
       <InventoryFormModal />
     </Container>
   );
