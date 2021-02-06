@@ -44,6 +44,20 @@ const Expenses = () => {
 		getTransactionData();
 	}, []);
 
+	// const getTransactionCost = async () => {
+	// 	const res = await axios.get("/api/transactions");
+	// 	setTransactionData(
+	// 		// console.log(res.data),
+	// 		res.data.map((transactions) => {
+	// 			// console.log(transactions);
+	// 			return {
+	// 				date: moment.utc(transactions.dateOpened).format("MMM"),
+	// 				cost: transactions.cost,
+	// 			};
+	// 		})
+	// 	);
+	// };
+	// console.log(transactionData);
 	let charted = {
 		January: 0,
 		February: 0,
@@ -63,77 +77,54 @@ const Expenses = () => {
 		const res = await axios.get("/api/transactions");
 		const theTransactions = [];
 		res.data.map((transactions) => {
-			console.log(transactions.cost);
-		});
-		res.data.map((transactions) => {
 			let month = moment.utc(transactions.dateOpened).format("MMMM");
 			let cost = transactions.cost;
-			console.log(transactions);
 
 			switch (month) {
 				case "January":
-					return (charted.January += cost);
+					charted.January += cost;
 				case "February":
-					return (charted.February += cost);
+					charted.February += cost;
 				case "March":
-					return (charted.March += cost);
+					charted.March += cost;
 				case "April":
-					return (charted.April += cost);
+					charted.April += cost;
 				case "May":
-					return (charted.May += cost);
+					charted.May += cost;
 				case "June":
-					return (charted.June += cost);
+					charted.June += cost;
 				case "July":
-					return (charted.July += cost);
+					charted.July += cost;
 				case "August":
-					return (charted.August += cost);
+					charted.August += cost;
 				case "September":
-					return (charted.September += cost);
+					charted.September += cost;
 				case "October":
-					return (charted.October += cost);
+					charted.October += cost;
 				case "November":
-					return (charted.November += cost);
+					charted.November += cost;
 				case "December":
-					return (charted.December += cost);
+					charted.December += cost;
 			}
 		});
-		console.log(Object.values(charted));
-		Object.values(charted);
+		console.log(charted);
 		setTransactionData(charted);
 	};
 	console.log(transactionData);
 
 	const data = {
-		base: 0,
-		labels: [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-		],
-
+		labels: "",
 		datasets: [
 			{
-				base: 0,
 				label: "Expenses",
 				backgroundColor: "rgb(255,0,0)",
 				borderColor: "rgb(11,227,210)",
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-
-				data: Object.values(transactionData),
+				data: "",
 			},
 		],
-		base: 0,
 		options: {
 			scales: {
 				xAxes: [
@@ -141,7 +132,6 @@ const Expenses = () => {
 						type: "time",
 						time: { parser: "MMMM" },
 						display: true,
-						base: 0,
 					},
 				],
 			},
