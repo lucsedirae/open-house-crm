@@ -1,16 +1,16 @@
 //* Dependencies
-import React, { useContext } from 'react';
-import Dialog from '@material-ui/core/Dialog';
+import React, { useContext } from "react";
+import Dialog from "@material-ui/core/Dialog";
 
 //* Material UI components, hooks, and icons
-import DialogContent from '@material-ui/core/DialogContent';
+import DialogContent from "@material-ui/core/DialogContent";
 
 //* Custom components
-import InventoryForm from './InventoryForm';
-import FloatingAction from '../layout/FloatingAction';
+import InventoryForm from "./InventoryForm";
+import FloatingAction from "../layout/FloatingAction";
 
 //* State context
-import ModalContext from '../../context/modal/modalContext';
+import ModalContext from "../../context/modal/modalContext";
 
 //* Exported component
 export default function InventoryFormModal() {
@@ -21,12 +21,12 @@ export default function InventoryFormModal() {
   //* Returns JSX to DOM
   return (
     <div>
-      <FloatingAction handleClickOpen={handleOpen} />
+      <FloatingAction handleClickOpen={handleOpen} toolType={"inventory"} />
 
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby='form-dialog-title'
+        aria-labelledby="form-dialog-title"
       >
         <DialogContent>
           <InventoryForm handleClose={handleClose} />

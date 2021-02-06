@@ -21,7 +21,7 @@ export default function TransactionFormModal() {
   //* Returns JSX to DOM
   return (
     <div>
-      <FloatingAction handleClickOpen={handleOpen} />
+      <FloatingAction handleClickOpen={handleOpen} toolType={"transactions"} />
 
       <Dialog
         open={open}
