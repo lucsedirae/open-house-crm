@@ -79,7 +79,8 @@ const TransactionForm = ({ handleClose }) => {
       },
     };
     const res = await axios.post("/api/transactions", transaction, config);
-    return res;
+    
+    // return res;
     //   console.log(res.data);
   };
 

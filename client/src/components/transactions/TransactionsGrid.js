@@ -24,51 +24,59 @@ const columns = [
 ];
 
 //* Exported component
-const TransactionsGrid = () => {
-  const [transactions, setTransactions] = useState([]);
-  const [selectedTrxId, setSelectedTrxId] = useState(null);
-  const [currentTransaction, setCurrentTrx] = useState(null);
+const TransactionsGrid = ({
+  transactions,
+  setTransactions,
+  currentTransaction,
+  setCurrentTrx,
+  selectedTrxId,
+  setSelectedTrxId,
+  findCurrentTrx
+}) => {
+  // const [transactions, setTransactions] = useState([]);
+  // const [selectedTrxId, setSelectedTrxId] = useState(null);
+  // const [currentTransaction, setCurrentTrx] = useState(null);
 
-  //* Compares the selected transaction id to objects in transactions to pull the full object
-  //* out that matches the selected id.
-  const findCurrentTrx = (id) => {
-    transactions.map((transaction) => {
-      if (transaction._id == id) {
-        setCurrentTrx(transaction);
-      }
-    });
-  };
+  // //* Compares the selected transaction id to objects in transactions to pull the full object
+  // //* out that matches the selected id.
+  // const findCurrentTrx = (id) => {
+  //   transactions.map((transaction) => {
+  //     if (transaction._id == id) {
+  //       setCurrentTrx(transaction);
+  //     }
+  //   });
+  // };
 
-  //* Retrieves transactions from MongoDB
-  const getTransactions = async () => {
-    const res = await axios.get("/api/transactions");
-    const data = res.data;
-    setTransactions(data);
-  };
+  // //* Retrieves transactions from MongoDB
+  // const getTransactions = async () => {
+  //   const res = await axios.get("/api/transactions");
+  //   const data = res.data;
+  //   setTransactions(data);
+  // };
 
-  useEffect(() => {
-    getTransactions();
-  }, []);
-
-  //* Returns JSX to DOM if transactions is empty
-  if (transactions !== null && transactions.length === 0) {
-    return (
-      <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
+  // useEffect(() => {
+  //   getTransactions();
+  // }, []);
+    
+    //* Returns JSX to DOM if transactions is empty
+    if (transactions !== null && transactions.length === 0) {
+      return (
+        <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
         Transaction List is Empty!
       </Typography>
     );
   }
-
+  
   //* Returns JSX to DOM if transactions is not empty
   return (
     <Fragment>
       {currentTransaction !== null ? (
         <TransactionItem
-          selectedTrxId={selectedTrxId}
-          transaction={currentTransaction}
+        selectedTrxId={selectedTrxId}
+        transaction={currentTransaction}
         />
-      ) : (
-        <Typography align="center" variant="h5">
+        ) : (
+          <Typography align="center" variant="h5">
           Please select a transaction
         </Typography>
       )}
@@ -90,11 +98,11 @@ const TransactionsGrid = () => {
             onSelectionChange={(newSelection) => {
               findCurrentTrx(newSelection.rowIds);
             }}
-          />
+            />
         </Box>
       ) : (
         <Spinner />
-      )}
+        )}
     </Fragment>
   );
 };
