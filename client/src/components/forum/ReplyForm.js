@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //* Exported component
-const ReplyForm = ({ _id }) => {
+const ReplyForm = ({ _id, post }) => {
   //* react-toast-notifications custom hook
   const { addToast } = useToasts();
   //* Initializes styling classes
@@ -47,6 +47,7 @@ const ReplyForm = ({ _id }) => {
   };
 
   const onSubmit = async (e) => {
+    e.preventDefault();
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -61,7 +62,7 @@ const ReplyForm = ({ _id }) => {
     console.log(res);
 
     //axios call here
-    addToast("You posted a comment!", {
+    addToast(`You replied to ${post.name}'s post!`, {
       appearance: "success",
       autoDismiss: true
     });
@@ -75,7 +76,7 @@ const ReplyForm = ({ _id }) => {
   //* Returns JSX to DOM
   return (
     <form autoComplete="off" onSubmit={onSubmit} style={{ marginTop: "1rem" }}>
-      {/* <TextField
+      <TextField
         variant="outlined"
         required={true}
         type="text"
@@ -86,7 +87,7 @@ const ReplyForm = ({ _id }) => {
         value={name}
         onChange={onChange}
         style={{ marginBottom: "1rem" }}
-      /> */}
+      />
 
       <TextField
         fullWidth={true}

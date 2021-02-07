@@ -24,7 +24,7 @@ const PostItem = ({ post }) => {
             </h4>
             <p>{body}</p>
             <Replies replies={replies} />
-            <ReplyForm _id={_id} />
+            <ReplyForm _id={_id} post={post} />
           </Grid>
         </Grid>
       </Container>
