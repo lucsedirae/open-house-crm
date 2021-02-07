@@ -1,50 +1,55 @@
 //* Dependencies
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import "../../App.css";
-import Moment from "moment";
+import React, { Fragment, useState } from 'react';
+import Moment from 'moment';
+//import axios from 'axios';
 
 //* Material-UI components, hooks, and icons
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import { DataGrid } from "@material-ui/data-grid";
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { DataGrid } from '@material-ui/data-grid';
 
 //* Custom components
-import Spinner from "../layout/Spinner";
-import InventoryItem from "../inventory/InventoryItem";
+import Spinner from '../layout/Spinner';
+import InventoryItem from '../inventory/InventoryItem';
 
 //* State context
-import InventoryContext from "../../context/inventory/inventoryContext";
+// import InventoryContext from '../../context/inventory/inventoryContext';
 
 const columns = [
-  { field: "name", headerName: "Name", width: 130 },
+  { field: 'name', headerName: 'Name', width: 130 },
   {
-    field: "purchased",
-    type: "date",
-    headerName: "Purchased",
+    field: 'purchased',
+    type: 'date',
+    headerName: 'Purchased',
     flex: 0.2,
   },
-  { field: "location", headerName: "Location", flex: 0.2 },
-  { field: "cost", headerName: "Cost", flex: 0.2 },
-  { field: "value", headerName: "Value", flex: 0.2 },
-  { field: "status", headerName: "Status", flex: 0.2 },
+  { field: 'location', headerName: 'Location', flex: 0.2 },
+  { field: 'cost', headerName: 'Cost', flex: 0.2 },
+  { field: 'value', headerName: 'Value', flex: 0.2 },
+  { field: 'status', headerName: 'Status', flex: 0.2 },
 ];
 
-const InventoryGrid = () => {
-  const inventoryContext = useContext(InventoryContext);
-  const [selectedInv, setSelectedInv] = useState(null);
+const InventoryGrid = ({
+  inventoryLst,
+  deleteInventory,
+  currentInv,
+  setCurrentInv,
+}) => {
+  const [selectedInvId, setSelectedInvId] = useState(null);
+  //const [currentInv, setCurrentInv] = useState(null);
 
-  const { inventory, getInventory, loading } = inventoryContext;
-
-  //* Gets inventory from MongoDB
-  useEffect(() => {
-    getInventory();
-    // eslint-disable-next-line
-  }, []);
+  const findCurrentInv = (id) => {
+    inventoryLst.map((inventoryItem) => {
+      if (inventoryItem._id == id) {
+        setCurrentInv(inventoryItem);
+      }
+    });
+  };
 
   //* Returns JSX to DOM if inventory is empty
-  if (inventory !== null && inventory.length === 0 && !loading) {
+  if (inventoryLst !== null && inventoryLst.length === 0) {
     return (
-      <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
+      <Typography variant='h4' align='center' style={{ marginTop: '3rem' }}>
         Inventory List is Empty!
       </Typography>
     );
@@ -53,31 +58,38 @@ const InventoryGrid = () => {
   //* Returns JSX to DOM if inventory is not empty
   return (
     <Fragment>
-      {selectedInv !== null ? (
+      {currentInv !== null ? (
         <Fragment>
-          <InventoryItem selectedInv={selectedInv} />
+          <InventoryItem
+            selectedInvId={selectedInvId}
+            inventoryItem={currentInv}
+            deleteInventory={deleteInventory}
+          />
         </Fragment>
       ) : (
-        <h1>Select inventory</h1>
+        <Typography align='center' variant='h5'>
+          Please Select inventory
+        </Typography>
       )}
 
-      {inventory !== null && !loading ? (
-        <Box style={{ height: 400, width: "100%" }}>
+      {inventoryLst !== null ? (
+        <Box style={{ height: 400, width: '100%' }}>
           <DataGrid
-            rows={inventory.map((inventoryItem) => ({
+            rows={inventoryLst.map((inventoryItem) => ({
               id: inventoryItem._id,
               name: inventoryItem.name,
-              purchased: Moment(inventoryItem.purchased).format("MM/DD/YYYY"),
-              cost: "$" + inventoryItem.cost,
+              purchased: Moment(inventoryItem.purchased).format('MM/DD/YYYY'),
+              cost: '$' + inventoryItem.cost,
               location: inventoryItem.location,
-              value: "$" + inventoryItem.value,
+              value: '$' + inventoryItem.value,
               status: inventoryItem.status,
             }))}
             columns={columns}
             pageSize={10}
-            density="compact"
+            density='compact'
             onSelectionChange={(newSelection) => {
-              setSelectedInv(newSelection.rowIds);
+              //setSelectedInv(newSelection.rowIds);
+              findCurrentInv(newSelection.rowIds);
             }}
           />
         </Box>

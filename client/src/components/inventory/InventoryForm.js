@@ -40,18 +40,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // Exported Component
-const InventoryForm = ({ handleClose }) => {
+const InventoryForm = ({
+  handleClose,
+  updateInventory,
+  clearCurrent,
+  addInventory,
+}) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //*Initializes context state
   const inventoryContext = useContext(InventoryContext);
-  const {
-    addInventory,
-    updateInventory,
-    clearCurrent,
-    current,
-  } = inventoryContext;
+  const { current } = inventoryContext;
 
   useEffect(() => {
     if (current !== null) {
