@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   try {
     const posts = await Post.find({})
       .sort({
-        date: -1,
+        date: -1
       })
       .populate("replies");
     res.json(posts);
@@ -43,7 +43,7 @@ router.post(
       const newPost = new Post({
         name,
         title,
-        body,
+        body
       });
 
       const post = await newPost.save();

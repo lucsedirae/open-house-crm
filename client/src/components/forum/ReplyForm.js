@@ -103,11 +103,13 @@ const ReplyForm = ({ _id }) => {
 
         <TextField
           required={true}
-          variant="standard"
-          label="Contact Type"
+          fullWidth={true}
+          multiline
+          rows={3}
+          variant="contained"
+          label="reply here..."
           size="small"
           name="body"
-          helperText="Required"
           value={body}
           onChange={onChange}
         />
