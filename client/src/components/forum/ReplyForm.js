@@ -74,50 +74,35 @@ const ReplyForm = ({ _id }) => {
 
   //* Returns JSX to DOM
   return (
-    <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography
-        variant="h5"
-        style={{
-          textAlign: "center",
-          fontFamily: "Big Shoulders Display",
-          fontSize: "25px",
-          fontWeight: "600"
-        }}
-      >
-        Add Comment
-      </Typography>
+    <form autoComplete="off" onSubmit={onSubmit} style={{ marginTop: "1rem" }}>
+      <TextField
+        variant="outlined"
+        required={true}
+        type="text"
+        id="standard-required"
+        label="Name"
+        size="small"
+        name="name"
+        value={name}
+        onChange={onChange}
+        style={{ marginBottom: "1rem" }}
+      />
 
-      <Box style={{ textAlign: "center" }}>
-        <TextField
-          variant="standard"
-          required={true}
-          type="text"
-          id="standard-required"
-          label="Name"
-          size="small"
-          helperText="Required"
-          name="name"
-          value={name}
-          onChange={onChange}
-        />
+      <TextField
+        fullWidth={true}
+        multiline
+        rows={3}
+        variant="outlined"
+        label="Reply here..."
+        size="small"
+        name="body"
+        value={body}
+        onChange={onChange}
+      />
 
-        <TextField
-          required={true}
-          fullWidth={true}
-          multiline
-          rows={3}
-          variant="contained"
-          label="reply here..."
-          size="small"
-          name="body"
-          value={body}
-          onChange={onChange}
-        />
-      </Box>
       <Button
         variant="contained"
         type="submit"
-        fullWidth={true}
         style={{
           marginTop: "1rem",
           marginBottom: "1rem",
