@@ -75,7 +75,7 @@ const ReplyForm = ({ _id }) => {
   //* Returns JSX to DOM
   return (
     <form autoComplete="off" onSubmit={onSubmit} style={{ marginTop: "1rem" }}>
-      <TextField
+      {/* <TextField
         variant="outlined"
         required={true}
         type="text"
@@ -86,7 +86,7 @@ const ReplyForm = ({ _id }) => {
         value={name}
         onChange={onChange}
         style={{ marginBottom: "1rem" }}
-      />
+      /> */}
 
       <TextField
         fullWidth={true}
