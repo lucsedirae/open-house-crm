@@ -8,6 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Chip from "@material-ui/core/Chip";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import EditIcon from "@material-ui/icons/Edit";
 
 //* State context
 import ModalContext from "../../context/modal/modalContext";
@@ -28,7 +31,12 @@ const typeCheck = (type) => {
 };
 
 //* Exported component
-const TransactionItem = ({ selectedTrxId, transaction }) => {
+const TransactionItem = ({
+  selectedTrxId,
+  transaction,
+  currentTransaction,
+  setCurrentTrx,
+}) => {
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
 
@@ -47,7 +55,7 @@ const TransactionItem = ({ selectedTrxId, transaction }) => {
   return (
     <Container style={{ padding: "3rem" }}>
       <Paper>
-        <Typography align="center" variant="h5">
+        <Typography align="center" variant="h5" style={{ padding: ".5rem" }}>
           {trxName}{" "}
           <Chip
             size="small"
@@ -61,6 +69,20 @@ const TransactionItem = ({ selectedTrxId, transaction }) => {
           />
         </Typography>
         <Divider />
+        <Typography>
+        <IconButton
+          size="small"
+          style={{ margin: "1rem" }}
+        >
+          <EditIcon color="disabled" />
+        </IconButton>
+        <IconButton
+          size="small"
+          style={{ margin: "1rem" }}
+        >
+          <DeleteForeverIcon color="disabled" />
+        </IconButton>
+        </Typography>
         <Typography align="center" variant="body1">
           Revenue: ${revenue} - Expenses: ${cost} - Profit ${revenue - cost}
         </Typography>

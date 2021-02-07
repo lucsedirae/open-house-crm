@@ -33,30 +33,6 @@ const TransactionsGrid = ({
   setSelectedTrxId,
   findCurrentTrx
 }) => {
-  // const [transactions, setTransactions] = useState([]);
-  // const [selectedTrxId, setSelectedTrxId] = useState(null);
-  // const [currentTransaction, setCurrentTrx] = useState(null);
-
-  // //* Compares the selected transaction id to objects in transactions to pull the full object
-  // //* out that matches the selected id.
-  // const findCurrentTrx = (id) => {
-  //   transactions.map((transaction) => {
-  //     if (transaction._id == id) {
-  //       setCurrentTrx(transaction);
-  //     }
-  //   });
-  // };
-
-  // //* Retrieves transactions from MongoDB
-  // const getTransactions = async () => {
-  //   const res = await axios.get("/api/transactions");
-  //   const data = res.data;
-  //   setTransactions(data);
-  // };
-
-  // useEffect(() => {
-  //   getTransactions();
-  // }, []);
     
     //* Returns JSX to DOM if transactions is empty
     if (transactions !== null && transactions.length === 0) {
