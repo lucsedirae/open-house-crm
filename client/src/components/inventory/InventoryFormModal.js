@@ -17,6 +17,7 @@ export default function InventoryFormModal({
   updateInventory,
   clearCurrent,
   addInventory,
+  currentInv,
 }) {
   //* Initiallizes state
   const modalContext = useContext(ModalContext);
@@ -38,6 +39,7 @@ export default function InventoryFormModal({
             updateInventory={updateInventory}
             clearCurrent={clearCurrent}
             addInventory={addInventory}
+            currentInv={currentInv}
           />
         </DialogContent>
       </Dialog>

@@ -45,14 +45,16 @@ const InventoryForm = ({
   updateInventory,
   clearCurrent,
   addInventory,
+  currentInv,
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //*Initializes context state
   const inventoryContext = useContext(InventoryContext);
-  const { current } = inventoryContext;
+  const { current, setCurrent } = inventoryContext;
 
+  //TODO Figure out what current needs to be so that when you want to add the form is blank
   useEffect(() => {
     if (current !== null) {
       setInventory(current);
@@ -70,7 +72,7 @@ const InventoryForm = ({
 
   const [inventory, setInventory] = useState({
     name: '',
-    purchased: '',
+    purchased: new Date(),
     location: '',
     cost: '',
     value: '',
@@ -89,6 +91,8 @@ const InventoryForm = ({
       addInventory(inventory);
     } else {
       updateInventory(inventory);
+      console.log(inventory);
+      setCurrent(null);
     }
 
     setInventory({
