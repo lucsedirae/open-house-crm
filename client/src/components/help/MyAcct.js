@@ -1,40 +1,35 @@
-import React from 'react'
+//* Dependencies
+import React from "react";
 
+//* Material UI components, hooks, and icons
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+
+//* Exported component
 const MyAcct = () => {
-    return (
-        <div id="myacct">
-        <h1>User Account Panel (My Account)</h1>
-        <p style={{padding: "10rem"}}>
-          Bavarian bergkase cheese strings cauliflower cheese. Stinking bishop
-          taleggio when the cheese comes out everybody's happy cheese strings
-          dolcelatte cheesy grin pepper jack cheesy grin. Lancashire macaroni
-          cheese everyone loves camembert de normandie cottage cheese say cheese
-          lancashire boursin. Jarlsberg melted cheese swiss. Stilton lancashire
-          babybel. Ricotta cheese slices cut the cheese hard cheese camembert de
-          normandie cheddar cheese strings when the cheese comes out everybody's
-          happy. Who moved my cheese bavarian bergkase gouda cheesy feet
-          mascarpone halloumi camembert de normandie cow. Cheese and wine brie
-          cheese strings cheddar lancashire jarlsberg fromage rubber cheese.
-          Parmesan boursin chalk and cheese. Pecorino dolcelatte rubber cheese.
-          Cow cheese triangles roquefort monterey jack cut the cheese mascarpone
-          roquefort when the cheese comes out everybody's happy. Cheddar parmesan
-          emmental paneer port-salut roquefort mascarpone fondue. Cheese strings
-          st. agur blue cheese cottage cheese fromage frais fromage. Lancashire
-          cheese strings cheese on toast. Bavarian bergkase everyone loves cheese
-          triangles gouda mozzarella fromage pepper jack cauliflower cheese. Hard
-          cheese roquefort swiss cut the cheese st. agur blue cheese monterey jack
-          the big cheese when the cheese comes out everybody's happy. St. agur
-          blue cheese port-salut chalk and cheese mascarpone bocconcini. Macaroni
-          cheese blue castello who moved my cheese. Smelly cheese bavarian
-          bergkase halloumi cheese and biscuits croque monsieur brie the big
-          cheese ricotta. Melted cheese fondue hard cheese ricotta cheese
-          triangles when the cheese comes out everybody's happy mascarpone
-          bavarian bergkase. Croque monsieur ricotta cheese strings edam stinking
-          bishop camembert de normandie stinking bishop fromage. Port-salut
-          cottage cheese camembert de normandie.
-        </p>
-      </div>
-      )
-}
+  return (
+    <div id="myacct">
+      <IconButton href="#">
+        <ExpandLessIcon />
+      </IconButton>
 
-export default MyAcct
+      <Card style={{ padding: "1rem" }}>
+        <Typography variant="h5" style={{ margin: ".5rem" }}>
+          User Settings Panel (My Account)
+        </Typography>
+        <CardContent>
+          <Typography variant="body1">
+            The user settings, or "my account", module is currently in
+            development. Users will be able to update their personal data as
+            well as manage the application's settings from this module.
+          </Typography>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default MyAcct;

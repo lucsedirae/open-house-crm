@@ -28,6 +28,7 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
+//* Exported component
 const HelpMenu = () => {
   const classes = useStyles();
 

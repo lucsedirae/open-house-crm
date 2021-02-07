@@ -1,18 +1,21 @@
-import React from 'react'
+//* Dependencies
+import React from "react";
 
 //* Material UI components, hooks, and icons
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
+import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
+//* Exported component
 const ContactsMod = () => {
-    return (
-        <div id="contacts">
+  return (
+    <div id="contacts">
+      <IconButton href="#">
+        <ExpandLessIcon />
+      </IconButton>
+
       <Card style={{ padding: "1rem" }}>
         <Typography variant="h5" style={{ margin: ".5rem" }}>
           Contacts Module
@@ -22,9 +25,25 @@ const ContactsMod = () => {
           alt="Gif of agent forum in action"
           style={{ borderRadius: "5px", boxShadow: "3px 3px 5px" }}
         />
+        <CardContent>
+          <Typography variant="body1">
+            The contacts module is the default view of the dashboard when a user
+            logs into Open House. Here users can add, edit, delete, and update
+            contact data. The contacts are stored in an accordion system to
+            improve mobile user experience and keep the interface clean and free
+            of distraction.
+          </Typography>
+          <br />
+          <Typography variant="body1">
+            The module also features a search bar directly underneath the{" "}
+            <a href="#navpanel">navigation panel</a> allowing users to easily
+            search for a contact. That contact's card is updated as the user
+            types making searches quick and efficient.
+          </Typography>
+        </CardContent>
       </Card>
-        </div>
-      );
-    }
+    </div>
+  );
+};
 
-export default ContactsMod
+export default ContactsMod;
