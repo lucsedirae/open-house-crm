@@ -45,12 +45,13 @@ const useStyles = makeStyles((theme) => ({
 const Inventory = () => {
   //* Initializes styling classes
   const classes = useStyles();
-  let currentInv = null;
 
   //* Initializes state
   const authContext = useContext(AuthContext);
   const [inventoryLst, setInventory] = useState([]);
   // const inventoryContext = useContext(InventoryContext);
+
+  const [currentInv, setCurrentInv] = useState(null);
 
   //* Funcionized Axios calls to do crud operations on inventory and then prop drill down
   //* Retrieves inventory from MongoDB
@@ -58,6 +59,7 @@ const Inventory = () => {
     const res = await axios.get('/api/inventory');
     const data = res.data;
     setInventory(data);
+    //TODO Because getInventory is the trigger for the list to update, the item card should update here as well
   };
 
   const addInventory = async (inventory) => {
@@ -113,6 +115,7 @@ const Inventory = () => {
         inventoryLst={inventoryLst}
         deleteInventory={deleteInventory}
         currentInv={currentInv}
+        setCurrentInv={setCurrentInv}
       />
       <InventoryFormModal
         updateInventory={updateInventory}

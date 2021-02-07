@@ -29,11 +29,16 @@ const columns = [
   { field: 'status', headerName: 'Status', flex: 0.2 },
 ];
 
-const InventoryGrid = ({ inventoryLst, deleteInventory }) => {
+const InventoryGrid = ({
+  inventoryLst,
+  deleteInventory,
+  currentInv,
+  setCurrentInv,
+}) => {
   // const inventoryContext = useContext(InventoryContext);
   const [selectedInvId, setSelectedInvId] = useState(null);
   // const [inventoryLst, setInventory] = useState([]);
-  const [currentInv, setCurrentInv] = useState(null);
+  //const [currentInv, setCurrentInv] = useState(null);
 
   //const { inventory, getInventory, loading } = inventoryContext;
   //*
