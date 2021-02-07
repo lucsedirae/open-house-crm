@@ -23,20 +23,20 @@ import AuthContext from "../../context/auth/authContext";
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    marginBottom: "1rem"
+    marginBottom: "1rem",
   },
   header: {
     textAlign: "center",
     marginTop: "1rem",
     marginBottom: "1rem",
     fontFamily: "Oswald",
-    fontWeight: "500"
-  }
+    fontWeight: "500",
+  },
 }));
 
 //* Exported component
@@ -60,16 +60,6 @@ export const Dashboard = () => {
         Contacts
       </Typography>
       <Grid container spacing={3} alignItems="center" justify="center">
-        {/* <Grid item xs={12} sm={12} md={6}>
-          
-          <Paper className={classes.paper}>
-            <ContactForm />
-          </Paper>
-          <Paper className={classes.paper}>
-            <NoteCard />
-          </Paper>
-        </Grid> */}
-
         <Grid item xs={12} sm={12} md={8} align="center">
           <NavPanel />
           <ContactFilter />
