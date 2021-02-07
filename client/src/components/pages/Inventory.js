@@ -123,6 +123,7 @@ const Inventory = () => {
         updateInventory={updateInventory}
         clearCurrent={clearCurrent}
         addInventory={addInventory}
+        currentInv={currentInv}
       />
     </Container>
   );
