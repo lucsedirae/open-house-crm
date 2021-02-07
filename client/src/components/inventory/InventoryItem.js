@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { useState, Fragment, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import Moment from 'moment';
 
 //* Material UI components, hooks, and icons
@@ -17,70 +17,45 @@ import EditIcon from '@material-ui/icons/Edit';
 import InventoryContext from '../../context/inventory/inventoryContext';
 import ModalContext from '../../context/modal/modalContext';
 
-//* Axios
-import axios from 'axios';
-
 //* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 275,
-    marginBottom: '1rem',
-    backgroundColor: 'lightgrey',
-    border: '1px solid grey',
-    boxShadow: '0 8px 5px -3px grey',
-    fontFamily: 'Oswald',
-    fontWeight: '200',
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
   },
-  title: {
-    textAlign: 'center',
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
   },
-  pos: {
-    marginBottom: '1rem',
+  selectEmpty: {
+    marginTop: theme.spacing(2),
   },
-  buttonGroup: {
-    justifyContent: 'center',
-  },
-  Box: {
-    marginTop: '1rem',
-  },
-});
+}));
 
-export const InventoryItem = ({ selectedInv }) => {
+export const InventoryItem = ({
+  selectedInvId,
+  inventoryItem,
+  deleteInventory,
+}) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
-  const { deleteInventory, clearCurrent, setCurrent } = inventoryContext;
-  const [inventory, setInventoryItem] = useState({});
+  const { setCurrent } = inventoryContext;
 
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
 
-  let inventoryArray = [];
-  // let inventory = {};
-  useEffect(() => {
-    const findCurrentInv = async () => {
-      const res = await axios.get('/api/inventory');
-      inventoryArray = res.data;
-
-      for (let i = 0; i < inventoryArray.length; i++) {
-        if (inventoryArray[i]._id === selectedInv[0]) {
-          setInventoryItem(inventoryArray[i]);
-        }
-      }
-    };
-    findCurrentInv();
-  });
-
   const onDelete = () => {
-    deleteInventory(inventory._id);
-    clearCurrent();
+    deleteInventory(inventoryItem);
   };
 
   const onClick = () => {
     handleOpen();
-    setCurrent(inventory);
+    setCurrent(inventoryItem);
   };
 
   return (
@@ -88,34 +63,34 @@ export const InventoryItem = ({ selectedInv }) => {
       <CardContent>
         <Box textAlign='center' className={classes.Box}>
           <Typography variant='h5' className={classes.title}>
-            {inventory.name}{' '}
+            {inventoryItem.name}{' '}
           </Typography>
         </Box>
 
         <Box className={classes.Box} style={{ textAlign: 'center' }}>
-          {inventory.purchased && (
+          {inventoryItem.purchased && (
             <Typography variant='body1' className={classes.address}>
-              Purchased: {Moment(inventory.purchased).format('MM/DD/YYYY')}
+              Purchased: {Moment(inventoryItem.purchased).format('MM/DD/YYYY')}
             </Typography>
           )}
-          {inventory.location && (
+          {inventoryItem.location && (
             <Typography variant='body1' className={classes.address}>
-              Location: {inventory.location}
+              Location: {inventoryItem.location}
             </Typography>
           )}
-          {inventory.cost && (
+          {inventoryItem.cost && (
             <Typography variant='body1' className={classes.address}>
-              Cost: ${inventory.cost}
+              Cost: ${inventoryItem.cost}
             </Typography>
           )}
-          {inventory.value && (
+          {inventoryItem.value && (
             <Typography variant='body1' className={classes.address}>
-              Value: ${inventory.value}
+              Value: ${inventoryItem.value}
             </Typography>
           )}
-          {inventory.status && (
+          {inventoryItem.status && (
             <Typography variant='body1' className={classes.address}>
-              Status: {inventory.status}
+              Status: {inventoryItem.status}
             </Typography>
           )}
         </Box>

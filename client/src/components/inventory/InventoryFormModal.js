@@ -13,7 +13,11 @@ import FloatingAction from '../layout/FloatingAction';
 import ModalContext from '../../context/modal/modalContext';
 
 //* Exported component
-export default function InventoryFormModal() {
+export default function InventoryFormModal({
+  updateInventory,
+  clearCurrent,
+  addInventory,
+}) {
   //* Initiallizes state
   const modalContext = useContext(ModalContext);
   const { open, handleOpen, handleClose } = modalContext;
@@ -29,7 +33,12 @@ export default function InventoryFormModal() {
         aria-labelledby='form-dialog-title'
       >
         <DialogContent>
-          <InventoryForm handleClose={handleClose} />
+          <InventoryForm
+            handleClose={handleClose}
+            updateInventory={updateInventory}
+            clearCurrent={clearCurrent}
+            addInventory={addInventory}
+          />
         </DialogContent>
       </Dialog>
     </div>
