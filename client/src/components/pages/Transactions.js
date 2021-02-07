@@ -47,6 +47,17 @@ const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [currentTransaction, setCurrentTrx] = useState(null);
   const [selectedTrxId, setSelectedTrxId] = useState(null);
+  const [transaction, setTransaction] = useState({
+    trxName: "",
+    type: "",
+    cost: "",
+    revenue: "",
+    dateOpened: "",
+    dateClosed: "",
+    expectedCloseDate: "",
+    note: "",
+    current: false,
+  });
 
   //* Retrieves transactions from MongoDB
   const getTransactions = async () => {
@@ -55,6 +66,16 @@ const Transactions = () => {
     setTransactions(data);
   };
   console.log(transactions);
+
+  //* Adds transaction to MongoDB
+  const addTransaction = async (transaction) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await axios.post("/api/transactions", transaction, config);
+  };
 
   useEffect(() => {
     getTransactions();
@@ -102,7 +123,11 @@ const Transactions = () => {
         <Spinner />
       )}
 
-      <TransacationFormModal />
+      <TransacationFormModal
+        transaction={transaction}
+        setTransaction={setTransaction}
+        addTransaction={addTransaction}
+      />
     </Container>
   );
 };

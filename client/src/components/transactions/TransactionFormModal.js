@@ -13,7 +13,12 @@ import FloatingAction from "../layout/FloatingAction";
 import ModalContext from "../../context/modal/modalContext";
 
 //* Exported component
-export default function TransactionFormModal({ currentTransaction }) {
+export default function TransactionFormModal({
+  currentTransaction,
+  transaction,
+  setTransaction,
+  addTransaction,
+}) {
   //* Initiallizes state
   const modalContext = useContext(ModalContext);
   const { open, handleOpen, handleClose } = modalContext;
@@ -32,6 +37,9 @@ export default function TransactionFormModal({ currentTransaction }) {
           <TransactionForm
             handleClose={handleClose}
             currentTransaction={currentTransaction}
+            transaction={transaction}
+            setTransaction={setTransaction}
+            addTransaction={addTransaction}
           />
         </DialogContent>
       </Dialog>

@@ -31,21 +31,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //* Exported component
-const TransactionForm = ({ handleClose }) => {
+const TransactionForm = ({
+  handleClose,
+  transaction,
+  setTransaction,
+  addTransaction,
+}) => {
   //* Initializes styling classes
   const classes = useStyles();
-
-  const [transaction, setTransaction] = useState({
-    trxName: "",
-    type: "",
-    cost: "",
-    revenue: "",
-    dateOpened: "",
-    dateClosed: "",
-    expectedCloseDate: "",
-    note: "",
-    current: false,
-  });
 
   const {
     trxName,
@@ -70,18 +63,6 @@ const TransactionForm = ({ handleClose }) => {
 
   const onChange = (e) => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });
-  };
-
-  const addTransaction = async (transaction) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const res = await axios.post("/api/transactions", transaction, config);
-    
-    // return res;
-    //   console.log(res.data);
   };
 
   //! updateTransaction
