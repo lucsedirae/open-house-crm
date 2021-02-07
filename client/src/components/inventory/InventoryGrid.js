@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import Moment from 'moment';
 //import axios from 'axios';
 
@@ -35,13 +35,9 @@ const InventoryGrid = ({
   currentInv,
   setCurrentInv,
 }) => {
-  // const inventoryContext = useContext(InventoryContext);
   const [selectedInvId, setSelectedInvId] = useState(null);
-  // const [inventoryLst, setInventory] = useState([]);
   //const [currentInv, setCurrentInv] = useState(null);
 
-  //const { inventory, getInventory, loading } = inventoryContext;
-  //*
   const findCurrentInv = (id) => {
     inventoryLst.map((inventoryItem) => {
       if (inventoryItem._id == id) {
@@ -58,11 +54,6 @@ const InventoryGrid = ({
       </Typography>
     );
   }
-
-  //TODO I want when this renders after deleting or updating an item to check currentInv status
-  // useEffect(() => {
-  //!doesnt allow useeffect; error "Rendered more hooks than during the previous render”
-  // }, []);
 
   //* Returns JSX to DOM if inventory is not empty
   return (

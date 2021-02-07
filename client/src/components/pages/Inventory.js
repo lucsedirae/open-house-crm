@@ -50,8 +50,7 @@ const Inventory = () => {
   const authContext = useContext(AuthContext);
   const [inventoryLst, setInventory] = useState([]);
   // const inventoryContext = useContext(InventoryContext);
-
-  const [currentInv, setCurrentInv] = useState(null);
+  //let currentInv = null;
 
   //* Funcionized Axios calls to do crud operations on inventory and then prop drill down
   //* Retrieves inventory from MongoDB
@@ -59,7 +58,6 @@ const Inventory = () => {
     const res = await axios.get('/api/inventory');
     const data = res.data;
     setInventory(data);
-    //TODO Because getInventory is the trigger for the list to update, the item card should update here as well
   };
 
   const addInventory = async (inventory) => {
@@ -72,6 +70,7 @@ const Inventory = () => {
     const res = await axios.put(`/api/inventory/${inventory._id}`, inventory);
     const data = res.data;
     getInventory();
+    setCurrentInv(inventory);
   };
 
   const deleteInventory = async (inventoryItem) => {
@@ -89,8 +88,10 @@ const Inventory = () => {
     getInventory();
   };
 
+  const [currentInv, setCurrentInv] = useState(null);
+
   const clearCurrent = () => {
-    currentInv = null;
+    setCurrentInv(null);
   };
 
   //* Authenticates user token and retrieves inventory list
@@ -114,6 +115,7 @@ const Inventory = () => {
       <InventoryGrid
         inventoryLst={inventoryLst}
         deleteInventory={deleteInventory}
+        clearCurrent={clearCurrent}
         currentInv={currentInv}
         setCurrentInv={setCurrentInv}
       />
