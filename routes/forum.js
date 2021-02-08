@@ -103,12 +103,11 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { likes } = req.body;
-
     try {
       const postLike = await Post.findOneAndUpdate(
         { _id: req.params.id },
-        { $set: { likes: likes } }
+        { $inc: { likes: +1 } },
+        { new: true }
       );
 
       res.json(postLike);

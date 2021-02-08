@@ -65,16 +65,6 @@ const Forum = () => {
     console.log(res.data);
   };
 
-  const sendLikes = async (_id, likesCount, setLikesCount) => {
-    console.log(post);
-    const res = await axios.put(`/api/forum/${_id}`, {
-      likes: JSON.stringify(likesCount)
-    });
-    console.log(res);
-
-    setLikesCount(res.data.likes);
-  };
-
   const { name, title, body } = post;
 
   const onChange = (e) => {
@@ -164,7 +154,7 @@ const Forum = () => {
           Submit
         </Button>
       </form>
-      <Posts posts={posts} sendLikes={sendLikes} />
+      <Posts posts={posts} />
     </Container>
   );
 };

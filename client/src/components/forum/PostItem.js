@@ -12,7 +12,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
-const PostItem = ({ post, sendLikes }) => {
+const PostItem = ({ post }) => {
   const { name, title, body, replies, _id, date, likes } = post;
 
   const [likesCount, setLikesCount] = useState(0);
@@ -28,14 +28,22 @@ const PostItem = ({ post, sendLikes }) => {
     console.log(likes);
   }, []);
 
+  const sendLikes = async () => {
+    console.log(post);
+    const res = await axios.put(`/api/forum/${_id}`);
+    console.log(res);
+
+    setLikesCount(res.data.likes);
+  };
+
   const handleClick = () => {
-    if (isChecked && likesCount > 0) {
+    /* if (isChecked && likesCount > 0) {
       setLikesCount(likesCount - 1);
     } else {
       setLikesCount(likesCount + 1);
-    }
+    } */
 
-    sendLikes(_id, likesCount, setLikesCount);
+    sendLikes();
   };
 
   return (
