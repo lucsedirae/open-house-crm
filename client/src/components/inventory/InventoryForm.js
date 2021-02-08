@@ -11,8 +11,6 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
-//* Material UI Date Picker
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -54,7 +52,6 @@ const InventoryForm = ({
   const inventoryContext = useContext(InventoryContext);
   const { current, setCurrent } = inventoryContext;
 
-  //TODO Figure out what current needs to be so that when you want to add the form is blank
   useEffect(() => {
     if (current !== null) {
       setInventory(current);
@@ -91,7 +88,6 @@ const InventoryForm = ({
       addInventory(inventory);
     } else {
       updateInventory(inventory);
-      console.log(inventory);
       setCurrent(null);
     }
 

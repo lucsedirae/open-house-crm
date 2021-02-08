@@ -1,7 +1,6 @@
 //* Dependencies
 import React, { Fragment, useState } from 'react';
 import Moment from 'moment';
-//import axios from 'axios';
 
 //* Material-UI components, hooks, and icons
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +12,6 @@ import Spinner from '../layout/Spinner';
 import InventoryItem from '../inventory/InventoryItem';
 
 //* State context
-// import InventoryContext from '../../context/inventory/inventoryContext';
 
 const columns = [
   { field: 'name', headerName: 'Name', width: 130 },

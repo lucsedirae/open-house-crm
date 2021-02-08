@@ -1,21 +1,21 @@
 //* Dependencies
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 
 //* Material UI components, hooks, and icons
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
 //* Custom components
-import TransactionsGrid from "../transactions/TransactionsGrid";
-import TransacationFormModal from "../transactions/TransactionFormModal";
-import NavPanel from "../layout/NavPanel";
-import Spinner from "../layout/Spinner";
+import TransactionsGrid from '../transactions/TransactionsGrid';
+import TransacationFormModal from '../transactions/TransactionFormModal';
+import NavPanel from '../layout/NavPanel';
+import Spinner from '../layout/Spinner';
 
 //* State context
-import AuthContext from "../../context/auth/authContext";
+import AuthContext from '../../context/auth/authContext';
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -24,15 +24,15 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
-    marginBottom: "1rem",
+    textAlign: 'center',
+    marginBottom: '1rem',
   },
   header: {
-    textAlign: "center",
-    marginTop: "4rem",
-    marginBottom: "1rem",
-    fontFamily: "Oswald",
-    fontWeight: "500",
+    textAlign: 'center',
+    marginTop: '4rem',
+    marginBottom: '1rem',
+    fontFamily: 'Oswald',
+    fontWeight: '500',
   },
 }));
 
@@ -45,20 +45,20 @@ const Transactions = () => {
   const [currentTransaction, setCurrentTrx] = useState(null);
   const [selectedTrxId, setSelectedTrxId] = useState(null);
   const [transaction, setTransaction] = useState({
-    trxName: "",
-    type: "",
-    cost: "",
-    revenue: "",
-    dateOpened: "",
-    dateClosed: "",
-    expectedCloseDate: "",
-    note: "",
+    trxName: '',
+    type: '',
+    cost: '',
+    revenue: '',
+    dateOpened: '',
+    dateClosed: '',
+    expectedCloseDate: '',
+    note: '',
     current: false,
   });
 
   //* Retrieves transactions from MongoDB
   const getTransactions = async () => {
-    const res = await axios.get("/api/transactions");
+    const res = await axios.get('/api/transactions');
     const data = res.data;
     setTransactions(data);
   };
@@ -68,10 +68,27 @@ const Transactions = () => {
   const addTransaction = async (transaction) => {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    const res = await axios.post("/api/transactions", transaction, config);
+    const res = await axios.post('/api/transactions', transaction, config);
+  };
+
+  const updateTransaction = async (transaction) => {
+    const res = await axios.put(
+      `/api/transaction/${transaction._id}`,
+      transaction
+    );
+    const data = res.data;
+    getTransactions();
+    setCurrentTrx(transaction);
+  };
+
+  const deleteTransaction = async (transaction) => {
+    //console.log(inventoryItem);
+    const res = await axios.delete(`/api/transaction/${transaction._id}`);
+    clearCurrent();
+    getTransactions();
   };
 
   useEffect(() => {
@@ -95,16 +112,17 @@ const Transactions = () => {
   useEffect(() => {
     authContext.loadUser();
     // eslint-disable-next-line
+    getTransactions();
   }, []);
 
   return (
     <Container>
-      <Typography variant="h4" className={classes.header}>
+      <Typography variant='h4' className={classes.header}>
         Transacations
       </Typography>
 
-      <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item xs={12} sm={12} md={8} align="center">
+      <Grid container spacing={3} alignItems='center' justify='center'>
+        <Grid item xs={12} sm={12} md={8} align='center'>
           <NavPanel />
         </Grid>
       </Grid>
@@ -115,6 +133,7 @@ const Transactions = () => {
           selectedTrxId={selectedTrxId}
           setSelectedTrxId={setSelectedTrxId}
           findCurrentTrx={findCurrentTrx}
+          deleteTransaction={deleteTransaction}
         />
       ) : (
         <Spinner />
@@ -124,6 +143,7 @@ const Transactions = () => {
         transaction={transaction}
         setTransaction={setTransaction}
         addTransaction={addTransaction}
+        updateTransaction={updateTransaction}
       />
     </Container>
   );
