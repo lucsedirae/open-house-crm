@@ -1,6 +1,5 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
@@ -33,12 +32,25 @@ const useStyles = makeStyles((theme) => ({
 //* Exported component
 const TransactionForm = ({
   handleClose,
-  transaction,
-  setTransaction,
+  updateTransaction,
+  clearCurrent,
   addTransaction,
+  currentTransaction,
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
+
+  const [transaction, setTransaction] = useState({
+    trxName: "",
+    type: "",
+    cost: null,
+    revenue: null,
+    dateOpened: Date.now(),
+    dateClosed: null,
+    expectedCloseDate: null,
+    note: "",
+    current: false,
+  });
 
   const {
     trxName,
@@ -71,7 +83,7 @@ const TransactionForm = ({
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
       <Typography variant="h5" style={{ textAlign: "center" }}>
-        {current ? "Edit Transaction" : "Add Transaction"}
+        {currentTransaction ? "Edit Transaction" : "Add Transaction"}
       </Typography>
 
       <Box style={{ textAlign: "center" }}>
@@ -184,14 +196,14 @@ const TransactionForm = ({
       >
         Submit
       </Button>
-      {current && (
+      {currentTransaction && (
         <Button
           variant="outlined"
           fullWidth={true}
           type="submit"
           color="secondary"
           style={{ marginBottom: "1rem" }}
-          onClick={clearAll}
+          onClick={clearCurrent}
         >
           Clear
         </Button>

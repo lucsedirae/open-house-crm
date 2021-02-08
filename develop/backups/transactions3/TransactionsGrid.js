@@ -1,17 +1,20 @@
 //* Dependencies
-import React, { Fragment, useState } from "react";
-import Moment from "moment";
+import React, { Fragment, useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 //* Material-UI components, hooks, and icons
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import { DataGrid } from "@material-ui/data-grid";
 
 //* Custom components
 import Spinner from "../layout/Spinner";
-import TransactionItem from "./TransactionItem";
+import TransactionItem from "../transactions/TransactionItem";
 
-//* Defines columns for transaction grid
+//* State context
+import TransactionsContext from "../../context/transactions/transactionContext";
+
 const columns = [
   { field: "trxName", headerName: "Transaction Name", width: 260 },
   { field: "revenue", headerName: "Revenue", width: 130 },
@@ -23,43 +26,33 @@ const columns = [
 //* Exported component
 const TransactionsGrid = ({
   transactions,
-  deleteTransaction,
-  clearCurrent,
+  setTransactions,
   currentTransaction,
   setCurrentTrx,
+  selectedTrxId,
+  setSelectedTrxId,
+  findCurrentTrx
 }) => {
-  const [selectedTrxId, setSelectedTrxId] = useState(null);
-
-  const findCurrentTrx = (id) => {
-    transactions.map((transaction) => {
-      if (transaction._id == id) {
-        setCurrentTrx(transaction);
-      }
-    });
-  };
-
-  //* Returns JSX to DOM if transactions is empty
-  if (transactions !== null && transactions.length === 0) {
-    return (
-      <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
+    
+    //* Returns JSX to DOM if transactions is empty
+    if (transactions !== null && transactions.length === 0) {
+      return (
+        <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
         Transaction List is Empty!
       </Typography>
     );
   }
-
+  
   //* Returns JSX to DOM if transactions is not empty
   return (
     <Fragment>
       {currentTransaction !== null ? (
         <TransactionItem
-          selectedTrxId={selectedTrxId}
-          transaction={currentTransaction}
-          deleteTransaction={deleteTransaction}
-          clearCurrent={clearCurrent}
-          setCurrentTrx={setCurrentTrx}
+        selectedTrxId={selectedTrxId}
+        transaction={currentTransaction}
         />
-      ) : (
-        <Typography align="center" variant="h5">
+        ) : (
+          <Typography align="center" variant="h5">
           Please select a transaction
         </Typography>
       )}
@@ -81,13 +74,14 @@ const TransactionsGrid = ({
             onSelectionChange={(newSelection) => {
               findCurrentTrx(newSelection.rowIds);
             }}
-          />
+            />
         </Box>
       ) : (
         <Spinner />
-      )}
+        )}
     </Fragment>
   );
 };
 
+//* Returns JSX to DOM if transactions is not empty
 export default TransactionsGrid;

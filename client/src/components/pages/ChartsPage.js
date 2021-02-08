@@ -35,8 +35,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 	header: {
 		textAlign: "center",
-		marginTop: "1rem",
+		marginTop: "5rem",
 		marginBottom: "1rem",
+		fontFamily: "Oswald",
+		fontWeight: "500",
 	},
 }));
 
@@ -62,7 +64,7 @@ const ChartsPage = () => {
 	return (
 		<Container>
 			<Typography variant="h4" className={classes.header}>
-				Business Overview
+				Business Analytics
 			</Typography>
 			<Grid container spacing={3} alignItems="center" justify="center">
 				<Grid item xs={12} sm={12} md={8} align="center">

@@ -11,7 +11,6 @@ import Chip from "@material-ui/core/Chip";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
-import CloseIcon from "@material-ui/icons/Close";
 
 //* State context
 import ModalContext from "../../context/modal/modalContext";
@@ -35,8 +34,8 @@ const typeCheck = (type) => {
 const TransactionItem = ({
   selectedTrxId,
   transaction,
+  currentTransaction,
   setCurrentTrx,
-  clearCurrent,
 }) => {
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
@@ -71,19 +70,18 @@ const TransactionItem = ({
         </Typography>
         <Divider />
         <Typography>
-          <IconButton
-            onClick={clearCurrent}
-            size="small"
-            style={{ margin: "1rem" }}
-          >
-            <CloseIcon color="disabled" />
-          </IconButton>
-          <IconButton size="small" style={{ margin: "1rem" }}>
-            <EditIcon color="disabled" />
-          </IconButton>
-          <IconButton size="small" style={{ margin: "1rem" }}>
-            <DeleteForeverIcon color="disabled" />
-          </IconButton>
+        <IconButton
+          size="small"
+          style={{ margin: "1rem" }}
+        >
+          <EditIcon color="disabled" />
+        </IconButton>
+        <IconButton
+          size="small"
+          style={{ margin: "1rem" }}
+        >
+          <DeleteForeverIcon color="disabled" />
+        </IconButton>
         </Typography>
         <Typography align="center" variant="body1">
           Revenue: ${revenue} - Expenses: ${cost} - Profit ${revenue - cost}

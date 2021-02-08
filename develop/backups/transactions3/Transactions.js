@@ -1,10 +1,8 @@
-//! WORKING VERSION IN PROGRESS - NOT THE BACK UP!!!
 //* Dependencies
-import React, { useEffect, useContext, useState } from "react";
-import "../../App.css";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
-//* Material-UI components, hooks, and icons
+//* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -12,8 +10,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
 import TransactionsGrid from "../transactions/TransactionsGrid";
-import TransactionFormModal from "../transactions/TransactionFormModal";
+import TransacationFormModal from "../transactions/TransactionFormModal";
 import NavPanel from "../layout/NavPanel";
+import Spinner from "../layout/Spinner";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
@@ -41,59 +40,62 @@ const useStyles = makeStyles((theme) => ({
 const Transactions = () => {
   //* Initializes styling classes
   const classes = useStyles();
-
-  //* Initializes state
-  const authContext = useContext(AuthContext);
+  //! State and functions below this line are experimental
   const [transactions, setTransactions] = useState([]);
   const [currentTransaction, setCurrentTrx] = useState(null);
+  const [selectedTrxId, setSelectedTrxId] = useState(null);
+  const [transaction, setTransaction] = useState({
+    trxName: "",
+    type: "",
+    cost: "",
+    revenue: "",
+    dateOpened: "",
+    dateClosed: "",
+    expectedCloseDate: "",
+    note: "",
+    current: false,
+  });
 
-  //* Authenticates user token and retrieves transaction list
-  useEffect(() => {
-    authContext.loadUser();
-    // eslint-disable-next-line
-    getTransactions();
-  }, []);
-
-  //* Funcionized Axios calls to do crud operations on transactions and then prop drill down
   //* Retrieves transactions from MongoDB
   const getTransactions = async () => {
     const res = await axios.get("/api/transactions");
-    setTransactions(res.data);
+    const data = res.data;
+    setTransactions(data);
   };
+  console.log(transactions);
 
+  //* Adds transaction to MongoDB
   const addTransaction = async (transaction) => {
-    const res = await axios.post("/api/transactions", transaction);
-    getTransactions();
-  };
-
-  const updateTransaction = async (transaction) => {
-    const res = await axios.put(
-      `/api/transactions/${transaction._id}`,
-      transaction
-    );
-    getTransactions();
-    setCurrentTrx(transaction);
-  };
-
-  const clearCurrent = () => {
-    setCurrentTrx(null);
-  };
-
-  const deleteTransaction = async (transaction) => {
-    const res = await axios.delete(`/api/transactions/${transaction._id}`);
-    clearCurrent();
-    transaction = {
-      trxName: "",
-      type: "",
-      cost: "",
-      revenue: "",
-      dateOpened: "",
-      dateClosed: "",
-      expectedCloseDate: "",
-      note: "",
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
     };
-    getTransactions();
+    const res = await axios.post("/api/transactions", transaction, config);
   };
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
+  //* Compares the selected transaction id to objects in transactions to pull the full object
+  //* out that matches the selected id.
+  const findCurrentTrx = (id) => {
+    transactions.map((transaction) => {
+      if (transaction._id == id) {
+        setCurrentTrx(transaction);
+      }
+    });
+  };
+
+  //* Initializes state
+  const authContext = useContext(AuthContext);
+
+  //* Authenticates user token
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Container>
@@ -109,20 +111,19 @@ const Transactions = () => {
       {transactions !== null ? (
         <TransactionsGrid
           transactions={transactions}
-          deleteTransaction={deleteTransaction}
-          clearCurrent={clearCurrent}
           currentTransaction={currentTransaction}
-          setCurrentTrx={setCurrentTrx}
+          selectedTrxId={selectedTrxId}
+          setSelectedTrxId={setSelectedTrxId}
+          findCurrentTrx={findCurrentTrx}
         />
       ) : (
         <Spinner />
       )}
 
-      <TransactionFormModal
-        updateTransaction={updateTransaction}
-        clearCurrent={clearCurrent}
+      <TransacationFormModal
+        transaction={transaction}
+        setTransaction={setTransaction}
         addTransaction={addTransaction}
-        currentTransaction={currentTransaction}
       />
     </Container>
   );
