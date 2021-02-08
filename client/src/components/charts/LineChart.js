@@ -1,6 +1,5 @@
 //* Dependencies
-import React, { useContext, useState, useEffect } from "react";
-import TransactionContext from "../../context/transactions/transactionContext";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 //* Material UI components, hooks, and icons
@@ -9,8 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 
 import { Line } from "react-chartjs-2";
-
-//* Dummy Data
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({

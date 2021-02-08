@@ -1,13 +1,6 @@
 //* Dependencies
-import React, {
-	useContext,
-	useEffect,
-	Fragment,
-	useState,
-	useReducer,
-} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TransactionReducer from "../../context/transactions/transactionReducer";
 import { makeStyles } from "@material-ui/core/styles";
 
 import moment from "moment";
@@ -40,7 +33,6 @@ const Expenses = () => {
 	const [transactionData, setTransactionData] = useState({});
 
 	useEffect(() => {
-		// getTransactionrevenue();
 		getTransactionData();
 	}, []);
 

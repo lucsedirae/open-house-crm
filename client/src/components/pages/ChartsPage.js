@@ -10,13 +10,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
-import TransactionContext from "../../context/transactions/transactionContext";
 
 import NavPanel from "../layout/NavPanel";
 import Revenue from "../charts/Revenue";
