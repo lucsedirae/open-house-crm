@@ -68,29 +68,54 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    Reply.create(req.body)
-      .then(({ _id }) =>
-        Post.findOneAndUpdate(
-          { _id: req.params.id },
-          { $push: { replies: _id } },
-          { new: true }
-        )
+    Reply.create(req.body).then(({ _id }) =>
+      Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { $push: { replies: _id } },
+        { new: true }
       )
-      .then((newPost) => {
-        res.json(newPost);
-      })
-      .catch((err) => {
-        console.error(err.message);
-        res.status(500).send("Server Error");
-      });
+    );
 
-    /* const newReply = new Reply({
-        name,
-        title,
-        body
-      });
+    const { name, body } = req.body;
 
-      const reply = await newReply.save(); */
+    const newReply = {
+      name,
+      body,
+      date: Date.now()
+    };
+
+    res.json(newReply).catch((err) => {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    });
+  }
+);
+
+//*     @route:     PUT api/forum
+//*     @desc:      Reply to a post
+//*     @access:    Public
+router.put(
+  "/:id",
+  [check("name", "Name is required").not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(req.body);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { likes } = req.body;
+
+    try {
+      const postLike = await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: { likes: likes } }
+      );
+
+      res.json(postLike);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
   }
 );
 

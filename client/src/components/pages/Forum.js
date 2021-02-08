@@ -55,6 +55,7 @@ const Forum = () => {
 
   useEffect(() => {
     getPosts();
+    console.log(posts);
   }, []);
 
   const getPosts = async () => {
@@ -62,6 +63,16 @@ const Forum = () => {
 
     setPosts(res.data);
     console.log(res.data);
+  };
+
+  const sendLikes = async (_id, likesCount, setLikesCount) => {
+    console.log(post);
+    const res = await axios.put(`/api/forum/${_id}`, {
+      likes: JSON.stringify(likesCount)
+    });
+    console.log(res);
+
+    setLikesCount(res.data.likes);
   };
 
   const { name, title, body } = post;
@@ -153,7 +164,7 @@ const Forum = () => {
           Submit
         </Button>
       </form>
-      <Posts posts={posts} />
+      <Posts posts={posts} sendLikes={sendLikes} />
     </Container>
   );
 };
