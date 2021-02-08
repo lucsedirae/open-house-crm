@@ -18,6 +18,7 @@ export default function TransactionFormModal({
   clearCurrent,
   addTransaction,
   currentTransaction,
+  setCurrentTrx,
 }) {
   //* Initiallizes state
   const modalContext = useContext(ModalContext);
@@ -40,6 +41,7 @@ export default function TransactionFormModal({
             clearCurrent={clearCurrent}
             addTransaction={addTransaction}
             currentTransaction={currentTransaction}
+            setCurrentTrx={setCurrentTrx}
           />
         </DialogContent>
       </Dialog>

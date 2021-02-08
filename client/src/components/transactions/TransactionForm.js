@@ -12,6 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Divider } from "@material-ui/core";
 
+import ModalContext from "../../context/modal/modalContext";
+
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,26 +33,33 @@ const useStyles = makeStyles((theme) => ({
 
 //* Exported component
 const TransactionForm = ({
-  handleClose,
+  // handleClose,
   updateTransaction,
   clearCurrent,
   addTransaction,
   currentTransaction,
+  setCurrentTrx,
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
-
+  const modalContext = useContext(ModalContext);
+  const { open, handleOpen, handleClose } = modalContext;
   const [transaction, setTransaction] = useState({
     trxName: "",
     type: "",
-    cost: null,
-    revenue: null,
-    dateOpened: Date.now(),
-    dateClosed: null,
-    expectedCloseDate: null,
+    cost: "",
+    revenue: "",
+    dateOpened: "",
+    dateClosed: "",
+    expectedCloseDate: "",
     note: "",
-    current: false,
   });
+
+  useEffect(() => {
+    if (currentTransaction !== null) {
+      setTransaction(currentTransaction);
+    }
+  }, []);
 
   const {
     trxName,
@@ -61,29 +70,28 @@ const TransactionForm = ({
     dateClosed,
     expectedCloseDate,
     note,
-    current,
   } = transaction;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (current === false) {
-      return addTransaction(transaction);
+    if (currentTransaction == null) {
+      addTransaction(currentTransaction);
     } else {
-      updateTransaction(transaction);
+      updateTransaction(currentTransaction);
     }
   };
 
   const onChange = (e) => {
-    setTransaction({ ...transaction, [e.target.name]: e.target.value });
+    setCurrentTrx({ ...currentTransaction, [e.target.name]: e.target.value });
   };
-
-  //! updateTransaction
 
   //* Returns JSX to DOM
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
       <Typography variant="h5" style={{ textAlign: "center" }}>
-        {currentTransaction ? "Edit Transaction" : "Add Transaction"}
+        {currentTransaction !== null && currentTransaction.trxName !== ""
+          ? "Edit Transaction"
+          : "Add Transaction"}
       </Typography>
 
       <Box style={{ textAlign: "center" }}>
@@ -97,7 +105,7 @@ const TransactionForm = ({
           size="small"
           helperText="Required"
           name="trxName"
-          value={trxName}
+          value={currentTransaction !== null ? currentTransaction.trxName : ""}
           onChange={onChange}
         />
 
@@ -109,7 +117,7 @@ const TransactionForm = ({
           name="type"
           select
           helperText="Required"
-          value={type}
+          value={currentTransaction !== null ? currentTransaction.type : ""}
           onChange={onChange}
         >
           <MenuItem key="listing" value="Listing">
@@ -129,7 +137,7 @@ const TransactionForm = ({
           type="number"
           size="small"
           name="cost"
-          value={cost}
+          value={currentTransaction !== null ? currentTransaction.cost : ""}
           onChange={onChange}
         />
 
@@ -139,7 +147,7 @@ const TransactionForm = ({
           type="number"
           size="small"
           name="revenue"
-          value={revenue}
+          value={currentTransaction !== null ? currentTransaction.revenue : ""}
           onChange={onChange}
         />
 
@@ -149,7 +157,9 @@ const TransactionForm = ({
           type="date"
           size="small"
           name="dateOpened"
-          value={dateOpened}
+          value={
+            currentTransaction !== null ? currentTransaction.dateOpened : ""
+          }
           onChange={onChange}
         />
 
@@ -159,7 +169,11 @@ const TransactionForm = ({
           type="date"
           size="small"
           name="expectedCloseDate"
-          value={expectedCloseDate}
+          value={
+            currentTransaction !== null
+              ? currentTransaction.expectedCloseDate
+              : ""
+          }
           onChange={onChange}
         />
 
@@ -169,7 +183,9 @@ const TransactionForm = ({
           type="date"
           size="small"
           name="dateClosed"
-          value={dateClosed}
+          value={
+            currentTransaction !== null ? currentTransaction.dateClosed : ""
+          }
           onChange={onChange}
         />
 
@@ -182,7 +198,7 @@ const TransactionForm = ({
           name="note"
           rows={4}
           multiline
-          value={note}
+          value={currentTransaction !== null ? currentTransaction.note : ""}
           onChange={onChange}
         />
       </Box>

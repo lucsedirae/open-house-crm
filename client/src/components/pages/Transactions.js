@@ -123,6 +123,7 @@ const Transactions = () => {
         clearCurrent={clearCurrent}
         addTransaction={addTransaction}
         currentTransaction={currentTransaction}
+        setCurrentTrx={setCurrentTrx}
       />
     </Container>
   );
