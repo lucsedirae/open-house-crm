@@ -51,6 +51,7 @@ const TransactionsGrid = ({
           selectedTrxId={selectedTrxId}
           transaction={currentTransaction}
           deleteTransaction={deleteTransaction}
+          setCurrentTrx={setCurrentTrx}
         />
       ) : (
         <Typography align='center' variant='h5'>

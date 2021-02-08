@@ -15,8 +15,8 @@ import ModalContext from '../../context/modal/modalContext';
 //* Exported component
 export default function TransactionFormModal({
   currentTransaction,
-  transaction,
-  setTransaction,
+  // transaction,
+  setCurrentTrx,
   addTransaction,
   updateTransaction,
 }) {
@@ -38,8 +38,8 @@ export default function TransactionFormModal({
           <TransactionForm
             handleClose={handleClose}
             currentTransaction={currentTransaction}
-            transaction={transaction}
-            setTransaction={setTransaction}
+            // transaction={transaction}
+            setCurrentTrx={setCurrentTrx}
             addTransaction={addTransaction}
             updateTransaction={updateTransaction}
           />

@@ -44,25 +44,24 @@ const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [currentTransaction, setCurrentTrx] = useState(null);
   const [selectedTrxId, setSelectedTrxId] = useState(null);
-  const [transaction, setTransaction] = useState({
-    trxName: '',
-    type: '',
-    cost: '',
-    revenue: '',
-    dateOpened: '',
-    dateClosed: '',
-    expectedCloseDate: '',
-    note: '',
-    current: false,
-  });
+  // const [transaction, setTransaction] = useState({
+  //   trxName: '',
+  //   type: '',
+  //   cost: '',
+  //   revenue: '',
+  //   dateOpened: '',
+  //   dateClosed: '',
+  //   expectedCloseDate: '',
+  //   note: '',
+  // });
 
   //* Retrieves transactions from MongoDB
   const getTransactions = async () => {
     const res = await axios.get('/api/transactions');
     const data = res.data;
     setTransactions(data);
+    console.log(currentTransaction);
   };
-  console.log(transactions);
 
   //* Adds transaction to MongoDB
   const addTransaction = async (transaction) => {
@@ -72,6 +71,7 @@ const Transactions = () => {
       },
     };
     const res = await axios.post('/api/transactions', transaction, config);
+    getTransactions();
   };
 
   const updateTransaction = async (transaction) => {
@@ -85,10 +85,13 @@ const Transactions = () => {
   };
 
   const deleteTransaction = async (transaction) => {
-    //console.log(inventoryItem);
-    const res = await axios.delete(`/api/transaction/${transaction._id}`);
+    const res = await axios.delete(`/api/transactions/${transaction._id}`);
     clearCurrent();
     getTransactions();
+  };
+
+  const clearCurrent = () => {
+    setCurrentTrx(null);
   };
 
   useEffect(() => {
@@ -130,6 +133,7 @@ const Transactions = () => {
         <TransactionsGrid
           transactions={transactions}
           currentTransaction={currentTransaction}
+          setCurrentTrx={setCurrentTrx}
           selectedTrxId={selectedTrxId}
           setSelectedTrxId={setSelectedTrxId}
           findCurrentTrx={findCurrentTrx}
@@ -140,8 +144,8 @@ const Transactions = () => {
       )}
 
       <TransacationFormModal
-        transaction={transaction}
-        setTransaction={setTransaction}
+        // transaction={transaction}
+        setCurrentTrx={setCurrentTrx}
         addTransaction={addTransaction}
         updateTransaction={updateTransaction}
       />

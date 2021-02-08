@@ -81,10 +81,10 @@ const TransactionItem = ({
         <Divider />
         <Typography>
           <IconButton size='small' style={{ margin: '1rem' }}>
-            <EditIcon color='disabled' />
+            <EditIcon color='disabled' onClick={onClick} />
           </IconButton>
           <IconButton size='small' style={{ margin: '1rem' }}>
-            <DeleteForeverIcon color='disabled' />
+            <DeleteForeverIcon color='disabled' onClick={onDelete} />
           </IconButton>
         </Typography>
         <Typography align='center' variant='body1'>

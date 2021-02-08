@@ -1,17 +1,20 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 //* Material UI components, hooks, and icons
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Divider } from '@material-ui/core';
+
+//* State context
+import TransactionContext from '../../context/transactions/transactionContext';
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -33,42 +36,83 @@ const useStyles = makeStyles((theme) => ({
 //* Exported component
 const TransactionForm = ({
   handleClose,
-  transaction,
-  setTransaction,
+  setCurrentTrx,
   addTransaction,
   updateTransaction,
+  currentTransaction,
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
-  const {
-    trxName,
-    type,
-    cost,
-    revenue,
-    dateOpened,
-    dateClosed,
-    expectedCloseDate,
-    note,
-    current,
-  } = transaction;
+  const transactionContext = useContext(TransactionContext);
+
+  useEffect(() => {
+    if (currentTransaction !== null) {
+      setCurrentTrx(currentTransaction);
+      console.log(currentTransaction);
+    } else {
+      setCurrentTrx({
+        trxName: '',
+        type: '',
+        cost: '',
+        revenue: '',
+        dateOpened: '',
+        dateClosed: '',
+        expectedCloseDate: '',
+        note: '',
+      });
+    }
+  }, [transactionContext, currentTransaction]);
+
+  // const [transaction, setTransaction] = useState({
+  //   trxName: '',
+  //   type: '',
+  //   cost: '',
+  //   revenue: '',
+  //   dateOpened: '',
+  //   dateClosed: '',
+  //   expectedCloseDate: '',
+  //   note: '',
+  // });
+
+  // const {
+  //   trxName,
+  //   type,
+  //   cost,
+  //   revenue,
+  //   dateOpened,
+  //   dateClosed,
+  //   expectedCloseDate,
+  //   note,
+  // } = currentTransaction;
+
+  const onChange = (e) => {
+    setCurrentTrx({ ...transaction, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (current === false) {
-      return addTransaction(transaction);
+    if (currentTransaction === null) {
+      addTransaction(currentTransaction);
     } else {
-      updateTransaction(transaction);
-      setTransaction(null);
+      updateTransaction(currentTransaction);
+      setCurrentTrx(null);
     }
-  };
 
-  const onChange = (e) => {
-    setTransaction({ ...transaction, [e.target.name]: e.target.value });
+    setCurrentTrx({
+      trxName: '',
+      type: '',
+      cost: '',
+      revenue: '',
+      dateOpened: '',
+      expectedCloseDate: '',
+      note: '',
+      user: '',
+    });
   };
 
   const clearAll = () => {
-    setTransaction(null);
+    setCurrentTrx(null);
   };
 
   //! updateTransaction
@@ -78,7 +122,7 @@ const TransactionForm = ({
   return (
     <form className={classes.root} autoComplete='off' onSubmit={onSubmit}>
       <Typography variant='h5' style={{ textAlign: 'center' }}>
-        {current ? 'Edit Transaction' : 'Add Transaction'}
+        {currentTransaction ? 'Edit Transaction' : 'Add Transaction'}
       </Typography>
 
       <Box style={{ textAlign: 'center' }}>
@@ -191,7 +235,7 @@ const TransactionForm = ({
       >
         Submit
       </Button>
-      {current && (
+      {currentTransaction && (
         <Button
           variant='outlined'
           fullWidth={true}
