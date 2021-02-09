@@ -1,22 +1,21 @@
 //* Dependencies
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from 'react';
+import '../../App.css';
+import axios from 'axios';
 
 //* Material UI components, hooks, and icons
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
 //* Custom components
-import TransactionsGrid from "../transactions/TransactionsGrid";
-import FloatingAction from "../layout/FloatingAction";
-import TransacationFormModal from "../transactions/TransactionFormModal";
-import TransacationForm from "../transactions/TransactionForm";
-import NavPanel from "../layout/NavPanel";
+import TransactionsGrid from '../transactions/TransactionsGrid';
+import TransacationFormModal from '../transactions/TransactionFormModal';
+import NavPanel from '../layout/NavPanel';
 
 //* State context
-import AuthContext from "../../context/auth/authContext";
+import AuthContext from '../../context/auth/authContext';
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -35,19 +34,67 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Big Shoulders Display",
     fontWeight: "700"
   }
-}));
 
+
+//* Exported component
 const Transactions = () => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //* Initializes state
   const authContext = useContext(AuthContext);
+  const [transactions, setTransactions] = useState([]);
+
+  //* Retrieves transactions from MongoDB
+  const getTransactions = async () => {
+    const res = await axios.get('/api/transactions');
+    const data = res.data;
+    setTransactions(data);
+  };
+
+  //* Adds transaction to MongoDB
+  const addTransaction = async (transaction) => {
+    const res = await axios.post('/api/transactions', transaction);
+    getTransactions();
+  };
+
+  const updateTransaction = async (transaction) => {
+    const res = await axios.put(
+      `/api/transactions/${transaction._id}`,
+      transaction
+    );
+    const data = res.data;
+    getTransactions();
+    setCurrentTrx(transaction);
+  };
+
+  const deleteTransaction = async (transaction) => {
+    const res = await axios.delete(`/api/transactions/${transaction._id}`);
+    clearCurrent();
+    transaction = {
+      trxName: '',
+      type: '',
+      cost: '',
+      revenue: '',
+      dateOpened: '',
+      expectedCloseDate: "'",
+      note: '',
+      user: "'",
+    };
+    getTransactions();
+  };
+
+  const [currentTransaction, setCurrentTrx] = useState(null);
+
+  const clearCurrent = () => {
+    setCurrentTrx(null);
+  };
 
   //* Authenticates user token
   useEffect(() => {
     authContext.loadUser();
     // eslint-disable-next-line
+    getTransactions();
   }, []);
 
   return (
@@ -56,14 +103,29 @@ const Transactions = () => {
         Transactions
       </Typography>
 
-      <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item xs={12} sm={12} md={8} align="center">
+      <Grid container spacing={3} alignItems='center' justify='center'>
+        <Grid item xs={12} sm={12} md={8} align='center'>
           <NavPanel />
         </Grid>
       </Grid>
-      <TransactionsGrid />
+      {transactions !== null ? (
+        <TransactionsGrid
+          transactions={transactions}
+          deleteTransaction={deleteTransaction}
+          clearCurrent={clearCurrent}
+          currentTransaction={currentTransaction}
+          setCurrentTrx={setCurrentTrx}
+        />
+      ) : (
+        <Spinner />
+      )}
 
-      <TransacationFormModal />
+      <TransacationFormModal
+        updateTransaction={updateTransaction}
+        clearCurrent={clearCurrent}
+        addTransaction={addTransaction}
+        currentTransaction={currentTransaction}
+      />
     </Container>
   );
 };

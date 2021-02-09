@@ -1,13 +1,14 @@
 //* Dependencies
-import React, { useContext, useEffect, useState, useReducer } from "react";
+import React, {
+	useContext,
+	useEffect,
+	Fragment,
+	useState,
+	useReducer,
+} from "react";
 import axios from "axios";
 import TransactionReducer from "../../context/transactions/transactionReducer";
 import { makeStyles } from "@material-ui/core/styles";
-
-//* State context
-
-//Import transactions data
-import TransactionContext from "../../context/transactions/transactionContext";
 
 import moment from "moment";
 
@@ -36,46 +37,115 @@ const useStyles = makeStyles({
 
 //* Exported component
 const Expenses = () => {
-	const [transaction, setTransaction] = useState([]);
+	const [transactionData, setTransactionData] = useState({});
 
 	useEffect(() => {
-		getTransactionCost();
+		// getTransactionrevenue();
+		getTransactionData();
 	}, []);
-	const getTransactionCost = async () => {
-		const res = await axios.get("http://localhost:3000/api/transactions");
 
-		const transactionData = res.data.map((transaction) => {
-			return {
-				x: moment.utc(transaction.dateOpened).format("MMMM"),
-				y: transaction.revenue,
-			};
-		});
-
-		// console.log(chartData);
-		console.log(res.data);
-		setTransaction(transactionData);
-		console.log(transaction);
+	let charted = {
+		January: 0,
+		February: 0,
+		March: 0,
+		April: 0,
+		May: 0,
+		June: 0,
+		July: 0,
+		August: 0,
+		September: 0,
+		October: 0,
+		November: 0,
+		December: 0,
 	};
 
-	const [state, dispatch] = useReducer(TransactionReducer);
+	const getTransactionData = async () => {
+		const res = await axios.get("/api/transactions");
+		const theTransactions = [];
+		res.data.map((transactions) => {
+			console.log(transactions.revenue);
+		});
+		res.data.map((transactions) => {
+			let month = moment.utc(transactions.dateOpened).format("MMMM");
+			let revenue = transactions.revenue;
+			console.log(transactions);
+
+			switch (month) {
+				case "January":
+					return (charted.January += revenue);
+				case "February":
+					return (charted.February += revenue);
+				case "March":
+					return (charted.March += revenue);
+				case "April":
+					return (charted.April += revenue);
+				case "May":
+					return (charted.May += revenue);
+				case "June":
+					return (charted.June += revenue);
+				case "July":
+					return (charted.July += revenue);
+				case "August":
+					return (charted.August += revenue);
+				case "September":
+					return (charted.September += revenue);
+				case "October":
+					return (charted.October += revenue);
+				case "November":
+					return (charted.November += revenue);
+				case "December":
+					return (charted.December += revenue);
+			}
+		});
+		console.log(Object.values(charted));
+		Object.values(charted);
+		setTransactionData(charted);
+	};
+	console.log(transactionData);
 
 	const data = {
-		labels: transaction.map((transactions) => {
-			return transactions.x;
-		}),
+		base: 0,
+		labels: [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+		],
+
 		datasets: [
 			{
-				label: "Revenue",
+				base: 0,
+				label: "Expenses",
 				backgroundColor: "rgb(21, 138, 12)",
 				borderColor: "rgb(11,227,210)",
 				borderWidth: 1,
-				hoverBackgroundColor: "rgba(21,138,12,0.4)",
+				hoverBackgroundColor: "rgba(21, 138, 12,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
-				data: transaction.map((transactions) => {
-					return transactions.y;
-				}),
+
+				data: Object.values(transactionData),
 			},
 		],
+		base: 0,
+		options: {
+			scales: {
+				xAxes: [
+					{
+						type: "time",
+						time: { parser: "MMMM" },
+						display: true,
+						base: 0,
+					},
+				],
+			},
+		},
 	};
 	//* Initializes styling classes
 	const classes = useStyles();

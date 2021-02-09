@@ -8,11 +8,9 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+// import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
-// Material UI Date Picker
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -40,18 +38,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // Exported Component
-const InventoryForm = ({ handleClose }) => {
+const InventoryForm = ({
+  handleClose,
+  updateInventory,
+  clearCurrent,
+  addInventory,
+  currentInv,
+}) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   //*Initializes context state
   const inventoryContext = useContext(InventoryContext);
-  const {
-    addInventory,
-    updateInventory,
-    clearCurrent,
-    current,
-  } = inventoryContext;
+  const { current, setCurrent } = inventoryContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -70,7 +69,7 @@ const InventoryForm = ({ handleClose }) => {
 
   const [inventory, setInventory] = useState({
     name: '',
-    purchased: '',
+    purchased: new Date(),
     location: '',
     cost: '',
     value: '',
@@ -89,6 +88,7 @@ const InventoryForm = ({ handleClose }) => {
       addInventory(inventory);
     } else {
       updateInventory(inventory);
+      setCurrent(null);
     }
 
     setInventory({

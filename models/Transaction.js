@@ -25,17 +25,18 @@ const TransactionSchema = mongoose.Schema({
   dateOpened: {
     type: Date,
     default: Date.now,
-    //! Once date handling is finished, uncomment
-    // required: true,
+    required: true,
   },
   dateClosed: {
     type: Date,
     default: null,
   },
+  note: {
+    type: String,
+  },
   expectedCloseDate: {
     type: Date,
-    //! Once date handling is finished, uncomment
-    // required: true,
+    required: true,
   },
 });
 
