@@ -4,7 +4,7 @@
   "description": "Open Source Contact Management Platform\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D",
   "main": "server.js",
   "engines": {
-    "node": "14.x"
+    "node": "14.15"
   }
   "scripts": {
     "start": "node server.js",
