@@ -55,12 +55,8 @@ const LineChart = () => {
 		const res = await axios.get("http://localhost:3000/api/transactions");
 
 		res.data.map((transactions) => {
-			console.log(transactions.cost);
-		});
-		res.data.map((transactions) => {
 			let month = moment.utc(transactions.dateOpened).format("MMMM");
 			let profit = transactions.revenue - transactions.cost;
-			console.log(transactions);
 
 			switch (month) {
 				case "January":
@@ -89,11 +85,9 @@ const LineChart = () => {
 					return (charted.December += profit);
 			}
 		});
-		console.log(Object.values(charted));
 		Object.values(charted);
 		setTransactionData(charted);
 	};
-	console.log(transactionData);
 
 	const data = {
 		labels: [

@@ -54,13 +54,10 @@ const Expenses = () => {
 	const getTransactionData = async () => {
 		const res = await axios.get("/api/transactions");
 		const theTransactions = [];
-		res.data.map((transactions) => {
-			console.log(transactions.revenue);
-		});
+
 		res.data.map((transactions) => {
 			let month = moment.utc(transactions.dateOpened).format("MMMM");
 			let revenue = transactions.revenue;
-			console.log(transactions);
 
 			switch (month) {
 				case "January":
@@ -89,11 +86,9 @@ const Expenses = () => {
 					return (charted.December += revenue);
 			}
 		});
-		console.log(Object.values(charted));
 		Object.values(charted);
 		setTransactionData(charted);
 	};
-	console.log(transactionData);
 
 	const data = {
 		base: 0,
