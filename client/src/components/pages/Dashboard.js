@@ -35,8 +35,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "5rem",
     marginBottom: "1rem",
     fontFamily: "Big Shoulders Display",
-    fontWeight: "700"
+    fontWeight: "700",
   }
+}));
 
 //* Exported component
 export const Dashboard = () => {

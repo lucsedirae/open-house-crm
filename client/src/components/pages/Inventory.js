@@ -1,13 +1,13 @@
 //* Dependencies
-import React, { useEffect, useContext, useState } from 'react';
-import '../../App.css';
-import axios from 'axios';
+import React, { useEffect, useContext, useState } from "react";
+import "../../App.css";
+import axios from "axios";
 
 //* Material-UI components, hooks, and icons
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
 import InventoryGrid from '../inventory/InventoryGrid';
@@ -48,13 +48,13 @@ const Inventory = () => {
   //* Funcionized Axios calls to do crud operations on inventory and then prop drill down
   //* Retrieves inventory from MongoDB
   const getInventory = async () => {
-    const res = await axios.get('/api/inventory');
+    const res = await axios.get("/api/inventory");
     const data = res.data;
     setInventory(data);
   };
 
   const addInventory = async (inventory) => {
-    const res = await axios.post('/api/inventory', inventory);
+    const res = await axios.post("/api/inventory", inventory);
     getInventory();
   };
 
@@ -69,12 +69,12 @@ const Inventory = () => {
     const res = await axios.delete(`/api/inventory/${inventoryItem._id}`);
     clearCurrent();
     inventoryItem = {
-      name: '',
-      purchased: '',
-      location: '',
-      cost: '',
-      value: '',
-      status: '',
+      name: "",
+      purchased: "",
+      location: "",
+      cost: "",
+      value: "",
+      status: "",
     };
     getInventory();
   };

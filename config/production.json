@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://lucsedirae:5Df388n4dRSEJpg@cluster0.dyvq4.mongodb.net/openhouse_db?retryWrites=true&w=majority", 
+    "jwtSecret": "cJqM)g9#;y9n6$B@#@*3QuKLYEukGk"
+}
