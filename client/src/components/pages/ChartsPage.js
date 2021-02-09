@@ -88,7 +88,6 @@ const ChartsPage = () => {
 								alignItems="center"
 								justify="center">
 								<Revenue />
-								<Expenses />
 							</Grid>
 						</AccordionDetails>
 					</Accordion>

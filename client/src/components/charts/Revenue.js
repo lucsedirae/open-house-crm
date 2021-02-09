@@ -32,13 +32,29 @@ const useStyles = makeStyles({
 
 //* Exported component
 const Expenses = () => {
-	const [transactionData, setTransactionData] = useState({});
+	const [transactionRevenue, setTransactionRevenue] = useState({});
+	const [transactionCost, setTransactionCost] = useState({});
 
 	useEffect(() => {
-		getTransactionData();
+		getTransactionRevenue();
+		getTransactionCost();
 	}, []);
 
-	let charted = {
+	let chartedRevenue = {
+		January: 0,
+		February: 0,
+		March: 0,
+		April: 0,
+		May: 0,
+		June: 0,
+		July: 0,
+		August: 0,
+		September: 0,
+		October: 0,
+		November: 0,
+		December: 0,
+	};
+	let chartedCost = {
 		January: 0,
 		February: 0,
 		March: 0,
@@ -53,45 +69,120 @@ const Expenses = () => {
 		December: 0,
 	};
 
-	const getTransactionData = async () => {
+	const getTransactionRevenue = async () => {
 		const res = await axios.get("/api/transactions");
 		const theTransactions = [];
 
 		res.data.map((transactions) => {
 			let month = moment.utc(transactions.dateOpened).format("MMMM");
 			let revenue = transactions.revenue;
+			let cost = transactions.cost;
+			console.log(cost);
 
 			switch (month) {
 				case "January":
-					return (charted.January += revenue);
+					return (chartedRevenue.January += revenue);
 				case "February":
-					return (charted.February += revenue);
+					return (chartedRevenue.February += revenue);
 				case "March":
-					return (charted.March += revenue);
+					return (chartedRevenue.March += revenue);
 				case "April":
-					return (charted.April += revenue);
+					return (chartedRevenue.April += revenue);
 				case "May":
-					return (charted.May += revenue);
+					return (chartedRevenue.May += revenue);
 				case "June":
-					return (charted.June += revenue);
+					return (chartedRevenue.June += revenue);
 				case "July":
-					return (charted.July += revenue);
+					return (chartedRevenue.July += revenue);
 				case "August":
-					return (charted.August += revenue);
+					return (chartedRevenue.August += revenue);
 				case "September":
-					return (charted.September += revenue);
+					return (chartedRevenue.September += revenue);
 				case "October":
-					return (charted.October += revenue);
+					return (chartedRevenue.October += revenue);
 				case "November":
-					return (charted.November += revenue);
+					return (chartedRevenue.November += revenue);
 				case "December":
-					return (charted.December += revenue);
+					return (chartedRevenue.December += revenue);
 			}
 		});
-		Object.values(charted);
-		setTransactionData(charted);
+		// Object.values(charted);
+		setTransactionRevenue(chartedRevenue);
+		setTransactionCost(chartedCost);
+		console.log(transactionCost);
+	};
+	const getTransactionCost = async () => {
+		const res = await axios.get("/api/transactions");
+		const theTransactions = [];
+
+		res.data.map((transactions) => {
+			let month = moment.utc(transactions.dateOpened).format("MMMM");
+			let cost = transactions.cost;
+			console.log(cost);
+
+			switch (month) {
+				case "January":
+					return (chartedCost.January += cost);
+				case "February":
+					return (chartedCost.February += cost);
+				case "March":
+					return (chartedCost.March += cost);
+				case "April":
+					return (chartedCost.April += cost);
+				case "May":
+					return (chartedCost.May += cost);
+				case "June":
+					return (chartedCost.June += cost);
+				case "July":
+					return (chartedCost.July += cost);
+				case "August":
+					return (chartedCost.August += cost);
+				case "September":
+					return (chartedCost.September += cost);
+				case "October":
+					return (chartedCost.October += cost);
+				case "November":
+					return (chartedCost.November += cost);
+				case "December":
+					return (chartedCost.December += cost);
+			}
+		});
+		setTransactionCost(chartedCost);
+		console.log(transactionCost);
 	};
 
+	const options = {
+		layout: {
+			padding: {
+				bottom: 0,
+				top: 0,
+			},
+		},
+		scales: {
+			xAxes: [
+				{
+					stacked: true,
+					gridLines: {
+						display: true,
+					},
+				},
+			],
+			yAxes: [
+				{
+					stacked: false,
+				},
+			],
+		},
+		responsive: true,
+		legend: {
+			display: true,
+			position: "right",
+			labels: {
+				fontColor: "#91929b",
+				padding: 20,
+			},
+		},
+	};
 	const data = {
 		base: 0,
 		labels: [
@@ -119,7 +210,23 @@ const Expenses = () => {
 				hoverBackgroundColor: "rgba(21, 138, 12,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
 
-				data: Object.values(transactionData),
+				data: Object.values(transactionRevenue),
+				order: 2,
+			},
+			{
+				base: 0,
+				label: "Cost",
+				backgroundColor: "rgb(255,0,0)",
+				borderColor: "rgb(255,0,0)",
+				borderWidth: 1,
+				hoverBackgroundColor: "rgba(255,0,0,0.4)",
+				hoverBorderColor: "rgb(0,88,101)",
+
+				data: Object.values(transactionCost),
+				// order:
+				// 	Object.values(transactionCost) > Object.values(transactionRevenue)
+				// 		? 2
+				// 		: 1,
 			},
 		],
 		base: 0,
@@ -143,14 +250,7 @@ const Expenses = () => {
 	return (
 		<Grid container>
 			<Grid item xs={12}>
-				<Bar
-					data={data}
-					width={"700em"}
-					height={"500em"}
-					options={{
-						maintainAspectRatio: true,
-					}}
-				/>{" "}
+				<Bar data={data} width={"700em"} height={"500em"} options={options} />{" "}
 			</Grid>
 		</Grid>
 	);
