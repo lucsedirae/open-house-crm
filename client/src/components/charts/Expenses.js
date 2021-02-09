@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import moment from "moment";
 
+import Grid from "@material-ui/core/Grid";
+
 //Import Chart Component
 import { Bar } from "react-chartjs-2";
 
@@ -139,16 +141,21 @@ const Expenses = () => {
 
 	//* Returns JSX to DOM
 	return (
-		<div>
-			<Bar
-				data={data}
-				width={"380em"}
-				height={"380em"}
-				options={{
-					maintainAspectRatio: true,
-				}}
-			/>{" "}
-		</div>
+		<Grid container>
+			<Grid item xs={12}>
+				<Bar
+					data={data}
+					width={"380em"}
+					height={"380em"}
+					options={{
+						maintainAspectRatio: true,
+					}}
+					xs={12}
+					sm={12}
+					md={6}
+				/>{" "}
+			</Grid>
+		</Grid>
 	);
 };
 

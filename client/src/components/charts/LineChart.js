@@ -9,6 +9,8 @@ import moment from "moment";
 
 import { Line } from "react-chartjs-2";
 
+import Grid from "@material-ui/core/Grid";
+
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
 	root: {
@@ -126,9 +128,18 @@ const LineChart = () => {
 
 	//* Returns JSX to DOM
 	return (
-		<div>
-			<Line data={data} width={"700em"} height={"500em"} />
-		</div>
+		<Grid container>
+			<Grid item xs={12}>
+				<Line
+					data={data}
+					width={"700em"}
+					height={"500em"}
+					xs={12}
+					sm={12}
+					md={6}
+				/>
+			</Grid>
+		</Grid>
 	);
 };
 

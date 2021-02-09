@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Line, Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import axios from "axios";
-import moment from "moment";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
 	root: {
@@ -72,9 +72,11 @@ const PieChart = () => {
 
 	//* Returns JSX to DOM
 	return (
-		<div>
-			<Pie data={data} />
-		</div>
+		<Grid container>
+			<Grid item xs={12}>
+				<Pie data={data} xs={12} sm={12} md={6} />
+			</Grid>
+		</Grid>
 	);
 };
 

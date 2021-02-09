@@ -84,11 +84,11 @@ const ChartsPage = () => {
 								container
 								xs={12}
 								sm={12}
-								md={12}
+								md={6}
 								alignItems="center"
 								justify="center">
-								<Revenue />
-								<Expenses />
+								<Revenue xs={12} sm={12} md={6} />
+								<Expenses xs={12} sm={12} md={6} />
 							</Grid>
 						</AccordionDetails>
 					</Accordion>
@@ -107,12 +107,12 @@ const ChartsPage = () => {
 						</AccordionSummary>
 						<Grid
 							container
-							xs={100}
-							sm={100}
-							md={100}
+							xs={12}
+							sm={12}
+							md={6}
 							alignItems="center"
 							justify="center">
-							<LineChart />
+							<LineChart xs={12} sm={12} md={6} />
 						</Grid>
 					</Accordion>
 					<Accordion
@@ -131,7 +131,7 @@ const ChartsPage = () => {
 							</Typography>
 						</AccordionSummary>
 
-						<PieChart />
+						<PieChart xs={12} sm={12} md={6} />
 					</Accordion>
 				</Grid>
 			</Grid>
