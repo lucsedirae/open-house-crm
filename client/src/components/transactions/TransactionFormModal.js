@@ -18,8 +18,6 @@ export default function TransactionFormModal({
   clearCurrent,
   currentTransaction,
   addTransaction,
-  currentTransaction,
-  setCurrentTrx,
 }) {
   //* Initiallizes state
   const modalContext = useContext(ModalContext);
