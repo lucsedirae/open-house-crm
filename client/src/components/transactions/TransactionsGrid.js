@@ -10,6 +10,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import Spinner from '../layout/Spinner';
 import TransactionItem from '../transactions/TransactionItem';
 
+//* Defines columns for transaction grid
 const columns = [
   { field: 'trxName', headerName: 'Transaction Name', width: 260 },
   { field: 'revenue', headerName: 'Revenue', width: 130 },
@@ -85,5 +86,4 @@ const TransactionsGrid = ({
   );
 };
 
-//* Returns JSX to DOM if transactions is not empty
 export default TransactionsGrid;

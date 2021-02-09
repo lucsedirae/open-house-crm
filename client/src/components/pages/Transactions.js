@@ -1,3 +1,4 @@
+//! WORKING VERSION IN PROGRESS - NOT THE BACK UP!!!
 //* Dependencies
 import React, { useContext, useEffect, useState } from 'react';
 import '../../App.css';
@@ -33,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1rem",
     fontFamily: "Big Shoulders Display",
     fontWeight: "700"
-  }
+  },
+}));
 
 
 //* Exported component
@@ -45,14 +47,20 @@ const Transactions = () => {
   const authContext = useContext(AuthContext);
   const [transactions, setTransactions] = useState([]);
 
+  //* Authenticates user token and retrieves transaction list
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+    getTransactions();
+  }, []);
+
+  //* Funcionized Axios calls to do crud operations on transactions and then prop drill down
   //* Retrieves transactions from MongoDB
   const getTransactions = async () => {
-    const res = await axios.get('/api/transactions');
-    const data = res.data;
-    setTransactions(data);
+    const res = await axios.get("/api/transactions");
+    setTransactions(res.data);
   };
 
-  //* Adds transaction to MongoDB
   const addTransaction = async (transaction) => {
     const res = await axios.post('/api/transactions', transaction);
     getTransactions();

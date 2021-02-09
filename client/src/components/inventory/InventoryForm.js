@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Exported Component
+//* Exported Component
 const InventoryForm = ({
   handleClose,
   updateInventory,

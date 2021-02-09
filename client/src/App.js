@@ -20,7 +20,7 @@ import Register from "./components/auth/Register";
 import Transactions from "./components/pages/Transactions";
 import ChartsPage from "./components/pages/ChartsPage";
 import Forum from "./components/pages/Forum";
-import Help from "./components/pages/Help"
+import Help from "./components/pages/Help";
 
 //* State context
 import AlertState from "./context/alert/AlertState";
@@ -79,11 +79,11 @@ const App = () => {
                           path="/dashboard/inventory"
                           component={Inventory}
                         />
+                        <PrivateRoute exact path="/Help" component={Help} />
                         <PrivateRoute exact path="/forum" component={Forum} />
                         <Route exact path="/develop" component={Develop} />
                         <Route exact path="/Register" component={Register} />
                         <Route exact path="/Login" component={Login} />
-                        <Route exact path="/Help" component={Help}/>
                         <Route
                           path="/github"
                           component={() => {

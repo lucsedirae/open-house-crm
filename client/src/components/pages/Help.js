@@ -1,5 +1,5 @@
 //* Dependencies
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
@@ -15,15 +15,32 @@ import InventoryMod from "../help/InventoryMod";
 import MyAcct from "../help/MyAcct";
 import NavPanelHelp from "../help/NavPanelHelp";
 import TransactionsMod from "../help/TransactionsMod";
-
 import HelpMenu from "../help/HelpMenu";
 import NavPanel from "../layout/NavPanel";
 
+//* State context
+import AuthContext from "../../context/auth/authContext";
+
 //* Exported component
 const Help = () => {
+  //* Initializes context state
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
+
+  //* Authenticates user token
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
+
+  //* Returns JSX to DOM
   return (
     <Container>
-      <Typography variant="h4" align="center" style={{ marginTop: "5rem" }}>
+      <Typography
+        variant="h4"
+        align="center"
+        style={{ marginTop: "5rem", fontFamily: "Oswald", fontWeight: "500" }}
+      >
         Help
       </Typography>
       <Grid
