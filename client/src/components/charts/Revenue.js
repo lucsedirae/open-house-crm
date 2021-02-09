@@ -203,10 +203,10 @@ const Expenses = () => {
 			{
 				base: 0,
 				label: "Revenue",
-				backgroundColor: "rgb(21, 138, 12)",
-				borderColor: "rgb(11,227,210)",
+				backgroundColor: "rgb(53, 122, 56)",
+				borderColor: "rgb(53, 122, 56)",
 				borderWidth: 1,
-				hoverBackgroundColor: "rgba(21, 138, 12,0.4)",
+				hoverBackgroundColor: "rgba(53, 122, 56,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
 
 				data: Object.values(transactionRevenue),
@@ -215,17 +215,13 @@ const Expenses = () => {
 			{
 				base: 0,
 				label: "Cost",
-				backgroundColor: "rgb(255,0,0)",
-				borderColor: "rgb(255,0,0)",
+				backgroundColor: "rgb(255, 16, 47)",
+				borderColor: "rgb(178, 16, 47)",
 				borderWidth: 1,
-				hoverBackgroundColor: "rgba(255,0,0,0.4)",
+				hoverBackgroundColor: "rgba(255, 16, 47,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
 
 				data: Object.values(transactionCost),
-				// order:
-				// 	Object.values(transactionCost) > Object.values(transactionRevenue)
-				// 		? 2
-				// 		: 1,
 			},
 		],
 		base: 0,

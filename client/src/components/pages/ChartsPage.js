@@ -18,7 +18,6 @@ import AuthContext from "../../context/auth/authContext";
 
 import NavPanel from "../layout/NavPanel";
 import Revenue from "../charts/Revenue";
-import Expenses from "../charts/Expenses";
 import PieChart from "../charts/PieChart";
 import LineChart from "../charts/LineChart";
 
