@@ -176,10 +176,9 @@ const Expenses = () => {
 		responsive: true,
 		legend: {
 			display: true,
-			position: "right",
+			position: "top",
 			labels: {
 				fontColor: "#91929b",
-				padding: 20,
 			},
 		},
 	};
