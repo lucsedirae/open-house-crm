@@ -21,7 +21,7 @@ export default function ContactFormModal() {
   //* Returns JSX to DOM
   return (
     <div>
-      <FloatingAction handleClickOpen={handleOpen} />
+      <FloatingAction handleClickOpen={handleOpen} toolType={"contacts"} />
 
       <Dialog
         open={open}

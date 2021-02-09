@@ -20,20 +20,20 @@ import AuthContext from '../../context/auth/authContext';
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
-    marginBottom: '1rem',
+    textAlign: "center",
+    marginBottom: "1rem"
   },
   header: {
-    textAlign: 'center',
-    marginTop: '4rem',
-    marginBottom: '1rem',
-    fontFamily: 'Oswald',
-    fontWeight: '500',
-  },
+    textAlign: "center",
+    marginTop: "5rem",
+    marginBottom: "1rem",
+    fontFamily: "Big Shoulders Display",
+    fontWeight: "700"
+  }
 }));
 
 //* Exported component
@@ -95,11 +95,11 @@ const Inventory = () => {
   //*Returns JSX to DOM if inventory is not empty
   return (
     <Container>
-      <Typography variant='h4' className={classes.header}>
+      <Typography variant="h4" className={classes.header}>
         Inventory
       </Typography>
-      <Grid container spacing={3} alignItems='center' justify='center'>
-        <Grid item xs={12} sm={12} md={8} align='center'>
+      <Grid container spacing={3} alignItems="center" justify="center">
+        <Grid item xs={12} sm={12} md={8} align="center">
           <NavPanel />
         </Grid>
       </Grid>

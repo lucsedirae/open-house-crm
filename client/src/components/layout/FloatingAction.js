@@ -21,17 +21,30 @@ const style = {
   position: "fixed",
   backgroundColor: "#008B8B",
   color: "white",
-  border: "3px solid grey",
+  border: "3px solid darkslategrey ",
   width: "4rem",
   height: "4rem"
 };
 
-export default function FloatingAction({ handleClickOpen }) {
+export default function FloatingAction({ handleClickOpen, toolType }) {
   const classes = useStyles();
+
+  const generateToolTip = (toolType) => {
+    switch (toolType) {
+      case "transactions":
+        return "Add Transaction";
+      case "contacts":
+        return "Add Contact";
+      case "inventory":
+        return "Add Inventory Item";
+      default:
+        return;
+    }
+  };
 
   return (
     <div className={classes.root}>
-      <Tooltip title="Add Contact" placement="left">
+      <Tooltip title={generateToolTip(toolType)} placement="left">
         <Fab aria-label="add" style={style} onClick={handleClickOpen}>
           <AddIcon />
         </Fab>
