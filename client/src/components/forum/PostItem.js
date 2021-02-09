@@ -3,6 +3,7 @@ import Replies from "./Replies";
 import axios from "axios";
 import Badge from "@material-ui/core/Badge";
 import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import ReplyForm from "./ReplyForm";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
@@ -11,6 +12,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import FaceIcon from "@material-ui/icons/Face";
 
 const PostItem = ({ post }) => {
   const { name, title, body, replies, _id, date, likes } = post;
@@ -56,16 +58,25 @@ const PostItem = ({ post }) => {
       <Container>
         <Grid container spacing={3} alignItems="center" justify="center">
           <Grid item xs={12} sm={6} md={8}>
-            <h1>{title}</h1>
-            <div style={{ color: "#606060" }}>
-              <AccountBoxIcon fontSize="large" /> {name}
-            </div>
-            <div style={{ color: "#606060" }}>
-              <Moment format="MM/DD/YYYY">{date}</Moment> at {""}
-              <Moment format="h:mm A">{date}</Moment>
-            </div>
+            <Paper
+              style={{ padding: "1rem", marginBottom: "1rem" }}
+              elevation={3}
+            >
+              <h1>{title}</h1>
+              <div style={{ color: "#606060" }}>
+                <FaceIcon
+                  style={{ margin: "0", padding: "0" }}
+                  fontSize="small"
+                />{" "}
+                {name}
+              </div>
+              <div style={{ color: "#606060" }}>
+                <Moment format="MM/DD/YYYY">{date}</Moment> at {""}
+                <Moment format="h:mm A">{date}</Moment>
+              </div>
 
-            <p style={{ lineHeight: "1.9" }}>{body}</p>
+              <p style={{ lineHeight: "1.9" }}>{body}</p>
+            </Paper>
             <Replies replies={replies} />
             <FormControlLabel
               onClick={handleClick}
