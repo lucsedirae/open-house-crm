@@ -79,7 +79,7 @@ const App = () => {
                           path="/dashboard/inventory"
                           component={Inventory}
                         />
-                        <Route exact path="/forum" component={Forum} />
+                        <PrivateRoute exact path="/forum" component={Forum} />
                         <Route exact path="/develop" component={Develop} />
                         <Route exact path="/Register" component={Register} />
                         <Route exact path="/Login" component={Login} />
