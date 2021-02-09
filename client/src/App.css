@@ -100,7 +100,7 @@ html {
   background-size: cover;
   background-blend-mode: screen;
   background-color: #031818;
-  height: 100vh;
+  height: 70vh;
 }
 
 .MuiBadge-colorSecondary {
@@ -115,6 +115,8 @@ html {
   color: white;
   font-family: "Big Shoulders Display";
   font-weight: 700;
+  position: relative;
+  bottom: 0px;
 }
 
 @media only screen and (max-width: 500px) {

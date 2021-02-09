@@ -53,7 +53,7 @@ const SplashPanelB = () => {
       </Typography>
       <Grid container spacing={0}>
         <Grid item lg={2}>
-          <img src="/img/for-sale.svg" style={{ width: "15rem" }} />
+          <img src="/img/home-mobile.svg" style={{ width: "15rem" }} />
         </Grid>
         <Grid item lg={10}>
           <Typography

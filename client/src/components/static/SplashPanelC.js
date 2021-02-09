@@ -59,10 +59,10 @@ const SplashPanelC = () => {
             </span>{" "}
             is <span style={{ fontStyle: "italic" }}>open source.</span>
           </Typography>
-          <img
+          {/* <img
             src="/img/develop.svg"
             style={{ width: "15rem", margin: "0 auto", display: "block" }}
-          />
+          /> */}
           <Grid container spacing={3}>
             <Grid item sm={12} md={5} lg={6} style={{ textAlign: "center" }}>
               <Typography

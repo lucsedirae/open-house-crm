@@ -36,21 +36,15 @@ const Help = () => {
   //* Returns JSX to DOM
   return (
     <Container>
-      <Typography
-        variant="h4"
-        align="center"
-        style={{ marginTop: "5rem", fontFamily: "Oswald", fontWeight: "500" }}
-      >
-        Help
-      </Typography>
-      <Grid
-        container
-        spacing={3}
-        alignItems="center"
-        justify="center"
-        style={{ marginTop: "0rem" }}
-      >
-        <Grid item xs={12} sm={12} md={8} align="center">
+      <Grid container spacing={3} alignItems="center" justify="center">
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={8}
+          style={{ marginTop: "5rem" }}
+          align="center"
+        >
           <NavPanel />
           <Paper style={{ marginTop: "1rem" }}>
             <HelpMenu />

@@ -21,8 +21,8 @@ const Home = () => {
       </div>
       <div id="development">
         <SplashPanelC />
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

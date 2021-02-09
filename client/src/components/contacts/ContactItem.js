@@ -41,29 +41,29 @@ const useStyles = makeStyles({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     fontWeight: "200",
-    margin: "0 auto",
+    margin: "0 auto"
   },
   title: {
     textAlign: "center",
     fontFamily: "Big Shoulders Display",
-    margin: "0 auto",
+    margin: "0 auto"
   },
   address: {
     textAlign: "center",
     fontSize: "18px",
     fontFamily: "Big Shoulders Display",
-    margin: "0 auto",
+    margin: "0 auto"
   },
 
   pos: {
-    marginBottom: "1rem",
+    marginBottom: "1rem"
   },
   buttonGroup: {
-    justifyContent: "center",
+    justifyContent: "center"
   },
   Box: {
-    marginTop: "1rem",
-  },
+    marginTop: "1rem"
+  }
 });
 
 //* Checks the contact type and returns the appropriate chip background color
@@ -101,7 +101,7 @@ export const ContactItem = ({ contact }) => {
     state,
     zipcode,
     type,
-    note,
+    note
   } = contact;
 
   const modalContext = useContext(ModalContext);
@@ -112,7 +112,7 @@ export const ContactItem = ({ contact }) => {
     clearCurrent();
     addToast("Contact deleted!", {
       appearance: "success",
-      autoDismiss: true,
+      autoDismiss: true
     });
   };
 
@@ -140,7 +140,7 @@ export const ContactItem = ({ contact }) => {
               background: typeCheck(type),
               color: "white",
               fontFamily: "Big Shoulders Display",
-              fontWeight: "800",
+              fontWeight: "800"
             }}
             icon={<PersonOutlineIcon size="small" style={{ color: "white" }} />}
           />
@@ -155,6 +155,7 @@ export const ContactItem = ({ contact }) => {
                   variant="contained"
                   startIcon={<ContactMailIcon />}
                   href={`mailto:${email}`}
+                  size="small"
                 >
                   {email}
                 </Button>
@@ -163,6 +164,7 @@ export const ContactItem = ({ contact }) => {
                   startIcon={<PhoneIcon />}
                   href={`tel:${phone}`}
                   style={{ backgroundColor: "#008B8B", color: "white" }}
+                  size="small"
                 >
                   {phone}
                 </Button>
@@ -203,7 +205,7 @@ export const ContactItem = ({ contact }) => {
                 color: "white",
                 fontSize: "15px",
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600",
+                fontWeight: "600"
               }}
             >
               Edit
@@ -219,7 +221,7 @@ export const ContactItem = ({ contact }) => {
                 color: "white",
                 fontSize: "15px",
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600",
+                fontWeight: "600"
               }}
             >
               Delete
@@ -234,7 +236,7 @@ export const ContactItem = ({ contact }) => {
 };
 
 ContactItem.propTypes = {
-  contact: PropTypes.object.isRequired,
+  contact: PropTypes.object.isRequired
 };
 
 export default ContactItem;
