@@ -27,6 +27,7 @@ const transactionTypes = {
 	Listing: 0,
 	Sale: 0,
 	Referral: 0,
+	Vendor: 0,
 };
 
 //* Exported component
@@ -50,6 +51,8 @@ const PieChart = () => {
 					return (transactionTypes.Sale += cost);
 				case "Referral":
 					return (transactionTypes.Referral += cost);
+				case "Vendor":
+					return (transactionTypes.Vendor += cost);
 			}
 		});
 		console.log(transactionTypes);
@@ -57,12 +60,12 @@ const PieChart = () => {
 	};
 
 	const data = {
-		labels: ["Listing", "Sale", "Referral"],
+		labels: ["Listing", "Sale", "Referral", "Vendor"],
 		datasets: [
 			{
 				data: Object.values(transactionTypes),
-				backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-				hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+				backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#7B1FA2"],
+				hoverBackgroundColor: ["#f6685e", "#00b0ff", "#ffeb3b", "#9C27B0"],
 			},
 		],
 	};
