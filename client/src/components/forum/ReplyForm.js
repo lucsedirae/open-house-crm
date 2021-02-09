@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
 
 //* Material UI components, hooks, and icons
@@ -10,6 +10,8 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+
+import AuthContext from "../../context/auth/authContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -30,17 +32,24 @@ const useStyles = makeStyles((theme) => ({
 
 //* Exported component
 const ReplyForm = ({ _id, post }) => {
+  const authContext = useContext(AuthContext);
+
+  const { user, loadUser } = authContext;
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   //* react-toast-notifications custom hook
   const { addToast } = useToasts();
   //* Initializes styling classes
   const classes = useStyles();
 
   const [reply, setReply] = useState({
-    name: "",
     body: ""
   });
 
-  const { name, body } = reply;
+  const { body } = reply;
 
   const onChange = (e) => {
     setReply({ ...reply, [e.target.name]: e.target.value });
@@ -55,7 +64,7 @@ const ReplyForm = ({ _id, post }) => {
     };
     const res = await axios.post(
       `http://localhost:8080/api/forum/${_id}`,
-      reply,
+      { ...reply, name: user && user.name },
       config
     );
 
@@ -68,7 +77,6 @@ const ReplyForm = ({ _id, post }) => {
     });
 
     setReply({
-      name: "",
       body: ""
     });
   };
@@ -76,7 +84,7 @@ const ReplyForm = ({ _id, post }) => {
   //* Returns JSX to DOM
   return (
     <form autoComplete="off" onSubmit={onSubmit} style={{ marginTop: "1rem" }}>
-      <TextField
+      {/*  <TextField
         variant="outlined"
         required={true}
         type="text"
@@ -87,7 +95,7 @@ const ReplyForm = ({ _id, post }) => {
         value={name}
         onChange={onChange}
         style={{ marginBottom: "1rem" }}
-      />
+      /> */}
 
       <TextField
         fullWidth={true}
