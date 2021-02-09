@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Posts from "../forum/Posts";
 import axios from "axios";
+import { useToasts } from "react-toast-notifications";
 
 import AuthContext from "../../context/auth/authContext";
 
@@ -41,9 +42,9 @@ const Forum = () => {
   //* Initializes styling classes
   const classes = useStyles();
 
-  const authContext = useContext(AuthContext);
+  const { addToast } = useToasts();
 
-  /* let userName = isAuthenticated ? user.name : user; */
+  const authContext = useContext(AuthContext);
 
   const { user, loadUser } = authContext;
 
@@ -83,6 +84,11 @@ const Forum = () => {
     setPost({
       title: "",
       body: ""
+    });
+
+    addToast(`Your post was successful!`, {
+      appearance: "success",
+      autoDismiss: true
     });
   };
 
