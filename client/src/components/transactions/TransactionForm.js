@@ -36,22 +36,22 @@ const useStyles = makeStyles((theme) => ({
 //* Exported component
 const TransactionForm = ({
   handleClose,
-  setCurrentTrx,
-  addTransaction,
   updateTransaction,
+  clearCurrent,
+  addTransaction,
   currentTransaction,
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
   const transactionContext = useContext(TransactionContext);
+  const { current, setCurrentTrx } = transactionContext;
 
   useEffect(() => {
-    if (currentTransaction !== null) {
-      setCurrentTrx(currentTransaction);
-      console.log(currentTransaction);
+    if (current !== null) {
+      setTransaction(current);
     } else {
-      setCurrentTrx({
+      setTransaction({
         trxName: '',
         type: '',
         cost: '',
@@ -62,44 +62,44 @@ const TransactionForm = ({
         note: '',
       });
     }
-  }, [transactionContext, currentTransaction]);
+  }, [transactionContext, current]);
 
-  // const [transaction, setTransaction] = useState({
-  //   trxName: '',
-  //   type: '',
-  //   cost: '',
-  //   revenue: '',
-  //   dateOpened: '',
-  //   dateClosed: '',
-  //   expectedCloseDate: '',
-  //   note: '',
-  // });
+  const [transaction, setTransaction] = useState({
+    trxName: '',
+    type: '',
+    cost: '',
+    revenue: '',
+    dateOpened: '',
+    dateClosed: '',
+    expectedCloseDate: '',
+    note: '',
+  });
 
-  // const {
-  //   trxName,
-  //   type,
-  //   cost,
-  //   revenue,
-  //   dateOpened,
-  //   dateClosed,
-  //   expectedCloseDate,
-  //   note,
-  // } = currentTransaction;
+  const {
+    trxName,
+    type,
+    cost,
+    revenue,
+    dateOpened,
+    dateClosed,
+    expectedCloseDate,
+    note,
+  } = transaction;
 
   const onChange = (e) => {
-    setCurrentTrx({ ...transaction, [e.target.name]: e.target.value });
+    setTransaction({ ...transaction, [e.target.name]: e.target.value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (currentTransaction === null) {
-      addTransaction(currentTransaction);
+    if (current === null) {
+      addTransaction(transaction);
     } else {
-      updateTransaction(currentTransaction);
+      updateTransaction(transaction);
       setCurrentTrx(null);
     }
 
-    setCurrentTrx({
+    setTransaction({
       trxName: '',
       type: '',
       cost: '',
@@ -112,17 +112,14 @@ const TransactionForm = ({
   };
 
   const clearAll = () => {
-    setCurrentTrx(null);
+    clearCurrent();
   };
-
-  //! updateTransaction
-  //TODO Moved into pages/transactions and passed down
 
   //* Returns JSX to DOM
   return (
     <form className={classes.root} autoComplete='off' onSubmit={onSubmit}>
       <Typography variant='h5' style={{ textAlign: 'center' }}>
-        {currentTransaction ? 'Edit Transaction' : 'Add Transaction'}
+        {current ? 'Edit Transaction' : 'Add Transaction'}
       </Typography>
 
       <Box style={{ textAlign: 'center' }}>
@@ -235,7 +232,7 @@ const TransactionForm = ({
       >
         Submit
       </Button>
-      {currentTransaction && (
+      {current && (
         <Button
           variant='outlined'
           fullWidth={true}

@@ -1,19 +1,14 @@
 //* Dependencies
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-// import axios from 'axios';
 
 //* Material-UI components, hooks, and icons
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-// import Grid from '@material-ui/core/Grid';
 import { DataGrid } from '@material-ui/data-grid';
 
 //* Custom components
 import Spinner from '../layout/Spinner';
 import TransactionItem from '../transactions/TransactionItem';
-
-//* State context
-// import TransactionsContext from '../../context/transactions/transactionContext';
 
 const columns = [
   { field: 'trxName', headerName: 'Transaction Name', width: 260 },
@@ -26,14 +21,20 @@ const columns = [
 //* Exported component
 const TransactionsGrid = ({
   transactions,
-  setTransactions,
+  deleteTransaction,
   currentTransaction,
   setCurrentTrx,
-  selectedTrxId,
-  setSelectedTrxId,
-  findCurrentTrx,
-  deleteTransaction,
 }) => {
+  const [selectedTrxId, setSelectedTrxId] = useState(null);
+
+  const findCurrentTrx = (id) => {
+    transactions.map((transaction) => {
+      if (transaction._id == id) {
+        setCurrentTrx(transaction);
+      }
+    });
+  };
+
   //* Returns JSX to DOM if transactions is empty
   if (transactions !== null && transactions.length === 0) {
     return (
@@ -51,7 +52,6 @@ const TransactionsGrid = ({
           selectedTrxId={selectedTrxId}
           transaction={currentTransaction}
           deleteTransaction={deleteTransaction}
-          setCurrentTrx={setCurrentTrx}
         />
       ) : (
         <Typography align='center' variant='h5'>

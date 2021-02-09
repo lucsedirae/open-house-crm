@@ -66,7 +66,6 @@ const Inventory = () => {
   };
 
   const deleteInventory = async (inventoryItem) => {
-    //console.log(inventoryItem);
     const res = await axios.delete(`/api/inventory/${inventoryItem._id}`);
     clearCurrent();
     inventoryItem = {

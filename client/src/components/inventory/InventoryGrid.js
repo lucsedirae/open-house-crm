@@ -11,8 +11,6 @@ import { DataGrid } from '@material-ui/data-grid';
 import Spinner from '../layout/Spinner';
 import InventoryItem from '../inventory/InventoryItem';
 
-//* State context
-
 const columns = [
   { field: 'name', headerName: 'Name', width: 130 },
   {

@@ -15,6 +15,7 @@ import EditIcon from '@material-ui/icons/Edit';
 //* State context
 import ModalContext from '../../context/modal/modalContext';
 import { Divider } from '@material-ui/core';
+import TransactionContext from '../../context/transactions/transactionContext';
 
 //* Checks the transaction type and returns the appropriate chip background color
 const typeCheck = (type) => {
@@ -31,15 +32,21 @@ const typeCheck = (type) => {
 };
 
 //* Exported component
-const TransactionItem = ({
-  selectedTrxId,
-  transaction,
-  currentTransaction,
-  setCurrentTrx,
-  deleteTransaction,
-}) => {
+const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
+  const transactionContext = useContext(TransactionContext);
+  const { setCurrentTrx } = transactionContext;
+
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
+
+  const onDelete = () => {
+    deleteTransaction(transaction);
+  };
+
+  const onClick = () => {
+    handleOpen();
+    setCurrentTrx(transaction);
+  };
 
   const {
     type,
@@ -51,15 +58,6 @@ const TransactionItem = ({
     expectedCloseDate,
     note,
   } = transaction;
-
-  const onDelete = () => {
-    deleteTransaction(transaction);
-  };
-
-  const onClick = () => {
-    handleOpen();
-    setCurrentTrx(transaction);
-  };
 
   //* Returns JSX to DOM
   return (

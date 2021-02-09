@@ -14,11 +14,10 @@ import ModalContext from '../../context/modal/modalContext';
 
 //* Exported component
 export default function TransactionFormModal({
-  currentTransaction,
-  // transaction,
-  setCurrentTrx,
-  addTransaction,
   updateTransaction,
+  clearCurrent,
+  currentTransaction,
+  addTransaction,
 }) {
   //* Initiallizes state
   const modalContext = useContext(ModalContext);
@@ -37,11 +36,10 @@ export default function TransactionFormModal({
         <DialogContent>
           <TransactionForm
             handleClose={handleClose}
-            currentTransaction={currentTransaction}
-            // transaction={transaction}
-            setCurrentTrx={setCurrentTrx}
-            addTransaction={addTransaction}
             updateTransaction={updateTransaction}
+            clearCurrent={clearCurrent}
+            addTransaction={addTransaction}
+            currentTransaction={currentTransaction}
           />
         </DialogContent>
       </Dialog>

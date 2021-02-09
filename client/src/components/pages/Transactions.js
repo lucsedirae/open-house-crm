@@ -1,5 +1,6 @@
 //* Dependencies
 import React, { useContext, useEffect, useState } from 'react';
+import '../../App.css';
 import axios from 'axios';
 
 //* Material UI components, hooks, and icons
@@ -12,7 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import TransactionsGrid from '../transactions/TransactionsGrid';
 import TransacationFormModal from '../transactions/TransactionFormModal';
 import NavPanel from '../layout/NavPanel';
-import Spinner from '../layout/Spinner';
 
 //* State context
 import AuthContext from '../../context/auth/authContext';
@@ -40,43 +40,27 @@ const useStyles = makeStyles((theme) => ({
 const Transactions = () => {
   //* Initializes styling classes
   const classes = useStyles();
-  //! State and functions below this line are experimental
+
+  //* Initializes state
+  const authContext = useContext(AuthContext);
   const [transactions, setTransactions] = useState([]);
-  const [currentTransaction, setCurrentTrx] = useState(null);
-  const [selectedTrxId, setSelectedTrxId] = useState(null);
-  // const [transaction, setTransaction] = useState({
-  //   trxName: '',
-  //   type: '',
-  //   cost: '',
-  //   revenue: '',
-  //   dateOpened: '',
-  //   dateClosed: '',
-  //   expectedCloseDate: '',
-  //   note: '',
-  // });
 
   //* Retrieves transactions from MongoDB
   const getTransactions = async () => {
     const res = await axios.get('/api/transactions');
     const data = res.data;
     setTransactions(data);
-    console.log(currentTransaction);
   };
 
   //* Adds transaction to MongoDB
   const addTransaction = async (transaction) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-    const res = await axios.post('/api/transactions', transaction, config);
+    const res = await axios.post('/api/transactions', transaction);
     getTransactions();
   };
 
   const updateTransaction = async (transaction) => {
     const res = await axios.put(
-      `/api/transaction/${transaction._id}`,
+      `/api/transactions/${transaction._id}`,
       transaction
     );
     const data = res.data;
@@ -87,29 +71,24 @@ const Transactions = () => {
   const deleteTransaction = async (transaction) => {
     const res = await axios.delete(`/api/transactions/${transaction._id}`);
     clearCurrent();
+    transaction = {
+      trxName: '',
+      type: '',
+      cost: '',
+      revenue: '',
+      dateOpened: '',
+      expectedCloseDate: "'",
+      note: '',
+      user: "'",
+    };
     getTransactions();
   };
+
+  const [currentTransaction, setCurrentTrx] = useState(null);
 
   const clearCurrent = () => {
     setCurrentTrx(null);
   };
-
-  useEffect(() => {
-    getTransactions();
-  }, []);
-
-  //* Compares the selected transaction id to objects in transactions to pull the full object
-  //* out that matches the selected id.
-  const findCurrentTrx = (id) => {
-    transactions.map((transaction) => {
-      if (transaction._id == id) {
-        setCurrentTrx(transaction);
-      }
-    });
-  };
-
-  //* Initializes state
-  const authContext = useContext(AuthContext);
 
   //* Authenticates user token
   useEffect(() => {
@@ -132,22 +111,20 @@ const Transactions = () => {
       {transactions !== null ? (
         <TransactionsGrid
           transactions={transactions}
+          deleteTransaction={deleteTransaction}
+          clearCurrent={clearCurrent}
           currentTransaction={currentTransaction}
           setCurrentTrx={setCurrentTrx}
-          selectedTrxId={selectedTrxId}
-          setSelectedTrxId={setSelectedTrxId}
-          findCurrentTrx={findCurrentTrx}
-          deleteTransaction={deleteTransaction}
         />
       ) : (
         <Spinner />
       )}
 
       <TransacationFormModal
-        // transaction={transaction}
-        setCurrentTrx={setCurrentTrx}
-        addTransaction={addTransaction}
         updateTransaction={updateTransaction}
+        clearCurrent={clearCurrent}
+        addTransaction={addTransaction}
+        currentTransaction={currentTransaction}
       />
     </Container>
   );
