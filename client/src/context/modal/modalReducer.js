@@ -5,7 +5,8 @@ export default (state, action) => {
     case HANDLE_OPEN:
       return {
         ...state,
-        open: true
+        open: true,
+        id: action.payload
       };
     case HANDLE_CLOSE:
       return {

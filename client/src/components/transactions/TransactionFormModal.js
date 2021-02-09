@@ -1,22 +1,22 @@
 //* Dependencies
-import React, { useContext } from "react";
-import Dialog from "@material-ui/core/Dialog";
+import React, { useContext } from 'react';
+import Dialog from '@material-ui/core/Dialog';
 
 //* Material UI components, hooks, and icons
-import DialogContent from "@material-ui/core/DialogContent";
+import DialogContent from '@material-ui/core/DialogContent';
 
 //* Custom components
-import TransactionForm from "./TransactionForm";
-import FloatingAction from "../layout/FloatingAction";
+import TransactionForm from './TransactionForm';
+import FloatingAction from '../layout/FloatingAction';
 
 //* State context
-import ModalContext from "../../context/modal/modalContext";
+import ModalContext from '../../context/modal/modalContext';
 
 //* Exported component
 export default function TransactionFormModal({
+  updateTransaction,
+  clearCurrent,
   currentTransaction,
-  transaction,
-  setTransaction,
   addTransaction,
 }) {
   //* Initiallizes state
@@ -26,20 +26,20 @@ export default function TransactionFormModal({
   //* Returns JSX to DOM
   return (
     <div>
-      <FloatingAction handleClickOpen={handleOpen} />
+      <FloatingAction handleClickOpen={handleOpen} toolType={"transactions"} />
 
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
+        aria-labelledby='form-dialog-title'
       >
         <DialogContent>
           <TransactionForm
             handleClose={handleClose}
-            currentTransaction={currentTransaction}
-            transaction={transaction}
-            setTransaction={setTransaction}
+            updateTransaction={updateTransaction}
+            clearCurrent={clearCurrent}
             addTransaction={addTransaction}
+            currentTransaction={currentTransaction}
           />
         </DialogContent>
       </Dialog>

@@ -22,48 +22,54 @@ import PieChart from "../charts/PieChart";
 import LineChart from "../charts/LineChart";
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
-	},
-	paper: {
-		padding: theme.spacing(2),
-		textAlign: "center",
-		marginBottom: "1rem",
-	},
-	header: {
-		textAlign: "center",
-		marginTop: "1rem",
-		marginBottom: "1rem",
-	},
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    marginBottom: "1rem"
+  },
+  header: {
+    textAlign: "center",
+    marginTop: "5rem",
+    marginBottom: "1rem",
+    fontFamily: "Big Shoulders Display",
+    fontWeight: "700"
+  }
 }));
 
 const ChartsPage = () => {
-	//* Initializes styling classes
-	const classes = useStyles();
+  //* Initializes styling classes
+  const classes = useStyles();
 
-	//* Initializes state
-	const authContext = useContext(AuthContext);
+  //* Initializes state
+  const authContext = useContext(AuthContext);
 
-	//* Authenticates user token
-	useEffect(() => {
-		authContext.loadUser();
-		// eslint-disable-next-line
-	}, []);
+  //* Authenticates user token
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
 
-	const [expanded, setExpanded] = React.useState("panel1");
+  const [expanded, setExpanded] = React.useState("panel1");
 
-	const handleChange = (panel) => (event, newExpanded) => {
-		setExpanded(newExpanded ? panel : false);
-	};
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
-	return (
-		<Container>
-			<Typography variant="h4" className={classes.header}>
-				Business Overview
-			</Typography>
-			<Grid container spacing={3} alignItems="center" justify="center">
-				<Grid item xs={12} sm={12} md={8} align="center">
-					<NavPanel />
+  return (
+    <Container>
+      <Grid container spacing={3} alignItems="center" justify="center">
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={8}
+          style={{ marginTop: "5rem" }}
+          align="center"
+        >
+          <NavPanel />
 
 					<Accordion
 						expanded={expanded === "panel1"}
@@ -128,13 +134,12 @@ const ChartsPage = () => {
 								Cost Distribution
 							</Typography>
 						</AccordionSummary>
-
-						<PieChart />
-					</Accordion>
-				</Grid>
-			</Grid>
-		</Container>
-	);
+            <PieChart />
+          </Accordion>
+        </Grid>
+      </Grid>
+    </Container>
+  );
 };
 
 export default ChartsPage;

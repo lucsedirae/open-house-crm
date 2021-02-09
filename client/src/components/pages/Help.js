@@ -1,5 +1,5 @@
 //* Dependencies
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
@@ -15,25 +15,36 @@ import InventoryMod from "../help/InventoryMod";
 import MyAcct from "../help/MyAcct";
 import NavPanelHelp from "../help/NavPanelHelp";
 import TransactionsMod from "../help/TransactionsMod";
-
 import HelpMenu from "../help/HelpMenu";
 import NavPanel from "../layout/NavPanel";
 
+//* State context
+import AuthContext from "../../context/auth/authContext";
+
 //* Exported component
 const Help = () => {
+  //* Initializes context state
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
+
+  //* Authenticates user token
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
+
+  //* Returns JSX to DOM
   return (
     <Container>
-      <Typography variant="h4" align="center" style={{ marginTop: "5rem" }}>
-        Help
-      </Typography>
-      <Grid
-        container
-        spacing={3}
-        alignItems="center"
-        justify="center"
-        style={{ marginTop: "0rem" }}
-      >
-        <Grid item xs={12} sm={12} md={8} align="center">
+      <Grid container spacing={3} alignItems="center" justify="center">
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={8}
+          style={{ marginTop: "5rem" }}
+          align="center"
+        >
           <NavPanel />
           <Paper style={{ marginTop: "1rem" }}>
             <HelpMenu />

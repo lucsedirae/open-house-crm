@@ -9,14 +9,15 @@ import ModalContext from "./modalContext";
 
 const ModalState = (props) => {
   const initialState = {
-    open: false
+    open: false,
+    id: null
   };
 
   const [state, dispatch] = useReducer(modalReducer, initialState);
 
   //* Clear Filter
-  const handleOpen = () => {
-    dispatch({ type: HANDLE_OPEN });
+  const handleOpen = (id) => {
+    dispatch({ type: HANDLE_OPEN, payload: id });
   };
 
   const handleClose = () => {
@@ -27,6 +28,7 @@ const ModalState = (props) => {
     <ModalContext.Provider
       value={{
         open: state.open,
+        id: state.id,
         handleOpen,
         handleClose
       }}
