@@ -30,7 +30,7 @@
     "express-validator": "^6.8.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.11.8",
+    "mongoose": "^5.11.15",
     "react-chartjs-2": "^2.11.1",
     "react-moment": "^1.1.1"
   },
@@ -39,4 +39,3 @@
     "nodemon": "^2.0.6"
   }
 }
- 

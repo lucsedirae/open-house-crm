@@ -85,6 +85,7 @@ const Expenses = () => {
 					return (charted.December += cost);
 			}
 		});
+		console.log(Object.values(charted));
 		Object.values(charted);
 		setTransactionData(charted);
 	};
