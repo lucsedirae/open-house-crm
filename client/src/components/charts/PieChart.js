@@ -65,7 +65,7 @@ const PieChart = () => {
 			{
 				data: Object.values(transactionTypes),
 				backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#7B1FA2"],
-				hoverBackgroundColor: ["#f6685e", "#00b0ff", "#ffeb3b", "#9C27B0"],
+				hoverBackgroundColor: ["#f6685e", "#00b0ff", "#ffcf33", "#9C27B0"],
 			},
 		],
 	};
