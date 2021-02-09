@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1rem",
     fontFamily: "Big Shoulders Display",
     fontWeight: "700"
-  }
+  },
+}));
 
 
 //* Exported component
