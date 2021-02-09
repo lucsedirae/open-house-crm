@@ -46,7 +46,8 @@ const useStyles = makeStyles({
   title: {
     textAlign: "center",
     fontFamily: "Big Shoulders Display",
-    margin: "0 auto"
+    margin: "0 auto",
+    fontSize: "17px"
   },
   address: {
     textAlign: "center",
@@ -156,6 +157,7 @@ export const ContactItem = ({ contact }) => {
                   startIcon={<ContactMailIcon />}
                   href={`mailto:${email}`}
                   size="small"
+                  className="contact-btns"
                 >
                   {email}
                 </Button>
@@ -165,6 +167,7 @@ export const ContactItem = ({ contact }) => {
                   href={`tel:${phone}`}
                   style={{ backgroundColor: "#008B8B", color: "white" }}
                   size="small"
+                  className="contact-btns"
                 >
                   {phone}
                 </Button>

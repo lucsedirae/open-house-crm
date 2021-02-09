@@ -25,7 +25,7 @@ const SplashPanelA = () => {
               backgroundColor: "rgba(255, 255, 255, 0.8)",
               borderRadius: "1rem",
               padding: "30px",
-              marginTop: "18rem",
+              marginTop: "17rem",
               border: "1px solid #008B8B",
               background: `url(${background})`,
               backgroundRepeat: "no-repeat",

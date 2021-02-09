@@ -101,7 +101,7 @@ const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
         multiline
         rows={3}
         variant="outlined"
-        label={`Reply to ${post.name}'s post...`}
+        label={`Reply to ${post.name.split(" ")[0]}'s post...`}
         size="small"
         name="body"
         value={body}
