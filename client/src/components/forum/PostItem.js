@@ -57,11 +57,15 @@ const PostItem = ({ post }) => {
         <Grid container spacing={3} alignItems="center" justify="center">
           <Grid item xs={12} sm={6} md={8}>
             <h1>{title}</h1>
-            <Moment format="MM-DD-YYYY">{date}</Moment>
-            <h4>
+            <div style={{ color: "#606060" }}>
               <AccountBoxIcon fontSize="large" /> {name}
-            </h4>
-            <p>{body}</p>
+            </div>
+            <div style={{ color: "#606060" }}>
+              <Moment format="MM/DD/YYYY">{date}</Moment> at {""}
+              <Moment format="h:mm A">{date}</Moment>
+            </div>
+
+            <p style={{ lineHeight: "1.9" }}>{body}</p>
             <Replies replies={replies} />
             <FormControlLabel
               onClick={handleClick}
