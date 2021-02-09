@@ -27,34 +27,25 @@ router.get("/", async (req, res) => {
 //*     @route:     POST api/forum
 //*     @desc:      Add new post
 //*     @access:    Public
-router.post(
-  "/",
-  [check("name", "Name is required").not().isEmpty()],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+router.post("/", async (req, res) => {
+  //* Destructuring req.body
+  const { name, title, body } = req.body;
 
-    //* Destructuring req.body
-    const { name, title, body } = req.body;
+  try {
+    const newPost = new Post({
+      name,
+      title,
+      body
+    });
 
-    try {
-      const newPost = new Post({
-        name,
-        title,
-        body
-      });
+    const post = await newPost.save();
 
-      const post = await newPost.save();
-
-      res.json(post);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
+    res.json(post);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
-);
+});
 
 //*     @route:     PUT api/forum
 //*     @desc:      Reply to a post
@@ -107,6 +98,29 @@ router.put(
       const postLike = await Post.findOneAndUpdate(
         { _id: req.params.id },
         { $inc: { likes: +1 } },
+        { new: true }
+      );
+
+      res.json(postLike);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+router.put(
+  "/dec/:id",
+  [check("name", "Name is required").not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(req.body);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const postLike = await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        { $inc: { likes: -1 } },
         { new: true }
       );
 

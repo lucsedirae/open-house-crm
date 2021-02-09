@@ -1,25 +1,21 @@
 //* Dependencies
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import EditIcon from "@material-ui/icons/Edit";
 import Posts from "../forum/Posts";
 import axios from "axios";
 
+import AuthContext from "../../context/auth/authContext";
+
 //* Custom components
 import NavPanel from "../layout/NavPanel";
-import UserForm from "../myAccount/UserForm";
-import ForumPosts from "../forum/ForumPosts";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -45,8 +41,13 @@ const Forum = () => {
   //* Initializes styling classes
   const classes = useStyles();
 
+  const authContext = useContext(AuthContext);
+
+  /* let userName = isAuthenticated ? user.name : user; */
+
+  const { user, loadUser } = authContext;
+
   const [post, setPost] = useState({
-    name: "",
     title: "",
     body: ""
   });
@@ -54,18 +55,17 @@ const Forum = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    loadUser();
     getPosts();
-    console.log(posts);
   }, []);
 
   const getPosts = async () => {
     const res = await axios.get("/api/forum");
 
     setPosts(res.data);
-    console.log(res.data);
   };
 
-  const { name, title, body } = post;
+  const { title, body } = post;
 
   const onChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -73,12 +73,14 @@ const Forum = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("/api/forum", post);
+    const res = await axios.post("/api/forum", {
+      ...post,
+      name: user && user.name
+    });
     console.log(res.data);
 
     setPosts([res.data, ...posts]);
     setPost({
-      name: "",
       title: "",
       body: ""
     });
@@ -99,7 +101,7 @@ const Forum = () => {
       <form className={classes.root} autoComplete="off">
         <Box style={{ textAlign: "center" }}>
           {/* These TextFields are repetitive and could be componentized then mapped across the contact object to reduce line count */}
-          <TextField
+          {/* <TextField
             variant="outlined"
             required={true}
             type="text"
@@ -110,7 +112,7 @@ const Forum = () => {
             name="name"
             value={name}
             onChange={onChange}
-          />
+          /> */}
 
           <TextField
             required={true}

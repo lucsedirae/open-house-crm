@@ -19,16 +19,11 @@ const PostItem = ({ post }) => {
 
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleChange = (e) => {
-    setIsChecked({ ...isChecked, [e.target.name]: e.target.checked });
-  };
-
   useEffect(() => {
     setLikesCount(likes);
-    console.log(likes);
   }, []);
 
-  const sendLikes = async () => {
+  const incrementLikes = async () => {
     console.log(post);
     const res = await axios.put(`/api/forum/${_id}`);
     console.log(res);
@@ -36,14 +31,24 @@ const PostItem = ({ post }) => {
     setLikesCount(res.data.likes);
   };
 
-  const handleClick = () => {
-    /* if (isChecked && likesCount > 0) {
-      setLikesCount(likesCount - 1);
-    } else {
-      setLikesCount(likesCount + 1);
-    } */
+  const decrementLikes = async () => {
+    console.log(post);
+    const res = await axios.put(`/api/forum/dec/${_id}`);
+    console.log(res);
 
-    sendLikes();
+    setLikesCount(res.data.likes);
+  };
+
+  const handleClick = () => {
+    isChecked ? setIsChecked(false) : setIsChecked(true);
+
+    if (!isChecked) {
+      incrementLikes();
+    } else if (isChecked) {
+      decrementLikes();
+    } else {
+      return;
+    }
   };
 
   return (
@@ -60,11 +65,10 @@ const PostItem = ({ post }) => {
             <Replies replies={replies} />
             <FormControlLabel
               onClick={handleClick}
-              onChange={handleChange}
               control={
                 <Checkbox
                   icon={<FavoriteBorder />}
-                  checkedIcon={<Favorite />}
+                  checkedIcon={isChecked ? <Favorite /> : <FavoriteBorder />}
                   name="checkedH"
                 />
               }
