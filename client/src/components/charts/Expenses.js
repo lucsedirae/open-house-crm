@@ -33,7 +33,6 @@ const Expenses = () => {
 	const [transactionData, setTransactionData] = useState({});
 
 	useEffect(() => {
-		// getTransactionCost();
 		getTransactionData();
 	}, []);
 
@@ -54,7 +53,6 @@ const Expenses = () => {
 
 	const getTransactionData = async () => {
 		const res = await axios.get("/api/transactions");
-		const theTransactions = [];
 
 		res.data.map((transactions) => {
 			let month = moment.utc(transactions.dateOpened).format("MMMM");
