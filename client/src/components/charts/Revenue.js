@@ -112,7 +112,7 @@ const Expenses = () => {
 		datasets: [
 			{
 				base: 0,
-				label: "Expenses",
+				label: "Revenue",
 				backgroundColor: "rgb(21, 138, 12)",
 				borderColor: "rgb(11,227,210)",
 				borderWidth: 1,
@@ -145,14 +145,11 @@ const Expenses = () => {
 			<Grid item xs={12}>
 				<Bar
 					data={data}
-					width={"380em"}
-					height={"380em"}
+					width={"700em"}
+					height={"500em"}
 					options={{
 						maintainAspectRatio: true,
 					}}
-					xs={12}
-					sm={12}
-					md={6}
 				/>{" "}
 			</Grid>
 		</Grid>

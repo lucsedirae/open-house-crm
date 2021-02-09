@@ -132,7 +132,7 @@ const LineChart = () => {
 			<Grid item xs={12}>
 				<Line
 					data={data}
-					width={"700em"}
+					width={"900em"}
 					height={"500em"}
 					xs={12}
 					sm={12}
