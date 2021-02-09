@@ -102,7 +102,7 @@ const ReplyForm = ({ _id, post }) => {
         multiline
         rows={3}
         variant="outlined"
-        label="Reply here..."
+        label={`Reply to ${post.name}'s post...`}
         size="small"
         name="body"
         value={body}
