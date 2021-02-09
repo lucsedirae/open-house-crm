@@ -1,45 +1,52 @@
 //* Dependencies
-import React, { useContext } from "react";
-import Moment from "moment";
+import React, { useContext } from 'react';
+import Moment from 'moment';
 
 //* Material-UI components, hooks, and icons
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Chip from "@material-ui/core/Chip";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import EditIcon from "@material-ui/icons/Edit";
-import CloseIcon from "@material-ui/icons/Close";
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+// import Grid from '@material-ui/core/Grid';
+import Chip from '@material-ui/core/Chip';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import EditIcon from '@material-ui/icons/Edit';
 
 //* State context
-import ModalContext from "../../context/modal/modalContext";
-import { Divider } from "@material-ui/core";
+import ModalContext from '../../context/modal/modalContext';
+import { Divider } from '@material-ui/core';
+import TransactionContext from '../../context/transactions/transactionContext';
 
 //* Checks the transaction type and returns the appropriate chip background color
 const typeCheck = (type) => {
   switch (type) {
-    case "Listing":
-      return "purple";
-    case "Sale":
-      return "#008B8B";
-    case "Referral":
-      return "orange";
+    case 'Listing':
+      return 'purple';
+    case 'Sale':
+      return '#008B8B';
+    case 'Referral':
+      return 'orange';
     default:
-      return "silver";
+      return 'silver';
   }
 };
 
 //* Exported component
-const TransactionItem = ({
-  selectedTrxId,
-  transaction,
-  setCurrentTrx,
-  clearCurrent,
-}) => {
+const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
+  const transactionContext = useContext(TransactionContext);
+  const { setCurrentTrx } = transactionContext;
+
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
+
+  const onDelete = () => {
+    deleteTransaction(transaction);
+  };
+
+  const onClick = () => {
+    handleOpen();
+    setCurrentTrx(transaction);
+  };
 
   const {
     type,
@@ -54,53 +61,46 @@ const TransactionItem = ({
 
   //* Returns JSX to DOM
   return (
-    <Container style={{ padding: "3rem" }}>
+    <Container style={{ padding: '3rem' }}>
       <Paper>
-        <Typography align="center" variant="h5" style={{ padding: ".5rem" }}>
-          {trxName}{" "}
+        <Typography align='center' variant='h5' style={{ padding: '.5rem' }}>
+          {trxName}{' '}
           <Chip
-            size="small"
+            size='small'
             label={type}
             style={{
               background: typeCheck(type),
-              color: "white",
-              fontFamily: "Big Shoulders Display",
-              fontWeight: "800",
+              color: 'white',
+              fontFamily: 'Big Shoulders Display',
+              fontWeight: '800',
             }}
           />
         </Typography>
         <Divider />
         <Typography>
-          <IconButton
-            onClick={clearCurrent}
-            size="small"
-            style={{ margin: "1rem" }}
-          >
-            <CloseIcon color="disabled" />
+          <IconButton size='small' style={{ margin: '1rem' }}>
+            <EditIcon color='disabled' onClick={onClick} />
           </IconButton>
-          <IconButton size="small" style={{ margin: "1rem" }}>
-            <EditIcon color="disabled" />
-          </IconButton>
-          <IconButton size="small" style={{ margin: "1rem" }}>
-            <DeleteForeverIcon color="disabled" />
+          <IconButton size='small' style={{ margin: '1rem' }}>
+            <DeleteForeverIcon color='disabled' onClick={onDelete} />
           </IconButton>
         </Typography>
-        <Typography align="center" variant="body1">
+        <Typography align='center' variant='body1'>
           Revenue: ${revenue} - Expenses: ${cost} - Profit ${revenue - cost}
         </Typography>
         <br />
-        <Typography align="center" variant="body1">
-          Date Opened: {Moment(dateOpened).format("MM/DD/YYYY")} - Expected
-          Close Date: {Moment(expectedCloseDate).format("MM/DD/YYYY")}
+        <Typography align='center' variant='body1'>
+          Date Opened: {Moment(dateOpened).format('MM/DD/YYYY')} - Expected
+          Close Date: {Moment(expectedCloseDate).format('MM/DD/YYYY')}
         </Typography>
-        <Typography align="center" variant="body1">
-          Date Closed:{" "}
+        <Typography align='center' variant='body1'>
+          Date Closed:{' '}
           {dateClosed
-            ? Moment(dateClosed).format("MM/DD/YYYY")
-            : "Open Transaction"}
+            ? Moment(dateClosed).format('MM/DD/YYYY')
+            : 'Open Transaction'}
         </Typography>
         <Divider />
-        <Typography align="center" variant="body1">
+        <Typography align='center' variant='body1'>
           Notes: {note}
         </Typography>
       </Paper>

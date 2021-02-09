@@ -1,21 +1,22 @@
 //* Dependencies
-import React, { useContext } from "react";
-import Dialog from "@material-ui/core/Dialog";
+import React, { useContext } from 'react';
+import Dialog from '@material-ui/core/Dialog';
 
 //* Material UI components, hooks, and icons
-import DialogContent from "@material-ui/core/DialogContent";
+import DialogContent from '@material-ui/core/DialogContent';
 
 //* Custom components
-import TransactionForm from "./TransactionForm";
-import FloatingAction from "../layout/FloatingAction";
+import TransactionForm from './TransactionForm';
+import FloatingAction from '../layout/FloatingAction';
 
 //* State context
-import ModalContext from "../../context/modal/modalContext";
+import ModalContext from '../../context/modal/modalContext';
 
 //* Exported component
 export default function TransactionFormModal({
   updateTransaction,
   clearCurrent,
+  currentTransaction,
   addTransaction,
   currentTransaction,
   setCurrentTrx,
@@ -32,7 +33,7 @@ export default function TransactionFormModal({
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
+        aria-labelledby='form-dialog-title'
       >
         <DialogContent>
           <TransactionForm
@@ -41,7 +42,6 @@ export default function TransactionFormModal({
             clearCurrent={clearCurrent}
             addTransaction={addTransaction}
             currentTransaction={currentTransaction}
-            setCurrentTrx={setCurrentTrx}
           />
         </DialogContent>
       </Dialog>
