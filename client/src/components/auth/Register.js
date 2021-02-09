@@ -80,7 +80,7 @@ const Register = (props) => {
             border: "1px solid #008B8B ",
             padding: "3rem",
             paddingBottom: "2.2rem",
-            marginTop: "15rem",
+            marginTop: "19rem",
             textAlign: "center",
             background: `url(${background})`
           }}
