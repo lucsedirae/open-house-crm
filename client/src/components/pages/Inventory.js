@@ -10,16 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 //* Custom components
-// import InventoryForm from '../inventory/InventoryForm';
 import InventoryGrid from '../inventory/InventoryGrid';
-// import InventoryItem from '../inventory/InventoryItem';
 import InventoryFormModal from '../inventory/InventoryFormModal';
 import NavPanel from '../layout/NavPanel';
 
 //* State context
 import AuthContext from '../../context/auth/authContext';
-import { CLEAR_CURRENT } from '../../context/types';
-// import InventoryContext from '../../context/inventory/inventoryContext';
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -48,8 +44,6 @@ const Inventory = () => {
   //* Initializes state
   const authContext = useContext(AuthContext);
   const [inventoryLst, setInventory] = useState([]);
-  // const inventoryContext = useContext(InventoryContext);
-  //let currentInv = null;
 
   //* Funcionized Axios calls to do crud operations on inventory and then prop drill down
   //* Retrieves inventory from MongoDB
@@ -64,7 +58,6 @@ const Inventory = () => {
     getInventory();
   };
 
-  //TODO inventoryItem doesnt update
   const updateInventory = async (inventory) => {
     const res = await axios.put(`/api/inventory/${inventory._id}`, inventory);
     const data = res.data;
@@ -73,7 +66,6 @@ const Inventory = () => {
   };
 
   const deleteInventory = async (inventoryItem) => {
-    //console.log(inventoryItem);
     const res = await axios.delete(`/api/inventory/${inventoryItem._id}`);
     clearCurrent();
     inventoryItem = {
