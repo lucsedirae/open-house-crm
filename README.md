@@ -99,4 +99,4 @@ Founding contributors:
 
 [Tanner Kirkpatrick](https://github.com/twkirkpatrick)
 
-[David Stinnet](https://github.com/serjykalstryke)
+[David Stinnet](https://github.com/serjykalstryke) - [Website](https://www.davidstinnett.info)
