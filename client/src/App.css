@@ -107,6 +107,16 @@ html {
   background-color: #008b8b !important;
 }
 
+#footer {
+  width: 100%;
+  background-color: #008b8b;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  font-family: "Big Shoulders Display";
+  font-weight: 700;
+}
+
 @media only screen and (max-width: 500px) {
   .main-logo {
     font-size: 45px !important;

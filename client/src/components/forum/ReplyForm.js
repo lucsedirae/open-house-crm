@@ -70,7 +70,6 @@ const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
 
     console.log(res);
 
-    //axios call here
     addToast(`You replied to ${post.name}'s post!`, {
       appearance: "success",
       autoDismiss: true
