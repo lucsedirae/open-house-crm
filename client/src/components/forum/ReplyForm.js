@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //* Exported component
-const ReplyForm = ({ _id, post }) => {
+const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
   const authContext = useContext(AuthContext);
 
   const { user, loadUser } = authContext;
@@ -42,8 +42,6 @@ const ReplyForm = ({ _id, post }) => {
 
   //* react-toast-notifications custom hook
   const { addToast } = useToasts();
-  //* Initializes styling classes
-  const classes = useStyles();
 
   const [reply, setReply] = useState({
     body: ""
@@ -67,6 +65,8 @@ const ReplyForm = ({ _id, post }) => {
       { ...reply, name: user && user.name },
       config
     );
+
+    setPostReplies([...postReplies, res.data]);
 
     console.log(res);
 

@@ -7,10 +7,10 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CommentIcon from "@material-ui/icons/Comment";
 import ReplyItem from "./ReplyItem";
 
-const Replies = ({ replies }) => {
+const Replies = ({ postReplies }) => {
   return (
     <div>
-      {replies.length > 0 && (
+      {postReplies.length > 0 && (
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -19,16 +19,16 @@ const Replies = ({ replies }) => {
             align="center"
           >
             <Badge
-              badgeContent={replies.length}
+              badgeContent={postReplies.length}
               color="secondary"
               style={{ marginRight: "1rem" }}
             >
-              <CommentIcon style={{ color: "orange" }} />
+              <CommentIcon style={{ color: "grey" }} />
             </Badge>
-            View Comments
+            <span style={{ fontWeight: "600" }}>View Comments</span>
           </AccordionSummary>
 
-          {replies.map((reply) => (
+          {postReplies.map((reply) => (
             <ReplyItem reply={reply} />
           ))}
         </Accordion>

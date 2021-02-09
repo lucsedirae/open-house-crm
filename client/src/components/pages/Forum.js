@@ -141,7 +141,7 @@ const Forum = () => {
         </Grid>
       </Grid>
 
-      <Posts posts={posts} />
+      <Posts posts={posts} setPosts={setPosts} />
     </Container>
   );
 };

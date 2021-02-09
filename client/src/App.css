@@ -103,6 +103,10 @@ html {
   height: 100vh;
 }
 
+.MuiBadge-colorSecondary {
+  background-color: #008b8b !important;
+}
+
 @media only screen and (max-width: 500px) {
   .main-logo {
     font-size: 45px !important;
