@@ -114,7 +114,7 @@ const Expenses = () => {
 				base: 0,
 				label: "Expenses",
 				backgroundColor: "rgb(255,0,0)",
-				borderColor: "rgb(11,227,210)",
+				borderColor: "rgb(255,0,0)",
 				borderWidth: 1,
 				hoverBackgroundColor: "rgba(255,0,54,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
