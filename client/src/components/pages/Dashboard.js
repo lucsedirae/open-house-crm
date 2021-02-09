@@ -34,10 +34,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginTop: "5rem",
     marginBottom: "1rem",
-    fontFamily: "Oswald",
-    fontWeight: "500",
-  },
-}));
+    fontFamily: "Big Shoulders Display",
+    fontWeight: "700"
+  }
 
 //* Exported component
 export const Dashboard = () => {
