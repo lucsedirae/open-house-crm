@@ -18,18 +18,18 @@ import ContactContext from "../../context/contact/contactContext";
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   title: {
     flexGrow: 1,
-    cursor: "default",
+    cursor: "default"
   },
   appBar: {
-    marginTop: "0",
-  },
+    marginTop: "0"
+  }
 }));
 
 //* Exported component
@@ -57,10 +57,10 @@ const Appbar = () => {
           marginLeft: "auto",
           fontFamily: "Big Shoulders Display",
           fontSize: "20px",
-          fontWeight: "600",
+          fontWeight: "600"
         }}
       >
-        Hello, {user && user.name}!
+        Hello, {user && user.name.split(" ")[0]}!
       </Typography>
       <Button
         color="inherit"
@@ -70,7 +70,7 @@ const Appbar = () => {
           fontFamily: "Big Shoulders Display",
           fontSize: "20px",
           textTransform: "lowercase",
-          fontWeight: "600",
+          fontWeight: "600"
         }}
         onClick={onLogout}
       >
@@ -91,7 +91,7 @@ const Appbar = () => {
             fontFamily: "Big Shoulders Display",
             fontSize: "20px",
             textTransform: "lowercase",
-            fontWeight: "600",
+            fontWeight: "600"
           }}
         >
           Login
@@ -103,7 +103,7 @@ const Appbar = () => {
             fontFamily: "Big Shoulders Display",
             fontSize: "20px",
             textTransform: "lowercase",
-            fontWeight: "600",
+            fontWeight: "600"
           }}
         >
           Register
@@ -116,7 +116,7 @@ const Appbar = () => {
   return (
     <AppBar
       style={{
-        backgroundColor: "#008B8B",
+        backgroundColor: "#008B8B"
       }}
     >
       <Toolbar>
@@ -133,7 +133,7 @@ const Appbar = () => {
             fontWeight: "800",
             fontSize: "25px",
             color: "white",
-            textTransform: "lowercase",
+            textTransform: "lowercase"
           }}
         >
           open house

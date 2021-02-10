@@ -100,11 +100,31 @@ html {
   background-size: cover;
   background-blend-mode: screen;
   background-color: #031818;
-  height: 100vh;
+  height: 70vh;
+}
+
+.MuiBadge-colorSecondary {
+  background-color: #008b8b !important;
+}
+
+#footer {
+  width: 100%;
+  background-color: #008b8b;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  font-family: "Big Shoulders Display";
+  font-weight: 700;
+  position: relative;
+  bottom: 0px;
 }
 
 @media only screen and (max-width: 500px) {
   .main-logo {
     font-size: 45px !important;
+  }
+
+  .contact-btns {
+    font-size: 9px !important;
   }
 }

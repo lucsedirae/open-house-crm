@@ -18,19 +18,19 @@ import TransactionContext from "../../context/transactions/transactionContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+	root: {
+		"& .MuiTextField-root": {
+			margin: theme.spacing(1),
+			width: "25ch",
+		},
+	},
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 120,
+	},
+	selectEmpty: {
+		marginTop: theme.spacing(2),
+	},
 }));
 
 //* Exported component
@@ -156,6 +156,9 @@ const TransactionForm = ({
           </MenuItem>
           <MenuItem key="referral" value="Referral">
             Referral
+          </MenuItem>
+         <MenuItem key="vendor" value="Vendor">
+            Vendor
           </MenuItem>
         </TextField>
 

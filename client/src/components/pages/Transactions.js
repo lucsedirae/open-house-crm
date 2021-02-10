@@ -1,22 +1,22 @@
 //! WORKING VERSION IN PROGRESS - NOT THE BACK UP!!!
 //* Dependencies
-import React, { useContext, useEffect, useState } from 'react';
-import '../../App.css';
-import axios from 'axios';
+import React, { useContext, useEffect, useState } from "react";
+import "../../App.css";
+import axios from "axios";
 
 //* Material UI components, hooks, and icons
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
-import TransactionsGrid from '../transactions/TransactionsGrid';
-import TransacationFormModal from '../transactions/TransactionFormModal';
-import NavPanel from '../layout/NavPanel';
+import TransactionsGrid from "../transactions/TransactionsGrid";
+import TransacationFormModal from "../transactions/TransactionFormModal";
+import NavPanel from "../layout/NavPanel";
 
 //* State context
-import AuthContext from '../../context/auth/authContext';
+import AuthContext from "../../context/auth/authContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
@@ -34,9 +34,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1rem",
     fontFamily: "Big Shoulders Display",
     fontWeight: "700"
-  },
+  }
 }));
-
 
 //* Exported component
 const Transactions = () => {
@@ -62,7 +61,7 @@ const Transactions = () => {
   };
 
   const addTransaction = async (transaction) => {
-    const res = await axios.post('/api/transactions', transaction);
+    const res = await axios.post("/api/transactions", transaction);
     getTransactions();
   };
 
@@ -80,14 +79,14 @@ const Transactions = () => {
     const res = await axios.delete(`/api/transactions/${transaction._id}`);
     clearCurrent();
     transaction = {
-      trxName: '',
-      type: '',
-      cost: '',
-      revenue: '',
-      dateOpened: '',
+      trxName: "",
+      type: "",
+      cost: "",
+      revenue: "",
+      dateOpened: "",
       expectedCloseDate: "'",
-      note: '',
-      user: "'",
+      note: "",
+      user: "'"
     };
     getTransactions();
   };
@@ -107,12 +106,15 @@ const Transactions = () => {
 
   return (
     <Container>
-      <Typography variant="h4" className={classes.header}>
-        Transactions
-      </Typography>
-
-      <Grid container spacing={3} alignItems='center' justify='center'>
-        <Grid item xs={12} sm={12} md={8} align='center'>
+      <Grid container spacing={3} alignItems="center" justify="center">
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={8}
+          style={{ marginTop: "5rem" }}
+          align="center"
+        >
           <NavPanel />
         </Grid>
       </Grid>

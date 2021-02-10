@@ -56,12 +56,15 @@ const MyAccount = () => {
   //* Returns JSX to DOM
   return (
     <Container>
-      <Typography variant="h4" className={classes.header}>
-        My Account
-      </Typography>
-
       <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item xs={12} sm={12} md={8} align="center">
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={8}
+          style={{ marginTop: "5rem" }}
+          align="center"
+        >
           <NavPanel />
           <Paper className={classes.paper}>
             <Typography variant="h5">Account Details</Typography>

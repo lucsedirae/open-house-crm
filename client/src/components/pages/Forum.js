@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Posts from "../forum/Posts";
 import axios from "axios";
+import { useToasts } from "react-toast-notifications";
 
 import AuthContext from "../../context/auth/authContext";
 
@@ -41,9 +42,9 @@ const Forum = () => {
   //* Initializes styling classes
   const classes = useStyles();
 
-  const authContext = useContext(AuthContext);
+  const { addToast } = useToasts();
 
-  /* let userName = isAuthenticated ? user.name : user; */
+  const authContext = useContext(AuthContext);
 
   const { user, loadUser } = authContext;
 
@@ -84,17 +85,25 @@ const Forum = () => {
       title: "",
       body: ""
     });
+
+    addToast(`Your post was successful!`, {
+      appearance: "success",
+      autoDismiss: true
+    });
   };
 
   //* Returns JSX to DOM
   return (
     <Container>
-      <Typography variant="h4" className={classes.header}>
-        Agent Forum
-      </Typography>
-
       <Grid container spacing={3} alignItems="center" justify="center">
-        <Grid item xs={12} sm={12} md={8} align="center">
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={8}
+          align="center"
+          style={{ marginTop: "5rem" }}
+        >
           <NavPanel />
           <form className={classes.root} autoComplete="off">
             <Box style={{ textAlign: "center" }}>
@@ -141,7 +150,7 @@ const Forum = () => {
         </Grid>
       </Grid>
 
-      <Posts posts={posts} />
+      <Posts posts={posts} setPosts={setPosts} />
     </Container>
   );
 };

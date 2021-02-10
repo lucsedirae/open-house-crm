@@ -14,15 +14,18 @@ import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import FaceIcon from "@material-ui/icons/Face";
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, posts, setPosts }) => {
   const { name, title, body, replies, _id, date, likes } = post;
 
   const [likesCount, setLikesCount] = useState(0);
 
   const [isChecked, setIsChecked] = useState(false);
 
+  const [postReplies, setPostReplies] = useState([]);
+
   useEffect(() => {
     setLikesCount(likes);
+    setPostReplies(replies);
   }, []);
 
   const incrementLikes = async () => {
@@ -77,7 +80,7 @@ const PostItem = ({ post }) => {
 
               <p style={{ lineHeight: "1.9" }}>{body}</p>
             </Paper>
-            <Replies replies={replies} />
+            <Replies postReplies={postReplies} />
             <FormControlLabel
               onClick={handleClick}
               control={
@@ -89,7 +92,12 @@ const PostItem = ({ post }) => {
               }
               label={`${likesCount} likes`}
             />
-            <ReplyForm _id={_id} post={post} />
+            <ReplyForm
+              _id={_id}
+              post={post}
+              setPostReplies={setPostReplies}
+              postReplies={postReplies}
+            />
           </Grid>
         </Grid>
       </Container>
