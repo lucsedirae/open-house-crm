@@ -6,7 +6,6 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/lucsedirae/open-house-crm?style=for-the-badge)
 ![GitHub top language](https://img.shields.io/github/languages/top/lucsedirae/open-house-crm?style=for-the-badge)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/lucsedirae/open-house-crm?style=for-the-badge)
-![David](https://img.shields.io/david/lucsedirae/open-house-crm?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/lucsedirae/open-house-crm?style=for-the-badge)
 
 ## Description
