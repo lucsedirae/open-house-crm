@@ -73,7 +73,7 @@ const SplashPanelA = () => {
                 fontSize: "18px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                width: "50%",
+                width: "40%",
                 display: "block",
                 margin: "10px auto"
               }}
@@ -89,7 +89,7 @@ const SplashPanelA = () => {
                 fontSize: "18px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                width: "50%"
+                width: "40%"
               }}
             >
               Register
@@ -103,9 +103,9 @@ const SplashPanelA = () => {
                 border: "2.5px solid #008B8B",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "700",
-                marginTop: "1rem",
                 display: "block",
                 margin: "0 auto",
+                marginTop: "1rem",
                 border: "none"
               }}
             >

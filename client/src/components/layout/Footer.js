@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div id="footer">
-      <p style={{ marginTop: "7px" }}>
+      <p style={{ marginTop: "7px", paddingTop: "5px" }}>
         &copy; 2021 Jon Deavers, David Stinnett, Melanie Hall, Tanner
         Kirkpatrick
       </p>
