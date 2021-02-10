@@ -18,19 +18,19 @@ import TransactionContext from "../../context/transactions/transactionContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
-	root: {
-		"& .MuiTextField-root": {
-			margin: theme.spacing(1),
-			width: "25ch",
-		},
-	},
-	formControl: {
-		margin: theme.spacing(1),
-		minWidth: 120,
-	},
-	selectEmpty: {
-		marginTop: theme.spacing(2),
-	},
+  root: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "25ch"
+    }
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  }
 }));
 
 //* Exported component
@@ -38,7 +38,7 @@ const TransactionForm = ({
   handleClose,
   updateTransaction,
   clearCurrent,
-  addTransaction,
+  addTransaction
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
@@ -58,7 +58,7 @@ const TransactionForm = ({
         dateOpened: "",
         dateClosed: "",
         expectedCloseDate: "",
-        note: "",
+        note: ""
       });
     }
   }, [transactionContext, current]);
@@ -71,7 +71,7 @@ const TransactionForm = ({
     dateOpened: "",
     dateClosed: "",
     expectedCloseDate: "",
-    note: "",
+    note: ""
   });
 
   const {
@@ -82,7 +82,7 @@ const TransactionForm = ({
     dateOpened,
     dateClosed,
     expectedCloseDate,
-    note,
+    note
   } = transaction;
 
   const onChange = (e) => {
@@ -106,7 +106,7 @@ const TransactionForm = ({
       dateOpened: "",
       expectedCloseDate: "",
       note: "",
-      user: "",
+      user: ""
     });
   };
 
@@ -117,7 +117,15 @@ const TransactionForm = ({
   //* Returns JSX to DOM
   return (
     <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography variant="h5" style={{ textAlign: "center" }}>
+      <Typography
+        variant="h5"
+        style={{
+          textAlign: "center",
+          fontFamily: "Big Shoulders Display",
+          fontSize: "25px",
+          fontWeight: "600"
+        }}
+      >
         {current ? "Edit Transaction" : "Add Transaction"}
       </Typography>
 
@@ -156,7 +164,7 @@ const TransactionForm = ({
           <MenuItem key="referral" value="Referral">
             Referral
           </MenuItem>
-         <MenuItem key="vendor" value="Vendor">
+          <MenuItem key="vendor" value="Vendor">
             Vendor
           </MenuItem>
         </TextField>
@@ -226,22 +234,33 @@ const TransactionForm = ({
         />
       </Box>
       <Button
-        variant="outlined"
+        variant="contained"
         type="submit"
-        color="primary"
         fullWidth={true}
-        style={{ marginTop: "1rem", marginBottom: "1rem" }}
+        style={{
+          marginTop: "1rem",
+          marginBottom: "1rem",
+          backgroundColor: "#008B8B",
+          color: "white",
+          fontFamily: "Big Shoulders Display",
+          fontSize: "18px",
+          fontWeight: "600"
+        }}
         onClick={handleClose}
       >
         Submit
       </Button>
       {current && (
         <Button
-          variant="outlined"
+          variant="contained"
           fullWidth={true}
           type="submit"
           color="secondary"
-          style={{ marginBottom: "1rem" }}
+          style={{
+            marginBottom: "1rem",
+            fontFamily: "Big Shoulders Display",
+            fontSize: "18px"
+          }}
           onClick={clearAll}
         >
           Clear

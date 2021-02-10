@@ -8,10 +8,12 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Chip from "@material-ui/core/Chip";
+import Button from "@material-ui/core/Button";
 import background from "../../img/Subtle-Prism2.svg";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 //* State context
 import ModalContext from "../../context/modal/modalContext";
@@ -40,14 +42,14 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
   const modalContext = useContext(ModalContext);
   const { handleOpen } = modalContext;
 
-  /* const onDelete = () => {
+  const onDelete = () => {
     deleteTransaction(transaction);
   };
 
   const onClick = () => {
     handleOpen();
     setCurrentTrx(transaction);
-  }; */
+  };
 
   const {
     type,
@@ -63,7 +65,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
   //* Returns JSX to DOM
   return (
     <Container style={{ padding: "3rem" }}>
-      <Grid container spacing={3} align="center" justify="center">
+      <Grid container spacing={0} align="center" justify="center">
         <Grid xs={12} sm={12} md={8}>
           <Paper
             style={{
@@ -96,7 +98,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
             </Typography>
             <Divider />
             <br />
-            <Grid container spacing={3} align="center" justify="center">
+            <Grid container spacing={0} align="center" justify="center">
               <Grid xs={12} sm={3} md={3}>
                 <Typography
                   align="center"
@@ -168,6 +170,39 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                 </Typography>
               </Grid>
             </Grid>
+            <Button
+              startIcon={<EditIcon />}
+              onClick={onClick}
+              variant="contained"
+              size="small"
+              style={{
+                backgroundColor: "#008B8B",
+                color: "white",
+                fontSize: "15px",
+                fontFamily: "Big Shoulders Display",
+                fontWeight: "600",
+                margin: "10px 5px"
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              startIcon={<DeleteIcon />}
+              color="secondary"
+              onClick={onDelete}
+              variant="contained"
+              size="small"
+              style={{
+                backgroundColor: "#008B8B",
+                color: "white",
+                fontSize: "15px",
+                fontFamily: "Big Shoulders Display",
+                fontWeight: "600",
+                margin: "10px 5px"
+              }}
+            >
+              Delete
+            </Button>
             <br />
             <Divider />
 
@@ -189,14 +224,3 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
 };
 
 export default TransactionItem;
-
-{
-  /* <Typography>
-  <IconButton size="small" style={{ margin: "1rem" }}>
-    <EditIcon color="disabled" onClick={onClick} />
-  </IconButton>
-  <IconButton size="small" style={{ margin: "1rem" }}>
-    <DeleteForeverIcon color="disabled" onClick={onDelete} />
-  </IconButton>
-</Typography> */
-}
