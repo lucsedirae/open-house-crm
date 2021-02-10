@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //* Exported component
-const ReplyForm = ({ _id, post }) => {
+const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
   const authContext = useContext(AuthContext);
 
   const { user, loadUser } = authContext;
@@ -42,8 +42,6 @@ const ReplyForm = ({ _id, post }) => {
 
   //* react-toast-notifications custom hook
   const { addToast } = useToasts();
-  //* Initializes styling classes
-  const classes = useStyles();
 
   const [reply, setReply] = useState({
     body: ""
@@ -68,9 +66,10 @@ const ReplyForm = ({ _id, post }) => {
       config
     );
 
+    setPostReplies([...postReplies, res.data]);
+
     console.log(res);
 
-    //axios call here
     addToast(`You replied to ${post.name}'s post!`, {
       appearance: "success",
       autoDismiss: true
@@ -102,7 +101,7 @@ const ReplyForm = ({ _id, post }) => {
         multiline
         rows={3}
         variant="outlined"
-        label={`Reply to ${post.name}'s post...`}
+        label={`Reply to ${post.name.split(" ")[0]}'s post...`}
         size="small"
         name="body"
         value={body}

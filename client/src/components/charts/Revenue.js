@@ -1,19 +1,14 @@
 //* Dependencies
-import React, {
-	useContext,
-	useEffect,
-	Fragment,
-	useState,
-	useReducer,
-} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TransactionReducer from "../../context/transactions/transactionReducer";
 import { makeStyles } from "@material-ui/core/styles";
 
 import moment from "moment";
 
 //Import Chart Component
 import { Bar } from "react-chartjs-2";
+
+import Grid from "@material-ui/core/Grid";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
@@ -37,14 +32,29 @@ const useStyles = makeStyles({
 
 //* Exported component
 const Expenses = () => {
-	const [transactionData, setTransactionData] = useState({});
+	const [transactionRevenue, setTransactionRevenue] = useState({});
+	const [transactionCost, setTransactionCost] = useState({});
 
 	useEffect(() => {
-		// getTransactionrevenue();
-		getTransactionData();
+		getTransactionRevenue();
+		getTransactionCost();
 	}, []);
 
-	let charted = {
+	let chartedRevenue = {
+		January: 0,
+		February: 0,
+		March: 0,
+		April: 0,
+		May: 0,
+		June: 0,
+		July: 0,
+		August: 0,
+		September: 0,
+		October: 0,
+		November: 0,
+		December: 0,
+	};
+	let chartedCost = {
 		January: 0,
 		February: 0,
 		March: 0,
@@ -59,50 +69,119 @@ const Expenses = () => {
 		December: 0,
 	};
 
-	const getTransactionData = async () => {
+	const getTransactionRevenue = async () => {
 		const res = await axios.get("/api/transactions");
 		const theTransactions = [];
-		res.data.map((transactions) => {
-			console.log(transactions.revenue);
-		});
+
 		res.data.map((transactions) => {
 			let month = moment.utc(transactions.dateOpened).format("MMMM");
 			let revenue = transactions.revenue;
-			console.log(transactions);
+			let cost = transactions.cost;
+			console.log(cost);
 
 			switch (month) {
 				case "January":
-					return (charted.January += revenue);
+					return (chartedRevenue.January += revenue);
 				case "February":
-					return (charted.February += revenue);
+					return (chartedRevenue.February += revenue);
 				case "March":
-					return (charted.March += revenue);
+					return (chartedRevenue.March += revenue);
 				case "April":
-					return (charted.April += revenue);
+					return (chartedRevenue.April += revenue);
 				case "May":
-					return (charted.May += revenue);
+					return (chartedRevenue.May += revenue);
 				case "June":
-					return (charted.June += revenue);
+					return (chartedRevenue.June += revenue);
 				case "July":
-					return (charted.July += revenue);
+					return (chartedRevenue.July += revenue);
 				case "August":
-					return (charted.August += revenue);
+					return (chartedRevenue.August += revenue);
 				case "September":
-					return (charted.September += revenue);
+					return (chartedRevenue.September += revenue);
 				case "October":
-					return (charted.October += revenue);
+					return (chartedRevenue.October += revenue);
 				case "November":
-					return (charted.November += revenue);
+					return (chartedRevenue.November += revenue);
 				case "December":
-					return (charted.December += revenue);
+					return (chartedRevenue.December += revenue);
 			}
 		});
-		console.log(Object.values(charted));
-		Object.values(charted);
-		setTransactionData(charted);
+		// Object.values(charted);
+		setTransactionRevenue(chartedRevenue);
+		setTransactionCost(chartedCost);
+		console.log(transactionCost);
 	};
-	console.log(transactionData);
+	const getTransactionCost = async () => {
+		const res = await axios.get("/api/transactions");
+		const theTransactions = [];
 
+		res.data.map((transactions) => {
+			let month = moment.utc(transactions.dateOpened).format("MMMM");
+			let cost = transactions.cost;
+			console.log(cost);
+
+			switch (month) {
+				case "January":
+					return (chartedCost.January += cost);
+				case "February":
+					return (chartedCost.February += cost);
+				case "March":
+					return (chartedCost.March += cost);
+				case "April":
+					return (chartedCost.April += cost);
+				case "May":
+					return (chartedCost.May += cost);
+				case "June":
+					return (chartedCost.June += cost);
+				case "July":
+					return (chartedCost.July += cost);
+				case "August":
+					return (chartedCost.August += cost);
+				case "September":
+					return (chartedCost.September += cost);
+				case "October":
+					return (chartedCost.October += cost);
+				case "November":
+					return (chartedCost.November += cost);
+				case "December":
+					return (chartedCost.December += cost);
+			}
+		});
+		setTransactionCost(chartedCost);
+		console.log(transactionCost);
+	};
+
+	const options = {
+		layout: {
+			padding: {
+				bottom: 0,
+				top: 0,
+			},
+		},
+		scales: {
+			xAxes: [
+				{
+					stacked: true,
+					gridLines: {
+						display: true,
+					},
+				},
+			],
+			yAxes: [
+				{
+					stacked: false,
+				},
+			],
+		},
+		responsive: true,
+		legend: {
+			display: true,
+			position: "top",
+			labels: {
+				fontColor: "#91929b",
+			},
+		},
+	};
 	const data = {
 		base: 0,
 		labels: [
@@ -123,14 +202,26 @@ const Expenses = () => {
 		datasets: [
 			{
 				base: 0,
-				label: "Expenses",
-				backgroundColor: "rgb(21, 138, 12)",
-				borderColor: "rgb(11,227,210)",
+				label: "Revenue",
+				backgroundColor: "rgb(53, 122, 56)",
+				borderColor: "rgb(53, 122, 56)",
 				borderWidth: 1,
-				hoverBackgroundColor: "rgba(21, 138, 12,0.4)",
+				hoverBackgroundColor: "rgba(53, 122, 56,0.4)",
 				hoverBorderColor: "rgb(0,88,101)",
 
-				data: Object.values(transactionData),
+				data: Object.values(transactionRevenue),
+				order: 2,
+			},
+			{
+				base: 0,
+				label: "Cost",
+				backgroundColor: "rgb(255, 16, 47)",
+				borderColor: "rgb(178, 16, 47)",
+				borderWidth: 1,
+				hoverBackgroundColor: "rgba(255, 16, 47,0.4)",
+				hoverBorderColor: "rgb(0,88,101)",
+
+				data: Object.values(transactionCost),
 			},
 		],
 		base: 0,
@@ -152,16 +243,11 @@ const Expenses = () => {
 
 	//* Returns JSX to DOM
 	return (
-		<div>
-			<Bar
-				data={data}
-				width={"380em"}
-				height={"380em"}
-				options={{
-					maintainAspectRatio: true,
-				}}
-			/>{" "}
-		</div>
+		<Grid container>
+			<Grid item xs={12}>
+				<Bar data={data} width={"700em"} height={"500em"} options={options} />{" "}
+			</Grid>
+		</Grid>
 	);
 };
 

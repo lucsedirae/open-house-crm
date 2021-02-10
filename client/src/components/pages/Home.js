@@ -5,6 +5,7 @@ import React from "react";
 import SplashPanelA from "../static/SplashPanelA";
 import SplashPanelB from "../static/SplashPanelB";
 import SplashPanelC from "../static/SplashPanelC";
+import Footer from "../layout/Footer";
 
 //* Exported component
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       </div>
       <div id="development">
         <SplashPanelC />
+        <Footer />
       </div>
     </>
   );
