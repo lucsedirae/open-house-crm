@@ -33,7 +33,7 @@ const SplashPanelB = () => {
           fontFamily: "Big Shoulders Display",
           fontWeight: "800",
           paddingTop: "2rem",
-          marginBottom: "1rem",
+          marginBottom: "1rem"
         }}
       >
         What is{" "}
@@ -42,7 +42,7 @@ const SplashPanelB = () => {
             fontSize: "43px",
             fontWeight: "900",
             textShadow:
-              "-0.5px 0 #eebc0a, 0 1px #eebc0a, 1px 0 black, 0 -0.5px black",
+              "-0.5px 0 #eebc0a, 0 1px #eebc0a, 1px 0 black, 0 -0.5px black"
           }}
         >
           open
@@ -51,11 +51,11 @@ const SplashPanelB = () => {
         </span>{" "}
         ?
       </Typography>
-      <Grid container spacing={1}>
+      <Grid container spacing={0}>
         <Grid item lg={2}>
-          <img src="/img/home-mobile.svg" style={{ width: "13rem" }} />
+          <img src="/img/home-mobile.svg" style={{ width: "15rem" }} />
         </Grid>
-        <Grid item lg={8}>
+        <Grid item lg={10}>
           <Typography
             align="center"
             variant="body1"
@@ -64,19 +64,12 @@ const SplashPanelB = () => {
               fontFamily: "Big Shoulders Display",
               fontWeight: "800",
               fontSize: "17px",
-              marginTop: "1rem",
-              paddingLeft: "2rem",
-              padding: "1rem",
+              marginTop: "3rem"
             }}
           >
             Open House is a tool for real estate professionals to help manage
             their customers, transactions, sales tools and track key business
-            indicators. Designed specifically for use on mobile devices and
-            tablets, the application is easy to navigate on devices
-            of all sizes including desktops. Information cards, charts, forms,
-            and navigation are intuitive, organized and compartmentalized to
-            give you quick access to your data while in the field and on the
-            job.
+            indicators.
           </Typography>
         </Grid>
       </Grid>
@@ -90,7 +83,7 @@ const SplashPanelB = () => {
           fontFamily: "Big Shoulders Display",
           fontWeight: "800",
           paddingTop: "2rem",
-          marginBottom: "1rem",
+          marginBottom: "1rem"
         }}
       >
         What can{" "}
@@ -99,7 +92,7 @@ const SplashPanelB = () => {
             fontSize: "43px",
             fontWeight: "900",
             textShadow:
-              "-0.5px 0 #eebc0a, 0 1px #eebc0a, 1px 0 black, 0 -0.5px black",
+              "-0.5px 0 #eebc0a, 0 1px #eebc0a, 1px 0 black, 0 -0.5px black"
           }}
         >
           open
