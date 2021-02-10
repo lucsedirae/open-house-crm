@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Divider } from "@material-ui/core";
+import Moment from "moment";
 
 //* State context
 import TransactionContext from "../../context/transactions/transactionContext";
@@ -195,7 +196,7 @@ const TransactionForm = ({
           type="date"
           size="small"
           name="dateOpened"
-          value={dateOpened}
+          value={Moment(expectedCloseDate).format("YYYY-MM-DD")}
           onChange={onChange}
         />
 
@@ -206,7 +207,7 @@ const TransactionForm = ({
           type="date"
           size="small"
           name="expectedCloseDate"
-          value={expectedCloseDate}
+          value={Moment(expectedCloseDate).format("YYYY-MM-DD")}
           onChange={onChange}
         />
 
@@ -216,7 +217,7 @@ const TransactionForm = ({
           type="date"
           size="small"
           name="dateClosed"
-          value={dateClosed}
+          value={Moment(expectedCloseDate).format("YYYY-MM-DD")}
           onChange={onChange}
         />
 
