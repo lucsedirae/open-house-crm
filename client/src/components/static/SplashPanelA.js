@@ -78,7 +78,7 @@ const SplashPanelA = () => {
                 margin: "10px auto"
               }}
             >
-              Already a member? Login
+              Login
             </Button>
             <Button
               href="/register"
@@ -94,33 +94,22 @@ const SplashPanelA = () => {
             >
               Register
             </Button>
-            <Typography
-              align="center"
-              variant="body1"
-              style={{
-                color: "#008B8B",
-                color: "rgb(1, 58, 58)",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "800",
-                fontSize: "17px",
-                marginTop: "2rem"
-              }}
-            >
-              Want to learn more?
-            </Typography>
+
             <Button
               href="#features"
-              variant="outlined"
               style={{
                 color: "rgb(1, 58, 58)",
                 fontSize: "18px",
                 border: "2.5px solid #008B8B",
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600",
-                marginTop: "3.5px"
+                fontWeight: "700",
+                marginTop: "1rem",
+                display: "block",
+                margin: "0 auto",
+                border: "none"
               }}
             >
-              About Us <KeyboardArrowDownIcon />
+              Want to learn more? <KeyboardArrowDownIcon />
             </Button>
           </Paper>
         </Grid>
