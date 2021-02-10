@@ -39,7 +39,6 @@ const TransactionForm = ({
   updateTransaction,
   clearCurrent,
   addTransaction,
-  currentTransaction,
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
@@ -194,6 +193,7 @@ const TransactionForm = ({
 
         <InputLabel>Expected Closing Date</InputLabel>
         <TextField
+          required
           variant="standard"
           type="date"
           size="small"
