@@ -63,8 +63,17 @@ const InventoryGrid = ({
           />
         </Fragment>
       ) : (
-        <Typography align="center" variant="h5">
-          Please Select inventory
+        <Typography
+          align="center"
+          variant="h5"
+          style={{
+            fontFamily: "Big Shoulders Display",
+            fontSize: "18px",
+            fontWeight: "600",
+            marginBottom: "1rem"
+          }}
+        >
+          Please select an inventory item
         </Typography>
       )}
 
