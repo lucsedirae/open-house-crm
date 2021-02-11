@@ -1,4 +1,3 @@
-# Open House CRM
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/lucsedirae/open-house-crm?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/lucsedirae/open-house-crm?color=39%2C%20255%2C%200%20&style=for-the-badge)
@@ -8,6 +7,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/lucsedirae/open-house-crm?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/lucsedirae/open-house-crm?style=for-the-badge)
 
+![header image](client/public/img/readme-header.PNG)
 ## Description
 
 An open source CRM platform for real estate professionals
