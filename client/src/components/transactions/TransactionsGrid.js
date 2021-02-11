@@ -70,7 +70,7 @@ const TransactionsGrid = ({
       )}
 
       {transactions !== null ? (
-        <Box style={{ height: 400, width: "64%", margin: "0 auto" }}>
+        <Box style={{ height: 400, width: "75%", margin: "0 auto" }}>
           <DataGrid
             rows={transactions.map((transaction) => ({
               id: transaction._id,

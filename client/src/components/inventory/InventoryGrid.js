@@ -1,35 +1,35 @@
 //* Dependencies
-import React, { Fragment, useState } from 'react';
-import Moment from 'moment';
+import React, { Fragment, useState } from "react";
+import Moment from "moment";
 
 //* Material-UI components, hooks, and icons
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { DataGrid } from '@material-ui/data-grid';
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import { DataGrid } from "@material-ui/data-grid";
 
 //* Custom components
-import Spinner from '../layout/Spinner';
-import InventoryItem from '../inventory/InventoryItem';
+import Spinner from "../layout/Spinner";
+import InventoryItem from "../inventory/InventoryItem";
 
 const columns = [
-  { field: 'name', headerName: 'Name', width: 130 },
+  { field: "name", headerName: "Name", width: 130 },
   {
-    field: 'purchased',
-    type: 'date',
-    headerName: 'Purchased',
-    flex: 0.2,
+    field: "purchased",
+    type: "date",
+    headerName: "Purchased",
+    flex: 0.2
   },
-  { field: 'location', headerName: 'Location', flex: 0.2 },
-  { field: 'cost', headerName: 'Cost', flex: 0.2 },
-  { field: 'value', headerName: 'Value', flex: 0.2 },
-  { field: 'status', headerName: 'Status', flex: 0.2 },
+  { field: "location", headerName: "Location", flex: 0.2 },
+  { field: "cost", headerName: "Cost", flex: 0.2 },
+  { field: "value", headerName: "Value", flex: 0.2 },
+  { field: "status", headerName: "Status", flex: 0.2 }
 ];
 
 const InventoryGrid = ({
   inventoryLst,
   deleteInventory,
   currentInv,
-  setCurrentInv,
+  setCurrentInv
 }) => {
   const [selectedInvId, setSelectedInvId] = useState(null);
   //const [currentInv, setCurrentInv] = useState(null);
@@ -45,7 +45,7 @@ const InventoryGrid = ({
   //* Returns JSX to DOM if inventory is empty
   if (inventoryLst !== null && inventoryLst.length === 0) {
     return (
-      <Typography variant='h4' align='center' style={{ marginTop: '3rem' }}>
+      <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
         Inventory List is Empty!
       </Typography>
     );
@@ -63,26 +63,26 @@ const InventoryGrid = ({
           />
         </Fragment>
       ) : (
-        <Typography align='center' variant='h5'>
+        <Typography align="center" variant="h5">
           Please Select inventory
         </Typography>
       )}
 
       {inventoryLst !== null ? (
-        <Box style={{ height: 400, width: '100%' }}>
+        <Box style={{ height: 400, width: "75%", margin: "0 auto" }}>
           <DataGrid
             rows={inventoryLst.map((inventoryItem) => ({
               id: inventoryItem._id,
               name: inventoryItem.name,
-              purchased: Moment(inventoryItem.purchased).format('MM/DD/YYYY'),
-              cost: '$' + inventoryItem.cost,
+              purchased: Moment(inventoryItem.purchased).format("MM/DD/YYYY"),
+              cost: "$" + inventoryItem.cost,
               location: inventoryItem.location,
-              value: '$' + inventoryItem.value,
-              status: inventoryItem.status,
+              value: "$" + inventoryItem.value,
+              status: inventoryItem.status
             }))}
             columns={columns}
             pageSize={10}
-            density='compact'
+            density="compact"
             onSelectionChange={(newSelection) => {
               //setSelectedInv(newSelection.rowIds);
               findCurrentInv(newSelection.rowIds);
