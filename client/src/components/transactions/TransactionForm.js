@@ -196,7 +196,7 @@ const TransactionForm = ({
           type="date"
           size="small"
           name="dateOpened"
-          value={Moment(expectedCloseDate).format("YYYY-MM-DD")}
+          value={Moment(dateOpened).format("YYYY-MM-DD")}
           onChange={onChange}
         />
 
@@ -217,7 +217,7 @@ const TransactionForm = ({
           type="date"
           size="small"
           name="dateClosed"
-          value={Moment(expectedCloseDate).format("YYYY-MM-DD")}
+          value={Moment(dateClosed).format("YYYY-MM-DD")}
           onChange={onChange}
         />
 
