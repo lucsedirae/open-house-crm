@@ -1,40 +1,41 @@
 //* Dependencies
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from "react";
+import { useToasts } from "react-toast-notifications";
 
 //* Material-UI components, hooks, and icons
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import FormControl from "@material-ui/core/FormControl";
 // import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import DateFnsUtils from '@date-io/date-fns';
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 //* State context
-import InventoryContext from '../../context/inventory/inventoryContext';
+import InventoryContext from "../../context/inventory/inventoryContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: '25ch',
-    },
+      width: "25ch"
+    }
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 120
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    marginTop: theme.spacing(2)
+  }
 }));
 
 //* Exported Component
@@ -43,10 +44,12 @@ const InventoryForm = ({
   updateInventory,
   clearCurrent,
   addInventory,
-  currentInv,
+  currentInv
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
+
+  const { addToast } = useToasts();
 
   //*Initializes context state
   const inventoryContext = useContext(InventoryContext);
@@ -57,23 +60,23 @@ const InventoryForm = ({
       setInventory(current);
     } else {
       setInventory({
-        name: '',
+        name: "",
         purchased: new Date(),
-        location: '',
-        cost: '',
-        value: '',
-        status: '',
+        location: "",
+        cost: "",
+        value: "",
+        status: ""
       });
     }
   }, [inventoryContext, current]);
 
   const [inventory, setInventory] = useState({
-    name: '',
+    name: "",
     purchased: new Date(),
-    location: '',
-    cost: '',
-    value: '',
-    status: '',
+    location: "",
+    cost: "",
+    value: "",
+    status: ""
   });
 
   const { name, purchased, location, cost, value, status } = inventory;
@@ -86,18 +89,26 @@ const InventoryForm = ({
     e.preventDefault();
     if (current === null) {
       addInventory(inventory);
+      addToast("Inventory item saved!", {
+        appearance: "success",
+        autoDismiss: true
+      });
     } else {
       updateInventory(inventory);
       setCurrent(null);
+      addToast("Inventory item updated!", {
+        appearance: "success",
+        autoDismiss: true
+      });
     }
 
     setInventory({
-      name: '',
-      purchased: '',
-      location: '',
-      cost: '',
-      value: '',
-      status: '',
+      name: "",
+      purchased: "",
+      location: "",
+      cost: "",
+      value: "",
+      status: ""
     });
   };
 
@@ -114,62 +125,62 @@ const InventoryForm = ({
   };
 
   return (
-    <form className={classes.root} autoComplete='off' onSubmit={onSubmit}>
-      <Typography variant='h5' style={{ textAlign: 'center' }}>
-        {current ? 'Edit Inventory' : 'Add Inventory'}
+    <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
+      <Typography variant="h5" style={{ textAlign: "center" }}>
+        {current ? "Edit Inventory" : "Add Inventory"}
       </Typography>
 
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Box style={{ textAlign: 'center' }}>
+        <Box style={{ textAlign: "center" }}>
           {/* Name Field */}
           <TextField
-            variant='standard'
+            variant="standard"
             required={true}
-            type='text'
-            id='standard-required'
-            label='Inventory'
-            size='small'
-            helperText='Required'
-            name='name'
+            type="text"
+            id="standard-required"
+            label="Inventory"
+            size="small"
+            helperText="Required"
+            name="name"
             value={name}
             onChange={onChange}
           />
           {/* Purchase date, Date */}
           <KeyboardDatePicker
-            margin='normal'
-            id='date-picker-dialog'
-            label='Purchased Date'
-            format='MM/dd/yyyy'
+            margin="normal"
+            id="date-picker-dialog"
+            label="Purchased Date"
+            format="MM/dd/yyyy"
             value={purchased}
-            name='purchased'
+            name="purchased"
             onChange={handleDateChange}
             KeyboardButtonProps={{
-              'aria-label': 'change date',
+              "aria-label": "change date"
             }}
           />
           {/* Location, string */}
           <TextField
-            variant='standard'
+            variant="standard"
             required
-            type='text'
-            id='standard'
-            label='Location'
-            size='small'
-            name='location'
+            type="text"
+            id="standard"
+            label="Location"
+            size="small"
+            name="location"
             value={location}
             onChange={onChange}
           />
           {/* Cost, number */}
           <FormControl>
             <Input
-              id='standard-adornment-amount'
-              name='cost'
-              type='number'
-              label='Cost'
+              id="standard-adornment-amount"
+              name="cost"
+              type="number"
+              label="Cost"
               value={cost}
               onChange={onChange}
               startAdornment={
-                <InputAdornment position='start'>$</InputAdornment>
+                <InputAdornment position="start">$</InputAdornment>
               }
             />
           </FormControl>
@@ -178,50 +189,50 @@ const InventoryForm = ({
 
           <FormControl>
             <Input
-              id='standard-adornment-amount'
-              name='value'
-              type='number'
-              label='Value'
+              id="standard-adornment-amount"
+              name="value"
+              type="number"
+              label="Value"
               value={value}
               onChange={onChange}
               startAdornment={
-                <InputAdornment position='start'>$</InputAdornment>
+                <InputAdornment position="start">$</InputAdornment>
               }
             />
           </FormControl>
 
           {/*  Status, string*/}
           <TextField
-            variant='standard'
+            variant="standard"
             required
-            type='text'
-            id='standard'
-            label='Status'
-            size='small'
+            type="text"
+            id="standard"
+            label="Status"
+            size="small"
             // helperText="Required"
-            name='status'
+            name="status"
             value={status}
             onChange={onChange}
           />
         </Box>
       </MuiPickersUtilsProvider>
       <Button
-        variant='outlined'
-        type='submit'
-        color='primary'
+        variant="outlined"
+        type="submit"
+        color="primary"
         fullWidth={true}
-        style={{ marginTop: '1rem', marginBottom: '1rem' }}
+        style={{ marginTop: "1rem", marginBottom: "1rem" }}
         onClick={handleClose}
       >
         Submit
       </Button>
       {current && (
         <Button
-          variant='outlined'
+          variant="outlined"
           fullWidth={true}
-          type='submit'
-          color='secondary'
-          style={{ marginBottom: '1rem' }}
+          type="submit"
+          color="secondary"
+          style={{ marginBottom: "1rem" }}
           onClick={clearAll}
         >
           Clear

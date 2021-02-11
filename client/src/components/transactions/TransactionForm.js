@@ -1,5 +1,6 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
+import { useToasts } from "react-toast-notifications";
 // import axios from 'axios';
 
 //* Material UI components, hooks, and icons
@@ -43,6 +44,8 @@ const TransactionForm = ({
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
+
+  const { addToast } = useToasts();
 
   const transactionContext = useContext(TransactionContext);
   const { current, setCurrentTrx } = transactionContext;
@@ -94,9 +97,17 @@ const TransactionForm = ({
     e.preventDefault();
     if (current == null) {
       addTransaction(transaction);
+      addToast("Transaction saved!", {
+        appearance: "success",
+        autoDismiss: true
+      });
     } else {
       updateTransaction(transaction);
       setCurrentTrx(null);
+      addToast("Transaction updated!", {
+        appearance: "success",
+        autoDismiss: true
+      });
     }
 
     setTransaction({
