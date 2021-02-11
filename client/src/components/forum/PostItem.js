@@ -79,8 +79,9 @@ const PostItem = ({ post, posts, setPosts }) => {
               </div>
 
               <p style={{ lineHeight: "1.9" }}>{body}</p>
+              <Replies postReplies={postReplies} />
             </Paper>
-            <Replies postReplies={postReplies} />
+
             <FormControlLabel
               onClick={handleClick}
               control={

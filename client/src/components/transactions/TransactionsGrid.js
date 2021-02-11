@@ -1,14 +1,14 @@
 //* Dependencies
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from "react";
 
 //* Material-UI components, hooks, and icons
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { DataGrid } from '@material-ui/data-grid';
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import { DataGrid } from "@material-ui/data-grid";
 
 //* Custom components
-import Spinner from '../layout/Spinner';
-import TransactionItem from '../transactions/TransactionItem';
+import Spinner from "../layout/Spinner";
+import TransactionItem from "../transactions/TransactionItem";
 
 //* Defines columns for transaction grid
 const columns = [
@@ -24,7 +24,7 @@ const TransactionsGrid = ({
   transactions,
   deleteTransaction,
   currentTransaction,
-  setCurrentTrx,
+  setCurrentTrx
 }) => {
   const [selectedTrxId, setSelectedTrxId] = useState(null);
 
@@ -39,7 +39,7 @@ const TransactionsGrid = ({
   //* Returns JSX to DOM if transactions is empty
   if (transactions !== null && transactions.length === 0) {
     return (
-      <Typography variant='h4' align='center' style={{ marginTop: '3rem' }}>
+      <Typography variant="h4" align="center" style={{ marginTop: "3rem" }}>
         Transaction List is Empty!
       </Typography>
     );
@@ -55,7 +55,16 @@ const TransactionsGrid = ({
           deleteTransaction={deleteTransaction}
         />
       ) : (
-        <Typography align='center' variant='h5'>
+        <Typography
+          align="center"
+          variant="h5"
+          style={{
+            fontFamily: "Big Shoulders Display",
+            fontSize: "18px",
+            fontWeight: "600",
+            marginBottom: "1rem"
+          }}
+        >
           Please select a transaction
         </Typography>
       )}
@@ -69,11 +78,11 @@ const TransactionsGrid = ({
               revenue: `$${transaction.revenue}`,
               cost: `$${transaction.cost}`,
               profit: `$${transaction.revenue - transaction.cost}`,
-              type: transaction.type,
+              type: transaction.type
             }))}
             columns={columns}
             pageSize={10}
-            density='compact'
+            density="compact"
             onSelectionChange={(newSelection) => {
               findCurrentTrx(newSelection.rowIds);
             }}

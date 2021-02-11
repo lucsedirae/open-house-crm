@@ -1,33 +1,35 @@
 //* Dependencies
-import React, { useState, useContext, useEffect } from 'react';
-
-//* Material-UI components, hooks, and icons
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
+import React, { useState, useContext, useEffect } from "react";
+import { useToasts } from "react-toast-notifications";
 import Moment from 'moment';
 
+//* Material-UI components, hooks, and icons
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from '@material-ui/core/InputLabel';
+
 //* State context
-import InventoryContext from '../../context/inventory/inventoryContext';
+import InventoryContext from "../../context/inventory/inventoryContext";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: '25ch',
-    },
+      width: "25ch"
+    }
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 120
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    marginTop: theme.spacing(2)
+  }
 }));
 
 //* Exported Component
@@ -40,6 +42,8 @@ const InventoryForm = ({
   //* Initializes styling classes
   const classes = useStyles();
 
+  const { addToast } = useToasts();
+
   //*Initializes context state
   const inventoryContext = useContext(InventoryContext);
   const { current, setCurrent } = inventoryContext;
@@ -49,23 +53,23 @@ const InventoryForm = ({
       setInventory(current);
     } else {
       setInventory({
-        name: '',
+        name: "",
         purchased: new Date(),
-        location: '',
-        cost: '',
-        value: '',
-        status: '',
+        location: "",
+        cost: "",
+        value: "",
+        status: ""
       });
     }
   }, [inventoryContext, current]);
 
   const [inventory, setInventory] = useState({
-    name: '',
+    name: "",
     purchased: new Date(),
-    location: '',
-    cost: '',
-    value: '',
-    status: '',
+    location: "",
+    cost: "",
+    value: "",
+    status: ""
   });
 
   const { name, purchased, location, cost, value, status } = inventory;
@@ -78,25 +82,33 @@ const InventoryForm = ({
     e.preventDefault();
     if (current === null) {
       addInventory(inventory);
+      addToast("Inventory item saved!", {
+        appearance: "success",
+        autoDismiss: true
+      });
     } else {
       updateInventory(inventory);
       setCurrent(null);
+      addToast("Inventory item updated!", {
+        appearance: "success",
+        autoDismiss: true
+      });
     }
 
     setInventory({
-      name: '',
-      purchased: '',
-      location: '',
-      cost: '',
-      value: '',
-      status: '',
+      name: "",
+      purchased: "",
+      location: "",
+      cost: "",
+      value: "",
+      status: ""
     });
   };
 
   return (
-    <form className={classes.root} autoComplete='off' onSubmit={onSubmit}>
-      <Typography variant='h5' style={{ textAlign: 'center' }}>
-        {current ? 'Edit Inventory' : 'Add Inventory'}
+    <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
+      <Typography variant="h5" style={{ textAlign: "center" }}>
+        {current ? "Edit Inventory" : "Add Inventory"}
       </Typography>
       <Box style={{ textAlign: 'center' }}>
         {/* Name Field */}
@@ -169,11 +181,11 @@ const InventoryForm = ({
         />
       </Box>
       <Button
-        variant='outlined'
-        type='submit'
-        color='primary'
+        variant="outlined"
+        type="submit"
+        color="primary"
         fullWidth={true}
-        style={{ marginTop: '1rem', marginBottom: '1rem' }}
+        style={{ marginTop: "1rem", marginBottom: "1rem" }}
         onClick={handleClose}
       >
         Submit
