@@ -14,6 +14,9 @@ import EmailIcon from "@material-ui/icons/Email";
 import CheckIcon from "@material-ui/icons/Check";
 import background from "../../img/Subtle-Prism2.svg";
 
+//* Custom components
+import Footer from "../layout/Footer"
+
 //* State context
 import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/auth/authContext";
@@ -187,6 +190,7 @@ const Register = (props) => {
           </form>
         </div>
       </Container>
+      <Footer />
     </div>
   );
 };

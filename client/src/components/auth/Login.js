@@ -14,6 +14,9 @@ import Input from "@material-ui/core/Input";
 import Typography from "@material-ui/core/Typography";
 import background from "../../img/Subtle-Prism2.svg";
 
+//* Custom components
+import Footer from "../layout/Footer"
+
 //* State context
 import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/auth/authContext";
@@ -148,6 +151,7 @@ const Login = (props) => {
           </form>
         </div>
       </Container>
+<Footer />
     </div>
   );
 };

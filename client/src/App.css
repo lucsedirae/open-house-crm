@@ -108,9 +108,11 @@ html {
 }
 
 #footer {
+  position: fixed;
+  bottom: 0;
   width: 100%;
   background-color: #008b8b;
-  padding: 17px;
+  padding: 10px;
   text-align: center;
   color: white;
   font-family: "Big Shoulders Display";
