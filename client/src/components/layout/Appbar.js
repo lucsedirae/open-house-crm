@@ -127,7 +127,7 @@ const Appbar = () => {
           aria-label="menu"
         />
         <Button
-          href="/dashboard"
+          href="/"
           style={{
             fontFamily: "Big Shoulders Display",
             fontWeight: "800",

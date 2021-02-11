@@ -22,7 +22,7 @@ const SplashPanelC = () => {
   //* Returns JSX to DOM
   return (
     <Container disableGutters>
-      <Box pt={15}>
+      <Box pt={12}>
         <Paper
           style={{
             padding: "30px",
@@ -37,7 +37,6 @@ const SplashPanelC = () => {
             variant="h4"
             style={{
               color: "#008B8B",
-
               fontFamily: "Big Shoulders Display",
               fontWeight: "800",
               paddingTop: "2rem",
