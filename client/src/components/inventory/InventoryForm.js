@@ -7,15 +7,8 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
-// import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import InputLabel from '@material-ui/core/InputLabel';
+import Moment from 'moment';
 
 //* State context
 import InventoryContext from '../../context/inventory/inventoryContext';
@@ -43,7 +36,6 @@ const InventoryForm = ({
   updateInventory,
   clearCurrent,
   addInventory,
-  currentInv,
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
@@ -101,110 +93,81 @@ const InventoryForm = ({
     });
   };
 
-  const clearAll = () => {
-    clearCurrent();
-  };
-
-  // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  //does this change need to change to some other state hook to set the selected date
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
   return (
     <form className={classes.root} autoComplete='off' onSubmit={onSubmit}>
       <Typography variant='h5' style={{ textAlign: 'center' }}>
         {current ? 'Edit Inventory' : 'Add Inventory'}
       </Typography>
-
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Box style={{ textAlign: 'center' }}>
-          {/* Name Field */}
-          <TextField
-            variant='standard'
-            required={true}
-            type='text'
-            id='standard-required'
-            label='Inventory'
-            size='small'
-            helperText='Required'
-            name='name'
-            value={name}
-            onChange={onChange}
-          />
-          {/* Purchase date, Date */}
-          <KeyboardDatePicker
-            margin='normal'
-            id='date-picker-dialog'
-            label='Purchased Date'
-            format='MM/dd/yyyy'
-            value={purchased}
-            name='purchased'
-            onChange={handleDateChange}
-            KeyboardButtonProps={{
-              'aria-label': 'change date',
-            }}
-          />
-          {/* Location, string */}
-          <TextField
-            variant='standard'
-            required
-            type='text'
-            id='standard'
-            label='Location'
-            size='small'
-            name='location'
-            value={location}
-            onChange={onChange}
-          />
-          {/* Cost, number */}
-          <FormControl>
-            <Input
-              id='standard-adornment-amount'
-              name='cost'
-              type='number'
-              label='Cost'
-              value={cost}
-              onChange={onChange}
-              startAdornment={
-                <InputAdornment position='start'>$</InputAdornment>
-              }
-            />
-          </FormControl>
-
-          {/*  Value, number*/}
-
-          <FormControl>
-            <Input
-              id='standard-adornment-amount'
-              name='value'
-              type='number'
-              label='Value'
-              value={value}
-              onChange={onChange}
-              startAdornment={
-                <InputAdornment position='start'>$</InputAdornment>
-              }
-            />
-          </FormControl>
-
-          {/*  Status, string*/}
-          <TextField
-            variant='standard'
-            required
-            type='text'
-            id='standard'
-            label='Status'
-            size='small'
-            // helperText="Required"
-            name='status'
-            value={status}
-            onChange={onChange}
-          />
-        </Box>
-      </MuiPickersUtilsProvider>
+      <Box style={{ textAlign: 'center' }}>
+        {/* Name Field */}
+        <TextField
+          variant='standard'
+          required={true}
+          type='text'
+          id='standard-required'
+          label='Inventory'
+          size='small'
+          helperText='Required'
+          name='name'
+          value={name}
+          onChange={onChange}
+        />
+        {/* Location, string */}
+        <TextField
+          variant='standard'
+          required
+          type='text'
+          id='standard'
+          label='Location'
+          size='small'
+          name='location'
+          value={location}
+          onChange={onChange}
+        />
+        {/* Cost, number */}
+        <TextField
+          variant='standard'
+          label='Cost'
+          type='number'
+          size='small'
+          name='cost'
+          value={cost}
+          onChange={onChange}
+        />
+        {/*  Value, number*/}
+        <TextField
+          variant='standard'
+          label='Value'
+          type='number'
+          size='small'
+          name='value'
+          value={value}
+          onChange={onChange}
+        />
+        {/*  Status, string*/}
+        <TextField
+          variant='standard'
+          required
+          type='text'
+          id='standard'
+          label='Status'
+          size='small'
+          // helperText="Required"
+          name='status'
+          value={status}
+          onChange={onChange}
+        />
+        {/* Purchase date, Date */}
+        <InputLabel>Purchased</InputLabel>
+        <TextField
+          variant='standard'
+          type='date'
+          size='small'
+          name='purchased'
+          value={Moment(purchased).format('YYYY-MM-DD')}
+          onChange={onChange}
+        />
+      </Box>
       <Button
         variant='outlined'
         type='submit'
@@ -215,18 +178,6 @@ const InventoryForm = ({
       >
         Submit
       </Button>
-      {current && (
-        <Button
-          variant='outlined'
-          fullWidth={true}
-          type='submit'
-          color='secondary'
-          style={{ marginBottom: '1rem' }}
-          onClick={clearAll}
-        >
-          Clear
-        </Button>
-      )}
     </form>
   );
 };

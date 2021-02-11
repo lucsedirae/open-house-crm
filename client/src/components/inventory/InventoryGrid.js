@@ -17,7 +17,7 @@ const columns = [
     field: 'purchased',
     type: 'date',
     headerName: 'Purchased',
-    flex: 0.2,
+    width: 120,
   },
   { field: 'location', headerName: 'Location', flex: 0.2 },
   { field: 'cost', headerName: 'Cost', flex: 0.2 },
@@ -69,7 +69,7 @@ const InventoryGrid = ({
       )}
 
       {inventoryLst !== null ? (
-        <Box style={{ height: 400, width: '100%' }}>
+        <Box style={{ height: 475, width: '75%', margin: '0 auto' }}>
           <DataGrid
             rows={inventoryLst.map((inventoryItem) => ({
               id: inventoryItem._id,
