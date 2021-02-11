@@ -12,11 +12,11 @@ import TransactionItem from "../transactions/TransactionItem";
 
 //* Defines columns for transaction grid
 const columns = [
-  { field: "trxName", headerName: "Transaction Name", width: 260 },
-  { field: "revenue", headerName: "Revenue", width: 130 },
-  { field: "cost", headerName: "Cost", width: 130 },
-  { field: "profit", headerName: "Profit", width: 130 },
-  { field: "type", headerName: "Type", width: 130 }
+  { field: 'trxName', headerName: 'Transaction Name', width: 200 },
+  { field: 'revenue', headerName: 'Revenue', flex: 0.2 },
+  { field: 'cost', headerName: 'Cost', flex: 0.2 },
+  { field: 'profit', headerName: 'Profit', flex: 0.2 },
+  { field: 'type', headerName: 'Type', flex: 0.2 },
 ];
 
 //* Exported component
@@ -70,7 +70,7 @@ const TransactionsGrid = ({
       )}
 
       {transactions !== null ? (
-        <Box style={{ height: 400, width: "75%", margin: "0 auto" }}>
+        <Box style={{ height: 475, width: '75%', margin: '0 auto' }}>
           <DataGrid
             rows={transactions.map((transaction) => ({
               id: transaction._id,

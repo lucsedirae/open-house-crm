@@ -78,7 +78,7 @@ const InventoryGrid = ({
       )}
 
       {inventoryLst !== null ? (
-        <Box style={{ height: 400, width: "75%", margin: "0 auto" }}>
+        <Box style={{ height: 475, width: '75%', margin: '0 auto' }}>
           <DataGrid
             rows={inventoryLst.map((inventoryItem) => ({
               id: inventoryItem._id,
