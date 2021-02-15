@@ -54,7 +54,7 @@ const LineChart = () => {
 		getTransactionCost();
 	}, []);
 	const getTransactionCost = async () => {
-		const res = await axios.get("http://localhost:3000/api/transactions");
+		const res = await axios.get("/api/transactions");
 
 		res.data.map((transactions) => {
 			let month = moment.utc(transactions.dateOpened).format("MMMM");

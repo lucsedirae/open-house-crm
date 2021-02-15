@@ -37,7 +37,7 @@ const Expenses = () => {
 
 	useEffect(() => {
 		getTransactionRevenue();
-		getTransactionCost();
+		// getTransactionCost();
 	}, []);
 
 	let chartedRevenue = {
@@ -81,72 +81,57 @@ const Expenses = () => {
 
 			switch (month) {
 				case "January":
-					return (chartedRevenue.January += revenue);
+					chartedRevenue.January += revenue;
+					chartedCost.January += cost;
+					break;
 				case "February":
-					return (chartedRevenue.February += revenue);
+					chartedRevenue.February += revenue;
+					chartedCost.February += cost;
+					break;
 				case "March":
-					return (chartedRevenue.March += revenue);
+					chartedRevenue.March += revenue;
+					chartedCost.March += cost;
+					break;
 				case "April":
-					return (chartedRevenue.April += revenue);
+					chartedRevenue.April += revenue;
+					chartedCost.April += cost;
+					break;
 				case "May":
-					return (chartedRevenue.May += revenue);
+					chartedRevenue.May += revenue;
+					chartedCost.May += cost;
+					break;
 				case "June":
-					return (chartedRevenue.June += revenue);
+					chartedRevenue.June += revenue;
+					chartedCost.June += cost;
+					break;
 				case "July":
-					return (chartedRevenue.July += revenue);
+					chartedRevenue.July += revenue;
+					chartedCost.July += cost;
+					break;
 				case "August":
-					return (chartedRevenue.August += revenue);
+					chartedRevenue.August += revenue;
+					chartedCost.August += cost;
+					break;
 				case "September":
-					return (chartedRevenue.September += revenue);
+					chartedRevenue.September += revenue;
+					chartedCost.September += cost;
+					break;
 				case "October":
-					return (chartedRevenue.October += revenue);
+					chartedRevenue.October += revenue;
+					chartedCost.October += cost;
+					break;
 				case "November":
-					return (chartedRevenue.November += revenue);
+					chartedRevenue.November += revenue;
+					chartedCost.November += cost;
+					break;
 				case "December":
-					return (chartedRevenue.December += revenue);
+					chartedRevenue.December += revenue;
+					chartedCost.December += cost;
+					break;
 			}
 		});
 		// Object.values(charted);
 		setTransactionRevenue(chartedRevenue);
-		setTransactionCost(chartedCost);
-		console.log(transactionCost);
-	};
-	const getTransactionCost = async () => {
-		const res = await axios.get("/api/transactions");
-		const theTransactions = [];
-
-		res.data.map((transactions) => {
-			let month = moment.utc(transactions.dateOpened).format("MMMM");
-			let cost = transactions.cost;
-			console.log(cost);
-
-			switch (month) {
-				case "January":
-					return (chartedCost.January += cost);
-				case "February":
-					return (chartedCost.February += cost);
-				case "March":
-					return (chartedCost.March += cost);
-				case "April":
-					return (chartedCost.April += cost);
-				case "May":
-					return (chartedCost.May += cost);
-				case "June":
-					return (chartedCost.June += cost);
-				case "July":
-					return (chartedCost.July += cost);
-				case "August":
-					return (chartedCost.August += cost);
-				case "September":
-					return (chartedCost.September += cost);
-				case "October":
-					return (chartedCost.October += cost);
-				case "November":
-					return (chartedCost.November += cost);
-				case "December":
-					return (chartedCost.December += cost);
-			}
-		});
 		setTransactionCost(chartedCost);
 		console.log(transactionCost);
 	};

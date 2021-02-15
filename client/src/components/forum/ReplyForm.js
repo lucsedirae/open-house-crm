@@ -61,7 +61,7 @@ const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
       }
     };
     const res = await axios.post(
-      `http://localhost:8080/api/forum/${_id}`,
+      `/api/forum/${_id}`,
       { ...reply, name: user && user.name },
       config
     );
