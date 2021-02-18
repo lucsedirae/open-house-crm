@@ -29,7 +29,7 @@ const SplashPanelC = () => {
             border: "1px solid #008B8B",
             background: `url(${background})`,
             backgroundRepeat: "no-repeat",
-            backgroundSize: "cover"
+            backgroundSize: "cover",
           }}
         >
           <Typography
@@ -40,7 +40,7 @@ const SplashPanelC = () => {
               fontFamily: "Big Shoulders Display",
               fontWeight: "800",
               paddingTop: "2rem",
-              marginBottom: "1rem"
+              marginBottom: "1rem",
             }}
           >
             Want to contribute?{" "}
@@ -49,7 +49,7 @@ const SplashPanelC = () => {
                 fontSize: "43px",
                 fontWeight: "900",
                 textShadow:
-                  "-1px 0 #FCE181, 0 2px #FCE181, 2px 0 #FCE181, 0 -1px #FCE181"
+                  "-1px 0 #FCE181, 0 2px #FCE181, 2px 0 #FCE181, 0 -1px #FCE181",
               }}
             >
               open
@@ -70,13 +70,14 @@ const SplashPanelC = () => {
                   marginTop: "1rem",
                   fontFamily: "Big Shoulders Display",
                   color: "#008B8B",
-                  fontWeight: "600"
+                  fontWeight: "600",
                 }}
               >
                 Dev Updates
               </Typography>
               <Typography>
                 <List>
+                  <ListItem>2/10/2021 - Deployed beta version</ListItem>
                   <ListItem>1/31/2021 - Transactions module is active</ListItem>
                   <ListItem>
                     1/17/2021 - User authentication added to demo
@@ -97,13 +98,25 @@ const SplashPanelC = () => {
                   marginTop: "1rem",
                   fontFamily: "Big Shoulders Display",
                   color: "#008B8B",
-                  fontWeight: "600"
+                  fontWeight: "600",
                 }}
               >
                 Future Development
               </Typography>
               <Typography>
                 <List>
+                  <ListItem>
+                    Add calendar module with plugin support for popular calendar
+                    applications (i.e. Google, Outlook, Calendly, etc.)
+                  </ListItem>
+                  <ListItem>
+                    Add ability to design and track marketing campaigns
+                  </ListItem>
+                  <ListItem>
+                    Port to React Native for deployment on mobile application
+                    stores
+                  </ListItem>
+
                   <ListItem>
                     Add user roles to dashboard to allow in-app administrative
                     functionality and the ability to support teams
