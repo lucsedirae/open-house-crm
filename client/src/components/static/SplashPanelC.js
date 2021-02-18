@@ -105,6 +105,9 @@ const SplashPanelC = () => {
               </Typography>
               <Typography>
                 <List>
+                <ListItem>
+                    Upgrade authentication technology to provide more robust security and auth via sites like Google, LinkedIn, etc for access to API's
+                  </ListItem>
                   <ListItem>
                     Add calendar module with plugin support for popular calendar
                     applications (i.e. Google, Outlook, Calendly, etc.)
