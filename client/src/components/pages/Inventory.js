@@ -6,8 +6,6 @@ import axios from "axios";
 //* Material-UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components
 import InventoryGrid from "../inventory/InventoryGrid";
@@ -17,30 +15,8 @@ import NavPanel from "../layout/NavPanel";
 //* State context
 import AuthContext from "../../context/auth/authContext";
 
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    marginBottom: "1rem"
-  },
-  header: {
-    textAlign: "center",
-    marginTop: "5rem",
-    marginBottom: "1rem",
-    fontFamily: "Big Shoulders Display",
-    fontWeight: "700"
-  }
-}));
-
 //* Exported component
 const Inventory = () => {
-  //* Initializes styling classes
-  const classes = useStyles();
-
   //* Initializes state
   const authContext = useContext(AuthContext);
   const [inventoryLst, setInventory] = useState([]);
@@ -74,7 +50,7 @@ const Inventory = () => {
       location: "",
       cost: "",
       value: "",
-      status: ""
+      status: "",
     };
     getInventory();
   };
@@ -88,7 +64,6 @@ const Inventory = () => {
   //* Authenticates user token and retrieves inventory list
   useEffect(() => {
     authContext.loadUser();
-    // eslint-disable-next-line
     getInventory();
   }, []);
 

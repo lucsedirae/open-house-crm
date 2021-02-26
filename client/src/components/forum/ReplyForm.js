@@ -4,31 +4,11 @@ import { useToasts } from "react-toast-notifications";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 
+//* State context
 import AuthContext from "../../context/auth/authContext";
-
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch"
-    }
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
-}));
 
 //* Exported component
 const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
@@ -44,7 +24,7 @@ const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
   const { addToast } = useToasts();
 
   const [reply, setReply] = useState({
-    body: ""
+    body: "",
   });
 
   const { body } = reply;
@@ -57,8 +37,8 @@ const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
     e.preventDefault();
     const config = {
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     };
     const res = await axios.post(
       `/api/forum/${_id}`,
@@ -72,30 +52,17 @@ const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
 
     addToast(`You replied to ${post.name}'s post!`, {
       appearance: "success",
-      autoDismiss: true
+      autoDismiss: true,
     });
 
     setReply({
-      body: ""
+      body: "",
     });
   };
 
   //* Returns JSX to DOM
   return (
     <form autoComplete="off" onSubmit={onSubmit} style={{ marginTop: "1rem" }}>
-      {/*  <TextField
-        variant="outlined"
-        required={true}
-        type="text"
-        id="standard-required"
-        label="Name"
-        size="small"
-        name="name"
-        value={name}
-        onChange={onChange}
-        style={{ marginBottom: "1rem" }}
-      /> */}
-
       <TextField
         fullWidth={true}
         multiline
@@ -118,7 +85,7 @@ const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
           color: "white",
           fontFamily: "Big Shoulders Display",
           fontSize: "18px",
-          fontWeight: "600"
+          fontWeight: "600",
         }}
       >
         Submit

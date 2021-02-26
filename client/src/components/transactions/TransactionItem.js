@@ -1,21 +1,21 @@
 //* Dependencies
 import React, { useContext } from "react";
 import Moment from "moment";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* Material-UI components, hooks, and icons
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Chip from "@material-ui/core/Chip";
 import Button from "@material-ui/core/Button";
-import background from "../../img/Subtle-Prism2.svg";
-import EditIcon from "@material-ui/icons/Edit";
+import Chip from "@material-ui/core/Chip";
+import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 
 //* State context
 import ModalContext from "../../context/modal/modalContext";
-import { Divider } from "@material-ui/core";
 import TransactionContext from "../../context/transactions/transactionContext";
 
 //* Checks the transaction type and returns the appropriate chip background color

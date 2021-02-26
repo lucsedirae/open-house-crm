@@ -1,13 +1,13 @@
 //* Dependencies
 import React, { useContext } from 'react';
-import Dialog from '@material-ui/core/Dialog';
 
 //* Material UI components, hooks, and icons
+import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 
 //* Custom components
-import TransactionForm from './TransactionForm';
 import FloatingAction from '../layout/FloatingAction';
+import TransactionForm from './TransactionForm';
 
 //* State context
 import ModalContext from '../../context/modal/modalContext';

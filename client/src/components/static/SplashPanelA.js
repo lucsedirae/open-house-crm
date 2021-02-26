@@ -1,17 +1,15 @@
 //* Dependencies
 import React from "react";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* Material UI components, hooks, and icons
-import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import background from "../../img/Subtle-Prism2.svg";
 
 //* Exported component
 const SplashPanelA = () => {
@@ -29,7 +27,7 @@ const SplashPanelA = () => {
               border: "1px solid #008B8B",
               background: `url(${background})`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "cover"
+              backgroundSize: "cover",
             }}
           >
             <Typography
@@ -41,7 +39,7 @@ const SplashPanelA = () => {
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "900",
                 textShadow:
-                  "-1px 0 #FCE181, 0 2px #FCE181, 2px 0 #FCE181, 0 -1px #FCE181"
+                  "-1px 0 #FCE181, 0 2px #FCE181, 2px 0 #FCE181, 0 -1px #FCE181",
               }}
             >
               open
@@ -57,7 +55,7 @@ const SplashPanelA = () => {
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "800",
                 fontSize: "17px",
-                marginTop: "1rem"
+                marginTop: "1rem",
               }}
             >
               An open source CRM designed for real estate professionals
@@ -75,7 +73,7 @@ const SplashPanelA = () => {
                 fontWeight: "600",
                 width: "40%",
                 display: "block",
-                margin: "10px auto"
+                margin: "10px auto",
               }}
             >
               Login
@@ -89,7 +87,7 @@ const SplashPanelA = () => {
                 fontSize: "18px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                width: "40%"
+                width: "40%",
               }}
             >
               Register
@@ -106,7 +104,7 @@ const SplashPanelA = () => {
                 display: "block",
                 margin: "0 auto",
                 marginTop: "1rem",
-                border: "none"
+                border: "none",
               }}
             >
               Want to learn more? <KeyboardArrowDownIcon />

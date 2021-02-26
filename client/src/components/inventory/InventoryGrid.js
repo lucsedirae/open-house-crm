@@ -3,13 +3,13 @@ import React, { Fragment, useState } from "react";
 import Moment from "moment";
 
 //* Material-UI components, hooks, and icons
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 import { DataGrid } from "@material-ui/data-grid";
 
 //* Custom components
-import Spinner from "../layout/Spinner";
 import InventoryItem from "../inventory/InventoryItem";
+import Spinner from "../layout/Spinner";
 
 const columns = [
   { field: "name", headerName: "Name", width: 130 },
@@ -17,22 +17,22 @@ const columns = [
     field: "purchased",
     type: "date",
     headerName: "Purchased",
-    flex: 0.2
+    flex: 0.2,
   },
   { field: "location", headerName: "Location", flex: 0.2 },
   { field: "cost", headerName: "Cost", flex: 0.2 },
   { field: "value", headerName: "Value", flex: 0.2 },
-  { field: "status", headerName: "Status", flex: 0.2 }
+  { field: "status", headerName: "Status", flex: 0.2 },
 ];
 
+//* Exported component
 const InventoryGrid = ({
   inventoryLst,
   deleteInventory,
   currentInv,
-  setCurrentInv
+  setCurrentInv,
 }) => {
   const [selectedInvId, setSelectedInvId] = useState(null);
-  //const [currentInv, setCurrentInv] = useState(null);
 
   const findCurrentInv = (id) => {
     inventoryLst.map((inventoryItem) => {
@@ -70,7 +70,7 @@ const InventoryGrid = ({
             fontFamily: "Big Shoulders Display",
             fontSize: "18px",
             fontWeight: "600",
-            marginBottom: "1rem"
+            marginBottom: "1rem",
           }}
         >
           Please select an inventory item
@@ -78,7 +78,7 @@ const InventoryGrid = ({
       )}
 
       {inventoryLst !== null ? (
-        <Box style={{ height: 475, width: '75%', margin: '0 auto' }}>
+        <Box style={{ height: 475, width: "75%", margin: "0 auto" }}>
           <DataGrid
             rows={inventoryLst.map((inventoryItem) => ({
               id: inventoryItem._id,
@@ -87,13 +87,12 @@ const InventoryGrid = ({
               cost: "$" + inventoryItem.cost,
               location: inventoryItem.location,
               value: "$" + inventoryItem.value,
-              status: inventoryItem.status
+              status: inventoryItem.status,
             }))}
             columns={columns}
             pageSize={10}
             density="compact"
             onSelectionChange={(newSelection) => {
-              //setSelectedInv(newSelection.rowIds);
               findCurrentInv(newSelection.rowIds);
             }}
           />
