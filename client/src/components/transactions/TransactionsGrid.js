@@ -1,9 +1,9 @@
 //* Dependencies
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 
 //* Material-UI components, hooks, and icons
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 import { DataGrid } from "@material-ui/data-grid";
 
 //* Custom components

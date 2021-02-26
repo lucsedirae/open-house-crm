@@ -1,13 +1,18 @@
+//* Dependencies
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+
+//* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
-import PublicTwoToneIcon from "@material-ui/icons/PublicTwoTone";
+import Dialog from "@material-ui/core/Dialog";
+import IconButton from "@material-ui/core/IconButton";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
+import CloseIcon from "@material-ui/icons/Close";
+import PublicTwoToneIcon from "@material-ui/icons/PublicTwoTone";
+
+//* Custom components
 import Map from "../map/Map";
 
 const styles = (theme) => ({
@@ -71,7 +76,7 @@ export default function CustomizedDialogs({ contact }) {
           color: "white",
           fontSize: "15px",
           fontFamily: "Big Shoulders Display",
-          fontWeight: "600"
+          fontWeight: "600",
         }}
       >
         Map

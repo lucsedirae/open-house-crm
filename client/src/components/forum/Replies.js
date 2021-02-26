@@ -1,13 +1,19 @@
+//* Dependencies
 import React from "react";
-import Accordion from "@material-ui/core/Accordion";
-import Badge from "@material-ui/core/Badge";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
 
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+//* Material UI components, hooks, and icons
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Badge from "@material-ui/core/Badge";
 import CommentIcon from "@material-ui/icons/Comment";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
+//* Custom components
 import ReplyItem from "./ReplyItem";
 
+//* Exported component
 const Replies = ({ postReplies }) => {
+    //* Returns JSX to DOM
   return (
     <div>
       {postReplies.length > 0 && (

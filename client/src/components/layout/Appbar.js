@@ -9,7 +9,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import HouseIcon from "@material-ui/icons/House";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";

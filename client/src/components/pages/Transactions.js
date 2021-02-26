@@ -1,4 +1,3 @@
-//! WORKING VERSION IN PROGRESS - NOT THE BACK UP!!!
 //* Dependencies
 import React, { useContext, useEffect, useState } from "react";
 import "../../App.css";
@@ -7,7 +6,6 @@ import axios from "axios";
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 //* Custom components

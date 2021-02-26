@@ -1,21 +1,20 @@
 //* Dependencies
 import React, { useContext, useState, useEffect } from "react";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* Material-UI components, hooks, and icons
-import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Input from "@material-ui/core/Input";
-import Typography from "@material-ui/core/Typography";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Typography from "@material-ui/core/Typography";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import LockIcon from "@material-ui/icons/Lock";
-import EmailIcon from "@material-ui/icons/Email";
 import CheckIcon from "@material-ui/icons/Check";
-import background from "../../img/Subtle-Prism2.svg";
+import EmailIcon from "@material-ui/icons/Email";
+import LockIcon from "@material-ui/icons/Lock";
 
 //* Custom components
-import Footer from "../layout/Footer"
+import Footer from "../layout/Footer";
 
 //* State context
 import AlertContext from "../../context/alert/alertContext";
@@ -49,7 +48,7 @@ const Register = (props) => {
     name: "",
     email: "",
     password: "",
-    password2: ""
+    password2: "",
   });
   //* Destructures user state
   const { name, email, password, password2 } = user;
@@ -67,7 +66,7 @@ const Register = (props) => {
       register({
         name,
         email,
-        password
+        password,
       });
     }
   };
@@ -85,7 +84,7 @@ const Register = (props) => {
             paddingBottom: "2.2rem",
             marginTop: "19rem",
             textAlign: "center",
-            background: `url(${background})`
+            background: `url(${background})`,
           }}
         >
           <Typography
@@ -93,7 +92,7 @@ const Register = (props) => {
             style={{
               fontFamily: "Big Shoulders Display",
               color: "#008B8B",
-              fontWeight: "800"
+              fontWeight: "800",
             }}
           >
             Create An Account
@@ -140,7 +139,7 @@ const Register = (props) => {
               name="password"
               fullWidth={true}
               inputProps={{
-                minLength: "6"
+                minLength: "6",
               }}
               value={password}
               onChange={onChange}
@@ -159,7 +158,7 @@ const Register = (props) => {
               name="password2"
               fullWidth={true}
               inputProps={{
-                minLength: "6"
+                minLength: "6",
               }}
               value={password2}
               onChange={onChange}
@@ -182,7 +181,7 @@ const Register = (props) => {
                 fontSize: "18px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                color: "white"
+                color: "white",
               }}
             >
               Register

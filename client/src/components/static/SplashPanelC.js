@@ -1,21 +1,16 @@
 //* Dependencies
 import React from "react";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* Material UI components, hooks, and icons
-import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Typography from "@material-ui/core/Typography";
-import BlurOnIcon from "@material-ui/icons/BlurOn";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import Button from "@material-ui/core/Button";
-
-import background from "../../img/Subtle-Prism2.svg";
 
 //* Exported component
 const SplashPanelC = () => {
@@ -58,10 +53,6 @@ const SplashPanelC = () => {
             </span>{" "}
             is <span style={{ fontStyle: "italic" }}>open source.</span>
           </Typography>
-          {/* <img
-            src="/img/develop.svg"
-            style={{ width: "15rem", margin: "0 auto", display: "block" }}
-          /> */}
           <Grid container spacing={3}>
             <Grid item sm={12} md={5} lg={6} style={{ textAlign: "center" }}>
               <Typography

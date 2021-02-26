@@ -2,16 +2,12 @@
 import React from "react";
 
 //* Material UI components, hooks, and icons
-import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Typography from "@material-ui/core/Typography";
-import BlurOnIcon from "@material-ui/icons/BlurOn";
-
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import background from "../../img/Subtle-Prism2.svg";
+
+//* Custom components
 import FeaturesA from "./FeaturesA";
 import FeaturesB from "./FeaturesB";
 import FeaturesC from "./FeaturesC";
@@ -72,11 +68,10 @@ const SplashPanelB = () => {
             Open House is a tool for real estate professionals to help manage
             their customers, transactions, sales tools and track key business
             indicators. Designed specifically for use on mobile devices and
-            tablets, the application is easy to navigate on devices
-            of all sizes including desktops. Information cards, charts, forms,
-            and navigation are intuitive, organized and compartmentalized to
-            give you quick access to your data while in the field and on the
-            job.
+            tablets, the application is easy to navigate on devices of all sizes
+            including desktops. Information cards, charts, forms, and navigation
+            are intuitive, organized and compartmentalized to give you quick
+            access to your data while in the field and on the job.
           </Typography>
         </Grid>
       </Grid>

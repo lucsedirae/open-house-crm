@@ -10,6 +10,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
 //* Exported component
 const ContactsMod = () => {
+    //* Returns JSX to DOM
   return (
     <div id="contacts">
       <IconButton href="#">
