@@ -1,21 +1,18 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
-
-//* Material-UI components, hooks, and icons
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import LockIcon from "@material-ui/icons/Lock";
-import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import TextField from "@material-ui/core/TextField";
-import Input from "@material-ui/core/Input";
-import Typography from "@material-ui/core/Typography";
 import background from "../../img/Subtle-Prism2.svg";
 
+//* Material-UI components, hooks, and icons
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Typography from "@material-ui/core/Typography";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import LockIcon from "@material-ui/icons/Lock";
+
 //* Custom components
-import Footer from "../layout/Footer"
+import Footer from "../layout/Footer";
 
 //* State context
 import AlertContext from "../../context/alert/alertContext";
@@ -47,7 +44,7 @@ const Login = (props) => {
   //* Declares state var and method and initializes default state of user
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   //* Deconstructs user state
@@ -64,7 +61,7 @@ const Login = (props) => {
     } else {
       login({
         email,
-        password
+        password,
       });
     }
   };
@@ -82,7 +79,7 @@ const Login = (props) => {
             paddingBottom: "2.5rem",
             marginTop: "19rem",
             textAlign: "center",
-            background: `url(${background})`
+            background: `url(${background})`,
           }}
         >
           <Typography
@@ -91,7 +88,7 @@ const Login = (props) => {
               textAlign: "center",
               fontFamily: "Big Shoulders Display",
               color: "#008B8B",
-              fontWeight: "800"
+              fontWeight: "800",
             }}
           >
             Account Login
@@ -143,7 +140,7 @@ const Login = (props) => {
                 backgroundColor: "#008B8B",
                 fontSize: "18px",
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600"
+                fontWeight: "600",
               }}
             >
               Log In
@@ -151,7 +148,7 @@ const Login = (props) => {
           </form>
         </div>
       </Container>
-<Footer />
+      <Footer />
     </div>
   );
 };

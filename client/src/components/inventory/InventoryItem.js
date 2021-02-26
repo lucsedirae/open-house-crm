@@ -1,52 +1,24 @@
 //* Dependencies
 import React, { useContext } from "react";
 import Moment from "moment";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* Material UI components, hooks, and icons
-import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
+import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import { Divider } from "@material-ui/core";
-import background from "../../img/Subtle-Prism2.svg";
 
 //* State context
 import InventoryContext from "../../context/inventory/inventoryContext";
 import ModalContext from "../../context/modal/modalContext";
 
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch"
-    }
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
-}));
-
-export const InventoryItem = ({
-  selectedInvId,
-  inventoryItem,
-  deleteInventory
-}) => {
-  //* Initializes styling classes
-  const classes = useStyles();
-
+//* Exported component
+const InventoryItem = ({ inventoryItem, deleteInventory }) => {
   //* Initiallizes state
   const inventoryContext = useContext(InventoryContext);
   const { setCurrent } = inventoryContext;
@@ -63,6 +35,7 @@ export const InventoryItem = ({
     setCurrent(inventoryItem);
   };
 
+    //* Returns JSX to DOM
   return (
     <Container style={{ padding: "3rem" }}>
       <Grid container spacing={0} align="center" justify="center">
@@ -71,7 +44,7 @@ export const InventoryItem = ({
             style={{
               background: `url(${background})`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "cover"
+              backgroundSize: "cover",
             }}
           >
             <Typography
@@ -81,7 +54,7 @@ export const InventoryItem = ({
                 padding: ".5rem",
                 fontSize: "30px",
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600"
+                fontWeight: "600",
               }}
             >
               {inventoryItem.name}{" "}
@@ -95,7 +68,7 @@ export const InventoryItem = ({
                     variant="body1"
                     style={{
                       fontFamily: "Big Shoulders Display",
-                      fontWeight: "600"
+                      fontWeight: "600",
                     }}
                   >
                     Purchased:{" "}
@@ -107,7 +80,7 @@ export const InventoryItem = ({
                     variant="body1"
                     style={{
                       fontFamily: "Big Shoulders Display",
-                      fontWeight: "600"
+                      fontWeight: "600",
                     }}
                   >
                     Location: {inventoryItem.location}
@@ -120,7 +93,7 @@ export const InventoryItem = ({
                     variant="body1"
                     style={{
                       fontFamily: "Big Shoulders Display",
-                      fontWeight: "600"
+                      fontWeight: "600",
                     }}
                   >
                     Cost: ${inventoryItem.cost}
@@ -131,7 +104,7 @@ export const InventoryItem = ({
                     variant="body1"
                     style={{
                       fontFamily: "Big Shoulders Display",
-                      fontWeight: "600"
+                      fontWeight: "600",
                     }}
                   >
                     Value: ${inventoryItem.value}
@@ -144,7 +117,7 @@ export const InventoryItem = ({
                   style={{
                     fontFamily: "Big Shoulders Display",
                     fontWeight: "600",
-                    textAlign: "center"
+                    textAlign: "center",
                   }}
                 >
                   Status: {inventoryItem.status}
@@ -162,7 +135,7 @@ export const InventoryItem = ({
                 fontSize: "15px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                margin: "10px 5px"
+                margin: "10px 5px",
               }}
             >
               Edit
@@ -179,7 +152,7 @@ export const InventoryItem = ({
                 fontSize: "15px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                margin: "10px 5px"
+                margin: "10px 5px",
               }}
             >
               Delete
@@ -194,82 +167,3 @@ export const InventoryItem = ({
 };
 
 export default InventoryItem;
-
-{
-  /* <Card id='contact-card' className={classes.root} align='center'>
-      <CardContent>
-        <Box textAlign='center' className={classes.Box}>
-          <Typography variant='h5' className={classes.title}>
-            {inventoryItem.name}{' '}
-          </Typography>
-        </Box>
-
-        <Box className={classes.Box} style={{ textAlign: 'center' }}>
-          {inventoryItem.purchased && (
-            <Typography variant='body1' className={classes.address}>
-              Purchased: {Moment(inventoryItem.purchased).format('MM/DD/YYYY')}
-            </Typography>
-          )}
-
-
-          {inventoryItem.location && (
-            <Typography variant='body1' className={classes.address}>
-              Location: {inventoryItem.location}
-            </Typography>
-          )}
-
-
-          {inventoryItem.cost && (
-            <Typography variant='body1' className={classes.address}>
-              Cost: ${inventoryItem.cost}
-            </Typography>
-          )}
-
-
-          {inventoryItem.value && (
-            <Typography variant='body1' className={classes.address}>
-              Value: ${inventoryItem.value}
-            </Typography>
-          )}
-          {inventoryItem.status && (
-            <Typography variant='body1' className={classes.address}>
-              Status: {inventoryItem.status}
-            </Typography>
-          )}
-        </Box>
-      </CardContent>
-      <CardActions style={{ justifyContent: 'center' }}>
-        <Button
-          startIcon={<EditIcon />}
-          onClick={onClick}
-          variant='contained'
-          size='small'
-          style={{
-            backgroundColor: '#008B8B',
-            color: 'white',
-            fontSize: '15px',
-            fontFamily: 'Big Shoulders Display',
-            fontWeight: '600',
-          }}
-        >
-          Edit
-        </Button>
-        <Button
-          startIcon={<DeleteIcon />}
-          color='secondary'
-          onClick={onDelete}
-          variant='contained'
-          size='small'
-          style={{
-            backgroundColor: '#008B8B',
-            color: 'white',
-            fontSize: '15px',
-            fontFamily: 'Big Shoulders Display',
-            fontWeight: '600',
-          }}
-        >
-          Delete
-        </Button>
-      </CardActions>
-    </Card> */
-}

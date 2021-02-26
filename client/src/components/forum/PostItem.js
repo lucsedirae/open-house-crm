@@ -1,19 +1,23 @@
+//* Dependencies
 import React, { useState, useEffect } from "react";
-import Replies from "./Replies";
 import axios from "axios";
-import Badge from "@material-ui/core/Badge";
+import Moment from "react-moment";
+
+//* Material UI components, hooks, and icons
+import Checkbox from "@material-ui/core/Checkbox";
+import Container from "@material-ui/core/Container";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Container from "@material-ui/core/Container";
-import ReplyForm from "./ReplyForm";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
-import Moment from "react-moment";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import FaceIcon from "@material-ui/icons/Face";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import FaceIcon from "@material-ui/icons/Face";
 
+//* Custom components
+import Replies from "./Replies";
+import ReplyForm from "./ReplyForm";
+
+//* Exported component
 const PostItem = ({ post, posts, setPosts }) => {
   const { name, title, body, replies, _id, date, likes } = post;
 
@@ -56,6 +60,7 @@ const PostItem = ({ post, posts, setPosts }) => {
     }
   };
 
+    //* Returns JSX to DOM
   return (
     <div>
       <Container>

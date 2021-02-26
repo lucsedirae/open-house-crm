@@ -10,6 +10,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
 //* Exported component
 const AgentForum = () => {
+    //* Returns JSX to DOM
   return (
     <div id="forum">
       <IconButton href="#">

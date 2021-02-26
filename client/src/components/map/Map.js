@@ -1,13 +1,15 @@
+//* Dependencies
+import React, { useState, useEffect } from "react";
 import Geocode from "react-geocode";
-import { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
-import LocationMarker from "./LocationMarker";
 require("dotenv").config();
+
+//* Custom components
+import LocationMarker from "./LocationMarker";
 
 //* Exported component
 const Map = ({ contact }) => {
   const [location, setLocation] = useState({});
-
 
   const { streetNumber, street, city, state } = contact;
 
@@ -22,7 +24,6 @@ const Map = ({ contact }) => {
     });
     //eslint-disable-next-line
   }, []);
-
 
   //* Returns JSX to DOM
   return (

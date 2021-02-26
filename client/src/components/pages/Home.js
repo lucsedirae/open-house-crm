@@ -10,7 +10,6 @@ import Footer from "../layout/Footer";
 //* Exported component
 const Home = () => {
   //* Returns JSX to DOM
-
   return (
     <>
       <div className="landing">

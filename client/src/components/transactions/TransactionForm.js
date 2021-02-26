@@ -1,19 +1,17 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
-// import axios from 'axios';
+import Moment from "moment";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-// import Input from '@material-ui/core/Input';
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Divider } from "@material-ui/core";
-import Moment from "moment";
 
 //* State context
 import TransactionContext from "../../context/transactions/transactionContext";
@@ -23,16 +21,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "25ch"
-    }
+      width: "25ch",
+    },
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    minWidth: 120,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 //* Exported component
@@ -40,13 +38,15 @@ const TransactionForm = ({
   handleClose,
   updateTransaction,
   clearCurrent,
-  addTransaction
+  addTransaction,
 }) => {
   //* Initializes styling classes
   const classes = useStyles();
 
+  //* Initializes toast notifications
   const { addToast } = useToasts();
 
+  //* Initiallizes state
   const transactionContext = useContext(TransactionContext);
   const { current, setCurrentTrx } = transactionContext;
 
@@ -62,7 +62,7 @@ const TransactionForm = ({
         dateOpened: "",
         dateClosed: "",
         expectedCloseDate: "",
-        note: ""
+        note: "",
       });
     }
   }, [transactionContext, current]);
@@ -75,7 +75,7 @@ const TransactionForm = ({
     dateOpened: "",
     dateClosed: "",
     expectedCloseDate: "",
-    note: ""
+    note: "",
   });
 
   const {
@@ -86,7 +86,7 @@ const TransactionForm = ({
     dateOpened,
     dateClosed,
     expectedCloseDate,
-    note
+    note,
   } = transaction;
 
   const onChange = (e) => {
@@ -99,14 +99,14 @@ const TransactionForm = ({
       addTransaction(transaction);
       addToast("Transaction saved!", {
         appearance: "success",
-        autoDismiss: true
+        autoDismiss: true,
       });
     } else {
       updateTransaction(transaction);
       setCurrentTrx(null);
       addToast("Transaction updated!", {
         appearance: "success",
-        autoDismiss: true
+        autoDismiss: true,
       });
     }
 
@@ -118,7 +118,7 @@ const TransactionForm = ({
       dateOpened: "",
       expectedCloseDate: "",
       note: "",
-      user: ""
+      user: "",
     });
   };
 
@@ -135,7 +135,7 @@ const TransactionForm = ({
           textAlign: "center",
           fontFamily: "Big Shoulders Display",
           fontSize: "25px",
-          fontWeight: "600"
+          fontWeight: "600",
         }}
       >
         {current ? "Edit Transaction" : "Add Transaction"}
@@ -256,7 +256,7 @@ const TransactionForm = ({
           color: "white",
           fontFamily: "Big Shoulders Display",
           fontSize: "18px",
-          fontWeight: "600"
+          fontWeight: "600",
         }}
         onClick={handleClose}
       >
@@ -271,7 +271,7 @@ const TransactionForm = ({
           style={{
             marginBottom: "1rem",
             fontFamily: "Big Shoulders Display",
-            fontSize: "18px"
+            fontSize: "18px",
           }}
           onClick={clearAll}
         >

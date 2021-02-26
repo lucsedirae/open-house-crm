@@ -2,15 +2,15 @@
 import React, { Fragment } from "react";
 
 //* Material-UI comps, hooks, icons
-import { makeStyles } from "@material-ui/core/styles";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +32,7 @@ function ListItemLink(props) {
 const HelpMenu = () => {
   const classes = useStyles();
 
+  //* Returns JSX to DOM
   return (
     <Fragment className={classes.root}>
       <Accordion>
@@ -68,9 +69,8 @@ const HelpMenu = () => {
           </ListItemLink>
         </List>
       </Accordion>
-
     </Fragment>
   );
 };
 
-export default HelpMenu
+export default HelpMenu;
