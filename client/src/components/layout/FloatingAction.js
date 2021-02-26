@@ -1,15 +1,18 @@
+//* Dependencies
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
+//* Material UI components, hooks, and icons
 import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "@material-ui/core/Tooltip";
+import { makeStyles } from "@material-ui/core/styles";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1)
-    }
-  }
+      margin: theme.spacing(1),
+    },
+  },
 }));
 
 const style = {
@@ -23,9 +26,10 @@ const style = {
   color: "white",
   border: "3px solid darkslategrey ",
   width: "4rem",
-  height: "4rem"
+  height: "4rem",
 };
 
+//* Exported component
 export default function FloatingAction({ handleClickOpen, toolType }) {
   const classes = useStyles();
 
@@ -42,6 +46,7 @@ export default function FloatingAction({ handleClickOpen, toolType }) {
     }
   };
 
+  //* Returns JSX to DOM
   return (
     <div className={classes.root}>
       <Tooltip title={generateToolTip(toolType)} placement="left">

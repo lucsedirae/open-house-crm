@@ -1,6 +1,8 @@
+//* Dependencies
 import React, {Fragment} from "react"
 import spinner from "./spinner.gif"
 
+//* Exported component
 const Spinner = () => (
     <Fragment>
         <img 

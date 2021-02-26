@@ -1,10 +1,14 @@
+//* Dependencies
 import React from "react";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import FaceIcon from "@material-ui/icons/Face";
 import Moment from "react-moment";
 
-const ReplyItem = ({ reply }) => {
-  const { date, name, body } = reply;
+//* Material UI components, hooks, and icons
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import FaceIcon from "@material-ui/icons/Face";
+
+//* Exported component
+const ReplyItem = ({ date, name, body }) => {
+  //* Returns JSX to DOM
   return (
     <AccordionDetails style={{ display: "block" }}>
       <div style={{ color: "#606060" }}>

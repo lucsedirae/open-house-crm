@@ -1,6 +1,9 @@
+//* Dependencies
 import React from "react";
 
+//* Exported component
 const Footer = () => {
+  //* Returns JSX to DOM
   return (
     <div id="footer">
       <p style={{ marginTop: "7px", paddingTop: "5px" }}>

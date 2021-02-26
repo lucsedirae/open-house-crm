@@ -1,12 +1,15 @@
-import React from "react";
+//* Dependencies
+import React, { Fragment } from "react";
 import { Icon } from "@iconify/react";
 import locationPersonFilled from "@iconify-icons/carbon/location-person-filled";
 
+//* Exported component
 const LocationMarker = () => {
+    //* Returns JSX to DOM
   return (
-    <div>
+    <Fragment>
       <Icon icon={locationPersonFilled} className="location-icon" />
-    </div>
+    </Fragment>
   );
 };
 

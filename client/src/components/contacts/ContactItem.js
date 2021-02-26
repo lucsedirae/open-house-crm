@@ -2,32 +2,31 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { useToasts } from "react-toast-notifications";
+import background from "../../img/Subtle-Prism2.svg";
 
 //* Material UI components, hooks, and icons
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Chip from "@material-ui/core/Chip";
 import CustomizedDialogs from "../modals/MapModal";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import ContactMailIcon from "@material-ui/icons/ContactMail";
-import PhoneIcon from "@material-ui/icons/Phone";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import background from "../../img/Subtle-Prism2.svg";
 
 //* State context
 import ContactContext from "../../context/contact/contactContext";
 import ModalContext from "../../context/modal/modalContext";
+
+//* Custom components
+import NameTag from "./NameTag";
+import ContactButtons from "./ContactButtons";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
@@ -41,43 +40,18 @@ const useStyles = makeStyles({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     fontWeight: "200",
-    margin: "0 auto"
-  },
-  title: {
-    textAlign: "center",
-    fontFamily: "Big Shoulders Display",
     margin: "0 auto",
-    fontSize: "17px"
   },
   address: {
     textAlign: "center",
     fontSize: "18px",
     fontFamily: "Big Shoulders Display",
-    margin: "0 auto"
-  },
-
-  pos: {
-    marginBottom: "1rem"
-  },
-  buttonGroup: {
-    justifyContent: "center"
+    margin: "0 auto",
   },
   Box: {
-    marginTop: "1rem"
-  }
+    marginTop: "1rem",
+  },
 });
-
-//* Checks the contact type and returns the appropriate chip background color
-const typeCheck = (type) => {
-  switch (type) {
-    case "vendor":
-      return "purple";
-    case "client":
-      return "#008B8B";
-    default:
-      return "orange";
-  }
-};
 
 //* Exported component
 export const ContactItem = ({ contact }) => {
@@ -102,7 +76,7 @@ export const ContactItem = ({ contact }) => {
     state,
     zipcode,
     type,
-    note
+    note,
   } = contact;
 
   const modalContext = useContext(ModalContext);
@@ -113,7 +87,7 @@ export const ContactItem = ({ contact }) => {
     clearCurrent();
     addToast("Contact deleted!", {
       appearance: "success",
-      autoDismiss: true
+      autoDismiss: true,
     });
   };
 
@@ -131,47 +105,13 @@ export const ContactItem = ({ contact }) => {
         id="panel1a-header"
         align="center"
       >
-        <Typography variant="h5" className={classes.title}>
-          {name}{" "}
-          <Chip
-            size="small"
-            label={type}
-            // label={type.charAt(0).toUpperCase() + type.slice(1)}
-            style={{
-              background: typeCheck(type),
-              color: "white",
-              fontFamily: "Big Shoulders Display",
-              fontWeight: "800"
-            }}
-            icon={<PersonOutlineIcon size="small" style={{ color: "white" }} />}
-          />
-        </Typography>
+        <NameTag contactType={type} contactName={name} />
       </AccordionSummary>
       <AccordionDetails>
         <Card id="contact-card" className={classes.root} align="center">
           <CardContent>
             <Box textAlign="center" className={classes.Box}>
-              <ButtonGroup className={classes.buttonGroup}>
-                <Button
-                  variant="contained"
-                  startIcon={<ContactMailIcon />}
-                  href={`mailto:${email}`}
-                  size="small"
-                  className="contact-btns"
-                >
-                  {email}
-                </Button>
-                <Button
-                  variant="contained"
-                  startIcon={<PhoneIcon />}
-                  href={`tel:${phone}`}
-                  style={{ backgroundColor: "#008B8B", color: "white" }}
-                  size="small"
-                  className="contact-btns"
-                >
-                  {phone}
-                </Button>
-              </ButtonGroup>
+              <ContactButtons email={email} phone={phone} />
             </Box>
 
             <Box className={classes.Box} style={{ textAlign: "center" }}>
@@ -208,7 +148,7 @@ export const ContactItem = ({ contact }) => {
                 color: "white",
                 fontSize: "15px",
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600"
+                fontWeight: "600",
               }}
             >
               Edit
@@ -224,7 +164,7 @@ export const ContactItem = ({ contact }) => {
                 color: "white",
                 fontSize: "15px",
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600"
+                fontWeight: "600",
               }}
             >
               Delete
@@ -239,7 +179,7 @@ export const ContactItem = ({ contact }) => {
 };
 
 ContactItem.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
 };
 
 export default ContactItem;
