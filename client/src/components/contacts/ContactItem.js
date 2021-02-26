@@ -10,7 +10,6 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -19,8 +18,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import ContactMailIcon from "@material-ui/icons/ContactMail";
-import PhoneIcon from "@material-ui/icons/Phone";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 //* State context
@@ -29,6 +26,7 @@ import ModalContext from "../../context/modal/modalContext";
 
 //* Custom components
 import NameTag from "./NameTag";
+import ContactButtons from "./ContactButtons";
 
 //* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
@@ -49,9 +47,6 @@ const useStyles = makeStyles({
     fontSize: "18px",
     fontFamily: "Big Shoulders Display",
     margin: "0 auto",
-  },
-  buttonGroup: {
-    justifyContent: "center",
   },
   Box: {
     marginTop: "1rem",
@@ -116,27 +111,7 @@ export const ContactItem = ({ contact }) => {
         <Card id="contact-card" className={classes.root} align="center">
           <CardContent>
             <Box textAlign="center" className={classes.Box}>
-              <ButtonGroup className={classes.buttonGroup}>
-                <Button
-                  variant="contained"
-                  startIcon={<ContactMailIcon />}
-                  href={`mailto:${email}`}
-                  size="small"
-                  className="contact-btns"
-                >
-                  {email}
-                </Button>
-                <Button
-                  variant="contained"
-                  startIcon={<PhoneIcon />}
-                  href={`tel:${phone}`}
-                  style={{ backgroundColor: "#008B8B", color: "white" }}
-                  size="small"
-                  className="contact-btns"
-                >
-                  {phone}
-                </Button>
-              </ButtonGroup>
+              <ContactButtons email={email} phone={phone} />
             </Box>
 
             <Box className={classes.Box} style={{ textAlign: "center" }}>

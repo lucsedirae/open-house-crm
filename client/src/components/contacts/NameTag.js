@@ -1,11 +1,14 @@
+//* Dependencies
 import React from "react";
 
+//* Material UI components, hooks, and icons
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 
+//* Defines styles to be served via makeStyles MUI hook
 const useStyles = makeStyles({
   title: {
     textAlign: "center",
@@ -13,24 +16,9 @@ const useStyles = makeStyles({
     margin: "0 auto",
     fontSize: "17px",
   },
-  address: {
-    textAlign: "center",
-    fontSize: "18px",
-    fontFamily: "Big Shoulders Display",
-    margin: "0 auto",
-  },
-
-  pos: {
-    marginBottom: "1rem",
-  },
-  buttonGroup: {
-    justifyContent: "center",
-  },
-  Box: {
-    marginTop: "1rem",
-  },
 });
 
+//* Exported component
 const NameTag = ({ contactType, contactName }) => {
   const classes = useStyles();
 
@@ -46,6 +34,7 @@ const NameTag = ({ contactType, contactName }) => {
     }
   };
 
+  //* Returns JSX to DOM
   return (
     <Grid container>
       <Grid item xs={12} md={6}>

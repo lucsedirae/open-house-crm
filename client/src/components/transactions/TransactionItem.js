@@ -33,7 +33,7 @@ const typeCheck = (type) => {
 };
 
 //* Exported component
-const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
+const TransactionItem = ({ transaction, deleteTransaction }) => {
   const transactionContext = useContext(TransactionContext);
   const { setCurrentTrx } = transactionContext;
 
@@ -57,7 +57,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
     dateOpened,
     dateClosed,
     expectedCloseDate,
-    note
+    note,
   } = transaction;
 
   //* Returns JSX to DOM
@@ -69,7 +69,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
             style={{
               background: `url(${background})`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "cover"
+              backgroundSize: "cover",
             }}
           >
             <Typography
@@ -79,7 +79,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                 padding: ".5rem",
                 fontSize: "30px",
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600"
+                fontWeight: "600",
               }}
             >
               {trxName}{" "}
@@ -90,7 +90,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                   background: typeCheck(type),
                   color: "white",
                   fontFamily: "Big Shoulders Display",
-                  fontWeight: "800"
+                  fontWeight: "800",
                 }}
               />
             </Typography>
@@ -103,7 +103,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                   variant="body1"
                   style={{
                     fontFamily: "Big Shoulders Display",
-                    fontWeight: "600"
+                    fontWeight: "600",
                   }}
                 >
                   Revenue: ${revenue}
@@ -114,7 +114,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                   style={{
                     fontFamily: "Big Shoulders Display",
                     fontWeight: "600",
-                    color: "red"
+                    color: "red",
                   }}
                 >
                   Expenses: -${cost}
@@ -125,7 +125,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                   style={{
                     fontFamily: "Big Shoulders Display",
                     fontWeight: "600",
-                    color: "green"
+                    color: "green",
                   }}
                 >
                   Profit: +${revenue - cost}
@@ -137,7 +137,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                   variant="body1"
                   style={{
                     fontFamily: "Big Shoulders Display",
-                    fontWeight: "600"
+                    fontWeight: "600",
                   }}
                 >
                   Date Opened: {Moment(dateOpened).format("MM/DD/YYYY")}
@@ -147,7 +147,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                   variant="body1"
                   style={{
                     fontFamily: "Big Shoulders Display",
-                    fontWeight: "600"
+                    fontWeight: "600",
                   }}
                 >
                   Expected Close Date:{" "}
@@ -158,7 +158,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                   variant="body1"
                   style={{
                     fontFamily: "Big Shoulders Display",
-                    fontWeight: "600"
+                    fontWeight: "600",
                   }}
                 >
                   Date Closed:{" "}
@@ -179,7 +179,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                 fontSize: "15px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                margin: "10px 5px"
+                margin: "10px 5px",
               }}
             >
               Edit
@@ -196,7 +196,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
                 fontSize: "15px",
                 fontFamily: "Big Shoulders Display",
                 fontWeight: "600",
-                margin: "10px 5px"
+                margin: "10px 5px",
               }}
             >
               Delete
@@ -209,7 +209,7 @@ const TransactionItem = ({ selectedTrxId, transaction, deleteTransaction }) => {
               variant="body1"
               style={{
                 fontFamily: "Big Shoulders Display",
-                fontWeight: "600"
+                fontWeight: "600",
               }}
             >
               Notes: {note}
