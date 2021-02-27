@@ -37,8 +37,8 @@
 .submitButton {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  background: #008b8b;
-  color: white;
+  background: #008b8b !important;
+  color: white !important;
   font-family: "Big Shoulders Display", sans-serif !important;
   font-weight: 600 !important;
   font-size: 18px !important;

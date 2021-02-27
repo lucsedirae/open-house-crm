@@ -5,13 +5,18 @@ import React from "react";
 import PostItem from "./PostItem";
 
 //* Exported component
-const Posts = ({ posts, setPosts }) => {
+const Posts = ({ posts, setPosts, _id }) => {
   //* Returns JSX to DOM
   return (
     <div>
       {posts.length === 0 && <h2>No Posts To Display</h2>}
       {posts.map((post) => (
-        <PostItem post={post} posts={posts} setPosts={setPosts} />
+        <PostItem
+          key={post._id}
+          post={post}
+          posts={posts}
+          setPosts={setPosts}
+        />
       ))}
     </div>
   );

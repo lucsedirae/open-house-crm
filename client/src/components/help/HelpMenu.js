@@ -1,5 +1,6 @@
 //* Dependencies
 import React, { Fragment } from "react";
+import styles from "./help.module.css";
 
 //* Material-UI comps, hooks, icons
 import Accordion from "@material-ui/core/Accordion";
@@ -9,20 +10,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-}));
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
@@ -30,11 +18,9 @@ function ListItemLink(props) {
 
 //* Exported component
 const HelpMenu = () => {
-  const classes = useStyles();
-
   //* Returns JSX to DOM
   return (
-    <Fragment className={classes.root}>
+    <Fragment className={styles.root}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
