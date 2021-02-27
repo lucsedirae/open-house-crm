@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { useToasts } from "react-toast-notifications";
-import background from "../../img/Subtle-Prism2.svg";
+import styles from "./contacts.module.css";
 
 //* Material UI components, hooks, and icons
 import Accordion from "@material-ui/core/Accordion";
@@ -15,7 +15,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CustomizedDialogs from "../modals/MapModal";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -28,37 +27,10 @@ import ModalContext from "../../context/modal/modalContext";
 import NameTag from "./NameTag";
 import ContactButtons from "./ContactButtons";
 
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    marginBottom: "1rem",
-    border: "1px solid grey",
-    boxShadow: "0 8px 5px -3px grey",
-    fontFamily: "Oswald",
-    background: `url(${background})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    fontWeight: "200",
-    margin: "0 auto",
-  },
-  address: {
-    textAlign: "center",
-    fontSize: "18px",
-    fontFamily: "Big Shoulders Display",
-    margin: "0 auto",
-  },
-  Box: {
-    marginTop: "1rem",
-  },
-});
-
 //* Exported component
 export const ContactItem = ({ contact }) => {
   //* react-toast-notifications custom hook
   const { addToast } = useToasts();
-  //* Initializes styling classes
-  const classes = useStyles();
 
   //* Initiallizes state
   const contactContext = useContext(ContactContext);
@@ -108,21 +80,25 @@ export const ContactItem = ({ contact }) => {
         <NameTag contactType={type} contactName={name} />
       </AccordionSummary>
       <AccordionDetails>
-        <Card id="contact-card" className={classes.root} align="center">
+        <Card id="contact-card" className={styles.contactCard} align="center">
           <CardContent>
-            <Box textAlign="center" className={classes.Box}>
+            <Box textAlign="center" className={styles.box}>
               <ContactButtons email={email} phone={phone} />
             </Box>
 
-            <Box className={classes.Box} style={{ textAlign: "center" }}>
+            <Box className={styles.box} style={{ textAlign: "center" }}>
               {street && (
-                <Typography variant="body1" className={classes.address}>
+                <Typography variant="body1" className={styles.address}>
                   {streetNumber} {street}
                 </Typography>
               )}
-              {address2 && <Typography variant="body1">{address2}</Typography>}
+              {address2 && (
+                <Typography variant="body1" className={styles.address}>
+                  {address2}
+                </Typography>
+              )}
               {city && (
-                <Typography variant="body1" className={classes.address}>
+                <Typography variant="body1" className={styles.address}>
                   {city} {state} {zipcode}
                 </Typography>
               )}
@@ -130,7 +106,7 @@ export const ContactItem = ({ contact }) => {
                 <Typography
                   align="center"
                   variant="body1"
-                  className={classes.address}
+                  className={styles.address}
                 >
                   Notes: {note}
                 </Typography>
@@ -143,13 +119,7 @@ export const ContactItem = ({ contact }) => {
               onClick={onClick}
               variant="contained"
               size="small"
-              style={{
-                backgroundColor: "#008B8B",
-                color: "white",
-                fontSize: "15px",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "600",
-              }}
+              className={styles.crudButton}
             >
               Edit
             </Button>
@@ -159,13 +129,7 @@ export const ContactItem = ({ contact }) => {
               onClick={onDelete}
               variant="contained"
               size="small"
-              style={{
-                backgroundColor: "#008B8B",
-                color: "white",
-                fontSize: "15px",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "600",
-              }}
+              className={styles.crudButton}
             >
               Delete
             </Button>
