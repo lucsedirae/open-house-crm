@@ -1,0 +1,46 @@
+:root {
+  --prism-bground: url(../../img/Subtle-Prism2.svg);
+}
+
+.root {
+  margin: 1rem;
+}
+
+.button {
+  background-color: #008b8b !important;
+  color: white !important;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  margin: 10px 5px !important;
+}
+
+.header {
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  margin-bottom: 1rem !important;
+}
+
+.label {
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.paper {
+  background-image: var(--prism-bground);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.textField {
+  margin: 4px;
+  width: fit-content;
+}
+
+.title {
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 2rem !important;
+  margin: 3px !important;
+}
