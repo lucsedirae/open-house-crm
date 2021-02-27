@@ -1,0 +1,30 @@
+:root {
+  --prism-bground: url(../../img/Subtle-Prism2.svg);
+}
+
+.box {
+  background: var(--prism-bground);
+  text-align: center;
+  margin-top: 19rem;
+  padding-bottom: 2.5rem;
+  padding: 4rem;
+  border: 1px solid #008b8b;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.button {
+  margin-top: 1.5rem !important;
+  background-color: #008b8b !important;
+  font-size: 18px !important;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  color: white !important;
+}
+
+.title {
+  text-align: center;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 800 !important;
+  color: #008b8b;
+}
