@@ -1,5 +1,6 @@
 //* Dependencies
 import React, { useContext, useEffect } from "react";
+import styles from "./pages.module.css";
 
 //* Material UI components, hooks, and icons
 import Accordion from "@material-ui/core/Accordion";
@@ -8,7 +9,6 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 //* Custom components
@@ -20,30 +20,8 @@ import Revenue from "../charts/Revenue";
 //* State context
 import AuthContext from "../../context/auth/authContext";
 
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    marginBottom: "1rem",
-  },
-  header: {
-    textAlign: "center",
-    marginTop: "5rem",
-    marginBottom: "1rem",
-    fontFamily: "Big Shoulders Display",
-    fontWeight: "700",
-  },
-}));
-
 //* Exported component
 const ChartsPage = () => {
-  //* Initializes styling classes
-  const classes = useStyles();
-
   //* Initializes state
   const authContext = useContext(AuthContext);
 
@@ -82,7 +60,7 @@ const ChartsPage = () => {
               align="center"
             >
               {" "}
-              <Typography variant="h5" className={classes.title}>
+              <Typography variant="h5" className={styles.title}>
                 Revenue and Costs
               </Typography>
             </AccordionSummary>
@@ -110,7 +88,7 @@ const ChartsPage = () => {
               align="center"
             >
               {" "}
-              <Typography variant="h5" className={classes.title}>
+              <Typography variant="h5" className={styles.title}>
                 Profit
               </Typography>
             </AccordionSummary>
@@ -138,7 +116,7 @@ const ChartsPage = () => {
               height="500"
             >
               {" "}
-              <Typography variant="h5" className={classes.title}>
+              <Typography variant="h5" className={styles.title}>
                 Cost Distribution
               </Typography>
             </AccordionSummary>

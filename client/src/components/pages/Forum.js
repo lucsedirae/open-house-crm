@@ -1,47 +1,25 @@
 //* Dependencies
 import React, { useEffect, useState, useContext } from "react";
-
-//* Material UI components, hooks, and icons
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Posts from "../forum/Posts";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
+import styles from "./pages.module.css";
 
+//* Material UI components, hooks, and icons
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+
+//* State context
 import AuthContext from "../../context/auth/authContext";
 
 //* Custom components
 import NavPanel from "../layout/NavPanel";
-
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    marginBottom: "1rem"
-  },
-  header: {
-    textAlign: "center",
-    marginTop: "5rem",
-    marginBottom: "1rem",
-    fontFamily: "Big Shoulders Display",
-    fontWeight: "700"
-  }
-}));
+import Posts from "../forum/Posts";
 
 //* Exported component
 const Forum = () => {
-  //* Initializes styling classes
-  const classes = useStyles();
-
   const { addToast } = useToasts();
 
   const authContext = useContext(AuthContext);
@@ -50,7 +28,7 @@ const Forum = () => {
 
   const [post, setPost] = useState({
     title: "",
-    body: ""
+    body: "",
   });
 
   const [posts, setPosts] = useState([]);
@@ -76,19 +54,19 @@ const Forum = () => {
     e.preventDefault();
     const res = await axios.post("/api/forum", {
       ...post,
-      name: user && user.name
+      name: user && user.name,
     });
     console.log(res.data);
 
     setPosts([res.data, ...posts]);
     setPost({
       title: "",
-      body: ""
+      body: "",
     });
 
     addToast(`Your post was successful!`, {
       appearance: "success",
-      autoDismiss: true
+      autoDismiss: true,
     });
   };
 
@@ -105,7 +83,7 @@ const Forum = () => {
           style={{ marginTop: "5rem" }}
         >
           <NavPanel />
-          <form className={classes.root} autoComplete="off">
+          <form className={styles.root} autoComplete="off">
             <Box style={{ textAlign: "center" }}>
               <TextField
                 fullWidth={true}
@@ -133,15 +111,7 @@ const Forum = () => {
               variant="contained"
               type="submit"
               fullWidth={true}
-              style={{
-                marginTop: "1rem",
-                marginBottom: "1rem",
-                backgroundColor: "#008B8B",
-                color: "white",
-                fontFamily: "Big Shoulders Display",
-                fontSize: "18px",
-                fontWeight: "600"
-              }}
+              className={styles.submitButton}
               onClick={onSubmit}
             >
               Submit

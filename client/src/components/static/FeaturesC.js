@@ -1,50 +1,27 @@
 //* Dependencies and hooks
-import React, { Fragment } from "react";
+import React from "react";
+import styles from "./static.module.css";
 
 //* Material UI components, hooks, and icons
-import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
-import background from "../../img/Subtle-Prism2.svg";
+import Typography from "@material-ui/core/Typography";
 
 //* Exported component
 const FeaturesB = () => {
   //* Returns JSX to DOM
   return (
-    <Card
-      style={{
-        border: "1px solid #008B8B",
-        background: `url(${background})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        padding: "1rem",
-        height: "100%",
-        padding: "1rem",
-        height: "100%"
-      }}
-    >
+    <Card className={styles.card}>
       <CardHeader
         title={
-          <Typography
-            style={{
-              fontFamily: "Big Shoulders Display",
-              fontWeight: "700",
-              fontSize: "30px",
-              textAlign: "center"
-            }}
-          >
-            Business Analytics
-          </Typography>
+          <Typography className={styles.header}>Business Analytics</Typography>
         }
       />
       <CardMedia
         image="/img/charts.svg"
         component="img"
-        style={{
-          padding: "1rem",
-          borderRadius: "1rem"
-        }}
+        className={styles.cardMedia}
       />
 
       <Typography variant="body1">

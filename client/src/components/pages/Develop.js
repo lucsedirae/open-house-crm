@@ -1,6 +1,7 @@
 //* Dependencies
 import React, { Fragment, useState, useEffect } from "react";
 import API from "../../utils/GH_API";
+import styles from "./pages.module.css";
 
 //* Material-UI components, hooks, and icons
 import Badge from "@material-ui/core/Badge";
@@ -10,37 +11,11 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import CommentIcon from "@material-ui/icons/Comment";
 import GitHubIcon from "@material-ui/icons/GitHub";
 
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-  gridContainer: {
-    flexGrow: 1,
-    padding: "1rem",
-  },
-  badge: {
-    marginTop: "0px",
-    margin: "6px",
-  },
-  control: {
-    padding: theme.spacing(2),
-    margin: "3px",
-    background: "silver",
-  },
-}));
-
 //* Exported component
 const Develop = () => {
-  //* Initializes styling classes
-  const classes = useStyles();
-
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
@@ -60,10 +35,10 @@ const Develop = () => {
       <Typography variant="h4" align="center">
         Open GitHub Issues
       </Typography>
-      <Container className={classes.root}>
+      <Container className={styles.root}>
         {issues.map((issue) => (
-          <Paper className={classes.control}>
-            <Grid container spacing={2} className={classes.gridContainer}>
+          <Paper className={styles.control}>
+            <Grid container spacing={2} className={styles.grid - container}>
               <Grid item xs>
                 <Typography variant="h6">
                   <strong>Issue</strong>: {issue.title}
@@ -84,12 +59,12 @@ const Develop = () => {
                   variant="outlined"
                   label={issue.state}
                   size="small"
-                  className={classes.badge}
+                  className={styles.badge}
                   style={{ background: "lightgreen" }}
                 ></Chip>
                 <Badge
                   badgeContent={issue.comments}
-                  className={classes.badge}
+                  className={styles.badge}
                   color="primary"
                 >
                   <CommentIcon />
@@ -102,7 +77,7 @@ const Develop = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <GitHubIcon color="secondary" className={classes.badge} />
+                  <GitHubIcon color="secondary" className={styles.badge} />
                 </IconButton>
                 <Typography variant="body1">
                   <strong>Created: </strong>

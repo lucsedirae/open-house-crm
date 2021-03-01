@@ -1,11 +1,12 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
+import axios from "axios";
+import styles from "./forum.module.css"
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import axios from "axios";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
@@ -78,15 +79,7 @@ const ReplyForm = ({ _id, post, postReplies, setPostReplies }) => {
       <Button
         variant="contained"
         type="submit"
-        style={{
-          marginTop: "1rem",
-          marginBottom: "1rem",
-          backgroundColor: "#008B8B",
-          color: "white",
-          fontFamily: "Big Shoulders Display",
-          fontSize: "18px",
-          fontWeight: "600",
-        }}
+        className={styles.button}
       >
         Submit
       </Button>

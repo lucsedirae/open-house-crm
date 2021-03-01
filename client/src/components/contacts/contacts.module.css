@@ -1,0 +1,103 @@
+:root {
+  --prism-bground: url(../../img/Subtle-Prism2.svg);
+}
+
+.root {
+  margin: 1.5rem;
+}
+
+.address {
+  text-align: center;
+  font-size: 18px;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  margin: 0 auto;
+}
+
+.box {
+  margin-top: 1rem;
+}
+
+.button {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  background-color: #008b8b !important;
+  color: white !important;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+}
+
+.editButton {
+  margin-bottom: 1rem !important;
+  color: white !important;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+}
+
+.buttonGroup {
+  justify-content: center;
+}
+
+.chip {
+  color: white !important;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.contactCard {
+  min-width: 275 !important;
+  margin-bottom: 1rem !important;
+  border: 1px solid grey !important;
+  box-shadow: 0 8px 5px -3px grey !important;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 300 !important;
+  background: var(--prism-bground);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+.crudButton {
+  background-color: #008b8b !important;
+  color: white !important;
+  font-size: 15px !important;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.phoneButton {
+  background-color: #008b8b !important;
+  color: white !important;
+}
+
+.name {
+  text-align: center;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+}
+
+.textField {
+  margin: 2px;
+  width: fit-content;
+}
+
+.title {
+  text-align: center;
+  font-family: "Big Shoulders Display", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 25px !important;
+  margin: 1rem !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .main-logo {
+    font-size: 45px !important;
+  }
+
+  .contactBtns {
+    font-size: 9px !important;
+  }
+}

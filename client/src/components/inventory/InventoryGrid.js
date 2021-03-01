@@ -1,6 +1,7 @@
 //* Dependencies
 import React, { Fragment, useState } from "react";
 import Moment from "moment";
+import styles from "./inventory.module.css";
 
 //* Material-UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
@@ -63,16 +64,7 @@ const InventoryGrid = ({
           />
         </Fragment>
       ) : (
-        <Typography
-          align="center"
-          variant="h5"
-          style={{
-            fontFamily: "Big Shoulders Display",
-            fontSize: "18px",
-            fontWeight: "600",
-            marginBottom: "1rem",
-          }}
-        >
+        <Typography align="center" variant="h5" className={styles.header}>
           Please select an inventory item
         </Typography>
       )}
