@@ -1,6 +1,6 @@
 //* Dependencies
 import React, { useContext, useState, useEffect } from "react";
-import background from "../../img/Subtle-Prism2.svg";
+import styles from "./auth.module.css";
 
 //* Material-UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
@@ -75,26 +75,8 @@ const Register = (props) => {
   return (
     <div className="landing">
       <Container maxWidth="xs">
-        <div
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            borderRadius: "1rem",
-            border: "1px solid #008B8B ",
-            padding: "3rem",
-            paddingBottom: "2.2rem",
-            marginTop: "19rem",
-            textAlign: "center",
-            background: `url(${background})`,
-          }}
-        >
-          <Typography
-            variant="h4"
-            style={{
-              fontFamily: "Big Shoulders Display",
-              color: "#008B8B",
-              fontWeight: "800",
-            }}
-          >
+        <div className={styles.box}>
+          <Typography variant="h4" className={styles.title}>
             Create An Account
           </Typography>
 
@@ -175,14 +157,7 @@ const Register = (props) => {
               fullWidth={true}
               type="submit"
               value="Register"
-              style={{
-                marginTop: "1.5rem",
-                backgroundColor: "#008B8B",
-                fontSize: "18px",
-                fontFamily: "Big Shoulders Display",
-                fontWeight: "600",
-                color: "white",
-              }}
+              className={styles.button}
             >
               Register
             </Button>

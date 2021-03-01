@@ -1,14 +1,14 @@
 //* Dependencies
 import React, { useState, useContext, useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
+import styles from "./contacts.module.css";
 
 //* Material UI components, hooks, and icons
 import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 
 //*Custom components & data imports
 import statesUS from "./stateField.json";
@@ -16,29 +16,10 @@ import statesUS from "./stateField.json";
 //* State context
 import ContactContext from "../../context/contact/contactContext";
 
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
 //* Exported component
 const ContactForm = ({ handleClose }) => {
   //* react-toast-notifications custom hook
   const { addToast } = useToasts();
-  //* Initializes styling classes
-  const classes = useStyles();
 
   //* Initializes context state
   const contactContext = useContext(ContactContext);
@@ -133,150 +114,145 @@ const ContactForm = ({ handleClose }) => {
 
   //* Returns JSX to DOM
   return (
-    <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-      <Typography
-        variant="h5"
-        style={{
-          textAlign: "center",
-          fontFamily: "Big Shoulders Display",
-          fontSize: "25px",
-          fontWeight: "600",
-        }}
-      >
+    <form className={styles.root} autoComplete="off" onSubmit={onSubmit}>
+      <Typography variant="h5" className={styles.title}>
         {current ? "Edit Contact" : "Add Contact"}
       </Typography>
 
-      <Box style={{ textAlign: "center" }}>
-        {/* These TextFields are repetitive and could be componentized then mapped across the contact object to reduce line count */}
-        <TextField
-          variant="standard"
-          required={true}
-          type="text"
-          id="standard-required"
-          label="Name"
-          size="small"
-          helperText="Required"
-          name="name"
-          value={name}
-          onChange={onChange}
-        />
-
-        <TextField
-          required={true}
-          variant="standard"
-          label="Contact Type"
-          size="small"
-          name="type"
-          select
-          helperText="Required"
-          value={type}
-          onChange={onChange}
-        >
-          <MenuItem key="client" value="client">
-            Client
-          </MenuItem>
-          <MenuItem key="prospect" value="prospect">
-            Prospect
-          </MenuItem>
-          <MenuItem key="vendor" value="vendor">
-            Vendor
-          </MenuItem>
-        </TextField>
-
-        <TextField
-          variant="standard"
-          label="Email"
-          type="email"
-          size="small"
-          name="email"
-          value={email}
-          onChange={onChange}
-        />
-
-        <TextField
-          variant="standard"
-          label="Phone"
-          type="phone"
-          size="small"
-          name="phone"
-          value={phone}
-          onChange={onChange}
-        />
-
-        <TextField
-          variant="standard"
-          label="Street Number"
-          type="number"
-          size="small"
-          name="streetNumber"
-          value={streetNumber}
-          onChange={onChange}
-        />
-
-        <TextField
-          variant="standard"
-          label="Street"
-          type="text"
-          size="small"
-          name="street"
-          value={street}
-          onChange={onChange}
-        />
-
-        <TextField
-          variant="standard"
-          label="Additional Address"
-          type="text"
-          size="small"
-          name="address2"
-          value={address2}
-          onChange={onChange}
-        />
-
-        <TextField
-          variant="standard"
-          label="City"
-          size="small"
-          type="text"
-          name="city"
-          value={city}
-          onChange={onChange}
-        />
-
-        <TextField
-          variant="standard"
-          label="State"
-          type="text"
-          size="small"
-          name="state"
-          select
-          value={state}
-          onChange={onChange}
-        >
-          {statesUS.map((abbr) => (
-            <MenuItem key={abbr} value={abbr}>
-              {abbr}
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <TextField
+            variant="standard"
+            required={true}
+            type="text"
+            id="standard-required"
+            label="Name"
+            size="small"
+            helperText="Required"
+            name="name"
+            value={name}
+            onChange={onChange}
+            className={styles.textField}
+          />
+          <TextField
+            required={true}
+            variant="standard"
+            label="Contact Type"
+            size="small"
+            name="type"
+            select
+            helperText="Required"
+            value={type}
+            onChange={onChange}
+            className={styles.textField}
+            style={{ width: "12rem" }}
+          >
+            <MenuItem key="client" value="client">
+              Client
             </MenuItem>
-          ))}
-        </TextField>
+            <MenuItem key="prospect" value="prospect">
+              Prospect
+            </MenuItem>
+            <MenuItem key="vendor" value="vendor">
+              Vendor
+            </MenuItem>
+          </TextField>
 
-        <TextField
-          variant="standard"
-          label="Zip"
-          type="number"
-          size="small"
-          name="zipcode"
-          value={zipcode}
-          onChange={onChange}
-        />
-      </Box>
+          <TextField
+            variant="standard"
+            label="Phone"
+            type="phone"
+            size="small"
+            name="phone"
+            value={phone}
+            onChange={onChange}
+          />
+          <TextField
+            variant="standard"
+            label="Email"
+            type="email"
+            size="small"
+            name="email"
+            value={email}
+            onChange={onChange}
+            className={styles.textField}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            variant="standard"
+            label="Street Number"
+            type="number"
+            size="small"
+            name="streetNumber"
+            value={streetNumber}
+            onChange={onChange}
+          />
+          <TextField
+            variant="standard"
+            label="Street"
+            type="text"
+            size="small"
+            name="street"
+            value={street}
+            onChange={onChange}
+          />
+          <TextField
+            variant="standard"
+            label="Additional Address"
+            type="text"
+            size="small"
+            name="address2"
+            value={address2}
+            onChange={onChange}
+          />
+          <TextField
+            variant="standard"
+            label="State"
+            type="text"
+            size="small"
+            name="state"
+            select
+            value={state}
+            onChange={onChange}
+            style={{ width: "12rem" }}
+          >
+            {statesUS.map((abbr) => (
+              <MenuItem key={abbr} value={abbr}>
+                {abbr}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <TextField
+            variant="standard"
+            label="City"
+            size="small"
+            type="text"
+            name="city"
+            value={city}
+            onChange={onChange}
+          />
+
+          <TextField
+            variant="standard"
+            label="Zip"
+            type="number"
+            size="small"
+            name="zipcode"
+            value={zipcode}
+            onChange={onChange}
+          />
+        </Grid>
+      </Grid>
+
       <TextField
         variant="standard"
         label="Notes"
         id="standard-textarea"
         type="text"
         name="note"
-        style={{width: "100%"}}
+        style={{ width: "100%" }}
         rows={4}
         multiline
         value={note}
@@ -287,15 +263,7 @@ const ContactForm = ({ handleClose }) => {
         variant="contained"
         type="submit"
         fullWidth={true}
-        style={{
-          marginTop: "1rem",
-          marginBottom: "1rem",
-          backgroundColor: "#008B8B",
-          color: "white",
-          fontFamily: "Big Shoulders Display",
-          fontSize: "18px",
-          fontWeight: "600",
-        }}
+        className={styles.button}
         onClick={handleClose}
       >
         Submit
@@ -306,12 +274,7 @@ const ContactForm = ({ handleClose }) => {
           fullWidth={true}
           type="submit"
           color="secondary"
-          style={{
-            marginBottom: "1rem",
-            fontFamily: "Big Shoulders Display",
-            fontSize: "18px",
-            fontWeight: "600",
-          }}
+          className={styles.editButton}
           onClick={clearAll}
         >
           Clear

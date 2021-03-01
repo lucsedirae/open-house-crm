@@ -1,16 +1,12 @@
 //* Dependencies
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import styles from "./pages.module.css";
 
 //* Material UI components, hooks, and icons
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
-import TextField from "@material-ui/core/TextField";
-import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import EditIcon from "@material-ui/icons/Edit";
 
 //* Custom components
 import NavPanel from "../layout/NavPanel";
@@ -19,30 +15,8 @@ import UserForm from "../myAccount/UserForm";
 //* State context
 import AuthContext from "../../context/auth/authContext";
 
-//* Defines styles to be served via makeStyles MUI hook
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    marginBottom: "1rem"
-  },
-  header: {
-    textAlign: "center",
-    marginTop: "5rem",
-    marginBottom: "1rem",
-    fontFamily: "Big Shoulders Display",
-    fontWeight: "700"
-  }
-}));
-
 //* Exported component
 const MyAccount = () => {
-  //* Initializes styling classes
-  const classes = useStyles();
-
   //* Initializes context state
   const authContext = useContext(AuthContext);
   const { user } = authContext;
@@ -66,9 +40,9 @@ const MyAccount = () => {
           align="center"
         >
           <NavPanel />
-          <Paper className={classes.paper}>
+          <Paper className={styles.paper}>
             <Typography variant="h5">Account Details</Typography>
-            <form className={classes.root} autoComplete="off">
+            <form className={styles.root} autoComplete="off">
               <Typography>
                 <strong>Name: </strong>
                 {user && user.name}
@@ -85,7 +59,7 @@ const MyAccount = () => {
               </Typography>
             </form>
           </Paper>
-          <Paper className={classes.paper}>
+          <Paper className={styles.paper}>
             <UserForm />
           </Paper>
         </Grid>

@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 
 //* Exported component
 const NoteCard = () => {
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
   return (
     <div>
       <Card>

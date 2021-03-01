@@ -13,7 +13,7 @@ import ReplyItem from "./ReplyItem";
 
 //* Exported component
 const Replies = ({ postReplies }) => {
-    //* Returns JSX to DOM
+  //* Returns JSX to DOM
   return (
     <div>
       {postReplies.length > 0 && (
@@ -35,7 +35,7 @@ const Replies = ({ postReplies }) => {
           </AccordionSummary>
 
           {postReplies.map((reply) => (
-            <ReplyItem reply={reply} />
+            <ReplyItem key={reply._id} reply={reply} />
           ))}
         </Accordion>
       )}
