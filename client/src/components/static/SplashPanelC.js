@@ -1,6 +1,7 @@
 //* Dependencies
 import React from "react";
 import background from "../../img/Subtle-Prism2.svg";
+import styles from "./static.module.css";
 
 //* Material UI components, hooks, and icons
 import Box from "@material-ui/core/Box";
@@ -18,35 +19,10 @@ const SplashPanelC = () => {
   return (
     <Container disableGutters>
       <Box pt={12}>
-        <Paper
-          style={{
-            padding: "30px",
-            border: "1px solid #008B8B",
-            background: `url(${background})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        >
-          <Typography
-            align="center"
-            variant="h4"
-            style={{
-              color: "#008B8B",
-              fontFamily: "Big Shoulders Display",
-              fontWeight: "800",
-              paddingTop: "2rem",
-              marginBottom: "1rem",
-            }}
-          >
+        <Paper className={styles.devPanel}>
+          <Typography align="center" variant="h4" className={styles.devTitle}>
             Want to contribute?{" "}
-            <span
-              style={{
-                fontSize: "43px",
-                fontWeight: "900",
-                textShadow:
-                  "-1px 0 #FCE181, 0 2px #FCE181, 2px 0 #FCE181, 0 -1px #FCE181",
-              }}
-            >
+            <span className={styles.titleSpan}>
               open
               <LocationOnIcon fontSize="small" />
               house
@@ -55,19 +31,14 @@ const SplashPanelC = () => {
           </Typography>
           <Grid container spacing={3}>
             <Grid item sm={12} md={5} lg={6} style={{ textAlign: "center" }}>
-              <Typography
-                variant="h4"
-                style={{
-                  marginTop: "1rem",
-                  fontFamily: "Big Shoulders Display",
-                  color: "#008B8B",
-                  fontWeight: "600",
-                }}
-              >
+              <Typography variant="h4" className={styles.devSubtitle}>
                 Dev Updates
               </Typography>
               <Typography>
                 <List>
+                  <ListItem>
+                    3/1/21 - Refactored styling, unifying CSS approach
+                  </ListItem>
                   <ListItem>2/10/2021 - Deployed beta version</ListItem>
                   <ListItem>1/31/2021 - Transactions module is active</ListItem>
                   <ListItem>
@@ -85,19 +56,16 @@ const SplashPanelC = () => {
               <Typography
                 variant="h4"
                 align="center"
-                style={{
-                  marginTop: "1rem",
-                  fontFamily: "Big Shoulders Display",
-                  color: "#008B8B",
-                  fontWeight: "600",
-                }}
+                className={styles.devSubtitle}
               >
                 Future Development
               </Typography>
               <Typography>
                 <List>
-                <ListItem>
-                    Upgrade authentication technology to provide more robust security and auth via sites like Google, LinkedIn, etc for access to API's
+                  <ListItem>
+                    Upgrade authentication technology to provide more robust
+                    security and auth via sites like Google, LinkedIn, etc for
+                    access to API's
                   </ListItem>
                   <ListItem>
                     Add calendar module with plugin support for popular calendar

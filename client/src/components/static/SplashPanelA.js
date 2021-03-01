@@ -1,6 +1,5 @@
 //* Dependencies
 import React from "react";
-import background from "../../img/Subtle-Prism2.svg";
 import styles from "./static.module.css";
 
 //* Material UI components, hooks, and icons
