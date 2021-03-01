@@ -14,7 +14,7 @@ import Develop from "./components/pages/Develop";
 import Home from "./components/pages/Home";
 import Inventory from "./components/pages/Inventory";
 import Login from "./components/auth/Login";
-import MyAccount from "./components/pages/MyAccount";
+import Settings from "./components/pages/Settings";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Register from "./components/auth/Register";
 import Transactions from "./components/pages/Transactions";
@@ -61,8 +61,8 @@ const App = () => {
                         />
                         <PrivateRoute
                           exact
-                          path="/account"
-                          component={MyAccount}
+                          path="/settings"
+                          component={Settings}
                         />
                         <PrivateRoute
                           exact

@@ -10,13 +10,14 @@ import Typography from "@material-ui/core/Typography";
 
 //* Custom components
 import NavPanel from "../layout/NavPanel";
-import UserForm from "../myAccount/UserForm";
+import UserForm from "../settings/UserForm";
+import SwitchPanel from "../layout/navpanel/SwitchPanel";
 
 //* State context
 import AuthContext from "../../context/auth/authContext";
 
 //* Exported component
-const MyAccount = () => {
+const Settings = () => {
   //* Initializes context state
   const authContext = useContext(AuthContext);
   const { user } = authContext;
@@ -41,7 +42,7 @@ const MyAccount = () => {
         >
           <NavPanel />
           <Paper className={styles.paper}>
-            <Typography variant="h5">Account Details</Typography>
+            <Typography variant="h5">Account Settings</Typography>
             <form className={styles.root} autoComplete="off">
               <Typography>
                 <strong>Name: </strong>
@@ -60,7 +61,7 @@ const MyAccount = () => {
             </form>
           </Paper>
           <Paper className={styles.paper}>
-            <UserForm />
+                <SwitchPanel />
           </Paper>
         </Grid>
       </Grid>
@@ -68,4 +69,4 @@ const MyAccount = () => {
   );
 };
 
-export default MyAccount;
+export default Settings;
